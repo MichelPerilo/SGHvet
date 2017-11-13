@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class Conexao {
 
-	private String projeto = "jdbc:mysql://Localhost:3306";
+	private String projeto = "jdbc:mysql://localhost:3306/sghvet";
 
 	public Connection getConexao(String usuario, String senha) throws Exception {
 

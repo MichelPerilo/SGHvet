@@ -21,28 +21,30 @@ public class Auxiliar {
 		this.email = email;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setDataNasc(LocalDate dataNasc) {
-		this.dataNasc = dataNasc;
+	public LocalDate getDataNasc() {
+		return dataNasc;
 	}
 
-	public void setCargo(CargoAuxiliar cargo) {
-		this.cargo = cargo;
+	public CargoAuxiliar getCargo() {
+		return cargo;
 	}
 
-	public void setContato(String contato) {
-		this.contato = contato;
+	public String getContato() {
+		return contato;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public String getEmail() {
+		return email;
 	}
+
+
 
 }

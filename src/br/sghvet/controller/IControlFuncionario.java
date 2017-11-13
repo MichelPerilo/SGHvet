@@ -6,6 +6,8 @@ import br.sghvet.model.Usuario;
 import br.sghvet.model.Veterinario;
 
 public interface IControlFuncionario {
+	
+	public void conectar();
 
 	public Usuario buscaUsuario(String cpf, String senha) throws Exception; // Login
 	public boolean cadastrarUsuario(Usuario user) throws Exception;
