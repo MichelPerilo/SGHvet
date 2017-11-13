@@ -1,0 +1,30 @@
+CREATE TABLE veterinario(
+nome varchar(100) not null,
+cpf char(14) not null,
+dataNasc date not null,
+cargo varchar(15) not null,
+contato varchar(11) not null,
+email varchar(40) not null,
+crmv varchar(20) not null,
+primary key(cpf)
+)ENGINE = innodb;
+
+CREATE TABLE administrativo(
+nome varchar(100) not null,
+cpf char(14) not null,
+dataNasc date not null,
+cargo varchar(15) not null,
+contato varchar(11) not null,
+email varchar(40) not null,
+primary key(cpf)
+)ENGINE = innodb;
+
+CREATE TABLE auxiliar(
+nome varchar(100) not null,
+cpf char(14) not null,
+dataNasc date not null,
+cargo varchar(15) not null,
+contato varchar(11) not null,
+email varchar(40) not null,
+primary key(cpf)
+)ENGINE = innodb;
