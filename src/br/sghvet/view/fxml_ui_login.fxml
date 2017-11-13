@@ -13,8 +13,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="../controller/UiLoginController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiLoginController">
   <children>
     <MenuBar nodeOrientation="RIGHT_TO_LEFT" VBox.vgrow="NEVER">
       <menus>
@@ -27,29 +28,39 @@
     </MenuBar>
     <AnchorPane prefHeight="696.0" prefWidth="1280.0" style="-fx-background-color: #ffffff;" VBox.vgrow="ALWAYS">
       <children>
-            <AnchorPane fx:id="login_component" layoutX="774.0" layoutY="116.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="415.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10px;" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="774.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="116.0">
+            <AnchorPane fx:id="login_component" layoutX="775.0" layoutY="144.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="415.0" style="-fx-background-color: #ffffff; -fx-border-radius: 10px;" AnchorPane.rightAnchor="104.0">
                <children>
-                  <Button layoutX="25.0" layoutY="317.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #1e90ff;" text="Entrar" textFill="WHITE" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="375.0" />
-                  <PasswordField layoutX="25.0" layoutY="216.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="senha" style="-fx-border-color: #d3d3d3;" AnchorPane.bottomAnchor="166.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="264.0" />
-                  <TextField layoutX="25.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="usuário" style="-fx-border-color: #d3d3d3;" AnchorPane.bottomAnchor="224.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="206.0" />
-                  <CheckBox layoutX="25.0" layoutY="270.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="17.0" prefWidth="98.0" text="Lembrar-me" textFill="DARKGRAY" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="318.0" />
-                  <Label layoutX="302.0" layoutY="279.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="88.0" text="Esqueci a Senha" textFill="DARKGRAY" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="302.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="318.0" />
-                  <ImageView fitHeight="75.0" fitWidth="211.0" layoutX="25.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="300.5058898925781" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="46.41412353515625" AnchorPane.topAnchor="49.0">
-                     <image>
-                        <Image url="@../../../../assets/imgs/simgeh.png" />
-                     </image>
-                  </ImageView>
-                  <Separator layoutX="273.0" layoutY="37.0" orientation="VERTICAL" prefHeight="97.0" prefWidth="2.0" />
-                  <ImageView fitHeight="118.0" fitWidth="115.0" layoutX="290.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="278.0" AnchorPane.leftAnchor="289.7929382324219" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="26.0">
+                  <Button layoutX="25.0" layoutY="317.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #1e90ff;" text="Entrar" textFill="WHITE" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="350.0" />
+                  <PasswordField layoutX="25.0" layoutY="216.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="senha" style="-fx-border-color: #d3d3d3;" AnchorPane.bottomAnchor="166.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="239.0" />
+                  <TextField layoutX="25.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="usuário" style="-fx-border-color: #d3d3d3;" AnchorPane.bottomAnchor="224.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="181.0" />
+                  <CheckBox layoutX="25.0" layoutY="270.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="17.0" prefWidth="98.0" text="Lembrar-me" textFill="DARKGRAY" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="293.0" />
+                  <Label layoutX="302.0" layoutY="279.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="88.0" text="Esqueci a Senha" textFill="DARKGRAY" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="302.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="293.0" />
+                  <Separator layoutX="295.0" layoutY="37.0" orientation="VERTICAL" prefHeight="97.0" prefWidth="2.0" />
+                  <ImageView fitHeight="122.0" fitWidth="97.0" layoutX="308.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="308.0" AnchorPane.rightAnchor="25.536117553710938" AnchorPane.topAnchor="23.0">
                      <image>
                         <Image url="@../../../../assets/imgs/logo_ufrpe.jpg" />
                      </image>
                   </ImageView>
+                  <Label layoutX="17.0" layoutY="59.0" prefHeight="25.0" prefWidth="261.0" text="Departamento de Medicina Veterinária" textFill="LIGHTGRAY" AnchorPane.bottomAnchor="361.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="137.0" AnchorPane.topAnchor="59.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="143.0" layoutY="75.0" prefHeight="25.0" prefWidth="135.0" text="Hospital Veterinário" textFill="LIGHTGRAY" AnchorPane.bottomAnchor="345.0" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="137.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <ImageView fitHeight="339.0" fitWidth="605.0" layoutX="14.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="13.16217041015625" AnchorPane.rightAnchor="705.8378295898438" AnchorPane.topAnchor="351.0">
+            <ImageView fitHeight="339.0" fitWidth="605.0" layoutX="62.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="657.8378295898438" AnchorPane.topAnchor="351.0">
                <image>
                   <Image url="@../../../../assets/imgs/animais_login.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="163.0" fitWidth="516.0" layoutX="112.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="422.0" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="707.5752563476562" AnchorPane.topAnchor="116.0">
+               <image>
+                  <Image url="@../../../../assets/imgs/simgeh.png" />
                </image>
             </ImageView>
       </children>
