@@ -1,8 +1,0 @@
-package br.sghvet.model;
-public enum TipoUsuario{
-	
-	VETERINARIO, ADMINISTRATIVO, AUXILIAR
-	
-	
-	//VETERINARIO, ATENDENTE, FARMACEUTICO, LABORATORIO, CIRURGIAO
-}
