@@ -1,6 +1,6 @@
 CREATE TABLE veterinario(
 nome varchar(100) not null,
-cpf char(14) not null,
+cpf char(11) not null,
 dataNasc date not null,
 cargo varchar(15) not null,
 contato varchar(11) not null,
@@ -11,7 +11,7 @@ primary key(cpf)
 
 CREATE TABLE administrativo(
 nome varchar(100) not null,
-cpf char(14) not null,
+cpf char(11) not null,
 dataNasc date not null,
 cargo varchar(15) not null,
 contato varchar(11) not null,
@@ -21,7 +21,7 @@ primary key(cpf)
 
 CREATE TABLE auxiliar(
 nome varchar(100) not null,
-cpf char(14) not null,
+cpf char(11) not null,
 dataNasc date not null,
 cargo varchar(15) not null,
 contato varchar(11) not null,
@@ -31,7 +31,7 @@ primary key(cpf)
 
 CREATE TABLE tutor(
 nome varchar(100) not null,
-cpf char(14) not null,
+cpf char(11) not null,
 sexo char(1) not null,
 contato varchar(11) not null,
 primary key(cpf)
@@ -46,7 +46,7 @@ complemento varchar(100),
 cep char(8) not null,
 cidade varchar(30) not null,
 estado varchar(30) not null,
-cpfTutor char(14) not null,
+cpfTutor char(11) not null,
 primary key(id),
 foreign key(cpfTutor) references tutor(cpf)
 )ENGINE = innodb;

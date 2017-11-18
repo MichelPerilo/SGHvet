@@ -42,7 +42,7 @@ public class RepositorioTutor implements IRepositorioTutor {
 
 	@Override
 	public boolean cadastrarTutor(Tutor tutor) throws Exception {
-
+		System.out.println("Entrou");
 		String query = "insert into Tutor (nome, cpf, sexo, contato)values(?,?,?,?)";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, tutor.getNome());
