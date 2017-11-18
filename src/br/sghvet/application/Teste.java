@@ -27,11 +27,11 @@ public class Teste {
 			//control.cadastraAdm(user, adm);
 			//control.atualizaAdm(adm);
 			//control.deletarAdm(adm);
-			Auxiliar aux = new Auxiliar("joao", "11111111111111", LocalDate.of(1980, 1, 10), CargoAuxiliar.LABORATORIO,
+			Auxiliar aux = new Auxiliar("Maria", "31111111111111", LocalDate.of(1980, 1, 10), CargoAuxiliar.LABORATORIO,
 							"12345678901", "email@teste.com");
 			//control.cadastrarAuxiliar(user, aux);
 			//control.atualizarAuxiliar(aux);
-			control.deletarAuxiliar(aux);
+			control.cadastrarAuxiliar(user, aux);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
