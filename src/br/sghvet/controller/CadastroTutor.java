@@ -4,32 +4,30 @@ import java.sql.Connection;
 
 import br.sghvet.data.IRepositorioTutor;
 import br.sghvet.data.RepositorioTutor;
+import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
 
-
-
 public class CadastroTutor implements ICadastroTutor {
-	
-private IRepositorioTutor repo;
-	
-	
-	public CadastroTutor(){
+
+	private IRepositorioTutor repo;
+
+	public CadastroTutor() {
 		this.repo = new RepositorioTutor();
 	}
-	
+
 	@Override
 	public void conectar(Connection conect) {
 		repo.conectar(conect);
 	}
-	
-	@Override
+
+	@Override	
 	public Tutor buscaTutor(String cpf) throws Exception {
 		return repo.buscaTutor(cpf);
 	}
 
 	@Override
-	public boolean cadastraTutor(Tutor tutor) throws Exception {
-		return repo.cadastraTutor(tutor);
+	public boolean cadastrarTutor(Tutor tutor) throws Exception {
+		return repo.cadastrarTutor(tutor);
 	}
 
 	@Override
@@ -42,6 +40,24 @@ private IRepositorioTutor repo;
 		return repo.deletarTutor(tutor);
 	}
 
-	
-	
+	@Override
+	public boolean cadastraEndereco(Endereco e1) throws Exception {
+		return repo.cadastrarEndereco(e1);
+	}
+
+	@Override
+	public boolean atualizarEndereco(Endereco e1) throws Exception {
+		return repo.atualizarEndereco(e1);
+	}
+
+	@Override
+	public Endereco buscaEndereco(String cpf) throws Exception {
+		return repo.buscaEndereco(cpf);
+	}
+
+	@Override
+	public boolean deletarEndereco(Endereco e1) throws Exception {
+		return repo.deletarEndereco(e1);
+	}
+
 }
