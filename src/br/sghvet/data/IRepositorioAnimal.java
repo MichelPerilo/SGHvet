@@ -1,11 +1,11 @@
-package br.sghvet.controller;
+package br.sghvet.data;
 
 import java.sql.Connection;
 import java.util.List;
 
 import br.sghvet.model.Animal;
 
-public interface ICadastroAnimal {
+public interface IRepositorioAnimal {
 
 	public void conectar(Connection conect);
 	public boolean cadastrarAnimal(Animal a) throws Exception;

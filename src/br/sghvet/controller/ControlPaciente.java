@@ -23,6 +23,7 @@ public class ControlPaciente implements IControlPaciente {
 		try {
 			conect = new Conexao().getConexao("root", "");
 			cadastroTutor.conectar(conect);
+			cadastroAnimal.conectar(conect);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -30,26 +31,22 @@ public class ControlPaciente implements IControlPaciente {
 
 	@Override
 	public boolean cadastrarAnimal(Animal a) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		return cadastroAnimal.cadastrarAnimal(a);
 	}
 
 	@Override
 	public boolean atualizarAnimal(Animal a) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		return cadastroAnimal.atualizarAnimal(a);
 	}
 
 	@Override
 	public boolean deletarAnimal(Animal a) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		return cadastroAnimal.deletarAnimal(a);
 	}
 
 	@Override
 	public List buscarAnimal(String cpfTutor) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return cadastroAnimal.buscarAnimal(cpfTutor);
 	}
 
 	@Override

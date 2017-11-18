@@ -53,4 +53,17 @@ foreign key(cpfTutor) references tutor(cpf)
 
 CREATE TABLE animal(
 prontuario int not null auto_increment,
-)
+nome varchar(50) not null,
+especie varchar(50) not null,
+raca varchar(50),
+pelagem varchar(50),
+peso decimal(5,2),
+sexo char(1)not null,
+idade int not null,
+cpfTutor char(11) not null,
+primary key(prontuario,cpfTutor),
+foreign key(cpfTutor) references tutor(cpf)
+)ENGINE = innodb;
+
+select A.prontuario, A.nome, A.especie, A.raca, A.pelagem, A.peso,
+A.sexo, A.idade from animal as A

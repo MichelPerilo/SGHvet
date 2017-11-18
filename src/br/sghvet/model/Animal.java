@@ -4,32 +4,43 @@ public class Animal {
 
 	private String nome;
 	private String especie;
-	private String raça;
+	private String raca;
 	private String pelagem;
 	private String peso;
-	private Tutor tutor;
+	private String cpfTutor;
 	private String sexo;
 	private String idade;
-	private String numProntuario;
+	private int numProntuario;
 
-	public Animal(String numeProntuario, String nome, String especie, String sexo, String idade) {
+	public Animal(String nome, String especie, String sexo, String idade, String cpftutor, String raca, String pelagem,
+			String peso) {
 
 		setNome(nome);
 		setEspecie(especie);
 		setSexo(sexo);
 		setIdade(idade);
-		setNumProntuario(numeProntuario);
+		setCpfTutor(cpftutor);
+		setRaça(raca);
+		setPelagem(pelagem);
+		setPeso(peso);
+	}
 
+	public String getCpfTutor() {
+		return cpfTutor;
+	}
+
+	public void setCpfTutor(String cpfTutor) {
+		this.cpfTutor = cpfTutor;
 	}
 
 	public String getRaça() {
-		return raça;
+		return raca;
 	}
 
-	public void setRaça(String raça) {
+	public void setRaça(String raca) {
 
-		if (raça != null && !raça.equals(""))
-			this.raça = raça;
+		if (raca != null && !raca.equals(""))
+			this.raca = raca;
 	}
 
 	public String getPelagem() {
@@ -42,24 +53,15 @@ public class Animal {
 			this.pelagem = pelagem;
 	}
 
-	public String getPeso() {
-		return peso;
+	public Double getPeso() {
+		if (peso != null) {
+			return Double.parseDouble(peso);
+		} else
+			return null;
 	}
 
 	public void setPeso(String peso) {
-
-		if (peso != null && !peso.equals(""))
-			this.peso = peso;
-	}
-
-	public Tutor getTutor() {
-		return tutor;
-	}
-
-	public void setTutor(Tutor tutor) {
-
-		if (tutor != null)
-			this.tutor = tutor;
+		this.peso = peso;
 	}
 
 	public String getNome() {
@@ -99,14 +101,13 @@ public class Animal {
 			this.idade = idade;
 	}
 
-	public String getNumProntuario() {
+	public int getNumProntuario() {
 		return numProntuario;
 	}
 
-	public void setNumProntuario(String numProntuario) {
+	public void setNumProntuario(int numProntuario) {
 
-		if (numProntuario != null && !numProntuario.equals(""))
-			this.numProntuario = numProntuario;
+		this.numProntuario = numProntuario;
 	}
 
 }
