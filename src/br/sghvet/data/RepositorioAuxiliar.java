@@ -6,9 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-import br.sghvet.model.Administrativo;
 import br.sghvet.model.Auxiliar;
-import br.sghvet.model.CargoAdm;
 import br.sghvet.model.CargoAuxiliar;
 
 public class RepositorioAuxiliar implements IRepositorioAuxiliar {

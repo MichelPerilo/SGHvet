@@ -19,13 +19,13 @@ public class CadastroUsuario implements ICadastroUsuario {
 	}
 
 	@Override
-	public Usuario buscarUsuario(String cpf, String senha) throws Exception {
-		return repo.buscaUsuario(cpf, senha);
+	public Usuario buscarUsuario(String cpf) throws Exception {
+		return repo.buscaUsuario(cpf);
 	}
 
 	@Override
-	public boolean cadastrarUsuario(Usuario user) throws Exception {
-		return repo.cadastrarUsuario(user);
+	public boolean cadastrarUsuario(Usuario user, String senha) throws Exception {
+		return repo.cadastrarUsuario(user, senha);
 	}
 
 	@Override

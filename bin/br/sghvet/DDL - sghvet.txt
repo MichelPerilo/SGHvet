@@ -28,3 +28,9 @@ contato varchar(11) not null,
 email varchar(40) not null,
 primary key(cpf)
 )ENGINE = innodb;
+
+CREATE TABLE usuario(
+cpf char(14) not null,
+tipo enum('VETERINARIO', 'ADMINISTRATIVO', 'AUXILIAR') not null,
+primary key(cpf)
+)ENGINE = innodb;

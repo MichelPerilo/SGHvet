@@ -36,13 +36,13 @@ public class ControlFuncionario implements IControlFuncionario{
 	}
 	
 	@Override
-	public Usuario buscaUsuario(String cpf, String senha) throws Exception {
-		return cadastroUsuario.buscarUsuario(cpf, senha);
+	public Usuario buscaUsuario(String cpf) throws Exception {
+		return cadastroUsuario.buscarUsuario(cpf);
 	}
 	
 	@Override
-	public boolean cadastrarUsuario(Usuario user) throws Exception {
-		return cadastroUsuario.cadastrarUsuario(user);
+	public boolean cadastrarUsuario(Usuario user, String senha) throws Exception {
+		return cadastroUsuario.cadastrarUsuario(user, senha);
 	}
 
 	@Override

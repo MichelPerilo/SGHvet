@@ -5,7 +5,8 @@ import java.sql.SQLException;
 
 public class Conexao {
 
-	private String projeto = "jdbc:mysql://localhost:3306/sghvet";
+	private String host = "localhost";
+	private String projeto = "jdbc:mysql://"+host+":3306/sghvet";
 
 	public Connection getConexao(String usuario, String senha) throws Exception {
 
@@ -17,4 +18,7 @@ public class Conexao {
 			throw e;
 		}
 }
+	public String getHost() {
+		return host;
+	}
 }

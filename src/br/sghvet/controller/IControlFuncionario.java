@@ -9,8 +9,8 @@ public interface IControlFuncionario {
 	
 	public void conectar();
 
-	public Usuario buscaUsuario(String cpf, String senha) throws Exception; // Login
-	public boolean cadastrarUsuario(Usuario user) throws Exception;
+	public Usuario buscaUsuario(String cpf) throws Exception; // Login
+	public boolean cadastrarUsuario(Usuario user, String senha) throws Exception;
 	public boolean atualizarUsuario(Usuario user) throws Exception;
 	public boolean deletarUsuario(Usuario user) throws Exception;
 	

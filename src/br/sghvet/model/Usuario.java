@@ -3,12 +3,10 @@ package br.sghvet.model;
 public class Usuario {
 
 	private String cpf;
-	private String senha;
 	private TipoUsuario tipo;
 
-	public Usuario(String cpf, String senha, TipoUsuario tipo) {
+	public Usuario(String cpf, TipoUsuario tipo) {
 		this.cpf = cpf;
-		this.senha = senha;
 		this.tipo = tipo;
 	}
 
@@ -18,10 +16,6 @@ public class Usuario {
 
 	public String getCpf() {
 		return cpf;
-	}
-
-	public String getSenha() {
-		return senha;
 	}
 
 	
