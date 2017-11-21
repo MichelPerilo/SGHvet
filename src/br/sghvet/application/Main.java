@@ -21,8 +21,6 @@ Stage window;
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        //stage.getIcons().add(new Image(getClass().getResourceAsStream("../../../../assets/imgs/sghvet_v2_h_rgb.png")));
-        //stage.setResizable(false);
         stage.show();
     }
 
