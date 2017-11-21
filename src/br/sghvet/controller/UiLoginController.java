@@ -1,6 +1,9 @@
 package br.sghvet.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -16,6 +19,12 @@ public class UiLoginController implements Initializable{
 	
 	@FXML
 	private AnchorPane login_component;
+	@FXML 
+	private Button button_entrar;
+	@FXML
+	private PasswordField passwordfield_senha; 
+	@FXML
+	private TextField textfield_cpf;
 	
 
 
@@ -30,6 +39,19 @@ public class UiLoginController implements Initializable{
 		 dropShadow.setColor(Color.color (0.4, 0.4, 0.4, 0.4));
 		 
 		 login_component.setEffect(dropShadow);
+		
+	}
+	
+	public void handler_entrar(){
+		
+		
+		  IControleLogin login = new ControleLogin();
+		try {
+			login.loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	 
