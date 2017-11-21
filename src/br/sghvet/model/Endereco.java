@@ -15,7 +15,8 @@ public class Endereco implements Serializable {
 	private String complemento;
 	private String cidade;
 	private String estado;
-	private String cpfTutor;
+	private String CpfTutor;
+	
 
 	public Endereco(String logradouro, String bairro, String cep, String numero, String complemento, String cidade,
 			String estado, String cpfTutor) {
@@ -28,17 +29,12 @@ public class Endereco implements Serializable {
 		this.setCidade(cidade);
 		this.setEstado(estado);
 		this.setCpfTutor(cpfTutor);
+		
 	}
 
 	// metodos
 
-	public String getCpfTutor() {
-		return cpfTutor;
-	}
-
-	public void setCpfTutor(String cpfTutor) {
-		this.cpfTutor = cpfTutor;
-	}
+	
 
 	public String getLogradouro() {
 		return logradouro;
@@ -107,6 +103,14 @@ public class Endereco implements Serializable {
 	public String toString() {
 		return "\nLOFRADOURO: " + logradouro + "  BAIRRO: " + bairro + "\nCEP: " + cep + "  NUMERO: " + numero
 				+ "  COMPLEMENTO: " + complemento + "\nCIDADE: " + cidade + "  ESTADO: " + estado;
+	}
+
+	public String getCpfTutor() {
+		return CpfTutor;
+	}
+
+	public void setCpfTutor(String cpfTutor) {
+		CpfTutor = cpfTutor;
 	}
 
 }

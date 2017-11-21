@@ -12,6 +12,7 @@ public class Tutor {
 	private String sexo;
 	private String contato;
 	private Endereco endereco;
+	
 
 	public Tutor(String nome, String cpf, String sexo, String contato, Endereco endereco) {
 
