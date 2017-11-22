@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import br.sghvet.controller.Conexao;
 import br.sghvet.model.Administrativo;
 import br.sghvet.model.CargoAdm;
 
@@ -53,7 +54,21 @@ public class RepositorioAdm implements IRepositorioAdm {
 		ps.setString(5, adm.getContato());
 		ps.setString(6, adm.getEmail());
 		
-		return executar(ps);
+		if(executar(ps)) {
+			//testar
+			query = "GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO '"+adm.getCpf()+"'@'"+new Conexao().getHost()+"';";
+			String query2 = "GRANT CREATE USER ON *.* TO '"+adm.getCpf()+"'@'"+new Conexao().getHost()+"' WITH GRANT OPTION;";
+			String query3 = "FLUSH PRIVILEGES;";
+			ps = connection.prepareStatement(query);
+			boolean q1 = executar(ps);
+			ps = connection.prepareStatement(query2);
+			boolean q2 = executar(ps);
+			ps = connection.prepareStatement(query3);
+			boolean q3 = executar(ps);
+			if(q1&&q2&&q3)
+				return true;
+		}
+		return false;
 	}
 
 
