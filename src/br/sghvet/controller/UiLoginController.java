@@ -1,6 +1,8 @@
 package br.sghvet.controller;
 
+import br.sghvet.model.TipoUsuario;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -25,6 +27,8 @@ public class UiLoginController implements Initializable{
 	private PasswordField passwordfield_senha; 
 	@FXML
 	private TextField textfield_cpf;
+	@FXML
+	private AnchorPane anchorpane_principal;
 	
 
 
@@ -44,10 +48,21 @@ public class UiLoginController implements Initializable{
 	
 	public void handler_entrar(){
 		
-		
 		  IControleLogin login = new ControleLogin();
 		try {
-			login.loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText());
+			switch(login.loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText())){
+			
+				case ADMINISTRATIVO:
+					AnchorPane anchorpane_administrativo = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_administrativo.fxml"));
+				    anchorpane_principal.getChildren().setAll(anchorpane_administrativo);
+					
+					break;
+					
+				default:
+					
+				
+					break;
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,14 +1,16 @@
 package br.sghvet.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
-public class UiMainController implements Initializable {
+public class UiAdministrativoController implements Initializable {
 	
 	@FXML
 	private AnchorPane anchorpane_info;
@@ -20,6 +22,10 @@ public class UiMainController implements Initializable {
 		
 	}
 	
+	public void handler_gerencimaentopessoas() throws IOException{
+		AnchorPane anchorpane_gerenciamentopessoas = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_gerenciamento_pessoas.fxml"));
+	    anchorpane_info.getChildren().setAll(anchorpane_gerenciamentopessoas);
+	}
 	
 	
 
