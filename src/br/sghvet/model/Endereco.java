@@ -110,6 +110,7 @@ public class Endereco implements Serializable {
 	}
 
 	public void setCpfTutor(String cpfTutor) {
+		
 		CpfTutor = cpfTutor;
 	}
 

@@ -23,6 +23,15 @@ public class Tutor {
 		this.setEndereço(endereco);
 
 	}
+	
+	public Tutor(String nome, String cpf, String sexo, String contato) {
+
+		this.setNome(nome);
+		this.setCpf(cpf);
+		this.setSexo(sexo);
+		this.setContato(contato);
+		
+	}
 
 	// metodos
 
@@ -69,8 +78,7 @@ public class Tutor {
 	}
 
 	public void setEndereço(Endereco endereço) {
-		if (endereço != null)
-			this.endereco = endereço;
+		this.endereco = endereço;
 	}
 
 	public boolean validarCPF(String numeroCPF) {

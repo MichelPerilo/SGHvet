@@ -15,6 +15,7 @@ public class ControlPaciente implements IControlPaciente {
 	public ControlPaciente() {
 		cadastroAnimal = new CadastroAnimal();
 		cadastroTutor = new CadastroTutor();
+		conectar();
 	}
 
 	@Override
@@ -56,6 +57,14 @@ public class ControlPaciente implements IControlPaciente {
 		t1.setEndereço(e1);
 		return t1;
 	}
+	
+	@Override
+	public List buscarALLTutor() throws Exception{
+		return cadastroTutor.buscarALLTutor();
+	}
+
+	
+	
 
 	@Override
 	public void cadastrarTutor(Tutor t) throws Exception {

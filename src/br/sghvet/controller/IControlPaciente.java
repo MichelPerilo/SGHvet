@@ -17,5 +17,5 @@ public interface IControlPaciente {
 	public void cadastrarTutor(Tutor t) throws Exception;
 	public void atualizarTutor(Tutor t) throws Exception;
 	public void deletarTutor(Tutor t) throws Exception;
-	
+	public List buscarALLTutor() throws Exception;
 }

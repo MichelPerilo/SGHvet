@@ -1,6 +1,7 @@
 package br.sghvet.controller;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.sghvet.data.IRepositorioTutor;
 import br.sghvet.data.RepositorioTutor;
@@ -23,6 +24,10 @@ public class CadastroTutor implements ICadastroTutor {
 	@Override	
 	public Tutor buscaTutor(String cpf) throws Exception {
 		return repo.buscaTutor(cpf);
+	}
+	@Override
+	public List buscarALLTutor()throws Exception{
+		return repo.buscarALLTutor();
 	}
 
 	@Override

@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
@@ -68,9 +67,9 @@
 				</MenuButton>
 			</children>
 		</Pane>
-		<Pane id="pn_Paciente1" fx:id="PN_Agendamento" layoutX="198.0" layoutY="62.0" prefHeight="657.0" prefWidth="1083.0" style="-fx-background-color: FFFFFF;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.0">
+		<Pane id="pn_Paciente1" fx:id="pn_Agendamento" layoutX="198.0" layoutY="62.0" prefHeight="657.0" prefWidth="1083.0" style="-fx-background-color: FFFFFF;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.0">
 			<children>
-				<Button fx:id="btNovoTutor" alignment="BOTTOM_LEFT" layoutX="846.0" layoutY="162.0" mnemonicParsing="false" onAction="#handlerNovoTutor" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #81F79F #81F79F #81F79F #81F79F #81F79F #81F79F;" text="          Novo tutor">
+				<Button fx:id="bt_NovoTutor" alignment="BOTTOM_LEFT" layoutX="806.0" layoutY="31.0" mnemonicParsing="false" onAction="#handlerNovoTutor" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #81F79F #81F79F #81F79F #81F79F #81F79F #81F79F;" text="          Novo tutor">
 					<graphic>
 						<ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
 							<image>
@@ -79,37 +78,30 @@
 						</ImageView>
 					</graphic>
 				</Button>
-				<ScrollPane layoutX="20.0" layoutY="206.0" prefHeight="437.0" prefWidth="1014.0" style="-fx-background-color: #FFFFFF;">
+				<ScrollPane layoutX="20.0" layoutY="100.0" prefHeight="543.0" prefWidth="974.0" style="-fx-background-color: #FFFFFF;">
 					<content>
-						<TableView prefHeight="463.0" prefWidth="996.0">
+						<TableView fx:id="tv_PaneAgendamento" prefHeight="542.0" prefWidth="959.0">
 							<columns>
-								<TableColumn prefWidth="92.0" text="ID" />
-								<TableColumn prefWidth="222.0" text="CPF" />
-								<TableColumn prefWidth="318.0" text="Nome" />
-								<TableColumn minWidth="0.0" prefWidth="216.0" text="Telefone" />
+								<TableColumn fx:id="tc_AgendamentoCPF" prefWidth="222.0" text="CPF" />
+								<TableColumn fx:id="tc_AgendamentoNome" prefWidth="318.0" text="Nome" />
+								<TableColumn fx:id="tc_AgendamentoTelefone" minWidth="0.0" prefWidth="363.0" text="Telefone" />
+								<TableColumn fx:id="tc_AgendamentoID" prefWidth="56.0" text="Sexo" />
 							</columns>
 						</TableView>
 					</content>
 				</ScrollPane>
-				<Button fx:id="ButtonPesquisar" layoutX="291.0" layoutY="35.0" mnemonicParsing="false" onAction="#handlerPesquisar" text="Pesquisar" />
-				<TextField id="tf_Buscar" layoutX="20.0" layoutY="35.0" prefHeight="25.0" prefWidth="251.0" />
-				<TableView layoutX="20.0" layoutY="90.0" prefHeight="69.0" prefWidth="552.0">
-					<columns>
-						<TableColumn prefWidth="75.0" text="ID" />
-						<TableColumn prefWidth="124.0" text="CPF" />
-						<TableColumn prefWidth="352.0" text="Nome" />
-					</columns>
-				</TableView>
+				<Button fx:id="bt_Pesquisar" layoutX="291.0" layoutY="35.0" mnemonicParsing="false" onAction="#handlerPesquisar" text="Pesquisar" />
+				<TextField id="tf_Buscar" fx:id="tx_BuscarTutor" layoutX="20.0" layoutY="35.0" prefHeight="25.0" prefWidth="251.0" />
 			</children>
 		</Pane>
-		<Pane id="pn_Paciente2" fx:id="PN_Tutor" layoutX="198.0" layoutY="62.0" prefHeight="657.0" prefWidth="1083.0" style="-fx-background-color: FFFFFF;" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="62.0">
+		<Pane id="pn_Paciente2" fx:id="pn_Tutor" layoutX="198.0" layoutY="62.0" prefHeight="657.0" prefWidth="1083.0" style="-fx-background-color: FFFFFF;" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="62.0">
 			<children>
-				<Label layoutX="22.0" layoutY="38.0" prefHeight="42.0" prefWidth="148.0" text="Nome do tutor">
+				<Label fx:id="lb_PNTutorNOME" layoutX="22.0" layoutY="38.0" prefHeight="42.0" prefWidth="148.0">
 					<font>
 						<Font size="20.0" />
 					</font>
 				</Label>
-				<Button fx:id="ButtonVoltarTutor" layoutX="965.0" layoutY="47.0" mnemonicParsing="false" onAction="#handlerVoltarTutor" text="VOLTAR">
+				<Button fx:id="bt_PNTutorVoltar" layoutX="965.0" layoutY="47.0" mnemonicParsing="false" onAction="#handlerVoltarTutor" text="VOLTAR">
 					<graphic>
 						<ImageView fitHeight="17.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
 							<image>
@@ -120,11 +112,13 @@
 				</Button>
 				<Pane id="pn_dados" layoutX="52.0" layoutY="80.0" prefHeight="87.0" prefWidth="996.0" style="-fx-background-color: F7F2E0;">
 					<children>
-						<Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="148.0" text="Nome" />
-						<Label layoutX="579.0" layoutY="14.0" text="CPF" />
-						<Label layoutX="298.0" layoutY="56.0" text="Sexo" />
-						<Label layoutX="298.0" layoutY="14.0" text="Numero" />
-						<Label layoutX="14.0" layoutY="56.0" text="Endereço" />
+						<Label fx:id="lb_PN_Nome" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="148.0" text="Nome" />
+						<Label fx:id="lb_PN_CPF" layoutX="579.0" layoutY="14.0" text="CPF" />
+						<Label fx:id="lb_PN_Sexo" layoutX="773.0" layoutY="14.0" text="Sexo" />
+						<Label fx:id="lb_PN_Numero" layoutX="298.0" layoutY="14.0" text="Numero" />
+						<Label fx:id="lb_PN_Rua" layoutX="14.0" layoutY="56.0" text="Rua" />
+                  <Label fx:id="lb_PN_Bairro" layoutX="298.0" layoutY="56.0" text="Bairro" />
+                  <Label fx:id="lb_PN_Cidade" layoutX="575.0" layoutY="56.0" text="Cidade" />
 					</children>
 				</Pane>
 				<TabPane layoutX="52.0" layoutY="166.0" prefHeight="467.0" prefWidth="996.0" style="-fx-background-color: #FFFFFF;" tabClosingPolicy="UNAVAILABLE">
@@ -153,18 +147,16 @@
 												<Font size="18.0" />
 											</font>
 										</Label>
-										<TextField id="txNome" fx:id="txNome" layoutX="111.0" layoutY="23.0" prefHeight="25.0" prefWidth="302.0" />
-										<TextField id="txCPF" fx:id="txCPF" layoutX="484.0" layoutY="23.0" />
-										<TextField fx:id="txCelular" layoutX="111.0" layoutY="78.0" />
-										<TextField fx:id="txRua" layoutX="111.0" layoutY="131.0" prefHeight="25.0" prefWidth="304.0" />
-										<RadioButton fx:id="ButtonM" layoutX="332.0" layoutY="82.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="82.0" text="Masculino" />
-										<RadioButton fx:id="ButtonF" layoutX="428.0" layoutY="82.0" mnemonicParsing="false" text="Feminino" />
+										<TextField id="txNome" fx:id="tx_PNTutorDados_Nome" layoutX="111.0" layoutY="23.0" prefHeight="25.0" prefWidth="302.0" />
+										<TextField id="txCPF" fx:id="tx_PNTutorDados_CPF" layoutX="484.0" layoutY="23.0" />
+										<TextField fx:id="tx_PNTutorDados_Celular" layoutX="111.0" layoutY="78.0" />
+										<TextField fx:id="tx_PNTutorDados_Rua" layoutX="111.0" layoutY="131.0" prefHeight="25.0" prefWidth="304.0" />
 										<ImageView fitHeight="274.0" fitWidth="424.0" layoutX="533.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
 											<image>
 												<Image url="@../../../../assets/imgs/Pets.png" />
 											</image>
 										</ImageView>
-										<Button fx:id="ButtonSalvar" layoutX="915.0" layoutY="23.0" mnemonicParsing="false" text="Salvar" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="915.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="23.0" />
+										<Button fx:id="bt_PNTutorDadosSalvar" layoutX="915.0" layoutY="23.0" mnemonicParsing="false" text="Salvar" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="915.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="23.0" />
 										<Label layoutX="14.0" layoutY="130.0" text="Rua">
 											<font>
 												<Font size="18.0" />
@@ -200,13 +192,14 @@
 												<Font size="18.0" />
 											</font>
 										</Label>
-										<TextField fx:id="txComplemento" layoutX="424.0" layoutY="197.0" prefHeight="25.0" prefWidth="96.0" />
-										<TextField fx:id="txCidade" layoutX="111.0" layoutY="319.0" />
-										<TextField fx:id="txCEP" layoutX="350.0" layoutY="258.0" />
-										<TextField fx:id="txNumeroCasa" layoutX="111.0" layoutY="197.0" />
-										<TextField fx:id="txBairro" layoutX="111.0" layoutY="258.0" />
-										<ChoiceBox fx:id="cbEstado" layoutX="360.0" layoutY="319.0" prefHeight="25.0" prefWidth="74.0" />
-										<Button layoutX="845.0" layoutY="23.0" mnemonicParsing="false" style="-fx-background-color: #81F79F;" text="Editar" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="845.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="23.0" />
+										<TextField fx:id="tx_PNTutorDados_Complemento" layoutX="424.0" layoutY="197.0" prefHeight="25.0" prefWidth="96.0" />
+										<TextField fx:id="tx_PNTutorDados_Cidade" layoutX="111.0" layoutY="319.0" />
+										<TextField fx:id="tx_PNTutorDados_CEP" layoutX="350.0" layoutY="258.0" />
+										<TextField fx:id="tx_PNTutorDados_Numero" layoutX="111.0" layoutY="197.0" />
+										<TextField fx:id="tx_PNTutorDados_Bairro" layoutX="111.0" layoutY="258.0" />
+										<Button fx:id="bt_PNTutorDadosEditar" layoutX="845.0" layoutY="23.0" mnemonicParsing="false" style="-fx-background-color: #81F79F;" text="Editar" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="845.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="23.0" />
+                              <TextField fx:id="tx_PNTutorDados_Sexo" layoutX="335.0" layoutY="78.0" prefHeight="25.0" prefWidth="82.0" />
+                              <TextField fx:id="tx_PNTutorDados_Estado" layoutX="352.0" layoutY="319.0" prefHeight="25.0" prefWidth="59.0" />
 									</children>
 								</AnchorPane>
 							</content>
@@ -222,7 +215,7 @@
 														<Font size="18.0" />
 													</font>
 												</Label>
-												<ChoiceBox layoutX="181.0" layoutY="19.0" prefHeight="25.0" prefWidth="188.0" />
+												<ChoiceBox fx:id="cb_PNTutorAnimais_Animal" layoutX="181.0" layoutY="19.0" prefHeight="25.0" prefWidth="188.0" />
 												<Label layoutX="20.0" layoutY="71.0" text="Nome">
 													<font>
 														<Font size="18.0" />
@@ -263,22 +256,20 @@
 														<Font size="18.0" />
 													</font>
 												</Label>
-												<TextField layoutX="505.0" layoutY="19.0" prefHeight="25.0" prefWidth="188.0" />
-												<TextField layoutX="396.0" layoutY="72.0" prefHeight="25.0" prefWidth="73.0" />
-												<TextField layoutX="107.0" layoutY="152.0" prefHeight="25.0" prefWidth="169.0" />
-												<TextField layoutX="107.0" layoutY="283.0" prefHeight="25.0" prefWidth="172.0" />
-												<TextField layoutX="107.0" layoutY="214.0" prefHeight="25.0" prefWidth="171.0" />
-												<TextField layoutX="395.0" layoutY="214.0" prefHeight="25.0" prefWidth="96.0" />
-												<RadioButton layoutX="396.0" layoutY="156.0" mnemonicParsing="false" text="M" />
-												<RadioButton layoutX="436.0" layoutY="156.0" mnemonicParsing="false" text="F" />
+												<TextField fx:id="tx_PNTutorAnimais_Prontuario" layoutX="505.0" layoutY="19.0" prefHeight="25.0" prefWidth="188.0" />
+												<TextField fx:id="tx_PNTutorAnimais_Idade" layoutX="396.0" layoutY="72.0" prefHeight="25.0" prefWidth="73.0" />
+												<TextField fx:id="tx_PNTutorAnimais_Raca" layoutX="107.0" layoutY="152.0" prefHeight="25.0" prefWidth="169.0" />
+												<TextField fx:id="tx_PNTutorAnimais_Pelagem" layoutX="107.0" layoutY="283.0" prefHeight="25.0" prefWidth="172.0" />
+												<TextField fx:id="tx_PNTutorAnimais_Especie" layoutX="107.0" layoutY="214.0" prefHeight="25.0" prefWidth="171.0" />
+												<TextField fx:id="tx_PNTutorAnimais_Peso" layoutX="395.0" layoutY="214.0" prefHeight="25.0" prefWidth="96.0" />
 												<ImageView fitHeight="216.0" fitWidth="436.0" layoutX="531.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
 													<image>
 														<Image url="@../../../../assets/imgs/PEt2.jpg" />
 													</image>
 												</ImageView>
-												<Button layoutX="842.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="49.0" style="-fx-background-color: #81F79F;" text="Editar" />
-												<Button layoutX="905.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Salvar" />
-												<TextField layoutX="87.0" layoutY="72.0" prefHeight="25.0" prefWidth="188.0" />
+												<Button fx:id="bt_PNTutorAnimalEditar" layoutX="842.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="49.0" style="-fx-background-color: #81F79F;" text="Editar" />
+												<Button fx:id="bt_PNTutorAnimalSalvar" layoutX="905.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Salvar" />
+												<TextField fx:id="tx_PNTutorAnimais_Nome" layoutX="87.0" layoutY="72.0" prefHeight="25.0" prefWidth="188.0" />
 												<Separator layoutX="20.0" layoutY="408.0" prefHeight="17.0" prefWidth="945.0" />
 												<Label layoutX="102.0" layoutY="453.0" text=" (Historia atua, tratamento préviu, antecedentes mórbdos,  condições de vida)" />
 												<Label layoutX="23.0" layoutY="476.0" text="Vacinações: Quais" />
@@ -375,7 +366,8 @@
 														<Font name="System Bold" size="15.0" />
 													</font>
 												</Label>
-                                    <Button fx:id="btSalvarNovoAnimal" layoutX="775.0" layoutY="19.0" mnemonicParsing="false" onAction="#handlerNovoAnimal" style="-fx-background-color: F6CECE;" text="Novo" />
+                                    <Button fx:id="bt_PNTutorAnimalNovo" layoutX="775.0" layoutY="19.0" mnemonicParsing="false" onAction="#handlerNovoAnimal" style="-fx-background-color: F6CECE;" text="Novo" />
+                                    <TextField fx:id="tx_PNTutorAnimais_Sexo" layoutX="395.0" layoutY="152.0" prefHeight="25.0" prefWidth="93.0" />
 											</children>
 										</AnchorPane>
 									</content>

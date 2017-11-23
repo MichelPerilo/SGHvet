@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import br.sghvet.model.Animal;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
 
@@ -55,27 +58,33 @@ public class RepositorioTutor implements IRepositorioTutor {
 	@Override
 	public Tutor buscaTutor(String cpf) throws Exception {
 
-		String query = "select * from Tutor where cpf = ?";
+		
+		String query = "select * from tutor where cpf = ?";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, cpf);
 		ResultSet rs = ps.executeQuery();
-
-		Tutor t1 = preencherTutor(rs);
+		
+		Tutor t1 = new Tutor(rs.getString("nome"), rs.getString("cpf"), rs.getString("sexo"), rs.getString("contato"));
+//		Tutor t1 = new Tutor("sssss", "41646752333", "M", "38383833");
 		ps.isClosed();
 		rs.close();
-
+		
 		return t1;
+		
+		
 	}
 
 	public Endereco buscaEndereco(String cpf) throws Exception {
 
-		String query = "select E.rua, E.bairro, E.numero, E.complemento, E.cep, E.cidade, E.estado from endereco as E, tutor as T "
-				+ "where E.id = T.endereco and T.cpf = ?;";
+		String query = "select E.rua, E.bairro, E.numero, E.complemento, E.cep, E.cidade, E.estado from endereco as E, tutor as T where E.cpfTutor = T.cpf and T.cpf = ?";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, cpf);
 		ResultSet rs = ps.executeQuery();
-
-		Endereco e1 = preencherEndereco(rs);
+		Endereco e1 = null;
+		while(rs.next()){
+			e1 = preencherEndereco(rs);
+		}
+		
 		ps.close();
 		rs.close();
 
@@ -143,10 +152,11 @@ public class RepositorioTutor implements IRepositorioTutor {
 	}
 
 	private Endereco preencherEndereco(ResultSet rs) throws Exception {
-		Endereco e1;
+		Endereco e1 = null;
 		try {
 			e1 = new Endereco(rs.getString("rua"), rs.getString("bairro"), rs.getString("cep"), rs.getString("numero"),
-					rs.getString("complemento"), rs.getString("cidade"), rs.getString("estado"),rs.getString("cpfTutor"));
+					rs.getString("complemento"), rs.getString("cidade"), rs.getString("estado"), "41646752333");
+		
 		} catch (SQLException e) {
 			throw e;
 		}
@@ -157,12 +167,44 @@ public class RepositorioTutor implements IRepositorioTutor {
 	private Tutor preencherTutor(ResultSet rs) throws Exception {
 		Tutor t1;
 		try {
-			t1 = new Tutor(rs.getString("nome"), rs.getString("cpf"), rs.getString("sexo"), rs.getString("contato"),
-					null);
+			t1 = new Tutor(rs.getString("nome"), rs.getString("cpf"), rs.getString("sexo"), rs.getString("contato"),null);
 		} catch (SQLException e) {
 			throw e;
 		}
 		return t1;
 	}
+	
+	
+	
+	@Override
+	public List buscarALLTutor() throws Exception {
+		String query = "select * from tutor";
+		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		List<Tutor> tutores = new ArrayList<>();
+		
+		while(rs.next()){
+			tutores.add(preencherTutor(rs));
+		}
+		ps.close();
+		rs.close();
+		
+		return tutores;
+	}
+	
+	private Animal preencherAnimal(ResultSet rs) throws Exception{
+		Animal a1;
+		try{
+			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"), String.valueOf(rs.getInt("idade")),
+					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),String.valueOf(rs.getDouble("peso")));
+			a1.setNumProntuario(rs.getInt("prontuario"));
+		}catch(SQLException e){
+			throw e;
+		}
+		
+		return a1;
+	}
+	
+	
 
 }

@@ -10,7 +10,7 @@ public class Conexao {
 	public Connection getConexao(String usuario, String senha) throws Exception {
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			return DriverManager.getConnection(projeto, usuario, senha);
 
 		} catch (SQLException | ClassNotFoundException e) {
