@@ -13,18 +13,18 @@ public class Teste {
 		
 //		Endereco e1 = new Endereco("rua teste", "bairro teste", "53310700", "912", "", "Olinda", "Pernambuco","10103566406");
 //		Tutor t1 = new Tutor("Nome teste333", "10103566406", "M", "13133590", e1);
-//		Animal a1 = new Animal("Rex", "cachorro", "M", "3", "10733725457","yorkshire","pelo fofo","15.0");
+		Animal a1 = new Animal("Rex", "cachorro", "M", 3, "10103566406","yorkshire","pelo fofo",15.0);
 		
 		try{
-			Tutor t1 = control.buscarTutor("41646752333");
-			System.out.println(t1.getNome());
+//			Tutor t1 = control.buscarTutor("41646752333");
+//			System.out.println(t1.getNome());
 			
-//			control.cadastrarAnimal(a1);
-//			List<Tutor> lista = control.buscarALLTutor();
-//			
-//			for (Tutor tutor : lista) {
-//				System.out.println(tutor.getNome() + "  " + tutor.getCpf() + "  "+tutor.getContato() + "  "+ tutor.getSexo());
-//			}
+			control.cadastrarAnimal(a1);
+			List<Animal> lista = control.buscarAnimal("10103566406");
+			
+			for (Animal tutor : lista) {
+				System.out.println(tutor.getNome());
+			}
 			//System.out.println(t1.getCpf());
 			//control.deletarAnimal(lista.get(0));
 			//lista.get(0).setNome("pingo");

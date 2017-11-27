@@ -20,7 +20,11 @@ IControlPaciente control;
 
 
 @FXML
+private TextField tx_ProntuarioAnimal;
+@FXML
 private TextField tx_NomeAnimal;
+@FXML
+private TextField tx_Especie;
 @FXML
 private TextField tx_RacaAnimal;
 @FXML
@@ -29,14 +33,11 @@ private TextField tx_PelagemAnimal;
 private TextField tx_PesoAnimal;
 @FXML
 private TextField tx_IdadeAnimal;
-@FXML
-private TextField tx_ProntuarioAnimal;
-
 
 
 @FXML
 private ComboBox<String> cb_SexoAnimal;
-private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("Macho","Femia");
+private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M","F");
 
 
 	
@@ -62,8 +63,14 @@ public void setStage(Stage stage) {
 
 
 public void setCPFTUTOR(String cpf) {
+
 	this.cpf = cpf;
 	
+}
+
+public String getCPF() {
+	
+	return cpf;
 }
 
 private void SetCB() {
@@ -74,10 +81,7 @@ private void SetCB() {
 	
 }
 
-public String getCPF() {
-	
-	return cpf;
-}
+
 
 
 
@@ -85,7 +89,7 @@ public String getCPF() {
 public void handlerSalvarNovoAnimal() { 	
 	
 	
-	Animal a = new Animal(tx_NomeAnimal.getText(), tx_RacaAnimal.getText(), tx_PelagemAnimal.getText(), tx_PesoAnimal.getText(), this.getCPF(), cb_SexoAnimal.getValue(), tx_IdadeAnimal.getText(),"0000");
+	Animal a = new Animal(tx_NomeAnimal.getText(),tx_Especie.getText(),  cb_SexoAnimal.getValue(),Integer.parseInt(tx_IdadeAnimal.getText()),getCPF(),tx_RacaAnimal.getText(),tx_PelagemAnimal.getText(), Double.parseDouble(tx_PesoAnimal.getText()));
 	try {
 		control.cadastrarAnimal(a);
 	} catch (Exception e) {

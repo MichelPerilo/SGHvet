@@ -2,18 +2,19 @@ package br.sghvet.model;
 
 public class Animal {
 
+	private int numProntuario;
 	private String nome;
 	private String especie;
 	private String raca;
 	private String pelagem;
-	private String peso;
-	private String cpfTutor;
+	private Double peso;	
 	private String sexo;
-	private String idade;
-	private int numProntuario;
+	private int idade;
+	private String cpfTutor;
+	
 
-	public Animal(String nome, String especie, String sexo, String idade, String cpftutor, String raca, String pelagem,
-			String peso) {
+	public Animal(String nome, String especie, String sexo, int idade, String cpftutor, String raca, String pelagem,
+			Double peso) {
 
 		setNome(nome);
 		setEspecie(especie);
@@ -55,12 +56,12 @@ public class Animal {
 
 	public Double getPeso() {
 		if (peso != null) {
-			return Double.parseDouble(peso);
+			return peso;
 		} else
 			return null;
 	}
 
-	public void setPeso(String peso) {
+	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
 
@@ -91,13 +92,12 @@ public class Animal {
 			this.sexo = sexo;
 	}
 
-	public String getIdade() {
+	public int getIdade() {
 		return idade;
 	}
 
-	public void setIdade(String idade) {
+	public void setIdade(int idade) {
 
-		if (idade != null && !idade.equals(""))
 			this.idade = idade;
 	}
 
@@ -108,6 +108,11 @@ public class Animal {
 	public void setNumProntuario(int numProntuario) {
 
 		this.numProntuario = numProntuario;
+	}
+	
+	@Override
+	public String toString() {
+		return getNome();
 	}
 
 }

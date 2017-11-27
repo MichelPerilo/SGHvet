@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.sghvet.model.Animal;
+import br.sghvet.model.Tutor;
 
 public class RepositorioAnimal implements IRepositorioAnimal{
 
@@ -36,7 +37,7 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 		ps.setString(4, a.getPelagem());
 		ps.setDouble(5, a.getPeso());
 		ps.setString(6, a.getSexo());
-		ps.setString(7, a.getIdade());
+		ps.setInt(7, a.getIdade());
 		ps.setString(8, a.getCpfTutor());
 		
 		return executar(ps);
@@ -53,7 +54,7 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 		ps.setString(4, a.getPelagem());
 		ps.setDouble(5, a.getPeso());
 		ps.setString(6, a.getSexo());
-		ps.setString(7, a.getIdade());
+		ps.setInt(7, a.getIdade());
 		ps.setInt(8, a.getNumProntuario());
 		
 		return executar(ps);
@@ -89,8 +90,8 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 	private Animal preencherAnimal(ResultSet rs) throws Exception{
 		Animal a1;
 		try{
-			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"), String.valueOf(rs.getInt("idade")),
-					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),String.valueOf(rs.getDouble("peso")));
+			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"),rs.getInt("idade"),
+					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),rs.getDouble("peso"));
 			a1.setNumProntuario(rs.getInt("prontuario"));
 		}catch(SQLException e){
 			throw e;
@@ -110,5 +111,9 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 		ps.close();
 		return result;
 	}
+	
+	
+	
+	
 
 }

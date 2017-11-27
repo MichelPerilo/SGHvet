@@ -27,20 +27,17 @@ public class AnchorPane_AgendamentoController implements Initializable {
 
 	IControlPaciente control;
 
-	
+	// Painel Agenda
 	@FXML
-	private Pane pn_Tutor;
+	private Pane pn_FichaCLinica2;
 	@FXML
-	private Pane pn_Agendamento;
-	
-	
-//	Painel Agenda
-	
+	private Pane pn_FichaCLinica1;
+
+	// Painel FichaCLinica1
 	@FXML
 	private TextField tx_BuscarTutor;
 	@FXML
 	private Label lb_PNTutorNOME;
-
 
 	@FXML
 	private TableView<Tutor> tv_PaneAgendamento;
@@ -55,7 +52,7 @@ public class AnchorPane_AgendamentoController implements Initializable {
 
 	private ObservableList<Tutor> observableListTutor;
 
-	// Painel Tutor
+	// Painel FichaCLinica2
 
 	@FXML
 	private Label lb_PN_Nome;
@@ -69,10 +66,9 @@ public class AnchorPane_AgendamentoController implements Initializable {
 	private Label lb_PN_Bairro;
 	@FXML
 	private Label lb_PN_Cidade;
-	
-	
-//	Painel Tutor Dados
-	
+
+	// Painel FichaCLinica2 Dados
+
 	@FXML
 	private TextField tx_PNTutorDados_Nome;
 	@FXML
@@ -95,10 +91,9 @@ public class AnchorPane_AgendamentoController implements Initializable {
 	private TextField tx_PNTutorDados_Cidade;
 	@FXML
 	private TextField tx_PNTutorDados_Estado;
-	
-//	Painel Tutor Aniamal
-	
-	
+
+	// Painel FichaCLinica2 Aniamal
+
 	@FXML
 	private TextField tx_PNTutorAnimais_Nome;
 	@FXML
@@ -113,12 +108,10 @@ public class AnchorPane_AgendamentoController implements Initializable {
 	private TextField tx_PNTutorAnimais_Pelagem;
 	@FXML
 	private TextField tx_PNTutorAnimais_Sexo;
-	
-	
-//	@FXML
-//	private ComboBox<String> cb_PNTutorAnimais_Animal;
-	
-	
+
+	@FXML
+	private ComboBox<String> cb_PNTutorAnimais_Animal;
+	private ObservableList<String> listAnimais;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -186,7 +179,7 @@ public class AnchorPane_AgendamentoController implements Initializable {
 			novoAnimal.setResizable(false);
 			AnchorPane_NovoAnimalController controller = loader.getController();
 			controller.setStage(novoAnimal);
-			controller.setCPFTUTOR(lb_PN_CPF.getText()); 
+			controller.setCPFTUTOR(lb_PN_CPF.getText());
 			novoAnimal.showAndWait();
 			carregarTableViewTutor();
 
@@ -200,11 +193,12 @@ public class AnchorPane_AgendamentoController implements Initializable {
 	@FXML
 	public void handlerPesquisar() throws Exception {
 
-		pn_Agendamento.setVisible(false);
-		pn_Tutor.setVisible(true);
-//
+		pn_FichaCLinica1.setVisible(false);
+		pn_FichaCLinica2.setVisible(true);
+		AtualizaAnimais(tx_BuscarTutor.getText());
+		//
 		Tutor t = control.buscarTutor(tx_BuscarTutor.getText());
-		
+
 		lb_PNTutorNOME.setText(t.getNome());
 		lb_PN_Nome.setText(t.getNome());
 		lb_PN_Numero.setText(t.getContato());
@@ -212,8 +206,7 @@ public class AnchorPane_AgendamentoController implements Initializable {
 		lb_PN_Rua.setText(t.getEndereco().getLogradouro());
 		lb_PN_Bairro.setText(t.getEndereco().getBairro());
 		lb_PN_Cidade.setText(t.getEndereco().getCidade());
-		
-		
+
 		tx_PNTutorDados_Nome.setEditable(false);
 		tx_PNTutorDados_CPF.setEditable(false);
 		tx_PNTutorDados_Celular.setEditable(false);
@@ -225,7 +218,7 @@ public class AnchorPane_AgendamentoController implements Initializable {
 		tx_PNTutorDados_CEP.setEditable(false);
 		tx_PNTutorDados_Cidade.setEditable(false);
 		tx_PNTutorDados_Estado.setEditable(false);
-		
+
 		tx_PNTutorDados_Nome.setText(t.getNome());
 		tx_PNTutorDados_CPF.setText(t.getCpf());
 		tx_PNTutorDados_Celular.setText(t.getContato());
@@ -237,22 +230,28 @@ public class AnchorPane_AgendamentoController implements Initializable {
 		tx_PNTutorDados_CEP.setText(t.getEndereco().getCep());
 		tx_PNTutorDados_Cidade.setText(t.getEndereco().getCidade());
 		tx_PNTutorDados_Estado.setText(t.getEndereco().getEstado());
-		
-		
-//	    ObservableList<String> listAnimais = FXCollections.observableArrayList(control.buscarAnimal(lb_PN_CPF.getText()));
-//
-//		cb_PNTutorAnimais_Animal.setItems(listAnimais);
-		
-		
-		
 
 	}
 
 	@FXML
 	public void handlerVoltarTutor() {
 
-		pn_Agendamento.setVisible(true);
-		pn_Tutor.setVisible(false);
+		pn_FichaCLinica1.setVisible(true);
+		pn_FichaCLinica2.setVisible(false);
+	}
+
+	public void AtualizaAnimais(String cpf) {
+
+		try {
+
+			listAnimais = FXCollections.observableArrayList(control.buscarAnimal(cpf));
+			cb_PNTutorAnimais_Animal.setItems(listAnimais);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 }

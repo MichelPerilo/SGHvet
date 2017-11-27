@@ -2,6 +2,8 @@ package br.sghvet.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import br.sghvet.model.Animal;
@@ -60,17 +62,19 @@ public class AnchorPane_NovoTutorController  implements Initializable{
 		
 	
 	@FXML
-	private Button btNovoAnimal;
+	private Button btNovoAnimal;	
 	
-	@FXML
-	private ComboBox<String> cb_NomeAnimais;
 	@FXML
     private ComboBox<String> cb_Sexo;
 	
+	
+	
+//	Animal
+	
 	@FXML
-	private TextField tx_NomeAnimal;	
+	private TextField tx_NomeAnimal;
 	@FXML
-	private TextField tx_ProntuarioCadastroTutor;
+	private TextField tx_Especie;
 	@FXML
 	private TextField tx_Raca;
 	@FXML
@@ -81,16 +85,17 @@ public class AnchorPane_NovoTutorController  implements Initializable{
 	private TextField tx_Idade;   
     
     
-    @FXML
-    private Button btSalvarCadastroTutorAnimal;    
+  
     
     
     private ObservableList<String> listEstadosCbbx = FXCollections.observableArrayList("AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO");
-    private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("Macho","Femia");
+    private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M","F");
     private ObservableList<String> listSexoTutorCbbx = FXCollections.observableArrayList("M","F");
-
-
     
+
+
+    @FXML
+    private Button btSalvarCadastroTutorAnimal;  
     
     
     @Override
@@ -99,14 +104,6 @@ public class AnchorPane_NovoTutorController  implements Initializable{
     	
     	
     	control = new ControlPaciente();    
-    	cb_NomeAnimais.setEditable(false);
-    	cb_Sexo.setEditable(false);
-    	tx_NomeAnimal.setEditable(false);	
-    	tx_ProntuarioCadastroTutor.setEditable(false);
-    	tx_Raca.setEditable(false);
-    	tx_Pelagem.setEditable(false);
-    	tx_Peso.setEditable(false);
-    	tx_Idade.setEditable(false);
     	SetCB() ;
  	
        
@@ -126,21 +123,21 @@ public class AnchorPane_NovoTutorController  implements Initializable{
     @FXML
     public void handlerNovoAnimal() {
     	
-    	cb_NomeAnimais.setEditable(true);
+    	
     	
     	
     	tx_NomeAnimal.setText("");	
-    	tx_ProntuarioCadastroTutor.setText("");
     	tx_Raca.setText("");
     	tx_Pelagem.setText("");
     	tx_Peso.setText("");
     	tx_Idade.setText("");
+    	tx_Especie.setText("");
     	  
     	
     	cb_Sexo.setEditable(true);
     	tx_NomeAnimal.setEditable(true);	
-    	tx_ProntuarioCadastroTutor.setEditable(true);
     	tx_Raca.setEditable(true);
+    	tx_Especie.setEditable(true);
     	tx_Pelagem.setEditable(true);
     	tx_Peso.setEditable(true);
     	tx_Idade.setEditable(true);
@@ -153,8 +150,22 @@ public class AnchorPane_NovoTutorController  implements Initializable{
     public void handlerSalvarNovoAnimal() { 	
     	
     	
-    	Animal a = new Animal(tx_NomeAnimal.getText(), tx_Raca.getText(), tx_Pelagem.getText(), tx_Peso.getText(), tx_CPF.getText(), cb_Sexo.getValue(), tx_Idade.getText(),"0000");
-    	
+    	Animal a = new Animal(tx_NomeAnimal.getText(), tx_Especie.getText(),cb_Sexo.getValue(),Integer.parseInt(tx_Idade.getText()), tx_CPF.getText(),tx_Raca.getText(),tx_Pelagem.getText(),Double.parseDouble(tx_Peso.getText()));
+    	cb_Sexo.setEditable(false);
+    	tx_NomeAnimal.setEditable(false);	
+    	tx_Especie.setEditable(false);
+    	tx_Raca.setEditable(false);
+    	tx_Pelagem.setEditable(false);
+    	tx_Peso.setEditable(false);
+    	tx_Idade.setEditable(false);
+    	try {
+			    	
+	    	control.cadastrarAnimal(a);
+						
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     
@@ -166,6 +177,16 @@ public class AnchorPane_NovoTutorController  implements Initializable{
     	try {
 			
     		control.cadastrarTutor(t);
+    		tx_NomeTutor.setEditable(false);
+    		tx_CPF.setEditable(false);
+    		tx_Celular.setEditable(false);
+    		tx_Rua.setEditable(false);
+    		tx_Numero.setEditable(false);
+    		tx_Complemento.setEditable(false);
+    		tx_Bairro.setEditable(false);
+    		tx_CEP.setEditable(false);
+    		tx_Cidade.setEditable(false);
+    		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -179,7 +200,7 @@ public class AnchorPane_NovoTutorController  implements Initializable{
     	cb_Sexo.setItems(listSexoAnimaisCbbx);
     	cb_SexoTutor.setItems(listSexoTutorCbbx);
     	
-    }
-     
+    }  
+       
     
 }

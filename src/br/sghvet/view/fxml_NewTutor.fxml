@@ -8,12 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="apCadastraTutor" focusTraversable="true" maxHeight="699.0" maxWidth="685.0" minHeight="371.0" minWidth="685.0" prefHeight="603.0" prefWidth="685.0" scaleShape="false" style="-fx-background-color: #E0ECF8;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.AnchorPane_NovoTutorController">
+<AnchorPane fx:id="apCadastraTutor" focusTraversable="true" maxHeight="699.0" maxWidth="685.0" minHeight="371.0" minWidth="685.0" prefHeight="551.0" prefWidth="685.0" scaleShape="false" style="-fx-background-color: #E0ECF8;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.AnchorPane_NovoTutorController">
 	<children>
-		<ComboBox fx:id="cb_NomeAnimais" layoutX="119.0" layoutY="298.0" prefHeight="25.0" prefWidth="290.0" style="-fx-background-color: #81DAF5;" />
-		<Button fx:id="btNovoAnimal" layoutX="14.0" layoutY="294.0" mnemonicParsing="false" onAction="#handlerNovoAnimal" text="Novo animal" />
+		<Button fx:id="btNovoAnimal" layoutX="552.0" layoutY="507.0" mnemonicParsing="false" onAction="#handlerNovoAnimal" text="Novo animal" />
 		<Separator layoutX="6.0" layoutY="277.0" prefHeight="0.0" prefWidth="663.0" />
-		<Separator layoutX="5.0" layoutY="345.0" prefHeight="0.0" prefWidth="664.0" />
+		<Separator layoutX="5.0" layoutY="306.0" prefHeight="3.0" prefWidth="664.0" />
       <Label layoutX="24.0" layoutY="24.0" text="Nome" />
       <Label layoutX="358.0" layoutY="24.0" text="CPF" />
       <Label layoutX="26.0" layoutY="71.0" text="Sexo">
@@ -39,21 +38,21 @@
       <TextField fx:id="tx_Cidade" layoutX="69.0" layoutY="238.0" />
       <Button fx:id="btSalvarCadastroTutor" layoutX="592.0" layoutY="235.0" mnemonicParsing="false" onAction="#handlerSalvarNovoTutor" text="Salvar" />
       <ComboBox fx:id="cb_Estado" layoutX="292.0" layoutY="237.0" prefHeight="28.0" prefWidth="96.0" style="-fx-background-color: #81DAF5;" />
-      <Label layoutX="21.0" layoutY="367.0" text="Nome" />
-      <Label layoutX="416.0" layoutY="367.0" text="Prontuario" />
-      <Label layoutX="24.0" layoutY="413.0" text="Raça" />
-      <Label layoutX="278.0" layoutY="422.0" text="Pelagem" />
-      <Label layoutX="23.0" layoutY="468.0" text="Peso" />
-      <Label layoutX="161.0" layoutY="468.0" text="Sexo" />
-      <Label layoutX="23.0" layoutY="527.0" text="Idade" />
-      <TextField fx:id="tx_NomeAnimal" layoutX="61.0" layoutY="363.0" prefHeight="25.0" prefWidth="301.0" />
-      <TextField fx:id="tx_Raca" layoutX="61.0" layoutY="410.0" prefHeight="26.0" prefWidth="196.0" />
-      <TextField fx:id="tx_Pelagem" layoutX="342.0" layoutY="419.0" />
-      <TextField fx:id="tx_Peso" layoutX="61.0" layoutY="465.0" prefHeight="26.0" prefWidth="88.0" />
-      <TextField fx:id="tx_Idade" layoutX="61.0" layoutY="524.0" prefHeight="26.0" prefWidth="88.0" />
-      <ComboBox fx:id="cb_Sexo" layoutX="203.0" layoutY="465.0" prefHeight="28.0" prefWidth="124.0" style="-fx-background-color: #81DAF5;" />
-      <Button fx:id="btSalvarCadastroTutorAnimal" layoutX="584.0" layoutY="511.0" mnemonicParsing="false" onAction="#handlerSalvarNovoAnimal" text="Salvar" />
-      <TextField fx:id="tx_ProntuarioCadastroTutor" layoutX="488.0" layoutY="364.0" />
+      <Label layoutX="18.0" layoutY="328.0" text="Nome" />
+      <Label layoutX="20.0" layoutY="374.0" text="Raça" />
+      <Label layoutX="462.0" layoutY="374.0" text="Pelagem" />
+      <Label layoutX="20.0" layoutY="429.0" text="Peso" />
+      <Label layoutX="158.0" layoutY="429.0" text="Sexo" />
+      <Label layoutX="301.0" layoutY="431.0" text="Idade" />
+      <TextField fx:id="tx_NomeAnimal" layoutX="58.0" layoutY="324.0" prefHeight="25.0" prefWidth="301.0" />
+      <TextField fx:id="tx_Raca" layoutX="58.0" layoutY="371.0" prefHeight="26.0" prefWidth="196.0" />
+      <TextField fx:id="tx_Pelagem" layoutX="525.0" layoutY="370.0" prefHeight="26.0" prefWidth="112.0" />
+      <TextField fx:id="tx_Peso" layoutX="58.0" layoutY="426.0" prefHeight="26.0" prefWidth="88.0" />
+      <TextField fx:id="tx_Idade" layoutX="344.0" layoutY="426.0" prefHeight="26.0" prefWidth="88.0" />
+      <ComboBox fx:id="cb_Sexo" layoutX="200.0" layoutY="426.0" prefHeight="28.0" prefWidth="84.0" style="-fx-background-color: #81DAF5;" />
+      <Button fx:id="btSalvarCadastroTutorAnimal" layoutX="479.0" layoutY="507.0" mnemonicParsing="false" onAction="#handlerSalvarNovoAnimal" text="Salvar" />
       <ComboBox fx:id="cb_SexoTutor" layoutX="62.0" layoutY="69.0" prefWidth="150.0" style="-fx-background-color: #81DAF5;" />
+      <Label layoutX="269.0" layoutY="376.0" text="Especie" />
+      <TextField fx:id="tx_Especie" layoutX="320.0" layoutY="372.0" prefHeight="26.0" prefWidth="132.0" />
 	</children>
 </AnchorPane>

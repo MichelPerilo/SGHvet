@@ -58,14 +58,15 @@ public class RepositorioTutor implements IRepositorioTutor {
 	@Override
 	public Tutor buscaTutor(String cpf) throws Exception {
 
-		
+		Tutor t1 = null;
 		String query = "select * from tutor where cpf = ?";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, cpf);
-		ResultSet rs = ps.executeQuery();
+		ResultSet rs = ps.executeQuery();	
 		
-		Tutor t1 = new Tutor(rs.getString("nome"), rs.getString("cpf"), rs.getString("sexo"), rs.getString("contato"));
-//		Tutor t1 = new Tutor("sssss", "41646752333", "M", "38383833");
+		while(rs.next()){
+			t1 = new Tutor(rs.getString("nome"), rs.getString("cpf"), rs.getString("sexo"), rs.getString("contato"));
+		}
 		ps.isClosed();
 		rs.close();
 		
@@ -195,8 +196,8 @@ public class RepositorioTutor implements IRepositorioTutor {
 	private Animal preencherAnimal(ResultSet rs) throws Exception{
 		Animal a1;
 		try{
-			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"), String.valueOf(rs.getInt("idade")),
-					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),String.valueOf(rs.getDouble("peso")));
+			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"),rs.getInt("idade"),
+					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),rs.getDouble("peso"));
 			a1.setNumProntuario(rs.getInt("prontuario"));
 		}catch(SQLException e){
 			throw e;
