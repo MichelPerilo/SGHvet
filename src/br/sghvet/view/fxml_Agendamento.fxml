@@ -270,7 +270,7 @@
 												<Button fx:id="bt_PNTutorAnimalSalvar" layoutX="905.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Salvar" />
 												<TextField fx:id="tx_PNTutorAnimais_Nome" layoutX="87.0" layoutY="72.0" prefHeight="25.0" prefWidth="188.0" />
 												<Separator layoutX="20.0" layoutY="408.0" prefHeight="17.0" prefWidth="945.0" />
-												<Label layoutX="102.0" layoutY="453.0" text=" (Historia atua, tratamento préviu, antecedentes mórbdos,  condições de vida)" />
+												<Label layoutX="102.0" layoutY="453.0" text=" (Historia atua, tratamento prévio, antecedentes mórbidos,  condições de vida)" />
 												<Label layoutX="23.0" layoutY="476.0" text="Vacinações: Quais" />
 												<TextField layoutX="130.0" layoutY="472.0" prefHeight="25.0" prefWidth="429.0" />
 												<Label layoutX="585.0" layoutY="476.0" text="Quando" />
@@ -360,7 +360,7 @@
 												</Label>
 												<TextField layoutX="175.0" layoutY="2617.0" prefHeight="25.0" prefWidth="499.0" />
 												<TextField layoutX="112.0" layoutY="2653.0" prefHeight="25.0" prefWidth="499.0" />
-												<Label layoutX="22.0" layoutY="451.0" text="Anaminese">
+												<Label layoutX="22.0" layoutY="451.0" text="Anamnese">
 													<font>
 														<Font name="System Bold" size="15.0" />
 													</font>
