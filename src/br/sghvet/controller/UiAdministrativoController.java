@@ -25,6 +25,7 @@ public class UiAdministrativoController implements Initializable {
 	public void handler_gerencimaentopessoas() throws IOException{
 		AnchorPane anchorpane_gerenciamentopessoas = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_gerenciamento_pessoas.fxml"));
 	    anchorpane_info.getChildren().setAll(anchorpane_gerenciamentopessoas);
+	    
 	}
 	
 	
