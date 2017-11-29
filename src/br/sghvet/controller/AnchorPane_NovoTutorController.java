@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
+import exceptions.ConectionException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -103,7 +104,14 @@ public class AnchorPane_NovoTutorController  implements Initializable{
     	
     	
     	
-    	control = new ControlPaciente();    
+    	try {
+			control = new ControlPaciente();
+		} catch (ConectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    
+    	
+    	
     	SetCB() ;
  	
        

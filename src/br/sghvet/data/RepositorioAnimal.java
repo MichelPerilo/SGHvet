@@ -94,7 +94,7 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),rs.getDouble("peso"));
 			a1.setNumProntuario(rs.getInt("prontuario"));
 		}catch(SQLException e){
-			throw e;
+			throw new Exception("Animal possui dados invalidos");
 		}
 		
 		return a1;
@@ -103,13 +103,17 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 	private boolean executar(PreparedStatement ps) throws Exception {
 		boolean result;
 
-		if (ps.execute())
-			result = true;
-		else
-			result = false;
+		try {
+			if (ps.execute())
+				result = true;
+			else
+				result = false;
+			ps.close();
+			return result;
+		} catch (SQLException e) {
+			throw new Exception("Falha ao realizar operacao no banco de dados");
+		}
 
-		ps.close();
-		return result;
 	}
 	
 	

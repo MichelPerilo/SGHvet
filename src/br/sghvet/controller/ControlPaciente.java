@@ -1,32 +1,34 @@
 package br.sghvet.controller;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import br.sghvet.model.Animal;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
+import exceptions.ConectionException;
 
 public class ControlPaciente implements IControlPaciente {
 
 	private ICadastroAnimal cadastroAnimal;
 	private ICadastroTutor cadastroTutor;
 
-	public ControlPaciente() {
+	public ControlPaciente() throws ConectionException {
 		cadastroAnimal = new CadastroAnimal();
 		cadastroTutor = new CadastroTutor();
 		conectar();
 	}
 
 	@Override
-	public void conectar() {
+	public void conectar() throws ConectionException{
 		Connection conect;
 		try {
 			conect = new Conexao().getConexao("root", "");
 			cadastroTutor.conectar(conect);
 			cadastroAnimal.conectar(conect);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ConectionException e) {
+			throw e;
 		}
 	}
 

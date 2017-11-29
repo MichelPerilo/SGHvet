@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import br.sghvet.model.Animal;
 import br.sghvet.model.Tutor;
+import exceptions.ConectionException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -116,7 +117,12 @@ public class AnchorPane_AgendamentoController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		control = new ControlPaciente();
+		try {
+			control = new ControlPaciente();
+		} catch (ConectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		carregarTableViewTutor();
 
 	}

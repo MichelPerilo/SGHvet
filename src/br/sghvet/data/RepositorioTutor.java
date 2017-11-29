@@ -143,13 +143,17 @@ public class RepositorioTutor implements IRepositorioTutor {
 	private boolean executar(PreparedStatement ps) throws Exception {
 		boolean result;
 
-		if (ps.execute())
-			result = true;
-		else
-			result = false;
+		try {
+			if (ps.execute())
+				result = true;
+			else
+				result = false;
+			ps.close();
+			return result;
+		} catch (SQLException e) {
+			throw new Exception("Falha ao realizar operação no banco de dados");
+		}
 
-		ps.close();
-		return result;
 	}
 
 	private Endereco preencherEndereco(ResultSet rs) throws Exception {
@@ -170,7 +174,7 @@ public class RepositorioTutor implements IRepositorioTutor {
 		try {
 			t1 = new Tutor(rs.getString("nome"), rs.getString("cpf"), rs.getString("sexo"), rs.getString("contato"),null);
 		} catch (SQLException e) {
-			throw e;
+			throw new Exception("Tutor possui dados invalidos");
 		}
 		return t1;
 	}
@@ -200,7 +204,7 @@ public class RepositorioTutor implements IRepositorioTutor {
 					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),rs.getDouble("peso"));
 			a1.setNumProntuario(rs.getInt("prontuario"));
 		}catch(SQLException e){
-			throw e;
+			throw new Exception("Animal possui dados invalidos");
 		}
 		
 		return a1;
