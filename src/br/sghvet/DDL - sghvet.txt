@@ -1,4 +1,5 @@
 CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335';
+-- senha de admsupremo eh 'abcd'
 FLUSH PRIVILEGES;
 GRANT CREATE USER ON *.* TO 'admsupremo'@'localhost' WITH GRANT OPTION;
 GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO 'admsupremo'@'localhost';
@@ -40,3 +41,6 @@ cpf char(14) not null,
 tipo enum('VETERINARIO', 'ADMINISTRATIVO', 'AUXILIAR') not null,
 primary key(cpf)
 )ENGINE = innodb;
+
+INSERT INTO `sghvet`.`usuario` (`cpf`, `tipo`) VALUES ('admsupremo', 'ADMINISTRATIVO');
+INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'Administrador', '99998888', 'adm@adm.com');
