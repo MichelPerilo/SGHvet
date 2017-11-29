@@ -47,7 +47,7 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 	@Override
 	public boolean cadastrarUsuario(Usuario user, String senha) throws Exception {
 		String query = "INSERT INTO usuario (cpf, tipo) values (?,?);";
-
+	
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, user.getCpf());
 		ps.setString(2, user.getTipo().toString());
