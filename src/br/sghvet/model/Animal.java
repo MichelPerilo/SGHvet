@@ -110,6 +110,7 @@ public class Animal {
 		this.numProntuario = numProntuario;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return getNome();

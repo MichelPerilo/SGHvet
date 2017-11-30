@@ -1,11 +1,8 @@
 package br.sghvet.controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
@@ -13,20 +10,19 @@ import exceptions.ConectionException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class AnchorPane_NovoTutorController  implements Initializable{
 
 	private Stage stage;
 	IControlPaciente control; 	
+	Alert alert = new Alert(AlertType.WARNING);
 
 	
 //	Cadastro Tutor
@@ -61,13 +57,8 @@ public class AnchorPane_NovoTutorController  implements Initializable{
 	
 //	Cadastro Animal
 		
-	
-	@FXML
-	private Button btNovoAnimal;	
-	
 	@FXML
     private ComboBox<String> cb_Sexo;
-	
 	
 	
 //	Animal
@@ -169,6 +160,8 @@ public class AnchorPane_NovoTutorController  implements Initializable{
     	try {
 			    	
 	    	control.cadastrarAnimal(a);
+	    	alert.setHeaderText("ANIMAL SALVO COM SUCESSO");
+		    alert.showAndWait();
 						
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -185,6 +178,8 @@ public class AnchorPane_NovoTutorController  implements Initializable{
     	try {
 			
     		control.cadastrarTutor(t);
+    		alert.setHeaderText("TUTOR SALVO COM SUCESSO");
+		    alert.showAndWait();
     		tx_NomeTutor.setEditable(false);
     		tx_CPF.setEditable(false);
     		tx_Celular.setEditable(false);

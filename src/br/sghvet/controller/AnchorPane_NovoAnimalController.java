@@ -9,8 +9,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class AnchorPane_NovoAnimalController implements Initializable {
@@ -18,6 +20,7 @@ public class AnchorPane_NovoAnimalController implements Initializable {
 	private Stage stage;
 	private String cpf;
 	IControlPaciente control;
+	Alert alert = new Alert(AlertType.WARNING);
 
 	@FXML
 	private TextField tx_ProntuarioAnimal;
@@ -82,8 +85,19 @@ public class AnchorPane_NovoAnimalController implements Initializable {
 		Animal a = new Animal(tx_NomeAnimal.getText(), tx_Especie.getText(), cb_SexoAnimal.getValue(),
 				Integer.parseInt(tx_IdadeAnimal.getText()), getCPF(), tx_RacaAnimal.getText(),
 				tx_PelagemAnimal.getText(), Double.parseDouble(tx_PesoAnimal.getText()));
+		
 		try {
 			control.cadastrarAnimal(a);
+			alert.setHeaderText("ANIMAL CADASTRADO COM SUCESSO");
+		    alert.showAndWait();
+		    
+		    tx_NomeAnimal.setEditable(false);
+		    tx_Especie.setEditable(false);
+		    cb_SexoAnimal.setEditable(false);
+		    tx_IdadeAnimal.setEditable(false);
+		    tx_RacaAnimal.setEditable(false);
+		    tx_PelagemAnimal.setEditable(false);
+		    tx_PesoAnimal.setEditable(false);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
