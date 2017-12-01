@@ -59,6 +59,7 @@ public class UiCadastroFuncionarioController implements Initializable {
 	
 	public void handler_salvar() throws Exception{
 		IControlFuncionario funcionario = new ControlFuncionario();
+		//reformular para usar fachada
 		switch(choicebox_setor.getValue().toString()) {
 		
 			case "ADMINISTRATIVO":

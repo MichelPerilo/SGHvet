@@ -1,16 +1,18 @@
-package br.sghvet.controller;
+package br.sghvet.facade;
 
 import java.sql.Connection;
 
 import br.sghvet.model.Administrativo;
 import br.sghvet.model.Auxiliar;
+import br.sghvet.model.TipoUsuario;
 import br.sghvet.model.Usuario;
 import br.sghvet.model.Veterinario;
 
-public interface IControlFuncionario {
+public interface IFachada {
 	
-	public void conectar(Connection conect);
-
+	public void conectar();
+	public TipoUsuario loginUsuario(String cpf, String senha) throws Exception;
+	
 	public Usuario buscaUsuario(String cpf) throws Exception; // Login
 	public boolean cadastrarUsuario(Usuario user, String senha) throws Exception;
 	public boolean atualizarUsuario(Usuario user) throws Exception;
@@ -30,4 +32,5 @@ public interface IControlFuncionario {
 	public boolean cadastrarAuxiliar(Usuario user, Auxiliar aux) throws Exception;
 	public boolean atualizarAuxiliar(Auxiliar aux) throws Exception;
 	public boolean deletarAuxiliar(Auxiliar aux)throws Exception;
+
 }
