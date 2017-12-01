@@ -1,5 +1,7 @@
 package br.sghvet.controller;
 
+import br.sghvet.facade.Fachada;
+import br.sghvet.facade.IFachada;
 import br.sghvet.model.TipoUsuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,9 +50,11 @@ public class UiLoginController implements Initializable{
 	
 	public void handler_entrar(){
 		
-		  IControleLogin login = new ControleLogin();
+		  IFachada fachada = new Fachada();
+		  fachada.conectar();
+		  
 		try {
-			switch(login.loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText())){
+			switch(fachada.loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText())){
 			
 				case ADMINISTRATIVO:
 					AnchorPane anchorpane_administrativo = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_administrativo.fxml"));

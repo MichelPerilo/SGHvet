@@ -15,7 +15,7 @@ public class Fachada implements IFachada{
 	
 	public static Fachada instance;
 	
-	private Fachada() {
+	public Fachada() {
 		this.controlelogin = new ControleLogin();
 		this.controlfuncionario = new ControlFuncionario();
 	}

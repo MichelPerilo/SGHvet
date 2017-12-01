@@ -1,4 +1,6 @@
 package br.sghvet.controller;
+import br.sghvet.facade.Fachada;
+import br.sghvet.facade.IFachada;
 import br.sghvet.model.Administrativo;
 import br.sghvet.model.CargoAdm;
 import br.sghvet.model.TipoUsuario;
@@ -58,17 +60,18 @@ public class UiCadastroFuncionarioController implements Initializable {
 	
 	
 	public void handler_salvar() throws Exception{
-		IControlFuncionario funcionario = new ControlFuncionario();
+		IFachada fachada = new Fachada();
+		
 
 		//reformular para usar fachada
 
 		switch(choicebox_setor.getValue().toString()) {
-		
+	
 			case "ADMINISTRATIVO":
 				Usuario user = new Usuario(textfield_cpf.getText(), TipoUsuario.ADMINISTRATIVO);
-				funcionario.cadastrarUsuario(user, passwordfield_senha.getText());
+				fachada.cadastrarUsuario(user, passwordfield_senha.getText());
 				Administrativo adm = new Administrativo(textfield_nome.getText(), textfield_cpf.getText(), datepicker_datanascimento.getValue(), CargoAdm.ATENDENTE, textfield_contato.getText(), textfield_email.getText());
-				funcionario.cadastraAdm(user, adm);
+				fachada.cadastraAdm(user, adm);
 				break;
 			case "AUXILIAR":
 		
