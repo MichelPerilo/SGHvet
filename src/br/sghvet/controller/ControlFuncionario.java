@@ -1,6 +1,7 @@
 package br.sghvet.controller;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import br.sghvet.model.Administrativo;
 import br.sghvet.model.Auxiliar;
@@ -14,6 +15,8 @@ public class ControlFuncionario implements IControlFuncionario{
 	private ICadastroAdm cadastroAdm;
 	private ICadastroAuxiliar cadastroAuxiliar;
 	
+	private Connection connection;
+	
 	public ControlFuncionario() {
 		this.cadastroUsuario = new CadastroUsuario();
 		this.cadastroVeterinario = new CadastroVeterinario();
@@ -21,16 +24,18 @@ public class ControlFuncionario implements IControlFuncionario{
 		this.cadastroAuxiliar = new CadastroAuxiliar();
 	}
 
-	public void conectar(){
-		Connection conect;
+	
+
+	@Override
+	public void conectar(Connection conect) {
 		try {
-			conect = new Conexao().getConexao("admsupremo","301716283811389038011477436469853762335");
-			cadastroUsuario.conectar(conect);
-			cadastroVeterinario.conectar(conect);
-			cadastroAdm.conectar(conect);
-			cadastroAuxiliar.conectar(conect);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
+			if (this.connection != null)
+				this.connection.close();
+
+			this.connection = conect;
+		} catch (SQLException e) {
+
 			e.printStackTrace();
 		}
 	}
