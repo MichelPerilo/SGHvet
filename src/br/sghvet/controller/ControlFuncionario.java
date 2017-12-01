@@ -24,7 +24,7 @@ public class ControlFuncionario implements IControlFuncionario{
 	public void conectar(){
 		Connection conect;
 		try {
-			conect = new Conexao().getConexao("root","");
+			conect = new Conexao().getConexao("admsupremo","301716283811389038011477436469853762335");
 			cadastroUsuario.conectar(conect);
 			cadastroVeterinario.conectar(conect);
 			cadastroAdm.conectar(conect);
