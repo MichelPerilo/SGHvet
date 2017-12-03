@@ -16,14 +16,14 @@ public class RepositorioVeterinario implements IRepositorioVeterinario {
 	
 	@Override
 	public void conectar(Connection conect) {
-		try {
-			if (this.connection != null)
-				this.connection.close();
+		//try {
+			//if (this.connection != null)
+				//this.connection.close();
 			
 			this.connection = conect;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		//} catch (SQLException e) {
+			//e.printStackTrace();
+		//}
 	}
 	
 	@Override
@@ -56,17 +56,16 @@ public class RepositorioVeterinario implements IRepositorioVeterinario {
 		ps.setString(6, vet.getEmail());
 		ps.setString(7, vet.getCrmv());
 		
-		if(executar(ps)) {
-			//testar
+		if(!executar(ps)) {
 			query = "GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO '"+vet.getCpf()+"'@'"+new Conexao().getHost()+"';";
 			//String query2 = "GRANT CREATE USER ON *.* TO '"+vet.getCpf()+"'@'"+new Conexao().getHost()+"' WITH GRANT OPTION;";
 			String query3 = "FLUSH PRIVILEGES;";
 			ps = connection.prepareStatement(query);
-			boolean q1 = executar(ps);
+			boolean q1 = !executar(ps);
 			//ps = connection.prepareStatement(query2);
 			//boolean q2 = executar(ps);
 			ps = connection.prepareStatement(query3);
-			boolean q3 = executar(ps);
+			boolean q3 = !executar(ps);
 			if(q1&&q3)
 				return true;
 		}
@@ -85,7 +84,7 @@ public class RepositorioVeterinario implements IRepositorioVeterinario {
 		ps.setString(5, vet.getEmail());
 		ps.setString(6, vet.getCrmv());
 		
-		return executar(ps);
+		return !executar(ps);
 	}
 
 	@Override
@@ -95,7 +94,7 @@ public class RepositorioVeterinario implements IRepositorioVeterinario {
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
 		ps.setString(1,vet.getCpf());
 		
-		return executar(ps);
+		return !executar(ps);
 	}
 
 	private boolean executar(PreparedStatement ps) throws Exception {

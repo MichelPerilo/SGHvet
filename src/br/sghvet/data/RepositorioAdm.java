@@ -12,18 +12,17 @@ import br.sghvet.model.CargoAdm;
 
 public class RepositorioAdm implements IRepositorioAdm {
 
-	private Connection connection;
+	private static Connection connection;
 
 	@Override
 	public void conectar(Connection conect) {
-		try {
-			if (this.connection != null)
-				this.connection.close();
-
-			this.connection = conect;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		//try {
+			//if (RepositorioAdm.connection != null)
+			//	RepositorioAdm.connection.close();
+			RepositorioAdm.connection = conect;
+		//} catch (SQLException e) {
+		//	e.printStackTrace();
+		//}
 	}
 
 	@Override
@@ -54,17 +53,16 @@ public class RepositorioAdm implements IRepositorioAdm {
 		ps.setString(5, adm.getContato());
 		ps.setString(6, adm.getEmail());
 		
-		if(executar(ps)) {
-			//testar
+		if(!executar(ps)) {
 			query = "GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO '"+adm.getCpf()+"'@'"+new Conexao().getHost()+"';";
-			String query2 = "GRANT CREATE USER ON *.* TO '"+adm.getCpf()+"'@'"+new Conexao().getHost()+"' WITH GRANT OPTION;";
+			String query2 = "GRANT CREATE USER, RELOAD ON *.* TO '"+adm.getCpf()+"'@'"+new Conexao().getHost()+"' WITH GRANT OPTION;";
 			String query3 = "FLUSH PRIVILEGES;";
 			ps = connection.prepareStatement(query);
-			boolean q1 = executar(ps);
+			boolean q1 = !executar(ps);
 			ps = connection.prepareStatement(query2);
-			boolean q2 = executar(ps);
+			boolean q2 = !executar(ps);
 			ps = connection.prepareStatement(query3);
-			boolean q3 = executar(ps);
+			boolean q3 = !executar(ps);
 			if(q1&&q2&&q3)
 				return true;
 		}
@@ -83,7 +81,7 @@ public class RepositorioAdm implements IRepositorioAdm {
 		ps.setString(4, adm.getContato());
 		ps.setString(5, adm.getEmail());
 		
-		return executar(ps);
+		return !executar(ps);
 	}
 
 	@Override
@@ -93,7 +91,7 @@ public class RepositorioAdm implements IRepositorioAdm {
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
 		ps.setString(1, adm.getCpf());
 		
-		return executar(ps);
+		return !executar(ps);
 	}
 
 	private boolean executar(PreparedStatement ps) throws Exception{

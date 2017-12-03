@@ -15,7 +15,7 @@ public class ControlFuncionario implements IControlFuncionario{
 	private ICadastroAdm cadastroAdm;
 	private ICadastroAuxiliar cadastroAuxiliar;
 	
-	private Connection connection;
+	private static Connection connection;
 	
 	public ControlFuncionario() {
 		this.cadastroUsuario = new CadastroUsuario();
@@ -28,16 +28,19 @@ public class ControlFuncionario implements IControlFuncionario{
 
 	@Override
 	public void conectar(Connection conect) {
-		try {
+		//try {
 
-			if (this.connection != null)
-				this.connection.close();
+			//if (ControlFuncionario.connection != null)
+			//	ControlFuncionario.connection.close();
+			ControlFuncionario.connection = conect;
+			cadastroUsuario.conectar(connection);
+			cadastroVeterinario.conectar(connection);
+			cadastroAdm.conectar(connection);
+			cadastroAuxiliar.conectar(connection);
+		//} catch (SQLException e) {
 
-			this.connection = conect;
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 	}
 	
 	@Override

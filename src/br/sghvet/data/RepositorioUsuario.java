@@ -14,18 +14,11 @@ import br.sghvet.model.Usuario;
 
 public class RepositorioUsuario implements IRepositorioUsuario {
 
-	private Connection connection;
+	private static Connection connection;
 
 	@Override
 	public void conectar(Connection conect) {
-		try {
-			if (this.connection != null)
-				this.connection.close();
-
-			this.connection = conect;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			RepositorioUsuario.connection = conect;
 	}
 
 	@Override
@@ -46,16 +39,13 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 
 	@Override
 	public boolean cadastrarUsuario(Usuario user, String senha) throws Exception {
-		String query = "INSERT INTO usuario (cpf, tipo) values (?,?);";
-	
+		String query = "INSERT INTO usuario (cpf, tipo) values ('"+user.getCpf()+"','"+user.getTipo().toString()+"');";
 		PreparedStatement ps = connection.prepareStatement(query);
-		ps.setString(1, user.getCpf());
-		ps.setString(2, user.getTipo().toString());
-		if (executar(ps)) {
+		if (!executar(ps)) {
 			query = "CREATE USER IF NOT EXISTS '" + user.getCpf() + "'@'" + new Conexao().getHost()
 					+ "' IDENTIFIED BY '" + encrypt(senha) + "';";
 			ps = connection.prepareStatement(query);
-			return executar(ps);
+			return !executar(ps);
 		}
 
 		// falha no cadastro
@@ -68,7 +58,7 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 				+ "';";
 
 		PreparedStatement ps = connection.prepareStatement(query);
-		return executar(ps);
+		return !executar(ps);
 	}
 
 	@Override
@@ -76,10 +66,10 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 		String query = "DELETE FROM usuario WHERE cpf = '" + user.getCpf() + "';";
 
 		PreparedStatement ps = connection.prepareStatement(query);
-		if(executar(ps)) {
+		if(!executar(ps)) {
 			query = "DROP USER '"+user.getCpf()+"'@'"+new Conexao().getHost()+"';";
 			ps = connection.prepareStatement(query);
-			return executar(ps);
+			return !executar(ps);
 		}
 		return false;
 	}

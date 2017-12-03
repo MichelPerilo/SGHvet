@@ -8,7 +8,7 @@ import br.sghvet.model.*;
 
 public class Fachada implements IFachada{
 	
-	private Connection conexao;
+	private static Connection conexao;
 	
 	private IControleLogin controlelogin;
 	private IControlFuncionario controlfuncionario;
@@ -37,7 +37,10 @@ public class Fachada implements IFachada{
 		TipoUsuario user = controlelogin.loginUsuario(cpf, senha);
 		if(user!=null) {
 			this.conexao = controlelogin.getConexao();
-			conectar(); //testar se deveria ser aqui
+			conectar();
+			//if(conexao == null) {
+			//	System.out.println("blow this shit up");
+			//}
 		}
 		return user;
 	}
@@ -49,6 +52,10 @@ public class Fachada implements IFachada{
 
 	@Override
 	public boolean cadastrarUsuario(Usuario user, String senha) throws Exception{
+		if(conexao == null) {
+			System.out.println("blow this shit up");
+		}
+		controlfuncionario.conectar(conexao);
 		return controlfuncionario.cadastrarUsuario(user, senha);
 	}
 

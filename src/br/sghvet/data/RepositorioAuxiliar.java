@@ -16,14 +16,14 @@ public class RepositorioAuxiliar implements IRepositorioAuxiliar {
 	
 	@Override
 	public void conectar(Connection conect) {
-		try {
-			if (this.connection != null)
-				this.connection.close();
+		//try {
+		//	if (this.connection != null)
+		//		this.connection.close();
 			
 			this.connection = conect;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		//} catch (SQLException e) {
+		//	e.printStackTrace();
+		//}
 	}
 	
 	@Override
@@ -54,17 +54,16 @@ public class RepositorioAuxiliar implements IRepositorioAuxiliar {
 		ps.setString(5, aux.getContato());
 		ps.setString(6, aux.getEmail());
 		
-		if(executar(ps)) {
-			//testar
+		if(!executar(ps)) {
 			query = "GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO '"+aux.getCpf()+"'@'"+new Conexao().getHost()+"';";
 			//String query2 = "GRANT CREATE USER ON *.* TO '"+aux.getCpf()+"'@'"+new Conexao().getHost()+"' WITH GRANT OPTION;";
 			String query3 = "FLUSH PRIVILEGES;";
 			ps = connection.prepareStatement(query);
-			boolean q1 = executar(ps);
+			boolean q1 = !executar(ps);
 			//ps = connection.prepareStatement(query2);
 			//boolean q2 = executar(ps);
 			ps = connection.prepareStatement(query3);
-			boolean q3 = executar(ps);
+			boolean q3 = !executar(ps);
 			if(q1&&q3)
 				return true;
 		}
@@ -82,7 +81,7 @@ public class RepositorioAuxiliar implements IRepositorioAuxiliar {
 		ps.setString(4, aux.getContato());
 		ps.setString(5, aux.getEmail());
 		
-		return executar(ps);		
+		return !executar(ps);		
 	}
 
 	@Override
@@ -92,7 +91,7 @@ public class RepositorioAuxiliar implements IRepositorioAuxiliar {
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
 		ps.setString(1, aux.getCpf());
 		
-		return executar(ps);
+		return !executar(ps);
 	}
 	
 	private Auxiliar preencherAuxiliar(ResultSet rs) throws Exception{
