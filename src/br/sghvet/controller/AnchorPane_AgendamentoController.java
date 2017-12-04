@@ -67,6 +67,8 @@ public class AnchorPane_AgendamentoController implements Initializable {
 	@FXML
 	private Label lb_PN_CPF;
 	@FXML
+	private Label lb_PN_Sexo;
+	@FXML
 	private Label lb_PN_Rua;
 	@FXML
 	private Label lb_PN_Bairro;
@@ -222,6 +224,7 @@ public class AnchorPane_AgendamentoController implements Initializable {
 		tx_PNTutorAnimais_Peso.setText("");
 		tx_PNTutorAnimais_Pelagem.setText("");
 		tx_PNTutorAnimais_Sexo.setText("");
+		tx_PNTutorAnimais_Prontuario.setText("");
 		
 	}
 
@@ -288,6 +291,7 @@ public class AnchorPane_AgendamentoController implements Initializable {
 			tx_PNTutorDados_CEP.setEditable(false);
 			tx_PNTutorDados_Cidade.setEditable(false);
 			tx_PNTutorDados_Estado.setEditable(false);
+			carregarTableViewTutor();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -311,21 +315,23 @@ public class AnchorPane_AgendamentoController implements Initializable {
 	public void handlerSalvarEditAnimal() {
 
 		Animal a = new Animal(tx_PNTutorAnimais_Nome.getText(), tx_PNTutorAnimais_Especie.getText(),
-				tx_PNTutorAnimais_Peso.getText(), Integer.parseInt(tx_PNTutorAnimais_Idade.getText()),
+				tx_PNTutorAnimais_Sexo.getText(), Integer.parseInt(tx_PNTutorAnimais_Idade.getText()),
 				lb_PN_CPF.getText(), tx_PNTutorAnimais_Raca.getText(), tx_PNTutorAnimais_Pelagem.getText(),
 				Double.parseDouble(tx_PNTutorAnimais_Peso.getText()));
+		a.setNumProntuario(Long.parseLong(tx_PNTutorAnimais_Prontuario.getText()));
 
 		try {
-			control.atualizarAnimal(a);
-			alert.setHeaderText("SALVO COM SUCESSO");
-			alert.showAndWait();
+			control.atualizarAnimal(a);			
 			tx_PNTutorAnimais_Nome.setEditable(false);
 			tx_PNTutorAnimais_Idade.setEditable(false);
 			tx_PNTutorAnimais_Raca.setEditable(false);
 			tx_PNTutorAnimais_Especie.setEditable(false);
 			tx_PNTutorAnimais_Peso.setEditable(false);
 			tx_PNTutorAnimais_Pelagem.setEditable(false);
-			tx_PNTutorAnimais_Sexo.setEditable(false);
+			tx_PNTutorAnimais_Sexo.setEditable(false);			
+			AtualizaAnimais(lb_PN_CPF.getText());
+			alert.setHeaderText("SALVO COM SUCESSO");
+			alert.showAndWait();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -353,12 +359,14 @@ public class AnchorPane_AgendamentoController implements Initializable {
 			t = control.buscarTutor(cpf);
 
 			lb_PNTutorNOME.setText(t.getNome());
-			lb_PN_Nome.setText(t.getNome());
-			lb_PN_Numero.setText(t.getContato());
-			lb_PN_CPF.setText(t.getCpf());
-			lb_PN_Rua.setText(t.getEndereco().getLogradouro());
-			lb_PN_Bairro.setText(t.getEndereco().getBairro());
-			lb_PN_Cidade.setText(t.getEndereco().getCidade());
+			lb_PN_Nome.setText("Nome: "+t.getNome());
+			lb_PN_Numero.setText("Fone: "+t.getContato());
+			lb_PN_CPF.setText("CPF: "+t.getCpf());
+			lb_PN_Sexo.setText("Sexo: "+t.getSexo());
+			lb_PN_Rua.setText("Rua: "+t.getEndereco().getLogradouro());
+			lb_PN_Bairro.setText("Bairro: "+t.getEndereco().getBairro());
+			lb_PN_Cidade.setText("Cidade: "+t.getEndereco().getCidade());
+			
 
 			tx_PNTutorDados_Nome.setEditable(false);
 			tx_PNTutorDados_CPF.setEditable(false);
@@ -420,6 +428,7 @@ public class AnchorPane_AgendamentoController implements Initializable {
 					tx_PNTutorAnimais_Peso.setText(String.valueOf(animal.getPeso()));
 					tx_PNTutorAnimais_Pelagem.setText(animal.getPelagem());
 					tx_PNTutorAnimais_Sexo.setText(animal.getSexo());
+					tx_PNTutorAnimais_Prontuario.setText(String.valueOf(animal.getNumProntuario()));
 				}
 
 			}

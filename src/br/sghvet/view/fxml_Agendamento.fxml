@@ -112,7 +112,7 @@
 				</Button>
 				<Pane id="pn_dados" layoutX="52.0" layoutY="80.0" prefHeight="87.0" prefWidth="996.0" style="-fx-background-color: F7F2E0;">
 					<children>
-						<Label fx:id="lb_PN_Nome" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="148.0" text="Nome" />
+						<Label fx:id="lb_PN_Nome" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="269.0" text="Nome" />
 						<Label fx:id="lb_PN_CPF" layoutX="579.0" layoutY="14.0" text="CPF" />
 						<Label fx:id="lb_PN_Sexo" layoutX="773.0" layoutY="14.0" text="Sexo" />
 						<Label fx:id="lb_PN_Numero" layoutX="298.0" layoutY="14.0" text="Numero" />

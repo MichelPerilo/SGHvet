@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.ConnectionFeatureNotAvailableException;
+
 import br.sghvet.model.Animal;
 import br.sghvet.model.Tutor;
 
@@ -40,12 +42,14 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 		ps.setInt(7, a.getIdade());
 		ps.setString(8, a.getCpfTutor());
 		
-		return executar(ps);
+		ps.executeUpdate();
+		return true;
 	}
 
 	@Override
 	public boolean atualizarAnimal(Animal a) throws Exception {
 
+		
 		String query = "update animal set nome = ?, especie =?, raca =?, pelagem =?, peso =?, sexo =?, idade =? where prontuario =?";
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
 		ps.setString(1, a.getNome());
@@ -55,9 +59,10 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 		ps.setDouble(5, a.getPeso());
 		ps.setString(6, a.getSexo());
 		ps.setInt(7, a.getIdade());
-		ps.setInt(8, a.getNumProntuario());
+		ps.setLong(8, a.getNumProntuario());
+			
 		
-		return executar(ps);
+		return ps.execute();
 	}
 
 	@Override
@@ -65,7 +70,7 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 		
 		String query ="delete from animal where prontuario =?";
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
-		ps.setInt(1, a.getNumProntuario());
+		ps.setLong(1, a.getNumProntuario());
 		
 		return executar(ps);
 	}
@@ -92,7 +97,7 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 		try{
 			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"),rs.getInt("idade"),
 					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),rs.getDouble("peso"));
-			a1.setNumProntuario(rs.getInt("prontuario"));
+			a1.setNumProntuario(rs.getLong("prontuario"));
 		}catch(SQLException e){
 			throw new Exception("Animal possui dados invalidos");
 		}
@@ -101,8 +106,8 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 	}
 
 	private boolean executar(PreparedStatement ps) throws Exception {
+		
 		boolean result;
-
 		try {
 			if (ps.execute())
 				result = true;
