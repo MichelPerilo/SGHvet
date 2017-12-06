@@ -4,16 +4,24 @@ import br.sghvet.facade.IFachada;
 import br.sghvet.model.Administrativo;
 import br.sghvet.model.CargoAdm;
 import br.sghvet.model.TipoUsuario;
+
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
+
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 import br.sghvet.model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
@@ -68,10 +76,45 @@ public class UiCadastroFuncionarioController implements Initializable {
 		switch(choicebox_setor.getValue().toString()) {
 	
 			case "ADMINISTRATIVO":
-				Usuario user = new Usuario(textfield_cpf.getText(), TipoUsuario.ADMINISTRATIVO);
-				fachada.cadastrarUsuario(user, passwordfield_senha.getText());
-				Administrativo adm = new Administrativo(textfield_nome.getText(), textfield_cpf.getText(), datepicker_datanascimento.getValue(), CargoAdm.ATENDENTE, textfield_contato.getText(), textfield_email.getText());
-				fachada.cadastraAdm(user, adm);
+				try{
+					Usuario user = new Usuario(textfield_cpf.getText(), TipoUsuario.ADMINISTRATIVO);
+					fachada.cadastrarUsuario(user, passwordfield_senha.getText());
+					Administrativo adm = new Administrativo(textfield_nome.getText(), textfield_cpf.getText(), datepicker_datanascimento.getValue(), CargoAdm.ATENDENTE, textfield_contato.getText(), textfield_email.getText());
+					fachada.cadastraAdm(user, adm);
+					
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			    	alert.setHeaderText("Novo Cadastro Efetuado");
+			        alert.setTitle("Confirmação");
+			    	
+			    	Optional<ButtonType> result = alert.showAndWait();
+			    	if (result.get() == ButtonType.OK){
+			    	    // ... user chose OK
+			    		alert.close();
+			    		stage.close();
+			    		
+			    	} else {
+			    	    // ... user chose CANCEL or closed the dialog
+			    	}
+		    	
+				}catch(Exception integrityexception){
+					
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+			    	alert.setHeaderText("Ocorreu um erro na tentatica de cadastro");
+			        alert.setTitle("Erro");
+			    	
+			    	Optional<ButtonType> result = alert.showAndWait();
+			    	if (result.get() == ButtonType.OK){
+			    	    // ... user chose OK
+			    		alert.close();
+			    		stage.close();
+			    		
+			    	} else {
+			    	    // ... user chose CANCEL or closed the dialog
+			    	}
+					
+				}
+				
+				
 				break;
 			case "AUXILIAR":
 		
@@ -98,6 +141,10 @@ public class UiCadastroFuncionarioController implements Initializable {
 	private Stage getStage() {
 		return stage;
 	}
+	
+
+	
+
 
 
 }
