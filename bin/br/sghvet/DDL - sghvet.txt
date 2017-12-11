@@ -1,0 +1,69 @@
+CREATE TABLE veterinario(
+nome varchar(100) not null,
+cpf char(11) not null,
+dataNasc date not null,
+cargo varchar(15) not null,
+contato varchar(11) not null,
+email varchar(40) not null,
+crmv varchar(20) not null,
+primary key(cpf)
+)ENGINE = innodb;
+
+CREATE TABLE administrativo(
+nome varchar(100) not null,
+cpf char(11) not null,
+dataNasc date not null,
+cargo varchar(15) not null,
+contato varchar(11) not null,
+email varchar(40) not null,
+primary key(cpf)
+)ENGINE = innodb;
+
+CREATE TABLE auxiliar(
+nome varchar(100) not null,
+cpf char(11) not null,
+dataNasc date not null,
+cargo varchar(15) not null,
+contato varchar(11) not null,
+email varchar(40) not null,
+primary key(cpf)
+)ENGINE = innodb;
+
+CREATE TABLE tutor(
+nome varchar(100) not null,
+cpf char(11) not null,
+sexo char(1) not null,
+contato varchar(11) not null,
+primary key(cpf)
+)ENGINE = innodb;
+
+CREATE TABLE endereco(
+id int not null auto_increment,
+rua varchar(100) not null,
+bairro varchar(100) not null,
+numero varchar(5),
+complemento varchar(100),
+cep char(8) not null,
+cidade varchar(30) not null,
+estado varchar(30) not null,
+cpfTutor char(11) not null,
+primary key(id),
+foreign key(cpfTutor) references tutor(cpf)
+)ENGINE = innodb;
+
+CREATE TABLE animal(
+prontuario int not null auto_increment,
+nome varchar(50) not null,
+especie varchar(50) not null,
+raca varchar(50),
+pelagem varchar(50),
+peso decimal(5,2),
+sexo char(1)not null,
+idade int not null,
+cpfTutor char(11) not null,
+primary key(prontuario,cpfTutor),
+foreign key(cpfTutor) references tutor(cpf)
+)ENGINE = innodb;
+
+select A.prontuario, A.nome, A.especie, A.raca, A.pelagem, A.peso,
+A.sexo, A.idade from animal as A
