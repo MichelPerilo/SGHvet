@@ -7,7 +7,8 @@ import exceptions.ConectionException;
 
 public class Conexao {
 
-	private String projeto = "jdbc:mysql://localhost:3306/sghvet";
+	private String host = "localhost";
+	private String projeto = "jdbc:mysql://"+host+":3306/sghvet";
 
 	public Connection getConexao(String usuario, String senha) throws ConectionException {
 
@@ -19,4 +20,7 @@ public class Conexao {
 			throw new ConectionException();
 		}
 }
+	public String getHost() {
+		return host;
+	}
 }

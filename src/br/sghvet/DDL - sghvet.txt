@@ -1,3 +1,10 @@
+CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335';
+-- senha de admsupremo eh 'abcd'
+FLUSH PRIVILEGES;
+GRANT CREATE USER, RELOAD ON *.* TO 'admsupremo'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO 'admsupremo'@'localhost';
+FLUSH PRIVILEGES;
+
 CREATE TABLE veterinario(
 nome varchar(100) not null,
 cpf char(11) not null,
