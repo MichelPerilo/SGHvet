@@ -1,13 +1,6 @@
-CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335';
--- senha de admsupremo eh 'abcd'
-FLUSH PRIVILEGES;
-GRANT CREATE USER, RELOAD ON *.* TO 'admsupremo'@'localhost' WITH GRANT OPTION;
-GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO 'admsupremo'@'localhost';
-FLUSH PRIVILEGES;
-
 CREATE TABLE veterinario(
 nome varchar(100) not null,
-cpf char(14) not null,
+cpf char(11) not null,
 dataNasc date not null,
 cargo varchar(15) not null,
 contato varchar(11) not null,
@@ -18,7 +11,7 @@ primary key(cpf)
 
 CREATE TABLE administrativo(
 nome varchar(100) not null,
-cpf char(14) not null,
+cpf char(11) not null,
 dataNasc date not null,
 cargo varchar(15) not null,
 contato varchar(11) not null,
@@ -28,7 +21,7 @@ primary key(cpf)
 
 CREATE TABLE auxiliar(
 nome varchar(100) not null,
-cpf char(14) not null,
+cpf char(11) not null,
 dataNasc date not null,
 cargo varchar(15) not null,
 contato varchar(11) not null,
@@ -36,11 +29,41 @@ email varchar(40) not null,
 primary key(cpf)
 )ENGINE = innodb;
 
-CREATE TABLE usuario(
-cpf char(14) not null,
-tipo enum('VETERINARIO', 'ADMINISTRATIVO', 'AUXILIAR') not null,
+CREATE TABLE tutor(
+nome varchar(100) not null,
+cpf char(11) not null,
+sexo char(1) not null,
+contato varchar(11) not null,
 primary key(cpf)
 )ENGINE = innodb;
 
-INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('admsupremo', 'ADMINISTRATIVO');
-INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'Administrador', '99998888', 'adm@adm.com');
+CREATE TABLE endereco(
+id int not null auto_increment,
+rua varchar(100) not null,
+bairro varchar(100) not null,
+numero varchar(5),
+complemento varchar(100),
+cep char(8) not null,
+cidade varchar(30) not null,
+estado varchar(30) not null,
+cpfTutor char(11) not null,
+primary key(id),
+foreign key(cpfTutor) references tutor(cpf)
+)ENGINE = innodb;
+
+CREATE TABLE animal(
+prontuario int not null auto_increment,
+nome varchar(50) not null,
+especie varchar(50) not null,
+raca varchar(50),
+pelagem varchar(50),
+peso decimal(5,2),
+sexo char(1)not null,
+idade int not null,
+cpfTutor char(11) not null,
+primary key(prontuario,cpfTutor),
+foreign key(cpfTutor) references tutor(cpf)
+)ENGINE = innodb;
+
+select A.prontuario, A.nome, A.especie, A.raca, A.pelagem, A.peso,
+A.sexo, A.idade from animal as A
