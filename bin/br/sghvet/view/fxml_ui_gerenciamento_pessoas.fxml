@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiGerenciamentoPessoasController">
+   <children>
+      <ListView fx:id="listview_funcionarios" layoutX="46.0" layoutY="182.0" prefHeight="393.0" prefWidth="910.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="182.0" />
+      <Button fx:id="button_novocadastro" layoutX="69.0" layoutY="36.0" mnemonicParsing="false" onAction="#handler_NovoCadastro" prefHeight="51.0" prefWidth="178.0" style="-fx-background-color: #1e90ff; -fx-background-radius: 0;" text="Novo Cadastro" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font></Button>
+      <AnchorPane layoutX="45.0" layoutY="156.0" prefHeight="27.0" prefWidth="910.0" style="-fx-background-color: #ffa500;" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="47.0" />
+   </children>
+</AnchorPane>
