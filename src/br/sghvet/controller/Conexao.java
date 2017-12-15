@@ -3,21 +3,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import exceptions.ConectionException;
-
 public class Conexao {
 
 	private String host = "localhost";
 	private String projeto = "jdbc:mysql://"+host+":3306/sghvet";
 
-	public Connection getConexao(String usuario, String senha) throws ConectionException {
+	public Connection getConexao(String usuario, String senha) throws Exception {
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Class.forName("com.mysql.jdbc.Driver");
 			return DriverManager.getConnection(projeto, usuario, senha);
 
-		} catch (Exception e) {
-			throw new ConectionException();
+		} catch (SQLException | ClassNotFoundException e) {
+			throw e;
 		}
 }
 	public String getHost() {
