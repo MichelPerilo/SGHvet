@@ -2,7 +2,8 @@ package br.sghvet.model;
 
 public class Animal {
 
-	private int numProntuario;
+	private static long geraProntuario = 0000000; 
+	private long numProntuario;
 	private String nome;
 	private String especie;
 	private String raca;
@@ -24,6 +25,9 @@ public class Animal {
 		setRaça(raca);
 		setPelagem(pelagem);
 		setPeso(peso);
+		this.numProntuario = geraProntuario + 1;
+		++geraProntuario;
+		
 	}
 
 	public String getCpfTutor() {
@@ -101,15 +105,15 @@ public class Animal {
 			this.idade = idade;
 	}
 
-	public int getNumProntuario() {
+	public long getNumProntuario() {
 		return numProntuario;
 	}
-
-	public void setNumProntuario(int numProntuario) {
-
-		this.numProntuario = numProntuario;
-	}
 	
+	public void setNumProntuario(long x) {
+		this.numProntuario =x;
+	}
+
+		
 	
 	@Override
 	public String toString() {

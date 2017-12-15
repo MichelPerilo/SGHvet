@@ -94,7 +94,7 @@ public class RepositorioTutor implements IRepositorioTutor {
 
 	public boolean atualizarEndereco(Endereco e1) throws Exception {
 		String query = "update endereco set rua = ?, bairro = ?,numero = ?, complemento = ?, cep = ?, "
-				+ "cidade = ?, estado = ? where cpf = ?";
+				+ "cidade = ?, estado = ? where cpfTutor = ?";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, e1.getLogradouro());
 		ps.setString(2, e1.getBairro());
@@ -104,8 +104,10 @@ public class RepositorioTutor implements IRepositorioTutor {
 		ps.setString(6, e1.getCidade());
 		ps.setString(7, e1.getEstado());
 		ps.setString(8, e1.getCpfTutor());
+		
+		ps.executeUpdate();
 
-		return executar(ps);
+		return true;
 	}
 
 	@Override
@@ -116,8 +118,10 @@ public class RepositorioTutor implements IRepositorioTutor {
 		ps.setString(1, tutor.getNome());
 		ps.setString(2, tutor.getContato());
 		ps.setString(3, tutor.getCpf());
+		
+		ps.executeUpdate();
 
-		return executar(ps);
+		return true;
 	}
 
 	@Override
@@ -197,7 +201,7 @@ public class RepositorioTutor implements IRepositorioTutor {
 		return tutores;
 	}
 	
-	private Animal preencherAnimal(ResultSet rs) throws Exception{
+	private Object preencherAnimal(ResultSet rs) throws Exception{
 		Animal a1;
 		try{
 			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"),rs.getInt("idade"),

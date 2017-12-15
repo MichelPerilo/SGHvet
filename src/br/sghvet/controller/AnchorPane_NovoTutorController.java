@@ -174,7 +174,7 @@ public class AnchorPane_NovoTutorController  implements Initializable{
     private void handlerSalvarNovoTutor() {    	
     	
     	Endereco end = new Endereco(tx_Rua.getText(), tx_Bairro.getText(),tx_CEP.getText(),tx_Numero.getText(),tx_Complemento.getText(),tx_Cidade.getText(),cb_Estado.getValue(),tx_CPF.getText());
-    	Tutor t = new Tutor(tx_NomeTutor.getText(), tx_CPF.getText(), cb_SexoTutor.getValue(), tx_Numero.getText(), end);
+    	Tutor t = new Tutor(tx_NomeTutor.getText(), tx_CPF.getText(), cb_SexoTutor.getValue(), tx_Celular.getText(), end);
     	try {
 			
     		control.cadastrarTutor(t);
