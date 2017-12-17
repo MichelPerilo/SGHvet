@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.mysql.fabric.xmlrpc.base.Array;
+
 import br.sghvet.facade.Fachada;
 import br.sghvet.facade.IFachada;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
-import exceptions.ConectionException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,7 +33,7 @@ import javafx.stage.Stage;
 
 public class UIAgendamentoController implements Initializable {
 
-	IFachada control;
+	IFachada control;;
 	Alert alert = new Alert(AlertType.WARNING);
 
 	// Painel Agenda
@@ -127,19 +128,19 @@ public class UIAgendamentoController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-			try {
-				control = new Fachada();
-				control.carregarAgendamento();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			carregarTableViewTutor();
-		
+
+		try {
+			control = new Fachada();
+			control.carregarAgendamento();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		carregarTableViewTutor();
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public void carregarTableViewTutor() {
 
 		tc_AgendamentoID.setCellValueFactory(new PropertyValueFactory<>("sexo"));
@@ -198,9 +199,9 @@ public class UIAgendamentoController implements Initializable {
 			novoAnimal.setResizable(false);
 			UINovoAnimalController controller = loader.getController();
 			controller.setStage(novoAnimal);
-			controller.setCPFTUTOR(lb_PN_CPF.getText());
+			controller.setCPFTUTOR(tx_PNTutorDados_CPF.getText());
 			novoAnimal.showAndWait();
-			AtualizaAnimais(lb_PN_CPF.getText());
+			AtualizaAnimais(tx_PNTutorDados_CPF.getText());
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block0
@@ -229,28 +230,6 @@ public class UIAgendamentoController implements Initializable {
 		tx_PNTutorAnimais_Pelagem.setText("");
 		tx_PNTutorAnimais_Sexo.setText("");
 		tx_PNTutorAnimais_Prontuario.setText("");
-		
-	}
-
-	public void AtualizaAnimais(String cpf) {
-
-		try {
-
-			List<Animal> listA = control.buscarAnimal(cpf);
-			List <String> nomesA = new ArrayList<>();
-			
-			for(Animal animal : listA) {
-				
-				nomesA.add(animal.getNome());
-			}
-			
-			listAnimais = FXCollections.observableArrayList(nomesA);
-			cb_PNTutorAnimais_Animal.setItems(listAnimais);
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	}
 
@@ -297,7 +276,7 @@ public class UIAgendamentoController implements Initializable {
 			tx_PNTutorDados_Estado.setEditable(false);
 			carregarTableViewTutor();
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
+
 			e1.printStackTrace();
 		}
 	}
@@ -325,14 +304,14 @@ public class UIAgendamentoController implements Initializable {
 		a.setNumProntuario(Long.parseLong(tx_PNTutorAnimais_Prontuario.getText()));
 
 		try {
-			control.atualizarAnimal(a);			
+			control.atualizarAnimal(a);
 			tx_PNTutorAnimais_Nome.setEditable(false);
 			tx_PNTutorAnimais_Idade.setEditable(false);
 			tx_PNTutorAnimais_Raca.setEditable(false);
 			tx_PNTutorAnimais_Especie.setEditable(false);
 			tx_PNTutorAnimais_Peso.setEditable(false);
 			tx_PNTutorAnimais_Pelagem.setEditable(false);
-			tx_PNTutorAnimais_Sexo.setEditable(false);			
+			tx_PNTutorAnimais_Sexo.setEditable(false);
 			AtualizaAnimais(lb_PN_CPF.getText());
 			alert.setHeaderText("SALVO COM SUCESSO");
 			alert.showAndWait();
@@ -342,8 +321,6 @@ public class UIAgendamentoController implements Initializable {
 		}
 
 	}
-
-
 
 	@FXML
 	public void clicarMouseItemListViewTuor() throws IOException {
@@ -363,14 +340,13 @@ public class UIAgendamentoController implements Initializable {
 			t = control.buscarTutor(cpf);
 
 			lb_PNTutorNOME.setText(t.getNome());
-			lb_PN_Nome.setText("Nome: "+t.getNome());
-			lb_PN_Numero.setText("Fone: "+t.getContato());
-			lb_PN_CPF.setText("CPF: "+t.getCpf());
-			lb_PN_Sexo.setText("Sexo: "+t.getSexo());
-			lb_PN_Rua.setText("Rua: "+t.getEndereco().getLogradouro());
-			lb_PN_Bairro.setText("Bairro: "+t.getEndereco().getBairro());
-			lb_PN_Cidade.setText("Cidade: "+t.getEndereco().getCidade());
-			
+			lb_PN_Nome.setText("Nome: " + t.getNome());
+			lb_PN_Numero.setText("Fone: " + t.getContato());
+			lb_PN_CPF.setText("CPF: " + t.getCpf());
+			lb_PN_Sexo.setText("Sexo: " + t.getSexo());
+			lb_PN_Rua.setText("Rua: " + t.getEndereco().getLogradouro());
+			lb_PN_Bairro.setText("Bairro: " + t.getEndereco().getBairro());
+			lb_PN_Cidade.setText("Cidade: " + t.getEndereco().getCidade());
 
 			tx_PNTutorDados_Nome.setEditable(false);
 			tx_PNTutorDados_CPF.setEditable(false);
@@ -404,7 +380,6 @@ public class UIAgendamentoController implements Initializable {
 			tx_PNTutorAnimais_Pelagem.setEditable(false);
 			tx_PNTutorAnimais_Sexo.setEditable(false);
 			tx_PNTutorAnimais_Prontuario.setEditable(false);
-			
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -412,19 +387,59 @@ public class UIAgendamentoController implements Initializable {
 
 		}
 	}
-	
-	
-	
-	@FXML
-	public void handlerSelecionaAnimal() {
-		
-		try {
-			List<Animal> a = control.buscarAnimal(lb_PN_CPF.getText());
 
-			for (Animal animal : a) {
-				
+	@SuppressWarnings("unchecked")
+	public void AtualizaAnimais(String cpf) {
+
+		try {
+
+			List<Animal> listA = pegaAnimais(cpf);
+			List<String> nomesA = new ArrayList<>();
+
+			for (Animal animal : listA) {
+
+				nomesA.add(animal.getNome());
+			}
+
+			listAnimais = FXCollections.observableArrayList(nomesA);
+			cb_PNTutorAnimais_Animal.setItems(listAnimais);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List pegaAnimais(String cpf) {
+
+		List<Animal> list = new ArrayList<>();
+
+		try {
+
+			list = control.buscarAnimal(cpf);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@FXML
+	public void handlerEscolheAnimal() {
+
+		try {
+
+			List<Animal> listA = pegaAnimais(tx_PNTutorDados_CPF.getText());
+
+			for (Animal animal : listA) {
+
 				if (cb_PNTutorAnimais_Animal.getValue().equals(animal.toString())) {
-			
+
 					tx_PNTutorAnimais_Nome.setText(animal.getNome());
 					tx_PNTutorAnimais_Idade.setText(String.valueOf(animal.getIdade()));
 					tx_PNTutorAnimais_Raca.setText(animal.getRaça());
@@ -442,9 +457,6 @@ public class UIAgendamentoController implements Initializable {
 			e.printStackTrace();
 		}
 
-
 	}
-	
-
 
 }

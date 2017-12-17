@@ -67,3 +67,5 @@ foreign key(cpfTutor) references tutor(cpf)
 
 select A.prontuario, A.nome, A.especie, A.raca, A.pelagem, A.peso,
 A.sexo, A.idade from animal as A
+
+

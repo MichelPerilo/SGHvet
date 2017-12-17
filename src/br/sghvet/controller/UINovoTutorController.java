@@ -3,6 +3,9 @@ package br.sghvet.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import br.sghvet.facade.Fachada;
+import br.sghvet.facade.IFachada;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
@@ -21,7 +24,7 @@ import javafx.stage.Stage;
 public class UINovoTutorController  implements Initializable{
 
 	private Stage stage;
-	IControlPaciente control; 	
+	IFachada control; 	
 	Alert alert = new Alert(AlertType.WARNING);
 
 	
@@ -96,9 +99,12 @@ public class UINovoTutorController  implements Initializable{
     	
     	
     	try {
-			control = new ControlPaciente();
-		} catch (ConectionException e) {
-			// TODO Auto-generated catch block
+    		
+			control = new Fachada();
+			control.carregarAgendamento();
+		
+		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}    
     	

@@ -6,11 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.mysql.jdbc.ConnectionFeatureNotAvailableException;
-
 import br.sghvet.model.Animal;
-import br.sghvet.model.Tutor;
+
 
 public class RepositorioAnimal implements IRepositorioAnimal{
 
@@ -76,7 +73,7 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 	}
 
 	@Override
-	public List buscarAnimal(String cpfTutor) throws Exception {
+	public List<Animal> buscarAnimal(String cpfTutor) throws Exception {
 		String query = "select * from animal where cpfTutor = ?";
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
 		ps.setString(1, cpfTutor);

@@ -3,6 +3,8 @@ package br.sghvet.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.sghvet.facade.Fachada;
+import br.sghvet.facade.IFachada;
 import br.sghvet.model.Animal;
 import exceptions.ConectionException;
 import javafx.collections.FXCollections;
@@ -19,7 +21,7 @@ public class UINovoAnimalController implements Initializable {
 
 	private Stage stage;
 	private String cpf;
-	IControlPaciente control;
+	IFachada control;
 	Alert alert = new Alert(AlertType.WARNING);
 
 	@FXML
@@ -39,19 +41,24 @@ public class UINovoAnimalController implements Initializable {
 
 	@FXML
 	private ComboBox<String> cb_SexoAnimal;
-	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M", "F");
+	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M","F");
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 
+		
 		try {
-			control = new ControlPaciente();
-		} catch (ConectionException e) {
-			// TODO Auto-generated catch block
+			
+			control = new Fachada();
+			control.carregarAgendamento();
+			tx_ProntuarioAnimal.setEditable(false);
+			SetCB();
+			
+		} catch (Exception e) {
+			
 			e.printStackTrace();
 		}
-		tx_ProntuarioAnimal.setEditable(false);
-		SetCB();
+		
 	}
 
 	public Stage getStage() {
