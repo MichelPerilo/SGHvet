@@ -128,15 +128,14 @@ public class UIAgendamentoController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		try {
-			
-			control = new Fachada();
-			control.carregarAgendamento();
+			try {
+				control = new Fachada();
+				control.carregarAgendamento();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			carregarTableViewTutor();
-		} catch (ConectionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 
 	}

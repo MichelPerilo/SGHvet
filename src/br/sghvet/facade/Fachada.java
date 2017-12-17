@@ -38,10 +38,15 @@ public class Fachada implements IFachada{
 		
 	}
 	
-	public void carregarAgendamento() throws ConectionException {
+	public void carregarAgendamento() throws Exception {
+		
+		Connection conect;
+		conect = new Conexao().getConexao("root", "");
 		
 		this.controlPaciente =  new ControlPaciente();
-		controlPaciente.conectar(conexao);
+		
+		
+		controlPaciente.conectar(conect);
 	}
 	
 	
