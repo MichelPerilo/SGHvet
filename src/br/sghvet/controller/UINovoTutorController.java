@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-public class AnchorPane_NovoTutorController  implements Initializable{
+public class UINovoTutorController  implements Initializable{
 
 	private Stage stage;
 	IControlPaciente control; 	

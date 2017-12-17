@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-public class AnchorPane_NovoAnimalController implements Initializable {
+public class UINovoAnimalController implements Initializable {
 
 	private Stage stage;
 	private String cpf;

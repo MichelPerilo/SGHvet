@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.sghvet.facade.Fachada;
+import br.sghvet.facade.IFachada;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
@@ -28,9 +30,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class AnchorPane_AgendamentoController implements Initializable {
+public class UIAgendamentoController implements Initializable {
 
-	IControlPaciente control;
+	IFachada control;
 	Alert alert = new Alert(AlertType.WARNING);
 
 	// Painel Agenda
@@ -125,14 +127,17 @@ public class AnchorPane_AgendamentoController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		
 		try {
-			control = new ControlPaciente();
+			
+			control = new Fachada();
+			control.carregarAgendamento();
+			carregarTableViewTutor();
 		} catch (ConectionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		carregarTableViewTutor();
+		
 
 	}
 
@@ -158,7 +163,7 @@ public class AnchorPane_AgendamentoController implements Initializable {
 		try {
 
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(AnchorPane_NovoTutorController.class.getResource("../view/fxml_NewTutor.fxml"));
+			loader.setLocation(UINovoTutorController.class.getResource("../view/fxml_NewTutor.fxml"));
 			AnchorPane page;
 			page = (AnchorPane) loader.load();
 			Stage novoTutor = new Stage();
@@ -166,7 +171,7 @@ public class AnchorPane_AgendamentoController implements Initializable {
 			Scene scene = new Scene(page);
 			novoTutor.setScene(scene);
 			novoTutor.setResizable(false);
-			AnchorPane_NovoTutorController controller = loader.getController();
+			UINovoTutorController controller = loader.getController();
 			controller.setStage(novoTutor);
 			novoTutor.showAndWait();
 			carregarTableViewTutor();
@@ -184,7 +189,7 @@ public class AnchorPane_AgendamentoController implements Initializable {
 		try {
 
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(AnchorPane_NovoAnimalController.class.getResource("../view/fxml_NewAnimal.fxml"));
+			loader.setLocation(UINovoAnimalController.class.getResource("../view/fxml_NewAnimal.fxml"));
 			AnchorPane page;
 			page = (AnchorPane) loader.load();
 			Stage novoAnimal = new Stage();
@@ -192,7 +197,7 @@ public class AnchorPane_AgendamentoController implements Initializable {
 			Scene scene = new Scene(page);
 			novoAnimal.setScene(scene);
 			novoAnimal.setResizable(false);
-			AnchorPane_NovoAnimalController controller = loader.getController();
+			UINovoAnimalController controller = loader.getController();
 			controller.setStage(novoAnimal);
 			controller.setCPFTUTOR(lb_PN_CPF.getText());
 			novoAnimal.showAndWait();

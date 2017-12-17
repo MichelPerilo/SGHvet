@@ -1,10 +1,12 @@
 package br.sghvet.facade;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.sghvet.controller.*;
 import br.sghvet.data.*;
 import br.sghvet.model.*;
+import exceptions.ConectionException;
 
 public class Fachada implements IFachada{
 	
@@ -12,15 +14,18 @@ public class Fachada implements IFachada{
 	
 	private IControleLogin controlelogin;
 	private IControlFuncionario controlfuncionario;
+	private IControlPaciente controlPaciente;
 	
 	public static Fachada instance;
 	
-	public Fachada() {
+	public Fachada(){
 		this.controlelogin = new ControleLogin();
 		this.controlfuncionario = new ControlFuncionario();
+		
+		
 	}
 	
-	public static Fachada getInstance() {
+	public static Fachada getInstance(){
 		if(instance == null) {
 			instance = new Fachada();
 		}
@@ -30,7 +35,16 @@ public class Fachada implements IFachada{
 	@Override
 	public void conectar() {  //executar após fazer login para persistir conexao
 		controlfuncionario.conectar(conexao);
+		
 	}
+	
+	public void carregarAgendamento() throws ConectionException {
+		
+		this.controlPaciente =  new ControlPaciente();
+		controlPaciente.conectar(conexao);
+	}
+	
+	
 	
 	@Override
 	public TipoUsuario loginUsuario(String cpf, String senha) throws Exception{ //salvar conexao
@@ -131,6 +145,91 @@ public class Fachada implements IFachada{
 	public boolean deletarAuxiliar(Auxiliar aux)throws Exception{
 		return controlfuncionario.deletarAuxiliar(aux);
 	}
+
+	@Override
+	public boolean cadastrarAnimal(Animal a) throws Exception {
+		
+		return controlPaciente.cadastrarAnimal(a);
+	}
+
+	@Override
+	public boolean atualizarAnimal(Animal a) throws Exception {
+		
+		return controlPaciente.atualizarAnimal(a);
+	}
+
+	@Override
+	public boolean deletarAnimal(Animal a) throws Exception {
+		
+		return controlPaciente.deletarAnimal(a);
+	}
+
+	@Override
+	public List buscarAnimal(String cpfTutor) throws Exception {
+		
+		return controlPaciente.buscarAnimal(cpfTutor);
+	}
+
+	@Override
+	public Tutor buscarTutor(String cpf) throws Exception {
+		
+		Tutor t = controlPaciente.buscarTutor(cpf);
+		t.setEndereço(controlPaciente.buscaEndereco(cpf));
+		
+		return t;
+	}
+
+	@Override
+	public List buscarALLTutor() throws Exception {
+		
+		return controlPaciente.buscarALLTutor();
+	}
+
+	@Override
+	public void cadastrarTutor(Tutor t) throws Exception {
+		controlPaciente.cadastrarTutor(t);
+		this.cadastraEndereco(t.getEndereco());		
+	}
+
+	@Override
+	public void atualizarTutor(Tutor t) throws Exception {
+			
+		controlPaciente.atualizarTutor(t);
+		controlPaciente.atualizarEndereco(t.getEndereco());		
+	}
+
+	@Override
+	public void deletarTutor(Tutor t) throws Exception {
+		
+		this.deletarEndereco(t.getEndereco());
+		controlPaciente.deletarTutor(t);						
+	}
+
+	@Override
+	public boolean cadastraEndereco(Endereco e1) throws Exception {
+		
+		return controlPaciente.cadastraEndereco(e1);
+	}
+
+	@Override
+	public boolean atualizarEndereco(Endereco e1) throws Exception {
+		
+		return controlPaciente.atualizarEndereco(e1);
+	}
+
+	@Override
+	public Endereco buscaEndereco(String cpf) throws Exception {
+		
+		return controlPaciente.buscaEndereco(cpf);
+	}
+
+	@Override
+	public boolean deletarEndereco(Endereco e1) throws Exception {
+		
+		return controlPaciente.deletarEndereco(e1);
+	}
+	
+	
 	
 	
 }

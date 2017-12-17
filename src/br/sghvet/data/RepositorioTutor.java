@@ -187,7 +187,7 @@ public class RepositorioTutor implements IRepositorioTutor {
 	
 	@Override
 	public List buscarALLTutor() throws Exception {
-		String query = "select * from tutor";
+		String query = "select *  FROM Tutor";
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
 		List<Tutor> tutores = new ArrayList<>();
