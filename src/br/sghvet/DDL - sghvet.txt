@@ -1,0 +1,46 @@
+CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335';
+-- senha de admsupremo eh 'abcd'
+FLUSH PRIVILEGES;
+GRANT CREATE USER, RELOAD ON *.* TO 'admsupremo'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO 'admsupremo'@'localhost';
+FLUSH PRIVILEGES;
+
+CREATE TABLE veterinario(
+nome varchar(100) not null,
+cpf char(14) not null,
+dataNasc date not null,
+cargo varchar(15) not null,
+contato varchar(11) not null,
+email varchar(40) not null,
+crmv varchar(20) not null,
+primary key(cpf)
+)ENGINE = innodb;
+
+CREATE TABLE administrativo(
+nome varchar(100) not null,
+cpf char(14) not null,
+dataNasc date not null,
+cargo varchar(15) not null,
+contato varchar(11) not null,
+email varchar(40) not null,
+primary key(cpf)
+)ENGINE = innodb;
+
+CREATE TABLE auxiliar(
+nome varchar(100) not null,
+cpf char(14) not null,
+dataNasc date not null,
+cargo varchar(15) not null,
+contato varchar(11) not null,
+email varchar(40) not null,
+primary key(cpf)
+)ENGINE = innodb;
+
+CREATE TABLE usuario(
+cpf char(14) not null,
+tipo enum('VETERINARIO', 'ADMINISTRATIVO', 'AUXILIAR') not null,
+primary key(cpf)
+)ENGINE = innodb;
+
+INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('admsupremo', 'ADMINISTRATIVO');
+INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'Administrador', '99998888', 'adm@adm.com');
