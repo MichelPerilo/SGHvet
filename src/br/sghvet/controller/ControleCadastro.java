@@ -3,7 +3,9 @@ package br.sghvet.controller;
 import java.time.LocalDate;
 
 import br.sghvet.model.Administrativo;
+import br.sghvet.model.Auxiliar;
 import br.sghvet.model.CargoAdm;
+import br.sghvet.model.CargoAuxiliar;
 import br.sghvet.model.TipoUsuario;
 import br.sghvet.model.Usuario;
 
@@ -16,7 +18,7 @@ public class ControleCadastro {
 	public void cadastrarAdm(String nome, String cpf, LocalDate dataNasc, CargoAdm cargo, String contato, String email, String senha) {
 		
 		Administrativo adm = new Administrativo(nome, cpf, dataNasc, cargo, contato, email);
-		Usuario user = new Usuario(cpf, TipoUsuario.ADMINISTRATIVO);
+		Usuario user = new Usuario(cpf, TipoUsuario.ADMINISTRATIVO, CargoAdm.ATENDENTE);
 		
 		//a fazer
 	}
@@ -26,6 +28,7 @@ public class ControleCadastro {
 	}
 	
 	public void cadastrarAux() {
+		
 		//a fazer
 	}
 

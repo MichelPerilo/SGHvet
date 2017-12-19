@@ -2,7 +2,10 @@ package br.sghvet.controller;
 
 import br.sghvet.facade.Fachada;
 import br.sghvet.facade.IFachada;
+import br.sghvet.model.Administrativo;
+import br.sghvet.model.CargoAdm;
 import br.sghvet.model.TipoUsuario;
+import br.sghvet.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -56,19 +59,24 @@ public class UiLoginController implements Initializable{
 			
 			 IFachada fachada = new Fachada();
 			 fachada.conectar();
-			switch(fachada.loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText())){
+			 Usuario  user = fachada.loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText());
+			 
+			switch(user.getTipo()){
 			
 				case ADMINISTRATIVO:
+					
+					if(user.getCargo() == CargoAdm.ATENDENTE) {
+						
+						AnchorPane  secretaria = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
+						anchorpane_principal.getChildren().setAll(secretaria);
+					}else {
+					
 					AnchorPane anchorpane_administrativo = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_administrativo.fxml"));
 				    anchorpane_principal.getChildren().setAll(anchorpane_administrativo);
+					}
 					
 					break;
 					
-				case AUXILIAR:
-					
-					AnchorPane anchorpane_auxiliar = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
-				    anchorpane_principal.getChildren().setAll(anchorpane_auxiliar);
-					break;
 				default:
 								
 					break;

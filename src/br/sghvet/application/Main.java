@@ -13,8 +13,8 @@ Stage window;
     public void start(Stage stage) throws Exception {
         window = stage;
         window.setTitle("SGHvet");
-        Parent root = FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/fxml_ui_login.fxml"));
         
         Scene scene = new Scene(root);
         

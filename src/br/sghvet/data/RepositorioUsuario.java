@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.sghvet.controller.Conexao;
+import br.sghvet.model.CargoAdm;
 import br.sghvet.model.TipoUsuario;
 import br.sghvet.model.Usuario;
 
@@ -29,11 +30,15 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 		if (rs.getString("tipo").equals("VETERINARIO")) {
-			return new Usuario(rs.getString("cpf"), TipoUsuario.VETERINARIO);
+			return new Usuario(rs.getString("cpf"), TipoUsuario.VETERINARIO, null);
 		} else if (rs.getString("tipo").equals("ADMINISTRATIVO")) {
-			return new Usuario(rs.getString("cpf"), TipoUsuario.ADMINISTRATIVO);
+						
+			if(rs.getString("cargo").equals("ATENDENTE"))
+			return new Usuario(rs.getString("cpf"), TipoUsuario.ADMINISTRATIVO,CargoAdm.ATENDENTE);
+			else return new Usuario(rs.getString("cpf"), TipoUsuario.ADMINISTRATIVO,CargoAdm.FARMACEUTICO);
+
 		} else {
-			return new Usuario(rs.getString("cpf"), TipoUsuario.AUXILIAR);
+			return new Usuario(rs.getString("cpf"), TipoUsuario.AUXILIAR, null);
 		}
 	}
 

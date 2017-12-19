@@ -7,6 +7,7 @@ import java.sql.Connection;
 import br.sghvet.data.IRepositorioUsuario;
 import br.sghvet.data.RepositorioUsuario;
 import br.sghvet.model.TipoUsuario;
+import br.sghvet.model.Usuario;
 
 public class ControleLogin implements IControleLogin{
 
@@ -35,10 +36,10 @@ public class ControleLogin implements IControleLogin{
 	}
 
 	// processo de login e recuperar tipo para interface de usuario
-	public TipoUsuario loginUsuario(String cpf, String senha) throws Exception {
+	public Usuario loginUsuario(String cpf, String senha) throws Exception {
 		fazerConexao(cpf, senha);
 		repo.conectar(conect);
-		return repo.buscaUsuario(cpf).getTipo();
+		return repo.buscaUsuario(cpf);
 	}
 	
 	//Connection a ser passada entre os controles durante a sessao do usuario

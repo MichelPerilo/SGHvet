@@ -52,8 +52,8 @@ public class Fachada implements IFachada{
 	
 	
 	@Override
-	public TipoUsuario loginUsuario(String cpf, String senha) throws Exception{ //salvar conexao
-		TipoUsuario user = controlelogin.loginUsuario(cpf, senha);
+	public Usuario loginUsuario(String cpf, String senha) throws Exception{ //salvar conexao
+		Usuario user = controlelogin.loginUsuario(cpf, senha);
 		if(user!=null) {
 			this.conexao = controlelogin.getConexao();
 			conectar();

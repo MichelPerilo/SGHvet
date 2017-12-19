@@ -77,7 +77,7 @@ public class UiCadastroFuncionarioController implements Initializable {
 	
 			case "ADMINISTRATIVO":
 				try{
-					Usuario user = new Usuario(textfield_cpf.getText(), TipoUsuario.ADMINISTRATIVO);
+					Usuario user = new Usuario(textfield_cpf.getText(), TipoUsuario.ADMINISTRATIVO, CargoAdm.ATENDENTE);
 					fachada.cadastrarUsuario(user, passwordfield_senha.getText());
 					Administrativo adm = new Administrativo(textfield_nome.getText(), textfield_cpf.getText(), datepicker_datanascimento.getValue(), CargoAdm.ATENDENTE, textfield_contato.getText(), textfield_email.getText());
 					fachada.cadastraAdm(user, adm);
