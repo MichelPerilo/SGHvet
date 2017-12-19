@@ -37,10 +37,15 @@ public class UIAgendamentoController implements Initializable {
 	Alert alert = new Alert(AlertType.WARNING);
 
 	// Painel Agenda
+	
+	
+	
 	@FXML
 	private Pane pn_FichaCLinica2;
 	@FXML
 	private Pane pn_FichaCLinica1;
+	@FXML
+	private Pane pn_FichaCLinica3;
 
 	// Painel FichaCLinica1
 	@FXML
@@ -125,6 +130,11 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	private ComboBox<String> cb_PNTutorAnimais_Animal;
 	private ObservableList<String> listAnimais;
+	
+	
+	// Painel FichaCLinica3 
+	
+	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -458,5 +468,27 @@ public class UIAgendamentoController implements Initializable {
 		}
 
 	}
+	
+	
+	@FXML
+	public void handleAgendamento() {
+		
+		pn_FichaCLinica3.setVisible(true);
+		pn_FichaCLinica1.setVisible(false);
+		pn_FichaCLinica2.setVisible(false);
+		
+	}
+	
+	@FXML
+	public void handlePaciente() {
+		
+		
+		pn_FichaCLinica1.setVisible(true);
+		pn_FichaCLinica3.setVisible(false);
+		
+	}
+	
+	
+	
 
 }
