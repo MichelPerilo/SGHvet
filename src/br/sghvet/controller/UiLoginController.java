@@ -50,10 +50,12 @@ public class UiLoginController implements Initializable{
 	
 	public void handler_entrar(){
 		
-		  IFachada fachada = new Fachada();
-		  fachada.conectar();
+		 
 		  
 		try {
+			
+			 IFachada fachada = new Fachada();
+			 fachada.conectar();
 			switch(fachada.loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText())){
 			
 				case ADMINISTRATIVO:
@@ -62,13 +64,16 @@ public class UiLoginController implements Initializable{
 					
 					break;
 					
-				default:
+				case AUXILIAR:
 					
-				
+					AnchorPane anchorpane_auxiliar = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
+				    anchorpane_principal.getChildren().setAll(anchorpane_auxiliar);
+					break;
+				default:
+								
 					break;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
