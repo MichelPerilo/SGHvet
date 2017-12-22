@@ -71,7 +71,7 @@ public class UiCadastroFuncionarioController implements Initializable {
 		IFachada fachada = new Fachada();
 		
 
-		//reformular para usar fachada
+		//reformular para usar fachadax
 
 		switch(choicebox_setor.getValue().toString()) {
 	
