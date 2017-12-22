@@ -1,11 +1,11 @@
-create schema sghvet;
+-- create schema sghvet;
 
-CREATE USER IF NOT EXISTS 'admsupremo2'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335cargo';
+CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335cargo';
 
 -- senha de admsupremo eh 'abcd'
 FLUSH PRIVILEGES;
-GRANT CREATE USER, RELOAD ON *.* TO 'admsupremo2'@'localhost' WITH GRANT OPTION;
-GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO 'admsupremo2'@'localhost';
+GRANT CREATE USER, RELOAD ON *.* TO 'admsupremo'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO 'admsupremo'@'localhost';
 FLUSH PRIVILEGES;
 CREATE TABLE veterinario(
 nome varchar(100) not null,
@@ -38,7 +38,7 @@ primary key(cpf)
 CREATE TABLE usuario(
 cpf char(11) not null,
 tipo enum('VETERINARIO', 'ADMINISTRATIVO', 'AUXILIAR') not null,
-cargo enum ('ATENDENTE', 'FARMACEUTICO', 'ADMINISTRATIVO') not null,
+cargo enum ('ATENDENTE', 'FARMACEUTICO', 'ADMINISTRADOR') not null,
 primary key(cpf)
 )ENGINE = innodb;
 
@@ -120,10 +120,14 @@ CREATE TABLE disponibilidade_vet(
 ) ENGINE = innodb;
 
 
-INSERT INTO sghvet.usuario (`cpf`, `tipo`, `cargo`) VALUES ('admsupremo2', 'ADMINISTRATIVO', 'ADMINISTRADOR');
-INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo2', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
+INSERT INTO sghvet.usuario (`cpf`, `tipo`, `cargo`) VALUES ('admsupremo', 'ADMINISTRATIVO', 'ADMINISTRADOR');
+INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
 
 
+<<<<<<< HEAD
+ select * from usuario;
+ SELECT * from administrativo;
+=======
 
 -- truncate usuario;  
 -- select * from usuario where cpf ='admsupremo2';
@@ -245,3 +249,4 @@ CREATE TABLE disponibilidade_vet(
 INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('admsupremo', 'ADMINISTRATIVO');
 INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'Administrador', '99998888', 'adm@adm.com');
 
+>>>>>>> db0ee2c58415e4385e7ae4e13cca58ce39d53124
