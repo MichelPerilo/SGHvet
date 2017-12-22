@@ -1,7 +1,6 @@
--- create schema sghvet;
+--reate schema sghvet;
 
 CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335cargo';
-
 -- senha de admsupremo eh 'abcd'
 FLUSH PRIVILEGES;
 GRANT CREATE USER, RELOAD ON *.* TO 'admsupremo'@'localhost' WITH GRANT OPTION;
@@ -38,6 +37,7 @@ primary key(cpf)
 CREATE TABLE usuario(
 cpf char(11) not null,
 tipo enum('VETERINARIO', 'ADMINISTRATIVO', 'AUXILIAR') not null,
+
 cargo enum ('ATENDENTE', 'FARMACEUTICO', 'ADMINISTRADOR') not null,
 primary key(cpf)
 )ENGINE = innodb;
@@ -118,7 +118,6 @@ CREATE TABLE disponibilidade_vet(
     primary key(cpf_vet,dia),
     foreign key(cpf_vet) references veterinario(cpf)
 ) ENGINE = innodb;
-
 
 INSERT INTO sghvet.usuario (`cpf`, `tipo`, `cargo`) VALUES ('admsupremo', 'ADMINISTRATIVO', 'ADMINISTRADOR');
 INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
