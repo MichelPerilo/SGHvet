@@ -11,58 +11,56 @@ import exceptions.ConectionException;
 
 public class ControlPaciente implements IControlPaciente {
 
-	private ICadastroAnimal cadastroAnimal;
-	private ICadastroTutor cadastroTutor;
+	private ICadastroAnimal cadAnimal;
+	private ICadastroTutor cadTutor;
+	private static Connection connection;
 
 	public ControlPaciente() throws ConectionException {
-		cadastroAnimal = new CadastroAnimal();
-		cadastroTutor = new CadastroTutor();
-		conectar();
+		cadAnimal = new CadastroAnimal();
+		cadTutor = new CadastroTutor();
+		
 	}
 
 	@Override
-	public void conectar() throws ConectionException{
-		Connection conect;
-		try {
-			conect = new Conexao().getConexao("root", "");
-			cadastroTutor.conectar(conect);
-			cadastroAnimal.conectar(conect);
-		} catch (ConectionException e) {
-			throw e;
-		}
+	public void conectar(Connection conect) {
+		
+		    ControlPaciente.connection = conect;
+		    cadTutor.conectar(connection);
+			cadAnimal.conectar(connection);
+	
 	}
 
 	@Override
 	public boolean cadastrarAnimal(Animal a) throws Exception {
-		return cadastroAnimal.cadastrarAnimal(a);
+		return cadAnimal.cadastrarAnimal(a);
 	}
 
 	@Override
 	public boolean atualizarAnimal(Animal a) throws Exception {
-		return cadastroAnimal.atualizarAnimal(a);
+		return cadAnimal.atualizarAnimal(a);
 	}
 
 	@Override
 	public boolean deletarAnimal(Animal a) throws Exception {
-		return cadastroAnimal.deletarAnimal(a);
+		return cadAnimal.deletarAnimal(a);
 	}
 
 	@Override
 	public List buscarAnimal(String cpfTutor) throws Exception {
-		return cadastroAnimal.buscarAnimal(cpfTutor);
+		return cadAnimal.buscarAnimal(cpfTutor);
 	}
 
 	@Override
 	public Tutor buscarTutor(String cpf) throws Exception {
-		Endereco e1 = cadastroTutor.buscaEndereco(cpf);
-		Tutor t1 = cadastroTutor.buscaTutor(cpf);
+		Endereco e1 = cadTutor.buscaEndereco(cpf);
+		Tutor t1 = cadTutor.buscaTutor(cpf);
 		t1.setEndereço(e1);
 		return t1;
 	}
 	
 	@Override
 	public List buscarALLTutor() throws Exception{
-		return cadastroTutor.buscarALLTutor();
+		return cadTutor.buscarALLTutor();
 	}
 
 	
@@ -70,19 +68,43 @@ public class ControlPaciente implements IControlPaciente {
 
 	@Override
 	public void cadastrarTutor(Tutor t) throws Exception {
-		cadastroTutor.cadastrarTutor(t);
-		cadastroTutor.cadastraEndereco(t.getEndereco());
+		cadTutor.cadastrarTutor(t);
+		cadTutor.cadastraEndereco(t.getEndereco());
 	}
 
 	@Override
 	public void atualizarTutor(Tutor t) throws Exception {
-		cadastroTutor.atualizaTutor(t);
-		cadastroTutor.atualizarEndereco(t.getEndereco());
+		cadTutor.atualizaTutor(t);
+		cadTutor.atualizarEndereco(t.getEndereco());
 	}
 
 	@Override
 	public void deletarTutor(Tutor t) throws Exception {
-		cadastroTutor.deletarTutor(t);
+		cadTutor.deletarTutor(t);
 	}
+	
+	
+	@Override
+	public boolean cadastraEndereco(Endereco e1) throws Exception {
+		return cadTutor.cadastraEndereco(e1);
+	}
+
+	@Override
+	public boolean atualizarEndereco(Endereco e1) throws Exception {
+		return cadTutor.atualizarEndereco(e1);
+	}
+
+	@Override
+	public Endereco buscaEndereco(String cpf) throws Exception {
+		return cadTutor.buscaEndereco(cpf);
+	}
+
+	@Override
+	public boolean deletarEndereco(Endereco e1) throws Exception {
+		return cadTutor.deletarEndereco(e1);
+	}
+	
+	
+	
 
 }

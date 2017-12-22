@@ -12,7 +12,9 @@ Stage window;
     @Override
     public void start(Stage stage) throws Exception {
         window = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
+        window.setTitle("SGHvet");
+//        Parent root = FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/fxml_ui_login.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -26,5 +28,6 @@ Stage window;
     public static void main(String[] args) {
         launch(args);
     }
-
+    
+  
 }

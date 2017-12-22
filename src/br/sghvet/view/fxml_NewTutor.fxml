@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="apCadastraTutor" focusTraversable="true" maxHeight="699.0" maxWidth="685.0" minHeight="371.0" minWidth="685.0" prefHeight="551.0" prefWidth="685.0" scaleShape="false" style="-fx-background-color: #E0ECF8;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.AnchorPane_NovoTutorController">
+<AnchorPane fx:id="apCadastraTutor" focusTraversable="true" maxHeight="699.0" maxWidth="685.0" minHeight="371.0" minWidth="685.0" prefHeight="551.0" prefWidth="685.0" scaleShape="false" style="-fx-background-color: #E0ECF8;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UINovoTutorController">
 	<children>
 		<Button fx:id="btNovoAnimal" layoutX="552.0" layoutY="507.0" mnemonicParsing="false" onAction="#handlerNovoAnimal" text="Novo animal" />
 		<Separator layoutX="6.0" layoutY="277.0" prefHeight="0.0" prefWidth="663.0" />

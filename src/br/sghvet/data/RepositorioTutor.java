@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import br.sghvet.model.Animal;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
 
@@ -186,8 +184,8 @@ public class RepositorioTutor implements IRepositorioTutor {
 	
 	
 	@Override
-	public List buscarALLTutor() throws Exception {
-		String query = "select * from tutor";
+	public List<Tutor> buscarALLTutor() throws Exception {
+		String query = "select *  FROM Tutor";
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
 		List<Tutor> tutores = new ArrayList<>();
@@ -201,19 +199,19 @@ public class RepositorioTutor implements IRepositorioTutor {
 		return tutores;
 	}
 	
-	private Object preencherAnimal(ResultSet rs) throws Exception{
-		Animal a1;
-		try{
-			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"),rs.getInt("idade"),
-					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),rs.getDouble("peso"));
-			a1.setNumProntuario(rs.getInt("prontuario"));
-		}catch(SQLException e){
-			throw new Exception("Animal possui dados invalidos");
-		}
-		
-		return a1;
-	}
-	
+//	private Object preencherAnimal(ResultSet rs) throws Exception{
+//		Animal a1;
+//		try{
+//			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"),rs.getInt("idade"),
+//					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),rs.getDouble("peso"));
+//			a1.setNumProntuario(rs.getInt("prontuario"));
+//		}catch(SQLException e){
+//			throw new Exception("Animal possui dados invalidos");
+//		}
+//		
+//		return a1;
+//	}
+//	
 	
 
 }
