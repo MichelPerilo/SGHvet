@@ -109,6 +109,7 @@ public class RepositorioAdm implements IRepositorioAdm {
 	private Administrativo preencherAdministrativo(ResultSet rs) throws Exception{
 		Administrativo a1;
 		try {
+			rs.next();
 			String data = rs.getString("dataNasc");
 			String[] splitdata = data.split("-");
 			LocalDate date = LocalDate.of(Integer.parseInt(splitdata[0]),Integer.parseInt(splitdata[1]),Integer.parseInt(splitdata[2]));

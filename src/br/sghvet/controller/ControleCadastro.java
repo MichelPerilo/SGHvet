@@ -18,7 +18,7 @@ public class ControleCadastro {
 	public void cadastrarAdm(String nome, String cpf, LocalDate dataNasc, CargoAdm cargo, String contato, String email, String senha) {
 		
 		Administrativo adm = new Administrativo(nome, cpf, dataNasc, cargo, contato, email);
-		Usuario user = new Usuario(cpf, TipoUsuario.ADMINISTRATIVO, CargoAdm.ATENDENTE);
+		Usuario user = new Usuario(cpf, TipoUsuario.ADMINISTRATIVO);
 		
 		//a fazer
 	}

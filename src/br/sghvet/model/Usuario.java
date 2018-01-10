@@ -4,12 +4,11 @@ public class Usuario {
 
 	private String cpf;
 	private TipoUsuario tipo;
-	private CargoAdm cargo;
 
-	public Usuario(String cpf, TipoUsuario tipo, CargoAdm cargo) {
+
+	public Usuario(String cpf, TipoUsuario tipo) {
 		this.cpf = cpf;
 		this.tipo = tipo;
-		this.cargo = cargo;
 	}
 
 	public TipoUsuario getTipo() {
@@ -20,15 +19,9 @@ public class Usuario {
 		return cpf;
 	}
 	
-	public CargoAdm getCargo() {
-		return cargo;
-	}
+	
 
 	
-	@Override
-	public String toString() {
-		
-		return getCargo().toString();
-	}
+	
 	
 }

@@ -30,15 +30,13 @@ public class RepositorioUsuario implements IRepositorioUsuario {
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 		if (rs.getString("tipo").equals("VETERINARIO")) {
-			return new Usuario(rs.getString("cpf"), TipoUsuario.VETERINARIO, null);
+			return new Usuario(rs.getString("cpf"), TipoUsuario.VETERINARIO);
 		} else if (rs.getString("tipo").equals("ADMINISTRATIVO")) {
 						
-			if(rs.getString("cargo").equals("ATENDENTE"))
-			return new Usuario(rs.getString("cpf"), TipoUsuario.ADMINISTRATIVO,CargoAdm.ATENDENTE);
-			else return new Usuario(rs.getString("cpf"), TipoUsuario.ADMINISTRATIVO,CargoAdm.FARMACEUTICO);
+			return new Usuario(rs.getString("cpf"), TipoUsuario.ADMINISTRATIVO);
 
 		} else {
-			return new Usuario(rs.getString("cpf"), TipoUsuario.AUXILIAR, null);
+			return new Usuario(rs.getString("cpf"), TipoUsuario.AUXILIAR);
 		}
 	}
 

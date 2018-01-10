@@ -42,7 +42,6 @@ cargo enum ('ATENDENTE', 'FARMACEUTICO', 'ADMINISTRADOR') not null,
 primary key(cpf)
 )ENGINE = innodb;
 
--- ALTER TABLE usuario ADD cargo enum ('ATENDENTE', 'FARMACEUTICO','ADMINISTRATIVO') not null;
 -- CREATE TABLE agendamento(
 -- id int AUTO_INCREMENT,
 -- dia date not null,

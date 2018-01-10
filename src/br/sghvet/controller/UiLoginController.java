@@ -65,7 +65,7 @@ public class UiLoginController implements Initializable{
 			
 				case ADMINISTRATIVO:
 					
-					if(user.getCargo() == CargoAdm.ATENDENTE) {
+					if((fachada.buscaAdm(user.getCpf()).getCargo()) == CargoAdm.ATENDENTE) {
 						
 						AnchorPane  secretaria = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
 						anchorpane_principal.getChildren().setAll(secretaria);
@@ -76,6 +76,16 @@ public class UiLoginController implements Initializable{
 					}
 					
 					break;
+					
+				case VETERINARIO:
+					AnchorPane anchorpane_clinico = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_clinico.fxml"));
+				    anchorpane_principal.getChildren().setAll(anchorpane_clinico);
+					
+					break;
+				case AUXILIAR:
+					
+					
+					break; 
 					
 				default:
 								

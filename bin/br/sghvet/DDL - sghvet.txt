@@ -1,4 +1,4 @@
---reate schema sghvet;
+--create schema sghvet;
 
 CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335cargo';
 -- senha de admsupremo eh 'abcd'
@@ -42,7 +42,6 @@ cargo enum ('ATENDENTE', 'FARMACEUTICO', 'ADMINISTRADOR') not null,
 primary key(cpf)
 )ENGINE = innodb;
 
--- ALTER TABLE usuario ADD cargo enum ('ATENDENTE', 'FARMACEUTICO','ADMINISTRATIVO') not null;
 -- CREATE TABLE agendamento(
 -- id int AUTO_INCREMENT,
 -- dia date not null,
