@@ -118,7 +118,7 @@ CREATE TABLE disponibilidade_vet(
     foreign key(cpf_vet) references veterinario(cpf)
 ) ENGINE = innodb;
 
-INSERT INTO sghvet.usuario (`cpf`, `tipo`, `cargo`) VALUES ('admsupremo', 'ADMINISTRATIVO', 'ADMINISTRADOR');
+INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('admsupremo', 'ADMINISTRATIVO');
 INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
 
 
