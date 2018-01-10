@@ -1,7 +1,6 @@
--- create schema sghvet;
+--reate schema sghvet;
 
 CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335cargo';
-
 -- senha de admsupremo eh 'abcd'
 FLUSH PRIVILEGES;
 GRANT CREATE USER, RELOAD ON *.* TO 'admsupremo'@'localhost' WITH GRANT OPTION;
@@ -38,6 +37,7 @@ primary key(cpf)
 CREATE TABLE usuario(
 cpf char(11) not null,
 tipo enum('VETERINARIO', 'ADMINISTRATIVO', 'AUXILIAR') not null,
+
 cargo enum ('ATENDENTE', 'FARMACEUTICO', 'ADMINISTRADOR') not null,
 primary key(cpf)
 )ENGINE = innodb;
@@ -119,134 +119,9 @@ CREATE TABLE disponibilidade_vet(
     foreign key(cpf_vet) references veterinario(cpf)
 ) ENGINE = innodb;
 
-
 INSERT INTO sghvet.usuario (`cpf`, `tipo`, `cargo`) VALUES ('admsupremo', 'ADMINISTRATIVO', 'ADMINISTRADOR');
 INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
 
 
-<<<<<<< HEAD
  select * from usuario;
  SELECT * from administrativo;
-=======
-
--- truncate usuario;  
--- select * from usuario where cpf ='admsupremo2';
-=======
-CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335';
--- senha de admsupremo eh 'abcd'
-FLUSH PRIVILEGES;
-GRANT CREATE USER, RELOAD ON *.* TO 'admsupremo'@'localhost' WITH GRANT OPTION;
-GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO 'admsupremo'@'localhost';
-FLUSH PRIVILEGES;
-CREATE TABLE veterinario(
-nome varchar(100) not null,
-cpf char(11) not null,
-dataNasc date not null,
-cargo varchar(15) not null,
-contato varchar(11) not null,
-email varchar(40) not null,
-crmv varchar(20) not null,
-primary key(cpf)
-)ENGINE = innodb;
-CREATE TABLE administrativo(
-nome varchar(100) not null,
-cpf char(11) not null,
-dataNasc date not null,
-cargo varchar(15) not null,
-contato varchar(11) not null,
-email varchar(40) not null,
-primary key(cpf)
-)ENGINE = innodb;
-CREATE TABLE auxiliar(
-nome varchar(100) not null,
-cpf char(11) not null,
-dataNasc date not null,
-cargo varchar(15) not null,
-contato varchar(11) not null,
-email varchar(40) not null,
-primary key(cpf)
-)ENGINE = innodb;
-CREATE TABLE usuario(
-cpf char(11) not null,
-tipo enum('VETERINARIO', 'ADMINISTRATIVO', 'AUXILIAR') not null,
-primary key(cpf)
-)ENGINE = innodb;
--- CREATE TABLE agendamento(
--- id int AUTO_INCREMENT,
--- dia date not null,
--- horario time not null,
--- cpf_tutor char(11) not null,
--- concluido boolean default false,
--- primary key (id),
--- foreign key(cpf_tutor) references tutor(cpf)
--- )ENGINE = innodb;
--- CREATE TABLE consulta(
--- prontuario int not null,
--- cpf_vet char(11) not null,
--- dia_agend date not null,
--- horario_agend time not null,
--- cpf_tutor char(11) not null,
--- primary key(),
--- foreign key(dia_agend, horario_agend, cpf_tutor) references agendamento(dia, horario, cpf_tutor) ON DELETE CASCADE
--- ) ENGINE = innodb;
-CREATE TABLE tutor(
-nome varchar(100) not null,
-cpf char(11) not null,
-sexo char(1) not null,
-contato varchar(11) not null,
-primary key(cpf)
-)ENGINE = innodb;
-
-CREATE TABLE endereco(
-id int not null auto_increment,
-rua varchar(100) not null,
-bairro varchar(100) not null,
-numero varchar(5),
-complemento varchar(100),
-cep char(8) not null,
-cidade varchar(30) not null,
-estado varchar(30) not null,
-cpfTutor char(11) not null,
-primary key(id),
-foreign key(cpfTutor) references tutor(cpf)
-)ENGINE = innodb;
-
-CREATE TABLE animal(
-prontuario int not null auto_increment,
-nome varchar(50) not null,
-especie varchar(50) not null,
-raca varchar(50),
-pelagem varchar(50),
-peso decimal(5,2),
-sexo char(1)not null,
-idade int not null,
-cpfTutor char(11) not null,
-primary key(prontuario,cpfTutor),
-foreign key(cpfTutor) references tutor(cpf)
-)ENGINE = innodb;
-
-CREATE TABLE consulta(
-id int AUTO_INCREMENT,
-dia date not null,
-horario time not null,
-cpf_tutor char(11) not null,
-concluido boolean default false,
-prontuario int not null,
-cpf_vet char(11) not null,
-primary key(id),
-foreign key(cpf_tutor) references tutor(cpf),
-foreign key(cpf_vet) references veterinario(cpf),
-foreign key(prontuario) references animal(prontuario)
-) ENGINE = innodb;
-CREATE TABLE disponibilidade_vet(
-    cpf_vet char(11) not null, 
-    horario_inicio time not null,
-    horario_fim  time not null,
-    dia enum('segunda','terca','quarta','quinta','sexta','sabado','domingo'),
-    primary key(cpf_vet,dia),
-    foreign key(cpf_vet) references veterinario(cpf)
-) ENGINE = innodb;
-INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('admsupremo', 'ADMINISTRATIVO');
-INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'Administrador', '99998888', 'adm@adm.com');
-
->>>>>>> db0ee2c58415e4385e7ae4e13cca58ce39d53124

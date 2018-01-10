@@ -53,7 +53,7 @@ public class UiCadastroFuncionarioController implements Initializable {
 	
 	
 	
-	
+	//TESTEEEE
 	private Stage stage;
 	
 
