@@ -72,17 +72,19 @@ public class UiCadastroFuncionarioController implements Initializable {
 	}
 	
 	public void setCargoList(){
-		switch(choicebox_setor.getValue().toString()) {
+		switch((TipoUsuario) choicebox_setor.getValue()) {
 		
-			case "ADMINISTRATIVO":
+			case ADMINISTRATIVO :
+				textfield_crmv.setVisible(false);
 				 ObservableList<CargoAdm> itemsadm = FXCollections.observableArrayList (CargoAdm.values());
 			       choicebox_cargo.setItems(itemsadm);
 				break;
-			case "AUXILIAR":
+			case AUXILIAR :
+				textfield_crmv.setVisible(false);
 				ObservableList<CargoAuxiliar> itemsauxiliar = FXCollections.observableArrayList (CargoAuxiliar.values());
 			       choicebox_cargo.setItems(itemsauxiliar);
 				break;
-			case "VETERINARIO":
+			case VETERINARIO :
 				textfield_crmv.setVisible(true);
 				ObservableList<CargoVeterinario> itemsveterinario = FXCollections.observableArrayList (CargoVeterinario.values());
 			       choicebox_cargo.setItems(itemsveterinario);
@@ -97,9 +99,9 @@ public class UiCadastroFuncionarioController implements Initializable {
 
 		//reformular para usar fachada
 
-		switch(choicebox_setor.getValue().toString()) {
+		switch((TipoUsuario)choicebox_setor.getValue()) {
 	
-			case "ADMINISTRATIVO":
+			case ADMINISTRATIVO :
 				try{
 					Usuario user = new Usuario(textfield_cpf.getText(), TipoUsuario.ADMINISTRATIVO);
 					fachada.cadastrarUsuario(user, passwordfield_senha.getText());
@@ -140,7 +142,7 @@ public class UiCadastroFuncionarioController implements Initializable {
 				
 				
 				break;
-			case "AUXILIAR":
+			case AUXILIAR :
 				try{
 				Usuario user = new Usuario(textfield_cpf.getText(), TipoUsuario.AUXILIAR);
 				fachada.cadastrarUsuario(user, passwordfield_senha.getText());
@@ -180,7 +182,7 @@ public class UiCadastroFuncionarioController implements Initializable {
 				} 
 		
 				break;
-			case "VETERINARIO":
+			case VETERINARIO :
 				try{
 					Usuario user = new Usuario(textfield_cpf.getText(), TipoUsuario.VETERINARIO);
 					fachada.cadastrarUsuario(user, passwordfield_senha.getText());
