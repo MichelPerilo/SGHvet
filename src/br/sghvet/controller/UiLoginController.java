@@ -59,6 +59,10 @@ public class UiLoginController implements Initializable{
 				case ADMINISTRATIVO:
 					AnchorPane anchorpane_administrativo = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_administrativo.fxml"));
 				    anchorpane_principal.getChildren().setAll(anchorpane_administrativo);
+				    break;
+				case VETERINARIO:
+					AnchorPane anchorpane_clinico = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_clinico.fxml"));
+				    anchorpane_principal.getChildren().setAll(anchorpane_clinico);
 					
 					break;
 					

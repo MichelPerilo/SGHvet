@@ -59,13 +59,24 @@ public class UiCadastroFuncionarioController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		String[] setores = {"Administrativo", "Auxiliar", "Veterinario"};
         ObservableList<TipoUsuario> items = FXCollections.observableArrayList (TipoUsuario.values());
        choicebox_setor.setItems(items);
+       
+       choicebox_cargo.hide();
 
 		
 	}
 	
+	public void setCargoList(){
+		switch(choicebox_setor.getValue().toString()) {
+		
+			case "ADMINISTRATIVO":
+				 ObservableList<CargoAdm> items = FXCollections.observableArrayList (CargoAdm.values());
+			       choicebox_cargo.setItems(items);
+				break;
+		}
+		
+	}
 	
 	public void handler_salvar() throws Exception{
 		IFachada fachada = new Fachada();
