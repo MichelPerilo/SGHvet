@@ -65,6 +65,10 @@ public class UiLoginController implements Initializable{
 				    anchorpane_principal.getChildren().setAll(anchorpane_clinico);
 					
 					break;
+				case AUXILIAR:
+					
+					
+					break;	
 					
 				default:
 					
