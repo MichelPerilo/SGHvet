@@ -15,13 +15,14 @@ public class Fachada implements IFachada{
 	private IControleLogin controlelogin;
 	private IControlFuncionario controlfuncionario;
 	private IControlPaciente controlPaciente;
+	private CadastroReqExame cadastroReqExame;
 	
 	public static Fachada instance;
 	
 	public Fachada(){
 		this.controlelogin = new ControleLogin();
 		this.controlfuncionario = new ControlFuncionario();
-		
+		this.cadastroReqExame = new CadastroReqExame();
 		
 	}
 	
@@ -35,7 +36,7 @@ public class Fachada implements IFachada{
 	@Override
 	public void conectar() {  //executar após fazer login para persistir conexao
 		controlfuncionario.conectar(conexao);
-		
+		cadastroReqExame.conectar(conexao);
 	}
 	
 	public void carregarAgendamento() throws Exception {
@@ -232,6 +233,41 @@ public class Fachada implements IFachada{
 	public boolean deletarEndereco(Endereco e1) throws Exception {
 		
 		return controlPaciente.deletarEndereco(e1);
+	}
+
+	@Override
+	public RequisicaoExame buscaReqExame(int id) throws Exception {
+		return cadastroReqExame.buscaReqExame(id);
+	}
+
+	@Override
+	public List<RequisicaoExame> buscaReqExameCPF(String cpf) throws Exception {
+		return cadastroReqExame.buscaReqExameCPF(cpf);
+	}
+
+	@Override
+	public List<RequisicaoExame> buscaReqExameVet(String cpf_vet) throws Exception {
+		return cadastroReqExame.buscaReqExameVet(cpf_vet);
+	}
+
+	@Override
+	public List<RequisicaoExame> buscaReqExameProntuario(int id) throws Exception {
+		return cadastroReqExame.buscaReqExameProntuario(id);
+	}
+
+	@Override
+	public boolean cadastraReqExame(RequisicaoExame e) throws Exception {
+		return cadastroReqExame.cadastraReqExame(e);
+	}
+
+	@Override
+	public boolean atualizaReqExame(RequisicaoExame e) throws Exception {
+		return cadastroReqExame.atualizaReqExame(e);
+	}
+
+	@Override
+	public boolean deletarReqExame(int id) throws Exception {
+		return cadastroReqExame.deletarReqExame(id);
 	}
 	
 	
