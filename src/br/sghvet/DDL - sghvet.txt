@@ -118,6 +118,19 @@ CREATE TABLE disponibilidade_vet(
     foreign key(cpf_vet) references veterinario(cpf)
 ) ENGINE = innodb;
 
+CREATE TABLE req_exame(
+    id int AUTO_INCREMENT,
+    cpf_vet char(11) not null,
+    cpf_tutor char(11) not null,
+    prontuario int not null,
+    data_exame date not null,
+    realizado boolean default '0',
+    foreign key(cpf_vet) references veterinario(cpf),
+    foreign key(cpf_tutor) references tutor(cpf), 
+    foreign key(prontuario) references animal(prontuario),
+    primary key(id)
+) ENGINE = innodb;
+
 INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('admsupremo', 'ADMINISTRATIVO');
 INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
 

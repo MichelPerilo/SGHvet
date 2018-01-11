@@ -7,6 +7,7 @@ import br.sghvet.model.Administrativo;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Auxiliar;
 import br.sghvet.model.Endereco;
+import br.sghvet.model.RequisicaoExame;
 import br.sghvet.model.TipoUsuario;
 import br.sghvet.model.Tutor;
 import br.sghvet.model.Usuario;
@@ -55,5 +56,12 @@ public interface IFachada {
 	public Endereco buscaEndereco(String cpf) throws Exception;
 	public boolean deletarEndereco(Endereco e1) throws Exception;
 	
+	public RequisicaoExame buscaReqExame(int id) throws Exception;
+	public List<RequisicaoExame> buscaReqExameCPF(String cpf) throws Exception;
+	public List<RequisicaoExame> buscaReqExameVet(String cpf_vet) throws Exception;
+	public List<RequisicaoExame> buscaReqExameProntuario(int id) throws Exception;
+	public boolean cadastraReqExame(RequisicaoExame e) throws Exception;
+	public boolean atualizaReqExame(RequisicaoExame e) throws Exception;
+	public boolean deletarReqExame(int id) throws Exception;
 
 }
