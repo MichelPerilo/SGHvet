@@ -31,6 +31,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class UiCadastroFuncionarioController implements Initializable {
 	
@@ -233,8 +234,10 @@ public class UiCadastroFuncionarioController implements Initializable {
 
 
 	public void setStage(Stage novoFuncionarioStage) {
-		// TODO Auto-generated method stub
+	
 		this.stage = novoFuncionarioStage;
+		this.stage.initStyle(StageStyle.UNDECORATED);
+		
 		
 	}
 

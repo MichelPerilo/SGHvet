@@ -22,8 +22,6 @@ public class UiGerenciamentoPessoasController implements Initializable{
 	@FXML
 	private ListView listview_funcionarios;
 	
-	
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

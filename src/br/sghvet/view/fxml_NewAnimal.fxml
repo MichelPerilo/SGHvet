@@ -21,9 +21,10 @@
       <TextField fx:id="tx_PesoAnimal" layoutX="54.0" layoutY="120.0" prefHeight="26.0" prefWidth="88.0" />
       <TextField fx:id="tx_IdadeAnimal" layoutX="54.0" layoutY="179.0" prefHeight="26.0" prefWidth="88.0" />
       <ComboBox fx:id="cb_SexoAnimal" layoutX="196.0" layoutY="120.0" prefHeight="28.0" prefWidth="124.0" style="-fx-background-color: #81DAF5;" />
-      <Button fx:id="bt_SalvarAnimal" layoutX="541.0" layoutY="220.0" mnemonicParsing="false" onAction="#handlerSalvarNovoAnimal" text="Salvar" />
+      <Button fx:id="bt_SalvarAnimal" layoutX="502.0" layoutY="219.0" mnemonicParsing="false" onAction="#handlerSalvarNovoAnimal" text="Salvar" />
       <TextField fx:id="tx_ProntuarioAnimal" layoutX="487.0" layoutY="19.0" />
       <Label layoutX="273.0" layoutY="79.0" text="Especie" />
       <TextField fx:id="tx_Especie" layoutX="320.0" layoutY="75.0" prefHeight="26.0" prefWidth="137.0" />
+      <Button layoutX="563.0" layoutY="219.0" mnemonicParsing="false" text="Sair" />
    </children>
 </AnchorPane>
