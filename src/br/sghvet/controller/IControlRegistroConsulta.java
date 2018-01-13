@@ -8,7 +8,7 @@ import br.sghvet.model.Consulta;
 /**
  * IcontroleRegistroFunctionario
  */
-public interface IcontroleRegistroConsulta {
+public interface IControlRegistroConsulta {
      
     public RegistroConsulta buscarRegistro(Consulta consulta) throws Exception;
 	public boolean cadastrarRegistro(RegistroConsulta registroConsulta) throws Exception;

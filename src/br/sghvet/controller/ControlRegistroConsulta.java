@@ -9,11 +9,11 @@ import java.sql.Connection;
 /**
  * controleRegistroConsulta
  */
-public class controleRegistroConsulta implements IcontroleRegistroConsulta {
+public class ControlRegistroConsulta implements IControlRegistroConsulta {
 
     private IRepositorioRegistroConsulta repo;
     
-    public controleRegistroConsulta() {
+    public ControlRegistroConsulta() {
         this.repo = new RepositorioRegistroConsulta();
 
     }
