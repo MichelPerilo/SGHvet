@@ -8,11 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import br.sghvet.model.Animal;
 
-
-public class RepositorioAnimal implements IRepositorioAnimal{
+public class RepositorioAnimal implements IRepositorioAnimal {
 
 	private Connection connection;
-	
+
 	@Override
 	public void conectar(Connection conect) {
 		try {
@@ -29,7 +28,7 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 	public boolean cadastrarAnimal(Animal a) throws Exception {
 
 		String query = "insert into animal (nome, especie, raca, pelagem, peso, sexo, idade, cpfTutor)values(?,?,?,?,?,?,?,?)";
-		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
+		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, a.getNome());
 		ps.setString(2, a.getEspecie());
 		ps.setString(3, a.getRaça());
@@ -38,7 +37,7 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 		ps.setString(6, a.getSexo());
 		ps.setInt(7, a.getIdade());
 		ps.setString(8, a.getCpfTutor());
-		
+
 		ps.executeUpdate();
 		return true;
 	}
@@ -46,9 +45,8 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 	@Override
 	public boolean atualizarAnimal(Animal a) throws Exception {
 
-		
 		String query = "update animal set nome = ?, especie =?, raca =?, pelagem =?, peso =?, sexo =?, idade =? where prontuario =?";
-		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
+		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, a.getNome());
 		ps.setString(2, a.getEspecie());
 		ps.setString(3, a.getRaça());
@@ -57,53 +55,70 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 		ps.setString(6, a.getSexo());
 		ps.setInt(7, a.getIdade());
 		ps.setLong(8, a.getNumProntuario());
-			
-		
+
 		return ps.execute();
 	}
 
 	@Override
 	public boolean deletarAnimal(Animal a) throws Exception {
-		
-		String query ="delete from animal where prontuario =?";
-		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
+
+		String query = "delete from animal where prontuario =?";
+		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setLong(1, a.getNumProntuario());
-		
+
 		return executar(ps);
 	}
 
 	@Override
 	public List<Animal> buscarAnimal(String cpfTutor) throws Exception {
 		String query = "select * from animal where cpfTutor = ?";
-		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
+		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, cpfTutor);
 		ResultSet rs = ps.executeQuery();
 		List<Animal> animais = new ArrayList<>();
-		
-		while(rs.next()){
+
+		while (rs.next()) {
 			animais.add(preencherAnimal(rs));
 		}
 		ps.close();
 		rs.close();
-		
+
 		return animais;
 	}
-	
-	private Animal preencherAnimal(ResultSet rs) throws Exception{
+
+	@Override
+	public Animal buscaAnimalProntuario(int prontuario) throws Exception {
+		String query = "select * from animal where prontuario = ?";
+		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
+		ps.setInt(1, prontuario);
+		ResultSet rs = ps.executeQuery();
+		List<Animal> animais = new ArrayList<>();
+
+		while (rs.next()) {
+			animais.add(preencherAnimal(rs));
+		}
+		ps.close();
+		rs.close();
+
+		return animais.get(0);
+		
+	}
+
+	private Animal preencherAnimal(ResultSet rs) throws Exception {
 		Animal a1;
-		try{
-			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"),rs.getInt("idade"),
-					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),rs.getDouble("peso"));
+		try {
+			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"), rs.getInt("idade"),
+					rs.getString("cpfTutor"), rs.getString("raca"), rs.getString("pelagem"), rs.getDouble("peso"));
 			a1.setNumProntuario(rs.getLong("prontuario"));
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			throw new Exception("Animal possui dados invalidos");
 		}
-		
+
 		return a1;
 	}
 
 	private boolean executar(PreparedStatement ps) throws Exception {
-		
+
 		boolean result;
 		try {
 			if (ps.execute())
@@ -117,9 +132,5 @@ public class RepositorioAnimal implements IRepositorioAnimal{
 		}
 
 	}
-	
-	
-	
-	
 
 }
