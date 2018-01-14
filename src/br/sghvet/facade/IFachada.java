@@ -70,6 +70,8 @@ public interface IFachada {
 	public RegistroConsulta buscarRegistro(Consulta consulta) throws Exception;
 	public boolean cadastrarRegistro(RegistroConsulta registroConsulta) throws Exception;
 	public boolean atualizarRegistro(RegistroConsulta registroConsulta) throws Exception;     
+	
+	public void gerarPdfRequisicao(RequisicaoExame req) throws Exception;
 
 
 }

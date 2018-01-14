@@ -31,6 +31,7 @@ public class PdfManager {
 		Tutor tutor = Fachada.getInstance().buscarTutor(req.getCpfTutor());
 		Veterinario veterinario = Fachada.getInstance().buscaVeterinario(req.getCpfVeterinario());
 	
+		
 		String nomedoc = "Requisicao"+ req.getId() +".pdf";
 		
 		PdfWriter writer = new PdfWriter(nomedoc);
@@ -82,9 +83,9 @@ public class PdfManager {
         document.add(new Paragraph().add("_____________________________________________________________________________"));
         
         document.add(new Paragraph().add("TUTOR RESPONSÁVEL").setBold());
-        document.add(new Paragraph().add("Nome: ").add(new Tab()).add(new Tab()).add(new Tab()).add(new Tab()).add(tutor.getNome()));
+        document.add(new Paragraph().add("Nome:").add(new Tab()).add(new Tab()).add(new Tab()).add(new Tab()).add(tutor.getNome()));
         document.add(new Paragraph().add("CPF:").add(new Tab()).add(new Tab()).add(new Tab()).add(new Tab()).add(tutor.getCpf()));
-        document.add(new Paragraph().add("Contato: ").add("contato tutor").add(new Tab()).add(new Tab()).add(tutor.getContato()));
+        document.add(new Paragraph().add("Contato: ").add(new Tab()).add(new Tab()).add(new Tab()).add(new Tab()).add(tutor.getContato()));
         
         //document.add(new Paragraph());
         document.add(new Paragraph().add("_____________________________________________________________________________"));

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.sghvet.controller.Conexao;
 import br.sghvet.model.CargoVeterinario;
@@ -34,12 +36,15 @@ public class RepositorioVeterinario implements IRepositorioVeterinario {
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
 		ps.setString(1, cpf);
 		ResultSet rs = ps.executeQuery();
+		List<Veterinario> veterinario = new ArrayList<>();
 		
-		Veterinario v1 = preencherVet(rs);
+		while(rs.next()){
+			veterinario.add(preencherVet(rs));			
+		}
 		ps.close();
 		rs.close();
 		
-		return v1;
+		return veterinario.get(0);
 	}
 
 
@@ -115,7 +120,7 @@ public class RepositorioVeterinario implements IRepositorioVeterinario {
 			String data = rs.getString("dataNasc");
 			String[] splitdata = data.split("-");
 			LocalDate date = LocalDate.of(Integer.parseInt(splitdata[0]),Integer.parseInt(splitdata[1]),Integer.parseInt(splitdata[2]));
-			CargoVeterinario cargo = CargoVeterinario.valueOf(rs.getString("cargo"));
+			CargoVeterinario cargo = CargoVeterinario.valueOf(rs.getString("cargo").toUpperCase());
 			
 			v1 = new Veterinario(rs.getString("nome"), rs.getString("cpf"), date, cargo, rs.getString("contato"), rs.getString("email")
 					, rs.getString("crmv"));

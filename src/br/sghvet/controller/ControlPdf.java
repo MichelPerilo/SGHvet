@@ -10,7 +10,7 @@ public class ControlPdf {
 		manager = new PdfManager();
 	}
 	
-	public void gerarPffRequisicao(RequisicaoExame req) throws Exception{
+	public void gerarPdfRequisicao(RequisicaoExame req) throws Exception{
 		manager.requisicaoExame(req);
 	}
 }

@@ -15,7 +15,7 @@ public class ControlPaciente implements IControlPaciente {
 	private ICadastroTutor cadTutor;
 	private static Connection connection;
 
-	public ControlPaciente() throws ConectionException {
+	public ControlPaciente() {
 		cadAnimal = new CadastroAnimal();
 		cadTutor = new CadastroTutor();
 

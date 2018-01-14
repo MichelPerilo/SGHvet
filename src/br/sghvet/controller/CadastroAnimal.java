@@ -42,9 +42,11 @@ public class CadastroAnimal implements ICadastroAnimal {
 	}
 
 	@Override
-	public Animal buscaAnimal(int prontuario) throws Exception {
-		return repo.buscarAnimalProntuario(prontuario);
+	public Animal buscaAnimalProntuario(int prontuario) throws Exception {
+		return repo.buscaAnimalProntuario(prontuario);
 	}
+
+
 	
 	
 	

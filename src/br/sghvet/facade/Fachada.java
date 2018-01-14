@@ -16,6 +16,7 @@ public class Fachada implements IFachada{
 	private IControlFuncionario controlfuncionario;
 	private IControlPaciente controlPaciente;
 	private CadastroReqExame cadastroReqExame;
+	private ControlPdf pdfControl; 
 	
 	public static Fachada instance;
 	
@@ -23,7 +24,8 @@ public class Fachada implements IFachada{
 		this.controlelogin = new ControleLogin();
 		this.controlfuncionario = new ControlFuncionario();
 		this.cadastroReqExame = new CadastroReqExame();
-		
+		this.pdfControl = new ControlPdf();
+		this.controlPaciente = new ControlPaciente();
 	}
 	
 	public static Fachada getInstance(){
@@ -33,10 +35,11 @@ public class Fachada implements IFachada{
 		return instance;
 	}
 	
-	@Override
-	public void conectar() {  //executar após fazer login para persistir conexao
+	
+	public void conectar(Connection conexao) {  //executar após fazer login para persistir conexao
 		controlfuncionario.conectar(conexao);
 		cadastroReqExame.conectar(conexao);
+		controlPaciente.conectar(conexao);
 	}
 	
 	public void carregarAgendamento() throws Exception {
@@ -275,7 +278,10 @@ public class Fachada implements IFachada{
 		return cadastroReqExame.deletarReqExame(id);
 	}
 	
-	
+	@Override
+	public void gerarPdfRequisicao(RequisicaoExame req) throws Exception{
+		pdfControl.gerarPdfRequisicao(req);
+	}
 	
 	
 }

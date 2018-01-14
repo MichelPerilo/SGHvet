@@ -100,6 +100,7 @@ public class RepositorioAnimal implements IRepositorioAnimal {
 		ps.close();
 		rs.close();
 
+		
 		return animais.get(0);
 		
 	}
