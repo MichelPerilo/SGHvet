@@ -17,15 +17,18 @@ public class Fachada implements IFachada {
 	private IControlPaciente controlPaciente;
 	private CadastroReqExame cadastroReqExame;
 	private ControlPdf pdfControl;
+	private IControlRegistroConsulta controlRegistro;
 
 	public static Fachada instance;
 
 	public Fachada() {
+		
 		this.controlelogin = new ControleLogin();
 		this.controlfuncionario = new ControlFuncionario();
 		this.cadastroReqExame = new CadastroReqExame();
 		this.pdfControl = new ControlPdf();
 		this.controlPaciente = new ControlPaciente();
+		this.controlRegistro = new ControlRegistroConsulta();
 	}
 
 	public static Fachada getInstance() {
@@ -39,6 +42,7 @@ public class Fachada implements IFachada {
 		controlfuncionario.conectar(conexao);
 		cadastroReqExame.conectar(conexao);
 		controlPaciente.conectar(conexao);
+		controlRegistro.conectar(conexao);
 	}
 
 	public void carregarAgendamento() throws Exception {
@@ -289,6 +293,21 @@ public class Fachada implements IFachada {
 	@Override
 	public List<Auxiliar> buscaTodosAuxiliar() throws Exception {
 		return controlfuncionario.buscaTodosAuxiliar();
+	}
+
+	@Override
+	public RegistroConsulta buscarRegistro(Consulta consulta) throws Exception {
+		return controlRegistro.buscarRegistro(consulta);
+	}
+
+	@Override
+	public boolean cadastrarRegistro(RegistroConsulta registroConsulta) throws Exception {
+		return controlRegistro.cadastrarRegistro(registroConsulta);
+	}
+
+	@Override
+	public boolean atualizarRegistro(RegistroConsulta registroConsulta) throws Exception {
+		return controlRegistro.atualizarRegistro(registroConsulta);
 	}
 
 }
