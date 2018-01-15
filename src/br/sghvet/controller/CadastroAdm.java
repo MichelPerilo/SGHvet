@@ -1,6 +1,7 @@
 package br.sghvet.controller;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.sghvet.data.IRepositorioAdm;
 import br.sghvet.data.RepositorioAdm;
@@ -38,6 +39,11 @@ public class CadastroAdm implements ICadastroAdm{
 	@Override
 	public boolean deletarAdm(Administrativo adm) throws Exception {
 		return repo.deletarAdm(adm);
+	}
+
+	@Override
+	public List<Administrativo> buscaTodosAdm() throws Exception {
+		return repo.buscaTodosAdm();
 	}
 
 

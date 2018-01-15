@@ -1,6 +1,7 @@
 package br.sghvet.controller;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.sghvet.data.IRepositorioVeterinario;
 import br.sghvet.data.RepositorioVeterinario;
@@ -37,6 +38,11 @@ public class CadastroVeterinario implements ICadastroVeterinario {
 	@Override
 	public boolean deletarVeterinario(Veterinario vet) throws Exception {
 		return repo.deletarVeterinario(vet);
+	}
+
+	@Override
+	public List<Veterinario> buscaTodosVeterinario() throws Exception {
+		return repo.buscaTodosVeterinario();
 	}
 
 }

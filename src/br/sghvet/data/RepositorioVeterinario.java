@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.sghvet.controller.Conexao;
+import br.sghvet.model.Auxiliar;
 import br.sghvet.model.CargoVeterinario;
 import br.sghvet.model.Veterinario;
 
@@ -45,6 +46,23 @@ public class RepositorioVeterinario implements IRepositorioVeterinario {
 		rs.close();
 		
 		return veterinario.get(0);
+	}
+	
+	@Override
+	public List<Veterinario> buscaTodosVeterinario() throws Exception {
+
+		String query = "select * from veterinario";
+		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+
+		List<Veterinario> veterinarios = new ArrayList<>();
+		while(rs.next()) {
+			veterinarios.add(preencherVet(rs));			
+		}
+		ps.isClosed();
+		rs.close();
+
+		return veterinarios;
 	}
 
 
