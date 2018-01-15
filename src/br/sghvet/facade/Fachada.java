@@ -36,7 +36,7 @@ public class Fachada implements IFachada{
 	}
 	
 	
-	public void conectar(Connection conexao) {  //executar após fazer login para persistir conexao
+	public void conectar() {  //executar após fazer login para persistir conexao
 		controlfuncionario.conectar(conexao);
 		cadastroReqExame.conectar(conexao);
 		controlPaciente.conectar(conexao);
@@ -282,6 +282,26 @@ public class Fachada implements IFachada{
 	public void gerarPdfRequisicao(RequisicaoExame req) throws Exception{
 		pdfControl.gerarPdfRequisicao(req);
 	}
+
+	@Override
+	public RegistroConsulta buscarRegistro(Consulta consulta) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean cadastrarRegistro(RegistroConsulta registroConsulta) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean atualizarRegistro(RegistroConsulta registroConsulta) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
 	
 	
 }
