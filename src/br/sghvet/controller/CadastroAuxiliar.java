@@ -1,6 +1,7 @@
 package br.sghvet.controller;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.sghvet.data.IRepositorioAuxiliar;
 import br.sghvet.data.RepositorioAuxiliar;
@@ -37,6 +38,11 @@ public class CadastroAuxiliar implements ICadastroAuxiliar{
 	@Override
 	public boolean deletarAuxiliar(Auxiliar aux) throws Exception {
 		return repo.deletarAuxiliar(aux);
+	}
+
+	@Override
+	public List<Auxiliar> buscaTodosAuxiliar() throws Exception {
+		return repo.buscaTodosAuxiliar();
 	}
 
 

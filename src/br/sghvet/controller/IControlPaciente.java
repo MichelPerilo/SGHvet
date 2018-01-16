@@ -17,6 +17,7 @@ public interface IControlPaciente {
 	public boolean atualizarAnimal(Animal a) throws Exception;
 	public boolean deletarAnimal(Animal a) throws Exception;
 	public List buscarAnimal(String cpfTutor) throws Exception;
+	public Animal buscaAnimalProntuario(int prontuario) throws Exception;
 
 	public Tutor buscarTutor(String cpf) throws Exception;
 	public void cadastrarTutor(Tutor t) throws Exception;
