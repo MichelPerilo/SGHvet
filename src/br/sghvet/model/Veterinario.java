@@ -50,5 +50,11 @@ public class Veterinario {
 		return crmv;
 	}
 
+	@Override
+	public String toString(){
+		String dados = this.getNome() + " - " + this.cpf + " - " + this.getEmail();
+		
+		return dados;
+	}
 	
 }

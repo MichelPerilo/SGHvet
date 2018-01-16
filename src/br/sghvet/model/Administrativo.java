@@ -43,6 +43,13 @@ public class Administrativo {
 	public String getEmail() {
 		return email;
 	}
+	
+	@Override
+	public String toString(){
+		String dados = this.getNome() + " - " + this.cpf + " - " + this.getEmail();
+		
+		return dados;
+	}
 
 	
 }
