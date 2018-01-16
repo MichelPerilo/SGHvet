@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class UINovoTutorController  implements Initializable{
 
@@ -122,6 +123,7 @@ public class UINovoTutorController  implements Initializable{
     
     public void setStage(Stage stage) {
         this.stage = stage;
+        this.stage.initStyle(StageStyle.UNDECORATED);
     }
 	
    

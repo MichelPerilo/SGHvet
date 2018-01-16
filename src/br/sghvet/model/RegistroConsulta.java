@@ -2,8 +2,8 @@ package br.sghvet.model;
 
 public class RegistroConsulta {
 	
-	private Consulta consulta;
-	private float temp;
+	private int IdConsulta;
+	private float temperatura;
 	private float batimentoPorMin;
 	private float movRespPorMin;
 	private float pulso;
@@ -26,12 +26,12 @@ public class RegistroConsulta {
 	
 	
 	
-	public RegistroConsulta(Consulta consulta, float temp, float batimentoPorMin, float movRespPorMin, float pulso,
+	public RegistroConsulta(int IdConsulta, float temperatura, float batimentoPorMin, float movRespPorMin, float pulso,
 			String ectoscopia, String cabecaPescoco, String cavidadeToracica, String cavidadeAbdominal,
 			String sistemaLocomotor, String sistemaNervoso, String diagnosticoProvavel, String examesComplementares,
 			String diagnosticoDefinitivo, String prognostico) {
-		this.consulta = consulta;
-		this.temp = temp;
+		this.IdConsulta = IdConsulta;
+		this.temperatura = temperatura;
 		this.batimentoPorMin = batimentoPorMin;
 		this.movRespPorMin = movRespPorMin;
 		this.pulso = pulso;
@@ -47,17 +47,17 @@ public class RegistroConsulta {
 		this.prognostico = prognostico;
 	}
 	
-	public Consulta getConsulta() {
-		return consulta;
+	public int getIdConsulta() {
+		return IdConsulta;
 	}
-	public void setConsulta(Consulta consulta) {
-		this.consulta = consulta;
+	public void setConsulta(int IdConsulta) {
+		this.IdConsulta = IdConsulta;
 	}
 	public float getTemp() {
-		return temp;
+		return temperatura;
 	}
 	public void setTemp(float temp) {
-		this.temp = temp;
+		this.temperatura = temp;
 	}
 	public float getBatimentoPorMin() {
 		return batimentoPorMin;

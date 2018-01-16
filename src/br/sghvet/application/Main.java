@@ -14,7 +14,7 @@ Stage window;
         window = stage;
         window.setTitle("SGHvet");
         Parent root = FXMLLoader.load(getClass().getResource("../view/fxml_ui_login.fxml"));
-        
+      
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

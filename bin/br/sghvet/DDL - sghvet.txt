@@ -1,4 +1,4 @@
---reate schema sghvet;
+--create schema sghvet;
 
 CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335cargo';
 -- senha de admsupremo eh 'abcd'
@@ -42,7 +42,6 @@ cargo enum ('ATENDENTE', 'FARMACEUTICO', 'ADMINISTRADOR') not null,
 primary key(cpf)
 )ENGINE = innodb;
 
--- ALTER TABLE usuario ADD cargo enum ('ATENDENTE', 'FARMACEUTICO','ADMINISTRATIVO') not null;
 -- CREATE TABLE agendamento(
 -- id int AUTO_INCREMENT,
 -- dia date not null,
@@ -119,9 +118,42 @@ CREATE TABLE disponibilidade_vet(
     foreign key(cpf_vet) references veterinario(cpf)
 ) ENGINE = innodb;
 
-INSERT INTO sghvet.usuario (`cpf`, `tipo`, `cargo`) VALUES ('admsupremo', 'ADMINISTRATIVO', 'ADMINISTRADOR');
+CREATE TABLE req_exame(
+    id int AUTO_INCREMENT,
+    cpf_vet char(11) not null,
+    cpf_tutor char(11) not null,
+    prontuario int not null,
+    data_exame date not null,
+    realizado boolean default '0',
+    foreign key(cpf_vet) references veterinario(cpf),
+    foreign key(cpf_tutor) references tutor(cpf), 
+    foreign key(prontuario) references animal(prontuario),
+    primary key(id)
+) ENGINE = innodb;
+
+CREATE TABLE registro(
+	id_consulta int,
+    temperatura float,
+    batimentoPorMin float,
+    movRespPorMin float,
+    pulso float,
+    ectoscopia varchar(300),
+    cabecaPescoco varchar(300),
+    cavidadeToracica varchar(300),
+    cavidadeAbdominal varchar(300),
+    sistemaLocomotor varchar(300),
+    sistemaNervoso varchar(300),
+    diagnosticoProvavel varchar(150),
+    examesComplementares varchar(150),
+    diagnosticoDefinitivo varchar(150),
+    prognostico varchar(150),
+    primary key (id_consulta),
+    foreign key (id_consulta) references consulta(id) ON DELETE CASCADE
+) ENGINE = innodb;
+
+INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('admsupremo', 'ADMINISTRATIVO');
 INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
 
 
- select * from usuario;
- SELECT * from administrativo;
+-- select * from usuario;
+-- SELECT * from administrativo;

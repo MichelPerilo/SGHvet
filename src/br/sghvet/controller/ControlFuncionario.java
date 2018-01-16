@@ -2,21 +2,22 @@ package br.sghvet.controller;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import br.sghvet.model.Administrativo;
 import br.sghvet.model.Auxiliar;
 import br.sghvet.model.Usuario;
 import br.sghvet.model.Veterinario;
 
-public class ControlFuncionario implements IControlFuncionario{
-	
+public class ControlFuncionario implements IControlFuncionario {
+
 	private ICadastroUsuario cadastroUsuario;
 	private ICadastroVeterinario cadastroVeterinario;
 	private ICadastroAdm cadastroAdm;
 	private ICadastroAuxiliar cadastroAuxiliar;
-	
+
 	private static Connection connection;
-	
+
 	public ControlFuncionario() {
 		this.cadastroUsuario = new CadastroUsuario();
 		this.cadastroVeterinario = new CadastroVeterinario();
@@ -24,30 +25,28 @@ public class ControlFuncionario implements IControlFuncionario{
 		this.cadastroAuxiliar = new CadastroAuxiliar();
 	}
 
-	
-
 	@Override
 	public void conectar(Connection conect) {
-		//try {
+		// try {
 
-			//if (ControlFuncionario.connection != null)
-			//	ControlFuncionario.connection.close();
-			ControlFuncionario.connection = conect;
-			cadastroUsuario.conectar(connection);
-			cadastroVeterinario.conectar(connection);
-			cadastroAdm.conectar(connection);
-			cadastroAuxiliar.conectar(connection);
-		//} catch (SQLException e) {
+		// if (ControlFuncionario.connection != null)
+		// ControlFuncionario.connection.close();
+		ControlFuncionario.connection = conect;
+		cadastroUsuario.conectar(connection);
+		cadastroVeterinario.conectar(connection);
+		cadastroAdm.conectar(connection);
+		cadastroAuxiliar.conectar(connection);
+		// } catch (SQLException e) {
 
-		//	e.printStackTrace();
-		//}
+		// e.printStackTrace();
+		// }
 	}
-	
+
 	@Override
 	public Usuario buscaUsuario(String cpf) throws Exception {
 		return cadastroUsuario.buscarUsuario(cpf);
 	}
-	
+
 	@Override
 	public boolean cadastrarUsuario(Usuario user, String senha) throws Exception {
 		return cadastroUsuario.cadastrarUsuario(user, senha);
@@ -121,6 +120,21 @@ public class ControlFuncionario implements IControlFuncionario{
 	@Override
 	public boolean deletarAuxiliar(Auxiliar aux) throws Exception {
 		return cadastroAuxiliar.deletarAuxiliar(aux);
+	}
+
+	@Override
+	public List<Veterinario> buscaTodosVeterinario() throws Exception {
+		return cadastroVeterinario.buscaTodosVeterinario();
+	}
+
+	@Override
+	public List<Administrativo> buscaTodosAdm() throws Exception {
+		return cadastroAdm.buscaTodosAdm();
+	}
+
+	@Override
+	public List<Auxiliar> buscaTodosAuxiliar() throws Exception {
+		return cadastroAuxiliar.buscaTodosAuxiliar();
 	}
 
 }

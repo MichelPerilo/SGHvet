@@ -134,7 +134,139 @@ public class UIAgendamentoController implements Initializable {
 	
 	// Painel FichaCLinica3 
 	
+//	Painel Agendamento
 	
+	@FXML
+	private Label lb_PN_Agendamento01;
+
+    @FXML
+    private Label lb_PN_Agendamento02;
+
+    @FXML
+    private Label lb_PN_Agendamento03;
+
+    @FXML
+    private Label lb_PN_Agendamento04;
+
+    @FXML
+    private Label lb_PN_Agendamento05;
+
+    @FXML
+    private Label lb_PN_Agendamento06;
+
+    @FXML
+    private Label lb_PN_Agendamento07;
+
+    @FXML
+    private Label lb_PN_Agendamento08;
+
+    @FXML
+    private Label lb_PN_Agendamento09;
+
+    @FXML
+    private Label lb_PN_Agendamento10;
+
+    @FXML
+    private Label lb_PN_Agendamento11;
+
+    @FXML
+    private Label lb_PN_Agendamento12;
+
+    @FXML
+    private Label lb_PN_Agendamento13;
+
+    @FXML
+    private Label lb_PN_Agendamento14;
+
+    @FXML
+    private Label lb_PN_Agendamento15;
+
+    @FXML
+    private Label lb_PN_Agendamento16;
+
+    @FXML
+    private Label lb_PN_Agendamento17;
+
+    @FXML
+    private Label lb_PN_Agendamento18;
+
+    @FXML
+    private Label lb_PN_Agendamento19;
+
+    @FXML
+    private Label lb_PN_Agendamento20;
+
+    @FXML
+    private Label lb_PN_Agendamento21;
+
+    @FXML
+    private Label lb_PN_Agendamento22;
+
+    @FXML
+    private Label lb_PN_Agendamento23;
+
+    @FXML
+    private Label lb_PN_Agendamento24;
+
+    @FXML
+    private Label lb_PN_Agendamento25;
+
+    @FXML
+    private Label lb_PN_Agendamento26;
+
+    @FXML
+    private Label lb_PN_Agendamento27;
+
+    @FXML
+    private Label lb_PN_Agendamento28;
+
+    @FXML
+    private Label lb_PN_Agendamento29;
+
+    @FXML
+    private Label lb_PN_Agendamento30;
+
+    @FXML
+    private Label lb_PN_Agendamento31;
+
+    @FXML
+    private Label lb_PN_Agendamento32;
+
+    @FXML
+    private Label lb_PN_Agendamento33;
+
+    @FXML
+    private Label lb_PN_Agendamento34;
+
+    @FXML
+    private Label lb_PN_Agendamento35;
+
+    @FXML
+    private Label lb_PN_Agendamento36;
+
+    @FXML
+    private Label lb_PN_Agendamento37;
+
+    @FXML
+    private Label lb_PN_Agendamento38;
+
+    @FXML
+    private Label lb_PN_Agendamento39;
+
+    @FXML
+    private Label lb_PN_Agendamento40;
+
+    @FXML
+    private Label lb_PN_Agendamento41;
+
+    @FXML
+    private Label lb_PN_Agendamento42;
+
+    @FXML
+    private Label lb_PN_Agendamento_MesAtual;
+
+   
+
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

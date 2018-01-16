@@ -16,6 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class UINovoAnimalController implements Initializable {
 
@@ -41,24 +42,23 @@ public class UINovoAnimalController implements Initializable {
 
 	@FXML
 	private ComboBox<String> cb_SexoAnimal;
-	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M","F");
+	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M", "F");
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 
-		
 		try {
-			
+
 			control = new Fachada();
 			control.carregarAgendamento();
 			tx_ProntuarioAnimal.setEditable(false);
 			SetCB();
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public Stage getStage() {
@@ -67,6 +67,7 @@ public class UINovoAnimalController implements Initializable {
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
+		this.stage.initStyle(StageStyle.UNDECORATED);
 	}
 
 	public void setCPFTUTOR(String cpf) {
@@ -92,19 +93,19 @@ public class UINovoAnimalController implements Initializable {
 		Animal a = new Animal(tx_NomeAnimal.getText(), tx_Especie.getText(), cb_SexoAnimal.getValue(),
 				Integer.parseInt(tx_IdadeAnimal.getText()), getCPF(), tx_RacaAnimal.getText(),
 				tx_PelagemAnimal.getText(), Double.parseDouble(tx_PesoAnimal.getText()));
-		
+
 		try {
 			control.cadastrarAnimal(a);
 			alert.setHeaderText("ANIMAL CADASTRADO COM SUCESSO");
-		    alert.showAndWait();
-		    
-		    tx_NomeAnimal.setEditable(false);
-		    tx_Especie.setEditable(false);
-		    cb_SexoAnimal.setEditable(false);
-		    tx_IdadeAnimal.setEditable(false);
-		    tx_RacaAnimal.setEditable(false);
-		    tx_PelagemAnimal.setEditable(false);
-		    tx_PesoAnimal.setEditable(false);
+			alert.showAndWait();
+
+			tx_NomeAnimal.setEditable(false);
+			tx_Especie.setEditable(false);
+			cb_SexoAnimal.setEditable(false);
+			tx_IdadeAnimal.setEditable(false);
+			tx_RacaAnimal.setEditable(false);
+			tx_PelagemAnimal.setEditable(false);
+			tx_PesoAnimal.setEditable(false);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

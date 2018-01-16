@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiDisponibilidadeMedicaController">
+   <children>
+      <Label layoutX="532.0" layoutY="94.0" text="Meus Horários">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ListView layoutX="362.0" layoutY="140.0" prefHeight="170.0" prefWidth="468.0" />
+      <Button fx:id="button_novointervalo" layoutX="92.0" layoutY="140.0" mnemonicParsing="false" onAction="#handler_NovoIntervalo" prefHeight="42.0" prefWidth="178.0" text="Novo Intervalo" />
+      <Label layoutX="329.0" layoutY="450.0" text="*Você deve declarar intervalos apartir dos dias da semana" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

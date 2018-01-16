@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.sghvet.controller.Conexao;
+import br.sghvet.model.Administrativo;
 import br.sghvet.model.Auxiliar;
 import br.sghvet.model.CargoAuxiliar;
 
@@ -39,6 +42,23 @@ public class RepositorioAuxiliar implements IRepositorioAuxiliar {
 		rs.close();
 		
 		return a1;
+	}
+	
+	@Override
+	public List<Auxiliar> buscaTodosAuxiliar() throws Exception {
+
+		String query = "select * from auxiliar";
+		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+
+		List<Auxiliar> auxiliares = new ArrayList<>();
+		while(rs.next()) {
+			auxiliares.add(preencherAuxiliar(rs));			
+		}
+		ps.isClosed();
+		rs.close();
+
+		return auxiliares;
 	}
 
 
