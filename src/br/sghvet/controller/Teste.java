@@ -2,29 +2,34 @@ package br.sghvet.controller;
 
 import java.sql.Connection;
 import java.time.LocalDate;
+import java.util.List;
 
 import br.sghvet.facade.Fachada;
+import br.sghvet.model.Administrativo;
+import br.sghvet.model.Auxiliar;
 import br.sghvet.model.RequisicaoExame;
+import br.sghvet.model.Veterinario;
 import br.sghvet.controller.*;
 
 public class Teste {
 
 	public static void main(String[] args) throws Exception {
 
-		Connection conect = new Conexao().getConexao("root", "");
+		Fachada.getInstance().loginUsuario("admsupremo", "abcd");
 		
-		Fachada.getInstance().conectar(conect);
+		List<Administrativo> buscaTodosAdm = Fachada.getInstance().buscaTodosAdm();
 		
-		//new CadastroReqExame().conectar(conect);
+		List<Auxiliar> buscaTodosAuxiliar = Fachada.getInstance().buscaTodosAuxiliar();
 		
-		RequisicaoExame buscaReqExame = Fachada.getInstance().buscaReqExame(2);
+		List<Veterinario> buscaTodosVeterinario = Fachada.getInstance().buscaTodosVeterinario();
 		
-		Fachada.getInstance().gerarPdfRequisicao(buscaReqExame);
+		System.out.println(buscaTodosAdm.size() + " Adms");
+		System.out.println(buscaTodosAuxiliar.size() + " Auxiliares");
+		System.out.println(buscaTodosVeterinario.size() + " Veterinarios");
 		
-//		RequisicaoExame req = new RequisicaoExame(LocalDate.of(2018, 2, 10), "11111111111", 1, "22222222222", false);
-//		
-//		Fachada.getInstance().cadastraReqExame(req);
-		
+		System.out.println(buscaTodosAdm.get(0).getNome());
+		System.out.println(buscaTodosVeterinario.get(0).getNome());
+		System.out.println(Fachada.getInstance().buscaAdm("admsupremo").getNome());
 	}
 
 }
