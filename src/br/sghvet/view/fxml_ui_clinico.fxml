@@ -20,7 +20,7 @@
                   <DropShadow blurType="ONE_PASS_BOX" color="WHITE" radius="7.775" width="12.1" />
                </effect>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #8187a3; -fx-background-radius: 0;" text="Meus Dados" textFill="WHITE">
+            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #8187a3; -fx-background-radius: 0;" text="Disponibilidade Médica" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
