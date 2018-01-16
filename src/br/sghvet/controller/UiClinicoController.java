@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
 public class UiClinicoController implements Initializable{
+	
 	@FXML
 	private AnchorPane anchorpane_info;
 
@@ -22,6 +23,12 @@ public class UiClinicoController implements Initializable{
 	public void handler_AtendimentosDoDia() throws IOException{
 		AnchorPane anchorpane_atendimentos_do_dia = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_atendimentos_do_dia.fxml"));
 	    anchorpane_info.getChildren().setAll(anchorpane_atendimentos_do_dia);
+	    
+	}
+	
+	public void handler_DisponibilidadeMedica() throws IOException{
+		AnchorPane anchorpane_disponibilidade_medica = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_disponibilidade_medica.fxml"));
+	    anchorpane_info.getChildren().setAll(anchorpane_disponibilidade_medica);
 	    
 	}
 }
