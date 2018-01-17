@@ -57,15 +57,13 @@ public class UiLoginController implements Initializable{
 		  
 		try {
 			
-			 IFachada fachada = new Fachada();
-			 fachada.conectar();
-			 Usuario  user = fachada.loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText());
+			 Usuario  user = Fachada.getInstance().loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText());
 			 
 			switch(user.getTipo()){
 			
 				case ADMINISTRATIVO:
 					
-					if((fachada.buscaAdm(user.getCpf()).getCargo()) == CargoAdm.ATENDENTE) {
+					if((Fachada.getInstance().buscaAdm(user.getCpf()).getCargo()) == CargoAdm.ATENDENTE) {
 						
 						AnchorPane  secretaria = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
 						anchorpane_principal.getChildren().setAll(secretaria);

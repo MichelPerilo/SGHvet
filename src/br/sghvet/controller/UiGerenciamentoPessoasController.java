@@ -41,23 +41,22 @@ public class UiGerenciamentoPessoasController implements Initializable{
 	}
 	
 	public void setLisView() throws Exception{
-		IFachada fachada = new Fachada();	
 		switch((TipoUsuario) choicebox_setor.getValue()) {
 		
 		case ADMINISTRATIVO :
 			listview_funcionarios.setItems(null);
-			ObservableList<Object> adms = FXCollections.observableArrayList (fachada.buscaTodosAdm());
+			ObservableList<Object> adms = FXCollections.observableArrayList (Fachada.getInstance().buscaTodosAdm());
 			listview_funcionarios.setItems(adms);
 			break;
 		case AUXILIAR :
 			listview_funcionarios.setItems(null);
-			ObservableList<Object> auxs = FXCollections.observableArrayList (fachada.buscaTodosAuxiliar());
+			ObservableList<Object> auxs = FXCollections.observableArrayList (Fachada.getInstance().buscaTodosAuxiliar());
 			listview_funcionarios.setItems(auxs);
 			
 			break;
 		case VETERINARIO :
 			listview_funcionarios.setItems(null);
-			ObservableList<Object> vets = FXCollections.observableArrayList (fachada.buscaTodosVeterinario());
+			ObservableList<Object> vets = FXCollections.observableArrayList (Fachada.getInstance().buscaTodosVeterinario());
 			listview_funcionarios.setItems(vets);
 			break;
 		default:
