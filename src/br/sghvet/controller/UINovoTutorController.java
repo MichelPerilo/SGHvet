@@ -56,7 +56,11 @@ public class UINovoTutorController  implements Initializable{
 	private ComboBox<String> cb_Estado;
 			
 	@FXML
-	private Button	btSalvarCadastroTutor;
+	private Button	btSalvarCadastroTutor;	
+	
+	@FXML
+	private Button btnFecharCadastroTutor;
+
 	
 	
 //	Cadastro Animal
@@ -115,6 +119,11 @@ public class UINovoTutorController  implements Initializable{
        
     }    
 
+    @FXML
+	public void fechar() {
+    	btnFecharCadastroTutor.getScene().getWindow().hide();
+	}
+	
    
     public Stage getStage() {
         return stage;

@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -39,7 +40,8 @@ public class UINovoAnimalController implements Initializable {
 	private TextField tx_PesoAnimal;
 	@FXML
 	private TextField tx_IdadeAnimal;
-
+	@FXML
+	private Button btnFecharCadastroAnimal;
 	@FXML
 	private ComboBox<String> cb_SexoAnimal;
 	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M", "F");
@@ -59,6 +61,11 @@ public class UINovoAnimalController implements Initializable {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@FXML
+	public void fechar() {
+    	btnFecharCadastroAnimal.getScene().getWindow().hide();
 	}
 
 	public Stage getStage() {

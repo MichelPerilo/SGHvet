@@ -23,7 +23,7 @@
       <Label layoutX="16.0" layoutY="396.0" text="DESCRIÇÃO" />
       <TextArea layoutX="112.0" layoutY="387.0" prefHeight="122.0" prefWidth="387.0" />
       <Button layoutX="220.0" layoutY="540.0" mnemonicParsing="false" style="-fx-background-color: #04B404;" text="AGENDAR" textFill="WHITE" />
-      <Button layoutX="305.0" layoutY="540.0" mnemonicParsing="false" style="-fx-background-color: #F6CECE;" text="CANCELAR" textFill="WHITE" />
+      <Button fx:id="btnFecharCencelar" layoutX="305.0" layoutY="540.0" mnemonicParsing="false" onAction="#fechar" style="-fx-background-color: #F6CECE;" text="CANCELAR" textFill="WHITE" />
       <Label layoutX="373.0" layoutY="98.0" text="TIPO:" />
       <ComboBox layoutX="415.0" layoutY="93.0" prefHeight="28.0" prefWidth="157.0" />
       <Separator layoutX="12.0" layoutY="337.0" prefHeight="3.0" prefWidth="574.0" />

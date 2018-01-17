@@ -9,13 +9,15 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.mysql.fabric.xmlrpc.base.Array;
 
 import br.sghvet.facade.Fachada;
 import br.sghvet.facade.IFachada;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
+import br.sghvet.controller.UINovaConsultaController;
+import br.sghvet.controller.UINovaSenhaController;
+import br.sghvet.controller.UIHorariosViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -355,6 +357,7 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	public void handlerPesquisar() throws Exception {
 
+		if(tx_BuscarTutor.getText() != null && !tx_BuscarTutor.getText().equals(""))
 		fazBusca(tx_BuscarTutor.getText());
 
 	}
@@ -372,6 +375,7 @@ public class UIAgendamentoController implements Initializable {
 		tx_PNTutorAnimais_Pelagem.setText("");
 		tx_PNTutorAnimais_Sexo.setText("");
 		tx_PNTutorAnimais_Prontuario.setText("");
+		carregarTableViewTutor();
 
 	}
 
@@ -454,9 +458,10 @@ public class UIAgendamentoController implements Initializable {
 			tx_PNTutorAnimais_Peso.setEditable(false);
 			tx_PNTutorAnimais_Pelagem.setEditable(false);
 			tx_PNTutorAnimais_Sexo.setEditable(false);
-			AtualizaAnimais(lb_PN_CPF.getText());
+			AtualizaAnimais(tx_PNTutorDados_CPF.getText());
 			alert.setHeaderText("SALVO COM SUCESSO");
 			alert.showAndWait();
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -467,8 +472,9 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	public void clicarMouseItemListViewTuor() throws IOException {
 		Tutor t = tv_PaneAgendamento.getSelectionModel().getSelectedItem();
-
 		fazBusca(t.getCpf());
+		
+		
 
 	}
 
