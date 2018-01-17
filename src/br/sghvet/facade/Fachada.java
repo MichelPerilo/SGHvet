@@ -18,6 +18,7 @@ public class Fachada implements IFachada {
 	private CadastroReqExame cadastroReqExame;
 	private ControlPdf pdfControl;
 	private IControlResultadoExame controlRegistro;
+	private CadastroDisponibilidade cadastroDisp;
 
 	public static Fachada instance;
 
@@ -29,6 +30,7 @@ public class Fachada implements IFachada {
 		this.pdfControl = new ControlPdf();
 		this.controlPaciente = new ControlPaciente();
 		this.controlRegistro = new ControlResultadoExame();
+		this.cadastroDisp = new CadastroDisponibilidade();
 	}
 
 	public static Fachada getInstance() {
@@ -40,9 +42,10 @@ public class Fachada implements IFachada {
 
 	public void conectar() { // executar após fazer login para persistir conexao
 		controlfuncionario.conectar(conexao);
-		cadastroReqExame.conectar(conexao);
 		controlPaciente.conectar(conexao);
 		controlRegistro.conectar(conexao);
+		cadastroReqExame.conectar(conexao);
+		cadastroDisp.conectar(conexao);
 	}
 
 	public void carregarAgendamento() throws Exception {
@@ -308,6 +311,26 @@ public class Fachada implements IFachada {
 	@Override
 	public boolean atualizarRegistro(ResultadoExame registroConsulta) throws Exception {
 		return controlRegistro.atualizarRegistro(registroConsulta);
+	}
+
+	@Override
+	public void cadastrarHorario(Disponibilidade disp) throws Exception {
+		cadastroDisp.cadastrarHorario(disp);
+	}
+
+	@Override
+	public void atualizarHorario(Disponibilidade dispo) throws Exception {
+		cadastroDisp.atualizarHorario(dispo);
+	}
+
+	@Override
+	public List<Disponibilidade> buscaHorarios(String cpf_vet) throws Exception {
+		return cadastroDisp.buscaHorarios(cpf_vet);
+	}
+
+	@Override
+	public void deletarHorario(Disponibilidade disp) throws Exception {
+		cadastroDisp.deletarHorario(disp);
 	}
 
 }

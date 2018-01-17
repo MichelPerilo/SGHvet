@@ -7,6 +7,7 @@ import br.sghvet.model.Administrativo;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Auxiliar;
 import br.sghvet.model.Consulta;
+import br.sghvet.model.Disponibilidade;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.ResultadoExame;
 import br.sghvet.model.RequisicaoExame;
@@ -75,6 +76,11 @@ public interface IFachada {
 	public boolean atualizarRegistro(ResultadoExame registroConsulta) throws Exception;     
 	
 	public void gerarPdfRequisicao(RequisicaoExame req) throws Exception;
+	
+	public void cadastrarHorario(Disponibilidade disp)	throws Exception;
+	void atualizarHorario(Disponibilidade dispo) throws Exception;
+	List<Disponibilidade> buscaHorarios(String cpf_vet) throws Exception;
+	public void deletarHorario(Disponibilidade disp) throws Exception ;
 
 
 }
