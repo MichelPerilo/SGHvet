@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="185.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="-2.0" layoutY="42.0" prefHeight="154.0" prefWidth="187.0">
+        <columns>
+          <TableColumn prefWidth="70.0" text="Hora" />
+          <TableColumn prefWidth="116.0" text="Disponibilidade" />
+        </columns>
+      </TableView>
+      <Label layoutX="54.0" layoutY="5.0" text="HORARIO" textAlignment="CENTER" textFill="#ee6c6c">
+         <graphic>
+            <ImageView fitHeight="47.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../assets/Icones/icons8-relógio-despertador-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+      <Separator layoutX="-29.0" layoutY="-37.0" prefWidth="200.0" />
+      <Separator layoutX="-2.0" layoutY="39.0" prefHeight="3.0" prefWidth="187.0" />
+   </children>
+</AnchorPane>

@@ -2,7 +2,10 @@ package br.sghvet.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -37,9 +40,7 @@ public class UIAgendamentoController implements Initializable {
 	Alert alert = new Alert(AlertType.WARNING);
 
 	// Painel Agenda
-	
-	
-	
+
 	@FXML
 	private Pane pn_FichaCLinica2;
 	@FXML
@@ -130,143 +131,141 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	private ComboBox<String> cb_PNTutorAnimais_Animal;
 	private ObservableList<String> listAnimais;
-	
-	
-	// Painel FichaCLinica3 
-	
-//	Painel Agendamento
-	
+
+	// Painel FichaCLinica3
+
+	// Painel Agendamento
+
 	@FXML
 	private Label lb_PN_Agendamento01;
 
-    @FXML
-    private Label lb_PN_Agendamento02;
+	@FXML
+	private Label lb_PN_Agendamento02;
 
-    @FXML
-    private Label lb_PN_Agendamento03;
+	@FXML
+	private Label lb_PN_Agendamento03;
 
-    @FXML
-    private Label lb_PN_Agendamento04;
+	@FXML
+	private Label lb_PN_Agendamento04;
 
-    @FXML
-    private Label lb_PN_Agendamento05;
+	@FXML
+	private Label lb_PN_Agendamento05;
 
-    @FXML
-    private Label lb_PN_Agendamento06;
+	@FXML
+	private Label lb_PN_Agendamento06;
 
-    @FXML
-    private Label lb_PN_Agendamento07;
+	@FXML
+	private Label lb_PN_Agendamento07;
 
-    @FXML
-    private Label lb_PN_Agendamento08;
+	@FXML
+	private Label lb_PN_Agendamento08;
 
-    @FXML
-    private Label lb_PN_Agendamento09;
+	@FXML
+	private Label lb_PN_Agendamento09;
 
-    @FXML
-    private Label lb_PN_Agendamento10;
+	@FXML
+	private Label lb_PN_Agendamento10;
 
-    @FXML
-    private Label lb_PN_Agendamento11;
+	@FXML
+	private Label lb_PN_Agendamento11;
 
-    @FXML
-    private Label lb_PN_Agendamento12;
+	@FXML
+	private Label lb_PN_Agendamento12;
 
-    @FXML
-    private Label lb_PN_Agendamento13;
+	@FXML
+	private Label lb_PN_Agendamento13;
 
-    @FXML
-    private Label lb_PN_Agendamento14;
+	@FXML
+	private Label lb_PN_Agendamento14;
 
-    @FXML
-    private Label lb_PN_Agendamento15;
+	@FXML
+	private Label lb_PN_Agendamento15;
 
-    @FXML
-    private Label lb_PN_Agendamento16;
+	@FXML
+	private Label lb_PN_Agendamento16;
 
-    @FXML
-    private Label lb_PN_Agendamento17;
+	@FXML
+	private Label lb_PN_Agendamento17;
 
-    @FXML
-    private Label lb_PN_Agendamento18;
+	@FXML
+	private Label lb_PN_Agendamento18;
 
-    @FXML
-    private Label lb_PN_Agendamento19;
+	@FXML
+	private Label lb_PN_Agendamento19;
 
-    @FXML
-    private Label lb_PN_Agendamento20;
+	@FXML
+	private Label lb_PN_Agendamento20;
 
-    @FXML
-    private Label lb_PN_Agendamento21;
+	@FXML
+	private Label lb_PN_Agendamento21;
 
-    @FXML
-    private Label lb_PN_Agendamento22;
+	@FXML
+	private Label lb_PN_Agendamento22;
 
-    @FXML
-    private Label lb_PN_Agendamento23;
+	@FXML
+	private Label lb_PN_Agendamento23;
 
-    @FXML
-    private Label lb_PN_Agendamento24;
+	@FXML
+	private Label lb_PN_Agendamento24;
 
-    @FXML
-    private Label lb_PN_Agendamento25;
+	@FXML
+	private Label lb_PN_Agendamento25;
 
-    @FXML
-    private Label lb_PN_Agendamento26;
+	@FXML
+	private Label lb_PN_Agendamento26;
 
-    @FXML
-    private Label lb_PN_Agendamento27;
+	@FXML
+	private Label lb_PN_Agendamento27;
 
-    @FXML
-    private Label lb_PN_Agendamento28;
+	@FXML
+	private Label lb_PN_Agendamento28;
 
-    @FXML
-    private Label lb_PN_Agendamento29;
+	@FXML
+	private Label lb_PN_Agendamento29;
 
-    @FXML
-    private Label lb_PN_Agendamento30;
+	@FXML
+	private Label lb_PN_Agendamento30;
 
-    @FXML
-    private Label lb_PN_Agendamento31;
+	@FXML
+	private Label lb_PN_Agendamento31;
 
-    @FXML
-    private Label lb_PN_Agendamento32;
+	@FXML
+	private Label lb_PN_Agendamento32;
 
-    @FXML
-    private Label lb_PN_Agendamento33;
+	@FXML
+	private Label lb_PN_Agendamento33;
 
-    @FXML
-    private Label lb_PN_Agendamento34;
+	@FXML
+	private Label lb_PN_Agendamento34;
 
-    @FXML
-    private Label lb_PN_Agendamento35;
+	@FXML
+	private Label lb_PN_Agendamento35;
 
-    @FXML
-    private Label lb_PN_Agendamento36;
+	@FXML
+	private Label lb_PN_Agendamento36;
 
-    @FXML
-    private Label lb_PN_Agendamento37;
+	@FXML
+	private Label lb_PN_Agendamento37;
 
-    @FXML
-    private Label lb_PN_Agendamento38;
+	@FXML
+	private Label lb_PN_Agendamento38;
 
-    @FXML
-    private Label lb_PN_Agendamento39;
+	@FXML
+	private Label lb_PN_Agendamento39;
 
-    @FXML
-    private Label lb_PN_Agendamento40;
+	@FXML
+	private Label lb_PN_Agendamento40;
 
-    @FXML
-    private Label lb_PN_Agendamento41;
+	@FXML
+	private Label lb_PN_Agendamento41;
 
-    @FXML
-    private Label lb_PN_Agendamento42;
+	@FXML
+	private Label lb_PN_Agendamento42;
 
-    @FXML
-    private Label lb_PN_Agendamento_MesAtual;
+	@FXML
+	private Label lb_PN_Agendamento_MesAtual;
 
-   
-
+	ArrayList<Label> dias = new ArrayList<>();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -274,6 +273,7 @@ public class UIAgendamentoController implements Initializable {
 		try {
 			control = new Fachada();
 			control.carregarAgendamento();
+			carregaDias();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -600,27 +600,196 @@ public class UIAgendamentoController implements Initializable {
 		}
 
 	}
-	
-	
+
 	@FXML
 	public void handleAgendamento() {
-		
+
 		pn_FichaCLinica3.setVisible(true);
 		pn_FichaCLinica1.setVisible(false);
 		pn_FichaCLinica2.setVisible(false);
-		
+
 	}
-	
+
 	@FXML
 	public void handlePaciente() {
-		
-		
+
 		pn_FichaCLinica1.setVisible(true);
 		pn_FichaCLinica3.setVisible(false);
-		
-	}
-	
-	
-	
 
+	}
+
+	public void carregaDias() {
+
+		dias.add(lb_PN_Agendamento01);
+		dias.add(lb_PN_Agendamento02);
+		dias.add(lb_PN_Agendamento03);
+		dias.add(lb_PN_Agendamento04);
+		dias.add(lb_PN_Agendamento05);
+		dias.add(lb_PN_Agendamento06);
+		dias.add(lb_PN_Agendamento07);
+		dias.add(lb_PN_Agendamento08);
+		dias.add(lb_PN_Agendamento09);
+		dias.add(lb_PN_Agendamento10);
+		dias.add(lb_PN_Agendamento11);
+		dias.add(lb_PN_Agendamento12);
+		dias.add(lb_PN_Agendamento13);
+		dias.add(lb_PN_Agendamento14);
+		dias.add(lb_PN_Agendamento15);
+		dias.add(lb_PN_Agendamento16);
+		dias.add(lb_PN_Agendamento17);
+		dias.add(lb_PN_Agendamento18);
+		dias.add(lb_PN_Agendamento19);
+		dias.add(lb_PN_Agendamento20);
+		dias.add(lb_PN_Agendamento21);
+		dias.add(lb_PN_Agendamento22);
+		dias.add(lb_PN_Agendamento23);
+		dias.add(lb_PN_Agendamento24);
+		dias.add(lb_PN_Agendamento25);
+		dias.add(lb_PN_Agendamento26);
+		dias.add(lb_PN_Agendamento27);
+		dias.add(lb_PN_Agendamento28);
+		dias.add(lb_PN_Agendamento29);
+		dias.add(lb_PN_Agendamento30);
+		dias.add(lb_PN_Agendamento31);
+		dias.add(lb_PN_Agendamento32);
+		dias.add(lb_PN_Agendamento33);
+		dias.add(lb_PN_Agendamento34);
+		dias.add(lb_PN_Agendamento35);
+		dias.add(lb_PN_Agendamento36);
+		dias.add(lb_PN_Agendamento37);
+		dias.add(lb_PN_Agendamento38);
+		dias.add(lb_PN_Agendamento39);
+		dias.add(lb_PN_Agendamento40);
+		dias.add(lb_PN_Agendamento41);
+		dias.add(lb_PN_Agendamento42);
+		dias.add(lb_PN_Agendamento_MesAtual);
+
+		Calendar c = new GregorianCalendar();
+		DateFormatSymbols symbols = new DateFormatSymbols();
+		String[] nomeDia = symbols.getWeekdays();
+		String[] nomeMes = symbols.getMonths();
+
+		int dayM = 0;
+
+		switch (nomeDia[c.getActualMinimum(Calendar.DAY_OF_MONTH)]) {
+
+		case "Domingo":
+			dayM = 1;
+			break;
+
+		case "Segunda-feira":
+
+			dayM = 2;
+			break;
+		case "Terça-feira":
+
+			dayM = 3;
+			break;
+		case "Quarta-feira":
+
+			dayM = 4;
+			break;
+		case "Quinta-feira":
+
+			dayM = 5;
+			break;
+		case "Sexta-feria":
+
+			dayM = 6;
+			break;
+		case "Sábado":
+
+			dayM = 7;
+			break;
+
+		default:
+			break;
+
+		}
+
+		for (int diaA = 1; diaA <= c.getActualMaximum(Calendar.DAY_OF_MONTH); diaA++) {
+
+			dias.get(dayM).setText(Integer.toString(diaA));
+			++dayM;
+
+		}
+
+		dias.get(42).setText(nomeMes[c.get(Calendar.MONTH)]);
+
+	}
+
+	@FXML
+	public void handlerNovoAgendamento() {
+
+		try {
+
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(UINovaConsultaController.class.getResource("../view/fxml_NovaConsulta.fxml"));
+			AnchorPane page;
+			page = (AnchorPane) loader.load();
+			Stage novoStage = new Stage();
+			novoStage.setTitle("Novo Consulta");
+			Scene scene = new Scene(page);
+			novoStage.setScene(scene);
+			novoStage.setResizable(false);
+			UINovaConsultaController controller = loader.getController();
+			controller.setStage(novoStage);
+			novoStage.showAndWait();
+			
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void handlerTrovaSenha() {
+
+		try {
+
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(UINovaSenhaController.class.getResource("../view/fxml_NewSenha.fxml"));
+			AnchorPane page;
+			page = (AnchorPane) loader.load();
+			Stage novoStage = new Stage();
+			novoStage.setTitle("Nova Senha");
+			Scene scene = new Scene(page);
+			novoStage.setScene(scene);
+			novoStage.setResizable(false);
+			UINovaSenhaController controller = loader.getController();
+			controller.setStage(novoStage);
+			novoStage.showAndWait();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	
+	@FXML
+	public void handlerDisponibilidadeHorario() {
+
+		try {
+
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(UIHorariosViewController.class.getResource("../view/fxml_horarios.fxml"));
+			AnchorPane page;
+			page = (AnchorPane) loader.load();
+			Stage novoStage = new Stage();
+			Scene scene = new Scene(page);
+			novoStage.setScene(scene);
+			novoStage.setResizable(false);
+			UIHorariosViewController controller = loader.getController();
+			controller.setStage(novoStage);
+			novoStage.showAndWait();
+			
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
