@@ -5,21 +5,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import br.sghvet.model.Consulta;
-import br.sghvet.model.RegistroConsulta;
+import br.sghvet.model.RequisicaoExame;
+import br.sghvet.model.ResultadoExame;
 
-public class RepositorioRegistroConsulta implements IRepositorioRegistroConsulta{
+public class RepositorioResultadoExame implements IRepositorioResultadoExame{
 	
 	private static Connection connection;
 	
 	@Override
 	public void conectar(Connection conect) {
-		RepositorioRegistroConsulta.connection = conect;
+		RepositorioResultadoExame.connection = conect;
 	}
 
 	@Override
-	public boolean CadastrarRegistro(RegistroConsulta registro) throws Exception {
-		String query = "insert into registro(id_consulta,temperatura,batimentoPorMin,movRespPorMin,pulso, ectoscopia,"
+	public boolean CadastrarRegistro(ResultadoExame registro) throws Exception {
+		String query = "insert into registro(id_exame,temperatura,batimentoPorMin,movRespPorMin,pulso, ectoscopia,"
 				+ "cabecaPescoco,cavidadeToracica,cavidadeAbdominal,sistemaLocomotor,sistemaNervoso,diagnosticoProvavel,"
 				+ "examesComplementares,diagnosticoDefinitivo,prognostico) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		PreparedStatement ps = connection.prepareStatement(query);
@@ -43,10 +43,10 @@ public class RepositorioRegistroConsulta implements IRepositorioRegistroConsulta
 	}
 
 	@Override
-	public boolean atualizarRegistro(RegistroConsulta registro) throws Exception {
+	public boolean atualizarRegistro(ResultadoExame registro) throws Exception {
 		String query = "update registro SET temperatura=?,batimentoPorMin=?,movRespPorMin=?,pulso=?, ectoscopia=?,"
 				+ "cabecaPescoco=?,cavidadeToracica=?,cavidadeAbdominal=?,sistemaLocomotor=?,sistemaNervoso=?,diagnosticoProvavel=?,"
-				+ "examesComplementares=?,diagnosticoDefinitivo=?,prognostico=? WHERE id_consulta = ?";
+				+ "examesComplementares=?,diagnosticoDefinitivo=?,prognostico=? WHERE id_exame = ?";
 		PreparedStatement ps = connection.prepareStatement(query);
 		
 		ps.setFloat(1, registro.getTemp());
@@ -69,8 +69,8 @@ public class RepositorioRegistroConsulta implements IRepositorioRegistroConsulta
 	}
 	
 	@Override
-	public RegistroConsulta buscarRegistro(Consulta consulta) throws Exception {
-		String query = "SELECT * FROM registro WHERE id_consulta = "+consulta.getId();
+	public ResultadoExame buscarRegistro(RequisicaoExame consulta) throws Exception {
+		String query = "SELECT * FROM registro WHERE id_exame = "+consulta.getId();
 		PreparedStatement ps = connection.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
 		rs.next();
@@ -90,10 +90,10 @@ public class RepositorioRegistroConsulta implements IRepositorioRegistroConsulta
  		return result;
  	}
 
-	private RegistroConsulta preencherRegistro(ResultSet rs) {
-		RegistroConsulta rc;
+	private ResultadoExame preencherRegistro(ResultSet rs) {
+		ResultadoExame rc;
 		try {
-			rc = new RegistroConsulta(rs.getInt("id_consulta"), rs.getFloat("temperatura"), rs.getFloat("batimentoPorMin"),
+			rc = new ResultadoExame(rs.getInt("id_exame"), rs.getFloat("temperatura"), rs.getFloat("batimentoPorMin"),
 					rs.getFloat("movRespPorMin"), rs.getFloat("pulso"), rs.getString("ectoscopia"), rs.getString("cabecaPescoco"),
 					rs.getString("cavidadeToracica"), rs.getString("cavidadeAbdominal"), rs.getString("sistemaLocomotor"), 
 					rs.getString("sistemaNervoso"), rs.getString("diagnosticoProvavel"), rs.getString("examesComplementares"), 

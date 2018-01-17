@@ -1,6 +1,6 @@
 package br.sghvet.model;
 
-public class RegistroConsulta {
+public class ResultadoExame {
 	
 	private int IdConsulta;
 	private float temperatura;
@@ -26,7 +26,7 @@ public class RegistroConsulta {
 	
 	
 	
-	public RegistroConsulta(int IdConsulta, float temperatura, float batimentoPorMin, float movRespPorMin, float pulso,
+	public ResultadoExame(int IdConsulta, float temperatura, float batimentoPorMin, float movRespPorMin, float pulso,
 			String ectoscopia, String cabecaPescoco, String cavidadeToracica, String cavidadeAbdominal,
 			String sistemaLocomotor, String sistemaNervoso, String diagnosticoProvavel, String examesComplementares,
 			String diagnosticoDefinitivo, String prognostico) {

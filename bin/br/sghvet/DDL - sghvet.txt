@@ -1,4 +1,6 @@
---create schema sghvet;
+drop schema if exists sghvet;
+create schema if not exists sghvet;
+use sghvet;
 
 CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335cargo';
 -- senha de admsupremo eh 'abcd'
@@ -132,7 +134,7 @@ CREATE TABLE req_exame(
 ) ENGINE = innodb;
 
 CREATE TABLE registro(
-	id_consulta int,
+	id_exame int,
     temperatura float,
     batimentoPorMin float,
     movRespPorMin float,
@@ -147,8 +149,8 @@ CREATE TABLE registro(
     examesComplementares varchar(150),
     diagnosticoDefinitivo varchar(150),
     prognostico varchar(150),
-    primary key (id_consulta),
-    foreign key (id_consulta) references consulta(id) ON DELETE CASCADE
+    primary key (id_exame),
+    foreign key (id_exame) references req_exame(id) ON DELETE CASCADE
 ) ENGINE = innodb;
 
 INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('admsupremo', 'ADMINISTRATIVO');

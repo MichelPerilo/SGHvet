@@ -8,7 +8,7 @@ import br.sghvet.model.Animal;
 import br.sghvet.model.Auxiliar;
 import br.sghvet.model.Consulta;
 import br.sghvet.model.Endereco;
-import br.sghvet.model.RegistroConsulta;
+import br.sghvet.model.ResultadoExame;
 import br.sghvet.model.RequisicaoExame;
 import br.sghvet.model.TipoUsuario;
 import br.sghvet.model.Tutor;
@@ -70,9 +70,9 @@ public interface IFachada {
 	public boolean atualizaReqExame(RequisicaoExame e) throws Exception;
 	public boolean deletarReqExame(int id) throws Exception;
 
-	public RegistroConsulta buscarRegistro(Consulta consulta) throws Exception;
-	public boolean cadastrarRegistro(RegistroConsulta registroConsulta) throws Exception;
-	public boolean atualizarRegistro(RegistroConsulta registroConsulta) throws Exception;     
+	public ResultadoExame buscarRegistro(RequisicaoExame consulta) throws Exception;
+	public boolean cadastrarRegistro(ResultadoExame registroConsulta) throws Exception;
+	public boolean atualizarRegistro(ResultadoExame registroConsulta) throws Exception;     
 	
 	public void gerarPdfRequisicao(RequisicaoExame req) throws Exception;
 

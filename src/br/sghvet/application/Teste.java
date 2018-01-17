@@ -1,19 +1,35 @@
 package br.sghvet.application;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
+import br.sghvet.controller.CadastroAnimal;
+import br.sghvet.controller.CadastroReqExame;
+import br.sghvet.controller.CadastroTutor;
+import br.sghvet.controller.CadastroUsuario;
+import br.sghvet.controller.CadastroVeterinario;
 import br.sghvet.controller.ControlFuncionario;
+import br.sghvet.controller.ControlResultadoExame;
 import br.sghvet.controller.ControleLogin;
 import br.sghvet.controller.IControlFuncionario;
+import br.sghvet.controller.IControlResultadoExame;
 import br.sghvet.controller.IControleLogin;
+import br.sghvet.model.Animal;
 import br.sghvet.model.Auxiliar;
 import br.sghvet.model.CargoAuxiliar;
+import br.sghvet.model.CargoVeterinario;
+import br.sghvet.model.RequisicaoExame;
+import br.sghvet.model.ResultadoExame;
 import br.sghvet.model.TipoUsuario;
+import br.sghvet.model.Tutor;
 import br.sghvet.model.Usuario;
+import br.sghvet.model.Veterinario;
 
 public class Teste {
 
@@ -50,7 +66,7 @@ public class Teste {
 		// e.printStackTrace();
 		// }
 
-		 Calendar c = new GregorianCalendar();
+		 /*Calendar c = new GregorianCalendar();
 		 System.out.println("Primeiro dia do mes: " +
 		 c.getActualMinimum(Calendar.DAY_OF_MONTH));
 		 System.out.println("Ultimo dia do mes: " +
@@ -63,7 +79,7 @@ public class Teste {
 		 DateFormatSymbols symbols = new DateFormatSymbols();
 		 String[] nomeDia = symbols.getWeekdays();
 		 System.out.println(nomeDia[c.getActualMinimum(Calendar.DAY_OF_MONTH)+6]);
-
+*/
 
 //		int DiaSem;
 //		int Bissex;
@@ -265,5 +281,45 @@ public class Teste {
 //
 //			}
 //		}
+		
+		IControlResultadoExame controlResultado;
+		controlResultado = new ControlResultadoExame();
+		CadastroReqExame cad = new CadastroReqExame();
+		Connection conect;
+		CadastroAnimal cada = new CadastroAnimal();
+		CadastroTutor cadt = new CadastroTutor();
+		CadastroVeterinario cadv = new CadastroVeterinario();
+		CadastroUsuario cadu = new CadastroUsuario();
+		try {
+			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/sghvet", "admsupremo", "301716283811389038011477436469853762335");
+			cad.conectar(conect);
+			cadv.conectar(conect);
+			cada.conectar(conect);
+			cadt.conectar(conect);
+			cadu.conectar(conect);
+			cadu.cadastrarUsuario(new Usuario("12121212121", TipoUsuario.VETERINARIO), "123");
+			//cadu.cadastrarUsuario(new Usuario("12345678911", TipoUsuario.VETERINARIO), "123");
+			cadv.cadastrarVeterinario(new Veterinario("nome", "12121212121", LocalDate.of(2018, 01, 17), CargoVeterinario.MEDICO, "aba", "aba", "aba"));
+			Tutor tut = new Tutor("tutorzinho", "07990666480", "m", "40028922123");
+			cadt.cadastrarTutor(tut);
+			cada.cadastrarAnimal(new Animal("juanito", "zumbi", "M", 5, "07990666480", "zumbizao", "obscura", 13.0));
+			Animal a = (Animal)cada.buscarAnimal("07990666480").get(0);
+			int pront = (int)a.getNumProntuario();
+			RequisicaoExame req = new RequisicaoExame(LocalDate.of(2018, 01, 17), "07990666480", pront, "12121212121", true);
+			cad.cadastraReqExame(req);
+			controlResultado.conectar(conect);
+			controlResultado.cadastrarRegistro(new ResultadoExame(1, 2, 3, 4, 5, "camser", "canser", "camcer", "cancer", "lmao", "roflmao", "gtfo", "cease", "yamero", "birdo"));
+			ResultadoExame xablau = controlResultado.buscarRegistro(cad.buscaReqExame(1));
+			System.out.println(xablau.getCavidadeAbdominal());
+			xablau.setCavidadeAbdominal("viadao");
+			controlResultado.atualizarRegistro(xablau);
+			System.out.println(controlResultado.buscarRegistro(cad.buscaReqExame(1)).getCavidadeAbdominal());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 	}
 }
