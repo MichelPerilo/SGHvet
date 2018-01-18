@@ -4,18 +4,32 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.sghvet.facade.Fachada;
+import br.sghvet.facade.IFachada;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class UiDisponibilidadeMedicaController implements Initializable{
 
+	@FXML
+	private ListView listview_horarios;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		IFachada fachada = new Fachada();
+		
+		/*
+		ObservableList<Disponibilidade> disp = FXCollections.observableArrayList (fachada.buscaHorarios());
+		listview_horarios.setItems(disp);
+		*/
 		
 	}
 	

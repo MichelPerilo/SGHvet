@@ -22,7 +22,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <ListView fx:id="listview_funcionarios" layoutX="47.0" layoutY="140.0" prefHeight="410.0" prefWidth="910.0" />
+      <ListView fx:id="listview_funcionarios" layoutX="47.0" layoutY="140.0" onMouseClicked="#handler_ClicarFuncionario" prefHeight="410.0" prefWidth="910.0" />
       <Label layoutX="734.0" layoutY="109.0" text="Setor:" />
       <ChoiceBox fx:id="choicebox_setor" layoutX="776.0" layoutY="100.0" onMouseClicked="#setLisView" prefHeight="35.0" prefWidth="181.0" />
    </children>

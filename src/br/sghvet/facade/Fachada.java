@@ -30,7 +30,7 @@ public class Fachada implements IFachada {
 		this.pdfControl = new ControlPdf();
 		this.controlPaciente = new ControlPaciente();
 		this.controlRegistro = new ControlResultadoExame();
-		this.cadastroDisp = new CadastroDisponibilidade();
+		this.setCadastroDisp(new CadastroDisponibilidade());
 	}
 
 	public static Fachada getInstance() {
@@ -45,7 +45,7 @@ public class Fachada implements IFachada {
 		controlPaciente.conectar(conexao);
 		controlRegistro.conectar(conexao);
 		cadastroReqExame.conectar(conexao);
-		cadastroDisp.conectar(conexao);
+		getCadastroDisp().conectar(conexao);
 	}
 
 	public void carregarAgendamento() throws Exception {
@@ -315,22 +315,24 @@ public class Fachada implements IFachada {
 
 	@Override
 	public void cadastrarHorario(Disponibilidade disp) throws Exception {
-		cadastroDisp.cadastrarHorario(disp);
+		getCadastroDisp().cadastrarHorario(disp);
 	}
 
 	@Override
 	public void atualizarHorario(Disponibilidade dispo) throws Exception {
-		cadastroDisp.atualizarHorario(dispo);
+		getCadastroDisp().atualizarHorario(dispo);
 	}
 
 	@Override
 	public List<Disponibilidade> buscaHorarios(String cpf_vet) throws Exception {
-		return cadastroDisp.buscaHorarios(cpf_vet);
+		return getCadastroDisp().buscaHorarios(cpf_vet);
 	}
 
 	@Override
 	public void deletarHorario(Disponibilidade disp) throws Exception {
-		cadastroDisp.deletarHorario(disp);
+		getCadastroDisp().deletarHorario(disp);
 	}
+
+	
 
 }

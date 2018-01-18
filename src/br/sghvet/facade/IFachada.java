@@ -3,6 +3,7 @@ package br.sghvet.facade;
 import java.sql.Connection;
 import java.util.List;
 
+import br.sghvet.controller.CadastroDisponibilidade;
 import br.sghvet.model.Administrativo;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Auxiliar;
@@ -81,6 +82,7 @@ public interface IFachada {
 	void atualizarHorario(Disponibilidade dispo) throws Exception;
 	List<Disponibilidade> buscaHorarios(String cpf_vet) throws Exception;
 	public void deletarHorario(Disponibilidade disp) throws Exception ;
+
 
 
 }
