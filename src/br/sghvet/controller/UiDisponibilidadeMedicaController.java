@@ -26,6 +26,7 @@ public class UiDisponibilidadeMedicaController implements Initializable{
 		// TODO Auto-generated method stub
 		IFachada fachada = new Fachada();
 		
+		
 		/*
 		ObservableList<Disponibilidade> disp = FXCollections.observableArrayList (fachada.buscaHorarios());
 		listview_horarios.setItems(disp);
