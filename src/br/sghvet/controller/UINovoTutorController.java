@@ -190,9 +190,9 @@ public class UINovoTutorController  implements Initializable{
     @FXML
     private void handlerSalvarNovoTutor() {    	
     	
+    	Endereco end = new Endereco(tx_Rua.getText(), tx_Bairro.getText(),tx_CEP.getText(),tx_Numero.getText(),tx_Complemento.getText(),tx_Cidade.getText(),cb_Estado.getValue(),tx_CPF.getText());
+    	Tutor t = new Tutor(tx_NomeTutor.getText(), tx_CPF.getText(), cb_SexoTutor.getValue(), tx_Celular.getText(), end);
     	try {
-    		Endereco end = new Endereco(tx_Rua.getText(), tx_Bairro.getText(),tx_CEP.getText(),tx_Numero.getText(),tx_Complemento.getText(),tx_Cidade.getText(),cb_Estado.getValue(),tx_CPF.getText());
-    		Tutor t = new Tutor(tx_NomeTutor.getText(), tx_CPF.getText(), cb_SexoTutor.getValue(), tx_Celular.getText(), end);
 			
     		control.cadastrarTutor(t);
     		alert.setHeaderText("TUTOR SALVO COM SUCESSO");
@@ -208,7 +208,8 @@ public class UINovoTutorController  implements Initializable{
     		tx_Cidade.setEditable(false);
     		
 		} catch (Exception e) {
-			alert.setHeaderText(e.getMessage());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}   	
     	
     }

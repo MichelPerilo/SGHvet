@@ -1,20 +1,14 @@
 package br.sghvet.model;
 
-import br.sghvet.controller.ValidadorCPF;
-
 public class Usuario {
 
 	private String cpf;
 	private TipoUsuario tipo;
 
-	public Usuario(String cpf, TipoUsuario tipo) {
-		setCpf(cpf);
-		this.tipo = tipo;
-	}
 
-	public void setCpf(String cpf) {
-		if (ValidadorCPF.getInstance().validarCPF(cpf))
-			this.cpf = cpf;
+	public Usuario(String cpf, TipoUsuario tipo) {
+		this.cpf = cpf;
+		this.tipo = tipo;
 	}
 
 	public TipoUsuario getTipo() {
@@ -24,5 +18,10 @@ public class Usuario {
 	public String getCpf() {
 		return cpf;
 	}
+	
+	
 
+	
+	
+	
 }

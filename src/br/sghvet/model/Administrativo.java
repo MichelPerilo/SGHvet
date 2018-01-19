@@ -2,8 +2,6 @@ package br.sghvet.model;
 
 import java.time.LocalDate;
 
-import br.sghvet.controller.ValidadorCPF;
-
 public class Administrativo {
 
 	private String nome;
@@ -13,9 +11,9 @@ public class Administrativo {
 	private String contato;
 	private String email;
 
-	public Administrativo(String nome, String cpf, LocalDate dataNasc, CargoAdm cargo, String contato, String email) throws Exception {
+	public Administrativo(String nome, String cpf, LocalDate dataNasc, CargoAdm cargo, String contato, String email) {
 		this.nome = nome;
-		setCpf(cpf);
+		this.cpf = cpf;
 		this.dataNasc = dataNasc;
 		this.cargo = cargo;
 		this.contato = contato;
@@ -24,13 +22,6 @@ public class Administrativo {
 
 	public String getNome() {
 		return nome;
-	}
-
-	public void setCpf(String cpf) throws Exception {
-		if (ValidadorCPF.getInstance().validarCPF(cpf))
-			this.cpf = cpf;
-		else 
-			throw new Exception("Cpf invalido");
 	}
 
 	public String getCpf() {
