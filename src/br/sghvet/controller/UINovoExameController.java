@@ -43,14 +43,12 @@ public class UINovoExameController implements Initializable {
 	@FXML
     private DatePicker dt_data;
 	
-	IFachada control;
 	Alert alert = new Alert(AlertType.WARNING);
 	private Stage stage;
 	private String cpfMedico;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		control = new Fachada();
 
 	}
 	
@@ -107,7 +105,7 @@ public class UINovoExameController implements Initializable {
 
 		try {
 
-			list = control.buscarAnimal(cpf);
+			list = Fachada.getInstance().buscarAnimal(cpf);
 
 		} catch (Exception e) {
 
@@ -146,11 +144,11 @@ public class UINovoExameController implements Initializable {
 	public void salvar() {
 		
 		LocalDate ld = dt_data.getValue();
-		RequisicaoExame rq =  new RequisicaoExame(ld, getCpfMedico(), Integer.parseInt(lb_prontuario.getText()), getCpfMedico(), true);
+		RequisicaoExame rq =  new RequisicaoExame(ld, tx_cpftutor.getText(), Integer.parseInt(lb_prontuario.getText()), Fachada.getInstance().getCpfLogado(), true);
 		
 	try {
-		control.cadastraReqExame(rq);
-		control.gerarPdfRequisicao(rq);
+		Fachada.getInstance().cadastraReqExame(rq);
+		Fachada.getInstance().gerarPdfRequisicao(rq);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

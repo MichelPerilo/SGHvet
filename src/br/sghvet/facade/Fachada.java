@@ -21,8 +21,10 @@ public class Fachada implements IFachada {
 	private IControlResultadoExame controlRegistro;
 	private CadastroDisponibilidade cadastroDisp;
 	private ICadastroConsulta cadastroConsulta;
-
-	public static Fachada instance;
+	
+	private String cpfLogado;
+	
+	private static Fachada instance;
 
 	public Fachada() {
 		
@@ -70,6 +72,10 @@ public class Fachada implements IFachada {
 		this.cadastroConsulta = new CadastroConsulta();
 		conexao = null;
 	}
+	
+	public String getCpfLogado() {
+		return this.cpfLogado;
+	}
 
 	public void carregarAgendamento() throws Exception {
 
@@ -91,6 +97,7 @@ public class Fachada implements IFachada {
 			// System.out.println("blow this shit up");
 			// }
 		}
+		cpfLogado = cpf;
 		return user;
 	}
 
