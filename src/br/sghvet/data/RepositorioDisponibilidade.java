@@ -116,4 +116,38 @@ public class RepositorioDisponibilidade implements IRepositorioDisponibilidade {
 
 	}
 
+	
+//	@Override
+//
+//    public List<Disponibilidade> busc(String horario) throws Exception {
+//
+//        String query = "select * from disponibilidade_vet where horario_inicio = ? ";
+//
+//        PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
+//
+//        ps.setString(1, horario);
+//
+//        ResultSet rs = ps.executeQuery();
+//
+//        List<Disponibilidade> horarios = new ArrayList<>();
+//
+//
+//
+//        while (rs.next()) {
+//
+//            horarios.add(preencherDisponibilidade(rs));
+//
+//        }
+//
+//        ps.close();
+//
+//        rs.close();
+//
+//
+//
+//        return horarios;
+//
+//    }
+	
+	
 }

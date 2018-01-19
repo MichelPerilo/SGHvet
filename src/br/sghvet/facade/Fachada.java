@@ -19,6 +19,7 @@ public class Fachada implements IFachada {
 	private ControlPdf pdfControl;
 	private IControlResultadoExame controlRegistro;
 	private CadastroDisponibilidade cadastroDisp;
+	private ICadastroConsulta cadastroConsulta;
 
 	public static Fachada instance;
 
@@ -31,6 +32,7 @@ public class Fachada implements IFachada {
 		this.controlPaciente = new ControlPaciente();
 		this.controlRegistro = new ControlResultadoExame();
 		this.cadastroDisp = new CadastroDisponibilidade();
+		this.cadastroConsulta = new CadastroConsulta();
 	}
 
 	public static Fachada getInstance() {
@@ -46,6 +48,8 @@ public class Fachada implements IFachada {
 		controlRegistro.conectar(conexao);
 		cadastroReqExame.conectar(conexao);
 		cadastroDisp.conectar(conexao);
+		cadastroConsulta.conectar(conexao);
+		
 	}
 
 	public void carregarAgendamento() throws Exception {
@@ -332,5 +336,36 @@ public class Fachada implements IFachada {
 	public void deletarHorario(Disponibilidade disp) throws Exception {
 		cadastroDisp.deletarHorario(disp);
 	}
+	
+	
+	public boolean cadastrarConsulta(Consulta consulta) throws Exception {
+		return cadastroConsulta.cadastrarConsulta(consulta);
+	}
+
+	@Override
+	public boolean removerConsulta(Consulta consulta) throws Exception {
+		return cadastroConsulta.removerConsulta(consulta);
+	}
+
+	@Override
+	public boolean atualizarConsulta(Consulta consulta) throws Exception {
+		return cadastroConsulta.atualizarConsulta(consulta);
+	}
+
+	@Override
+	public List<Consulta> buscarConsultaCpf(String cpf) throws Exception {
+		return cadastroConsulta.buscarConsultaCpf(cpf);
+	}
+
+	@Override
+	public List<Consulta> buscarConsultaVet(String cpf) throws Exception {
+		return cadastroConsulta.buscarConsultaVet(cpf);
+	}
+
+	@Override
+	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception {
+		return cadastroConsulta.buscarConsultaPro(prontuario);
+	}
+
 
 }
