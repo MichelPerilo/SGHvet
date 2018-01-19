@@ -10,26 +10,25 @@ import br.sghvet.model.TipoUsuario;
 import br.sghvet.model.Usuario;
 
 public class ControleCadastro {
-	
-	
-	
-	//chamados dependendo do tipo de usuario selecionado no cadastro
-	
-	public void cadastrarAdm(String nome, String cpf, LocalDate dataNasc, CargoAdm cargo, String contato, String email, String senha) {
-		
+
+	// chamados dependendo do tipo de usuario selecionado no cadastro
+
+	public void cadastrarAdm(String nome, String cpf, LocalDate dataNasc, CargoAdm cargo, String contato, String email,
+			String senha) throws Exception {
+
 		Administrativo adm = new Administrativo(nome, cpf, dataNasc, cargo, contato, email);
 		Usuario user = new Usuario(cpf, TipoUsuario.ADMINISTRATIVO);
-		
-		//a fazer
+
+		// a fazer
 	}
-	
+
 	public void cadastrarVet() {
-		//a fazer
+		// a fazer
 	}
-	
+
 	public void cadastrarAux() {
-		
-		//a fazer
+
+		// a fazer
 	}
 
 }

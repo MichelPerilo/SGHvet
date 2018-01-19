@@ -399,12 +399,12 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	public void handlerSalvarEditTutor() {
 
+
 		Endereco e = new Endereco(tx_PNTutorDados_Rua.getText(), tx_PNTutorDados_Bairro.getText(),
 				tx_PNTutorDados_CEP.getText(), tx_PNTutorDados_Numero.getText(), tx_PNTutorDados_Complemento.getText(),
 				tx_PNTutorDados_Cidade.getText(), tx_PNTutorDados_Estado.getText(), tx_PNTutorDados_CPF.getText());
 		Tutor t = new Tutor(tx_PNTutorDados_Nome.getText(), tx_PNTutorDados_CPF.getText(),
 				tx_PNTutorDados_Sexo.getText(), tx_PNTutorDados_Celular.getText(), e);
-
 		try {
 			control.atualizarTutor(t);
 			alert.setHeaderText("SALVO COM SUCESSO");
@@ -422,7 +422,6 @@ public class UIAgendamentoController implements Initializable {
 			tx_PNTutorDados_Estado.setEditable(false);
 			carregarTableViewTutor();
 		} catch (Exception e1) {
-
 			e1.printStackTrace();
 		}
 	}
