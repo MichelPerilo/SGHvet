@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="337.0" style="-fx-background-color: #E0F2F7;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <DatePicker layoutX="119.0" layoutY="90.0" />
+      <DatePicker fx:id="dt_data" layoutX="119.0" layoutY="90.0" />
       <Label layoutX="14.0" layoutY="94.0" text="SELECIONE DATA" />
       <Label layoutX="15.0" layoutY="156.0" text="CPF TUTOR" />
       <Label layoutX="15.0" layoutY="230.0" text="SELECIONE UM ANIMAL" />
