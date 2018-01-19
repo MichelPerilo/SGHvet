@@ -12,6 +12,7 @@ import br.sghvet.facade.Fachada;
 import br.sghvet.facade.IFachada;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Consulta;
+import br.sghvet.model.Disponibilidade;
 import br.sghvet.model.Veterinario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,8 +35,9 @@ public class UINovaConsultaController implements Initializable {
 
 	@FXML
 	private ComboBox<String> cb_horariosDIsponiveis;
-	private ObservableList<String> horas = FXCollections.observableArrayList("07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00");
-	
+	private ObservableList<String> horas = FXCollections.observableArrayList("07:00", "08:00", "09:00", "10:00",
+			"11:00", "12:00", "14:00", "15:00", "16:00");
+
 	@FXML
 	private Label lb_prontuario;
 
@@ -50,7 +52,7 @@ public class UINovaConsultaController implements Initializable {
 	private Button btnFecharCencelar;
 
 	@FXML
-	private ComboBox<String> lb_medicoResponsavel;
+	private ComboBox<String> cb_medicoResponsavel;
 	private ObservableList<String> listmedicoResponsavel;
 
 	@FXML
@@ -61,6 +63,7 @@ public class UINovaConsultaController implements Initializable {
 
 	private Stage stage;
 	private LocalDate DataSelecionada;
+	private String cpfMedico;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -68,13 +71,25 @@ public class UINovaConsultaController implements Initializable {
 		control = new Fachada();
 
 	}
- 
+
 	@FXML
 	public void handlerAgendar() {
+		Consulta consulta = null;
+		if (cb_horariosDIsponiveis.getValue() != null && !cb_horariosDIsponiveis.equals("")) {
+		String[] horas = cb_horariosDIsponiveis.getValue().split(":");
+		LocalTime lt = LocalTime.of(Integer.parseInt(horas[0]),Integer.parseInt(horas[1]));
+		consulta = new Consulta(getDataSelecionada(), lt, tx_cpftutor.getText(),
+				Integer.parseInt(lb_prontuario.getText()), getCpfMedico());
 		
+		}
 		
-		Consulta consulta = new Consulta(getDataSelecionada(), horario, tx_cpftutor.getText(), Long.parseLong(lb_prontuario.getText()), cpfVeterinario);
-         
+		try {
+			control.cadastrarConsulta(consulta);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	@FXML
@@ -91,11 +106,10 @@ public class UINovaConsultaController implements Initializable {
 		this.stage.initStyle(StageStyle.UNDECORATED);
 	}
 
-
 	public void setDataSelecionada(LocalDate data) {
 
 		this.DataSelecionada = data;
-		DateTimeFormatter formatador =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		this.lb_dataSelecionada.setText(DataSelecionada.format(formatador));
 
 	}
@@ -174,20 +188,50 @@ public class UINovaConsultaController implements Initializable {
 		}
 
 	}
-		
+
 	private void SetCB() {
 
 		cb_horariosDIsponiveis.setItems(horas);
 
 	}
-	
-	public List ListaMedicos(String cpf) {
 
-		List<Veterinario> list = new ArrayList<>();
+	@FXML
+	public void handlerDisponivel() throws Exception {
+
+		if (cb_horariosDIsponiveis.getValue() != null && !cb_horariosDIsponiveis.equals(""))
+			AtualizaVeterinario(cb_horariosDIsponiveis.getValue());
+
+	}
+
+	public void AtualizaVeterinario(String horario) {
 
 		try {
 
-//			list = control.buscarVeterinarios(cpf);
+			List<Disponibilidade> listA = ListaMedicos(horario);
+			List<String> nomesA = new ArrayList<>();
+
+			for (Disponibilidade dis : listA) {
+
+				nomesA.add(control.buscaVeterinario(dis.getCpfVet()).getNome());
+			}
+
+			listmedicoResponsavel = FXCollections.observableArrayList(nomesA);
+			cb_medicoResponsavel.setItems(listmedicoResponsavel);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	private List<Disponibilidade> ListaMedicos(String horario) {
+
+		List<Disponibilidade> list = new ArrayList<>();
+
+		try {
+
+			list = control.buscaDisponibilidade(horario);
 
 		} catch (Exception e) {
 
@@ -197,28 +241,38 @@ public class UINovaConsultaController implements Initializable {
 		return list;
 	}
 
-	public void AtualizaVeterinario(){
-		
-//		try {
-//
-//			List<Animal> listA = pegaAnimais(cpf);
-//			List<String> nomesA = new ArrayList<>();
-//
-//			for (Animal animal : listA) {
-//
-//				nomesA.add(animal.getNome());
-//			}
-//
-//			listmedicoResponsavel = FXCollections.observableArrayList(nomesA);
-//			cb_nomeAnimal.setItems(listmedicoResponsavel);
-//
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+	@FXML
+	public void handleEscolheMedico() {
 
-		
+		try {
 
+			
+			if (cb_horariosDIsponiveis.getValue() != null && !cb_horariosDIsponiveis.equals("")) {
+				List<Disponibilidade> listA = ListaMedicos(cb_horariosDIsponiveis.getValue());
+
+				for (Disponibilidade dis : listA) {
+
+					if (cb_medicoResponsavel.getValue().equals(control.buscaVeterinario(dis.getCpfVet()))) {
+
+						setCpfMedico(dis.getCpfVet());
+					}
+
+				}
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public String getCpfMedico() {
+		return cpfMedico;
+	}
+
+	public void setCpfMedico(String cpfMedico) {
+		this.cpfMedico = cpfMedico;
 	}
 	
 	

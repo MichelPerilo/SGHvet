@@ -12,4 +12,5 @@ public interface IRepositorioDisponibilidade {
 	void atualizarHorario(Disponibilidade dispo) throws Exception;
 	List<Disponibilidade> buscaHorarios(String cpf_vet) throws Exception;
 	void deletarHorario(Disponibilidade dispo)throws Exception;
+	List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception;
 }

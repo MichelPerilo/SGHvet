@@ -331,6 +331,11 @@ public class Fachada implements IFachada {
 	public List<Disponibilidade> buscaHorarios(String cpf_vet) throws Exception {
 		return cadastroDisp.buscaHorarios(cpf_vet);
 	}
+	
+	@Override
+	public List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception {
+		return cadastroDisp.buscaDisponibilidade(horario);
+	}
 
 	@Override
 	public void deletarHorario(Disponibilidade disp) throws Exception {

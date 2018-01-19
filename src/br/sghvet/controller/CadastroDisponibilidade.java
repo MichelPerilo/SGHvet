@@ -34,4 +34,9 @@ public class CadastroDisponibilidade {
 	public void deletarHorario(Disponibilidade disp) throws Exception {
 		repo.deletarHorario(disp);
 	}
+
+	public List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception {
+		return repo.buscaDisponibilidade(horario);
+		
+	}
 }

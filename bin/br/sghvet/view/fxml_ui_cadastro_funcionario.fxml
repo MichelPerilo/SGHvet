@@ -61,7 +61,7 @@
       <ChoiceBox fx:id="choicebox_cargo" layoutX="434.0" layoutY="285.0" prefHeight="35.0" prefWidth="183.0" AnchorPane.rightAnchor="75.0" />
       <Button fx:id="button_salvar" layoutX="526.0" layoutY="471.0" mnemonicParsing="false" onAction="#handler_salvar" prefHeight="35.0" prefWidth="91.0" style="-fx-background-color: ffa500; -fx-background-radius: 0;" text="Salvar" textFill="WHITE" AnchorPane.rightAnchor="75.0" />
       <PasswordField fx:id="passwordfield_senha" layoutX="117.0" layoutY="403.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="183.0" promptText="******" AnchorPane.leftAnchor="117.0" />
-      <Label layoutX="66.0" layoutY="411.0" text="Senha:" textFill="#bbbbbb">
+      <Label fx:id="label_senha" layoutX="66.0" layoutY="411.0" text="Senha:" textFill="#bbbbbb">
          <font>
             <Font size="14.0" />
          </font>

@@ -89,7 +89,8 @@ public interface IFachada {
 	public boolean atualizarConsulta(Consulta consulta) throws Exception;
 	public List<Consulta> buscarConsultaCpf(String cpf) throws Exception;
 	public List<Consulta> buscarConsultaVet(String cpf) throws Exception;
-	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception; 
+	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception;
+	List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception; 
 
 
 
