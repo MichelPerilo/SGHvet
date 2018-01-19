@@ -2,7 +2,7 @@ package br.sghvet.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
+
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import com.mysql.fabric.xmlrpc.base.Data;
+
 
 import br.sghvet.facade.Fachada;
 import br.sghvet.facade.IFachada;
@@ -981,6 +981,11 @@ public class UIAgendamentoController implements Initializable {
 		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento41.getText()));
 	}
 
+	@FXML
+	public void handlerNovoAgendamento42() {
+
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento42.getText()));
+	}
 	public void NovoAgendamento(int dia) {
 
 		try {
