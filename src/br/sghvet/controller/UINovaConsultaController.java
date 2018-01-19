@@ -58,7 +58,6 @@ public class UINovaConsultaController implements Initializable {
 	@FXML
 	private Button bt_cancellar;
 
-	IFachada control;
 	Alert alert = new Alert(AlertType.WARNING);
 
 	private Stage stage;
@@ -68,7 +67,6 @@ public class UINovaConsultaController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		control = new Fachada();
 		SetCB();
 
 	}
@@ -77,15 +75,15 @@ public class UINovaConsultaController implements Initializable {
 	public void handlerAgendar() {
 		Consulta consulta = null;
 		if (cb_horariosDIsponiveis.getValue() != null && !cb_horariosDIsponiveis.equals("")) {
-		String[] horas = cb_horariosDIsponiveis.getValue().split(":");
-		LocalTime lt = LocalTime.of(Integer.parseInt(horas[0]),Integer.parseInt(horas[1]));
-		consulta = new Consulta(getDataSelecionada(), lt, tx_cpftutor.getText(),
-				Integer.parseInt(lb_prontuario.getText()), getCpfMedico());
-		
+			String[] horas = cb_horariosDIsponiveis.getValue().split(":");
+			LocalTime lt = LocalTime.of(Integer.parseInt(horas[0]), Integer.parseInt(horas[1]));
+			consulta = new Consulta(getDataSelecionada(), lt, tx_cpftutor.getText(),
+					Integer.parseInt(lb_prontuario.getText()), getCpfMedico());
+
 		}
-		
+
 		try {
-			control.cadastrarConsulta(consulta);
+			Fachada.getInstance().cadastrarConsulta(consulta);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -156,7 +154,7 @@ public class UINovaConsultaController implements Initializable {
 
 		try {
 
-			list = control.buscarAnimal(cpf);
+			list = Fachada.getInstance().buscarAnimal(cpf);
 
 		} catch (Exception e) {
 
@@ -213,7 +211,7 @@ public class UINovaConsultaController implements Initializable {
 
 			for (Disponibilidade dis : listA) {
 
-				nomesA.add(control.buscaVeterinario(dis.getCpfVet()).getNome());
+				nomesA.add(Fachada.getInstance().buscaVeterinario(dis.getCpfVet()).getNome());
 			}
 
 			listmedicoResponsavel = FXCollections.observableArrayList(nomesA);
@@ -232,7 +230,7 @@ public class UINovaConsultaController implements Initializable {
 
 		try {
 
-			list = control.buscaDisponibilidade(horario);
+			list = Fachada.getInstance().buscaDisponibilidade(horario);
 
 		} catch (Exception e) {
 
@@ -247,13 +245,13 @@ public class UINovaConsultaController implements Initializable {
 
 		try {
 
-			
 			if (cb_horariosDIsponiveis.getValue() != null && !cb_horariosDIsponiveis.equals("")) {
 				List<Disponibilidade> listA = ListaMedicos(cb_horariosDIsponiveis.getValue());
 
 				for (Disponibilidade dis : listA) {
 
-					if (cb_medicoResponsavel.getValue().equals(control.buscaVeterinario(dis.getCpfVet()))) {
+					if (cb_medicoResponsavel.getValue()
+							.equals(Fachada.getInstance().buscaVeterinario(dis.getCpfVet()))) {
 
 						setCpfMedico(dis.getCpfVet());
 					}
@@ -275,7 +273,5 @@ public class UINovaConsultaController implements Initializable {
 	public void setCpfMedico(String cpfMedico) {
 		this.cpfMedico = cpfMedico;
 	}
-	
-	
 
 }

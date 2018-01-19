@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
 import br.sghvet.facade.Fachada;
 import br.sghvet.facade.IFachada;
 import br.sghvet.model.Animal;
@@ -37,37 +36,35 @@ public class UINovoExameController implements Initializable {
 	@FXML
 	private Button btnSalvar;
 	@FXML
-	private Button btnbuscar;	
+	private Button btnbuscar;
 	@FXML
 	private Label lb_prontuario;
 	@FXML
-    private DatePicker dt_data;
-	
+	private DatePicker dt_data;
+
 	Alert alert = new Alert(AlertType.WARNING);
 	private Stage stage;
 	private String cpfMedico;
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 	}
-	
-	
+
 	@FXML
 	public void fechar() {
 		btnFecharCencelar.getScene().getWindow().hide();
 	}
-	
+
 	public Stage getStage() {
 		return stage;
 	}
 
-	
 	public void setStage(Stage stage) {
 		this.stage = stage;
 		this.stage.initStyle(StageStyle.UNDECORATED);
 	}
-	
+
 	@FXML
 	public void handlerPesquisar() throws Exception {
 
@@ -76,7 +73,6 @@ public class UINovoExameController implements Initializable {
 
 	}
 
-	
 	public void AtualizaAnimais(String cpf) {
 
 		try {
@@ -114,7 +110,7 @@ public class UINovoExameController implements Initializable {
 
 		return list;
 	}
-	
+
 	@FXML
 	public void handlerEscolheAnimal() {
 
@@ -139,34 +135,30 @@ public class UINovoExameController implements Initializable {
 		}
 
 	}
-	
+
 	@FXML
 	public void salvar() {
-		
-		LocalDate ld = dt_data.getValue();
-		RequisicaoExame rq =  new RequisicaoExame(ld, tx_cpftutor.getText(), Integer.parseInt(lb_prontuario.getText()), Fachada.getInstance().getCpfLogado(), true);
-		
-	try {
-		Fachada.getInstance().cadastraReqExame(rq);
-		Fachada.getInstance().gerarPdfRequisicao(rq);
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-		
-		
-		
-	}
 
+		LocalDate ld = dt_data.getValue();
+		RequisicaoExame rq = new RequisicaoExame(ld, tx_cpftutor.getText(), Integer.parseInt(lb_prontuario.getText()),
+				Fachada.getInstance().getCpfLogado(), true);
+
+		try {
+			Fachada.getInstance().cadastraReqExame(rq);
+			Fachada.getInstance().gerarPdfRequisicao(rq);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 	public String getCpfMedico() {
 		return cpfMedico;
 	}
 
-
 	public void setCpfMedico(String cpfMedico) {
 		this.cpfMedico = cpfMedico;
 	}
-	
-	
+
 }

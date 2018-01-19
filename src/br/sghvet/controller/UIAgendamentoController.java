@@ -44,7 +44,7 @@ import javafx.stage.StageStyle;
 
 public class UIAgendamentoController implements Initializable {
 
-	IFachada control;;
+	//IFachada control;;
 	Alert alert = new Alert(AlertType.WARNING);
 	private String cpfLogado;
 	private Stage stage;
@@ -60,7 +60,7 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	private Pane pn_FichaCLinica3;
     @FXML
-    private MenuButton Mn_buttonNomeFunciona;
+    private MenuButton Mn_buttonNomeFuncionario;
 
 	// Painel FichaCLinica1
 	@FXML
@@ -285,8 +285,7 @@ public class UIAgendamentoController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		try {
-			control = new Fachada();
-			control.carregarAgendamento();
+			Fachada.getInstance().carregarAgendamento();
 			carregaDias();
 			FuncionarioLogado(getCpfLogado());
 		} catch (Exception e) {
@@ -306,7 +305,7 @@ public class UIAgendamentoController implements Initializable {
 		tc_AgendamentoTelefone.setCellValueFactory(new PropertyValueFactory<>("contato"));
 
 		try {
-			observableListTutor = FXCollections.observableArrayList(control.buscarALLTutor());
+			observableListTutor = FXCollections.observableArrayList(Fachada.getInstance().buscarALLTutor());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -419,7 +418,7 @@ public class UIAgendamentoController implements Initializable {
 					tx_PNTutorDados_Estado.getText(), tx_PNTutorDados_CPF.getText());
 			Tutor t = new Tutor(tx_PNTutorDados_Nome.getText(), tx_PNTutorDados_CPF.getText(),
 					tx_PNTutorDados_Sexo.getText(), tx_PNTutorDados_Celular.getText(), e);
-			control.atualizarTutor(t);
+			Fachada.getInstance().atualizarTutor(t);
 			alert.setHeaderText("SALVO COM SUCESSO");
 			alert.showAndWait();
 			tx_PNTutorDados_Nome.setEditable(false);
@@ -463,7 +462,7 @@ public class UIAgendamentoController implements Initializable {
 		a.setNumProntuario(Long.parseLong(tx_PNTutorAnimais_Prontuario.getText()));
 
 		try {
-			control.atualizarAnimal(a);
+			Fachada.getInstance().atualizarAnimal(a);
 			tx_PNTutorAnimais_Nome.setEditable(false);
 			tx_PNTutorAnimais_Idade.setEditable(false);
 			tx_PNTutorAnimais_Raca.setEditable(false);
@@ -496,7 +495,7 @@ public class UIAgendamentoController implements Initializable {
 		AtualizaAnimais(cpf);
 		Tutor t;
 		try {
-			t = control.buscarTutor(cpf);
+			t = Fachada.getInstance().buscarTutor(cpf);
 
 			lb_PNTutorNOME.setText(t.getNome());
 			lb_PN_Nome.setText("Nome: " + t.getNome());
@@ -577,7 +576,7 @@ public class UIAgendamentoController implements Initializable {
 
 		try {
 
-			list = control.buscarAnimal(cpf);
+			list = Fachada.getInstance().buscarAnimal(cpf);
 
 		} catch (Exception e) {
 
@@ -1077,7 +1076,9 @@ public class UIAgendamentoController implements Initializable {
 	public void FuncionarioLogado(String cpf) {
 		
 		try {
-			Mn_buttonNomeFunciona.setText(control.buscaAdm(cpf).getNome());
+			String nome = Fachada.getInstance().buscaAdm(Fachada.getInstance().getCpfLogado()).getNome();
+			System.out.println(nome);
+			Mn_buttonNomeFuncionario.setText(nome);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

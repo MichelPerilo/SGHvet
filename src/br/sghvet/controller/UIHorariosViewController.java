@@ -11,17 +11,17 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class UIHorariosViewController implements Initializable {
-	
+
 	private Stage stage;
-	
-	IFachada control;
+
 	Alert alert = new Alert(AlertType.WARNING);
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public Stage getStage() {
 		return stage;
 	}

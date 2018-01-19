@@ -67,23 +67,23 @@ public class UiLoginController implements Initializable{
 					
 					if((Fachada.getInstance().buscaAdm(user.getCpf()).getCargo()) == CargoAdm.ATENDENTE) {
 						
-//						AnchorPane  secretaria = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
-//						anchorpane_principal.getChildren().setAll(secretaria);
+						AnchorPane  secretaria = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
+						anchorpane_principal.getChildren().setAll(secretaria);
 						
 						
 						
-						FXMLLoader loader = new FXMLLoader();
-						loader.setLocation(UIAgendamentoController.class.getResource("../view/fxml_Agendamento.fxml"));
-						AnchorPane page;
-						page = (AnchorPane) loader.load();
-						Stage stage = new Stage();
-						stage.setTitle("Secretaria");
-						Scene scene = new Scene(page);
-						stage.setScene(scene);
-						UIAgendamentoController controller = loader.getController();
-						controller.setCpfLogado(textfield_cpf.getText());
-						controller.setStage(stage);
-						stage.showAndWait();
+//						FXMLLoader loader = new FXMLLoader();
+//						loader.setLocation(UIAgendamentoController.class.getResource("../view/fxml_Agendamento.fxml"));
+//						AnchorPane page;
+//						page = (AnchorPane) loader.load();
+//						Stage stage = new Stage();
+//						stage.setTitle("Secretaria");
+//						Scene scene = new Scene(page);
+//						stage.setScene(scene);
+//						UIAgendamentoController controller = loader.getController();
+//						controller.setCpfLogado(textfield_cpf.getText());
+//						controller.setStage(stage);
+//						stage.showAndWait();
 										
 						
 						

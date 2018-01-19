@@ -24,7 +24,6 @@ import javafx.stage.StageStyle;
 public class UINovoTutorController implements Initializable {
 
 	private Stage stage;
-	IFachada control;
 	Alert alert = new Alert(AlertType.WARNING);
 
 	// Cadastro Tutor
@@ -93,8 +92,7 @@ public class UINovoTutorController implements Initializable {
 
 		try {
 
-			control = new Fachada();
-			control.carregarAgendamento();
+			Fachada.getInstance().carregarAgendamento();
 
 		} catch (Exception e) {
 
@@ -154,7 +152,7 @@ public class UINovoTutorController implements Initializable {
 		tx_Idade.setEditable(false);
 		try {
 
-			control.cadastrarAnimal(a);
+			Fachada.getInstance().cadastrarAnimal(a);
 			alert.setHeaderText("ANIMAL SALVO COM SUCESSO");
 			alert.showAndWait();
 
@@ -173,7 +171,7 @@ public class UINovoTutorController implements Initializable {
 			Tutor t = new Tutor(tx_NomeTutor.getText(), tx_CPF.getText(), cb_SexoTutor.getValue(), tx_Celular.getText(),
 					end);
 
-			control.cadastrarTutor(t);
+			Fachada.getInstance().cadastrarTutor(t);
 			alert.setHeaderText("TUTOR SALVO COM SUCESSO");
 			alert.showAndWait();
 			tx_NomeTutor.setEditable(false);

@@ -18,7 +18,6 @@ public class UINovaSenhaController implements Initializable {
 	private Stage stage;
 	@FXML
 	private Button btnFecharCencelar;
-	IFachada control;
 	Alert alert = new Alert(AlertType.WARNING);
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

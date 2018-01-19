@@ -11,30 +11,31 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class UiClinicoController implements Initializable{
-	
+public class UiClinicoController implements Initializable {
+
 	@FXML
 	private AnchorPane anchorpane_info;
-	private String cpfLogado;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void handler_AtendimentosDoDia() throws IOException{
-		AnchorPane anchorpane_atendimentos_do_dia = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_atendimentos_do_dia.fxml"));
-	    anchorpane_info.getChildren().setAll(anchorpane_atendimentos_do_dia);
-	    
+	public void handler_AtendimentosDoDia() throws IOException {
+		AnchorPane anchorpane_atendimentos_do_dia = (AnchorPane) FXMLLoader
+				.load(getClass().getResource("../view/fxml_ui_atendimentos_do_dia.fxml"));
+		anchorpane_info.getChildren().setAll(anchorpane_atendimentos_do_dia);
+
 	}
-	
-	public void handler_DisponibilidadeMedica() throws IOException{
-		AnchorPane anchorpane_disponibilidade_medica = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_disponibilidade_medica.fxml"));
-	    anchorpane_info.getChildren().setAll(anchorpane_disponibilidade_medica);
-	    
+
+	public void handler_DisponibilidadeMedica() throws IOException {
+		AnchorPane anchorpane_disponibilidade_medica = (AnchorPane) FXMLLoader
+				.load(getClass().getResource("../view/fxml_ui_disponibilidade_medica.fxml"));
+		anchorpane_info.getChildren().setAll(anchorpane_disponibilidade_medica);
+
 	}
-	
+
 	@FXML
 	public void handlerMarcacaoExame() {
 
@@ -49,7 +50,6 @@ public class UiClinicoController implements Initializable{
 			novoStage.setScene(scene);
 			novoStage.setResizable(false);
 			UINovoExameController controller = loader.getController();
-			controller.setCpfMedico(getCpfLogado());
 			controller.setStage(novoStage);
 			novoStage.showAndWait();
 
@@ -58,15 +58,5 @@ public class UiClinicoController implements Initializable{
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public String getCpfLogado() {
-		return cpfLogado;
-	}
 
-	public void setCpfLogado(String cpfLogado) {
-		this.cpfLogado = cpfLogado;
-	}
-	
-	
 }

@@ -23,7 +23,6 @@ public class UINovoAnimalController implements Initializable {
 
 	private Stage stage;
 	private String cpf;
-	IFachada control;
 	Alert alert = new Alert(AlertType.WARNING);
 
 	@FXML
@@ -51,8 +50,7 @@ public class UINovoAnimalController implements Initializable {
 
 		try {
 
-			control = new Fachada();
-			control.carregarAgendamento();
+			Fachada.getInstance().carregarAgendamento();
 			tx_ProntuarioAnimal.setEditable(false);
 			SetCB();
 
@@ -102,7 +100,7 @@ public class UINovoAnimalController implements Initializable {
 				tx_PelagemAnimal.getText(), Double.parseDouble(tx_PesoAnimal.getText()));
 
 		try {
-			control.cadastrarAnimal(a);
+			Fachada.getInstance().cadastrarAnimal(a);
 			alert.setHeaderText("ANIMAL CADASTRADO COM SUCESSO");
 			alert.showAndWait();
 
