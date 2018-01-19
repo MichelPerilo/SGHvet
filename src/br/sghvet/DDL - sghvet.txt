@@ -2,11 +2,11 @@ drop schema if exists sghvet;
 create schema if not exists sghvet;
 use sghvet;
 
-CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335cargo';
+CREATE USER IF NOT EXISTS '10103566406'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335';
 -- senha de admsupremo eh 'abcd'
 FLUSH PRIVILEGES;
-GRANT CREATE USER, RELOAD ON *.* TO 'admsupremo'@'localhost' WITH GRANT OPTION;
-GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO 'admsupremo'@'localhost';
+GRANT CREATE USER, RELOAD ON *.* TO '10103566406'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO '10103566406'@'localhost';
 FLUSH PRIVILEGES;
 CREATE TABLE veterinario(
 nome varchar(100) not null,
@@ -153,8 +153,8 @@ CREATE TABLE registro(
     foreign key (id_exame) references req_exame(id) ON DELETE CASCADE
 ) ENGINE = innodb;
 
-INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('admsupremo', 'ADMINISTRATIVO');
-INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
+INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('10103566406', 'ADMINISTRATIVO');
+INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', '10103566406', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
 
 
 -- select * from usuario;
