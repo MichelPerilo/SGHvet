@@ -8,12 +8,14 @@ import br.sghvet.model.TipoUsuario;
 import br.sghvet.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -65,8 +67,26 @@ public class UiLoginController implements Initializable{
 					
 					if((Fachada.getInstance().buscaAdm(user.getCpf()).getCargo()) == CargoAdm.ATENDENTE) {
 						
-						AnchorPane  secretaria = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
-						anchorpane_principal.getChildren().setAll(secretaria);
+//						AnchorPane  secretaria = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
+//						anchorpane_principal.getChildren().setAll(secretaria);
+						
+						
+						
+						FXMLLoader loader = new FXMLLoader();
+						loader.setLocation(UIAgendamentoController.class.getResource("../view/fxml_Agendamento.fxml"));
+						AnchorPane page;
+						page = (AnchorPane) loader.load();
+						Stage stage = new Stage();
+						stage.setTitle("Secretaria");
+						Scene scene = new Scene(page);
+						stage.setScene(scene);
+						UIAgendamentoController controller = loader.getController();
+						controller.setCpfLogado(textfield_cpf.getText());
+						controller.setStage(stage);
+						stage.showAndWait();
+										
+						
+						
 					}else {
 					
 					AnchorPane anchorpane_administrativo = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_administrativo.fxml"));

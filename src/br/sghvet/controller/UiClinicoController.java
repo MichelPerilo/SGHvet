@@ -7,12 +7,15 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class UiClinicoController implements Initializable{
 	
 	@FXML
 	private AnchorPane anchorpane_info;
+	private String cpfLogado;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -31,4 +34,39 @@ public class UiClinicoController implements Initializable{
 	    anchorpane_info.getChildren().setAll(anchorpane_disponibilidade_medica);
 	    
 	}
+	
+	@FXML
+	public void handlerMarcacaoExame() {
+
+		try {
+
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(UINovoExameController.class.getResource("../view/fxml_marcacao_Exame.fxml"));
+			AnchorPane page;
+			page = (AnchorPane) loader.load();
+			Stage novoStage = new Stage();
+			Scene scene = new Scene(page);
+			novoStage.setScene(scene);
+			novoStage.setResizable(false);
+			UINovoExameController controller = loader.getController();
+			controller.setCpfMedico(getCpfLogado());
+			controller.setStage(novoStage);
+			novoStage.showAndWait();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public String getCpfLogado() {
+		return cpfLogado;
+	}
+
+	public void setCpfLogado(String cpfLogado) {
+		this.cpfLogado = cpfLogado;
+	}
+	
+	
 }

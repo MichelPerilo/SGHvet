@@ -31,6 +31,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -38,11 +39,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class UIAgendamentoController implements Initializable {
 
 	IFachada control;;
 	Alert alert = new Alert(AlertType.WARNING);
+	private String cpfLogado;
+	private Stage stage;
 
 	// Painel Agenda
 
@@ -52,6 +56,8 @@ public class UIAgendamentoController implements Initializable {
 	private Pane pn_FichaCLinica1;
 	@FXML
 	private Pane pn_FichaCLinica3;
+    @FXML
+    private MenuButton Mn_buttonNomeFunciona;
 
 	// Painel FichaCLinica1
 	@FXML
@@ -1048,4 +1054,33 @@ public class UIAgendamentoController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+
+	public String getCpfLogado() {
+		return cpfLogado;
+	}
+
+	public void setCpfLogado(String cpfLogado) {
+		this.cpfLogado = cpfLogado;
+	}
+	
+	public void FuncionarioLogado(String cpf) {
+		
+		try {
+			Mn_buttonNomeFunciona.setText(control.buscaAdm(cpf).getNome());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public Stage getStage() {
+		return stage;
+	}
+
+	
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+	
 }
