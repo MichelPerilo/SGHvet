@@ -90,7 +90,8 @@ public interface IFachada {
 	public List<Consulta> buscarConsultaCpf(String cpf) throws Exception;
 	public List<Consulta> buscarConsultaVet(String cpf) throws Exception;
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception;
-	List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception; 
+	public List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception;
+	
 
 
 }

@@ -69,6 +69,7 @@ public class UINovaConsultaController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		control = new Fachada();
+		SetCB();
 
 	}
 

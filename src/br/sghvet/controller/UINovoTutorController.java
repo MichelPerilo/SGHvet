@@ -1,6 +1,5 @@
 package br.sghvet.controller;
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,15 +21,14 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class UINovoTutorController  implements Initializable{
+public class UINovoTutorController implements Initializable {
 
 	private Stage stage;
-	IFachada control; 	
+	IFachada control;
 	Alert alert = new Alert(AlertType.WARNING);
 
-	
-//	Cadastro Tutor
-	
+	// Cadastro Tutor
+
 	@FXML
 	private TextField tx_NomeTutor;
 	@FXML
@@ -49,28 +47,25 @@ public class UINovoTutorController  implements Initializable{
 	private TextField tx_CEP;
 	@FXML
 	private TextField tx_Cidade;
-	
+
 	@FXML
-	private ComboBox<String > cb_SexoTutor;	
+	private ComboBox<String> cb_SexoTutor;
 	@FXML
 	private ComboBox<String> cb_Estado;
-			
+
 	@FXML
-	private Button	btSalvarCadastroTutor;	
-	
+	private Button btSalvarCadastroTutor;
+
 	@FXML
 	private Button btnFecharCadastroTutor;
 
-	
-	
-//	Cadastro Animal
-		
+	// Cadastro Animal
+
 	@FXML
-    private ComboBox<String> cb_Sexo;
-	
-	
-//	Animal
-	
+	private ComboBox<String> cb_Sexo;
+
+	// Animal
+
 	@FXML
 	private TextField tx_NomeAnimal;
 	@FXML
@@ -82,145 +77,128 @@ public class UINovoTutorController  implements Initializable{
 	@FXML
 	private TextField tx_Peso;
 	@FXML
-	private TextField tx_Idade;   
-    
-    
-  
-    
-    
-    private ObservableList<String> listEstadosCbbx = FXCollections.observableArrayList("AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO");
-    private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M","F");
-    private ObservableList<String> listSexoTutorCbbx = FXCollections.observableArrayList("M","F");
-    
+	private TextField tx_Idade;
 
+	private ObservableList<String> listEstadosCbbx = FXCollections.observableArrayList("AC", "AL", "AP", "AM", "BA",
+			"CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR",
+			"SC", "SP", "SE", "TO");
+	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M", "F");
+	private ObservableList<String> listSexoTutorCbbx = FXCollections.observableArrayList("M", "F");
 
-    @FXML
-    private Button btSalvarCadastroTutorAnimal;  
-    
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    	
-    	
-    	
-    	try {
-    		
+	@FXML
+	private Button btSalvarCadastroTutorAnimal;
+
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+
+		try {
+
 			control = new Fachada();
 			control.carregarAgendamento();
-		
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-		}    
-    	
-    	
-    	SetCB() ;
- 	
-       
-    }    
+		}
 
-    @FXML
-	public void fechar() {
-    	btnFecharCadastroTutor.getScene().getWindow().hide();
+		SetCB();
+
 	}
-	
-   
-    public Stage getStage() {
-        return stage;
-    }
 
-    
-    public void setStage(Stage stage) {
-        this.stage = stage;
-        this.stage.initStyle(StageStyle.UNDECORATED);
-    }
-	
-   
-    @FXML
-    public void handlerNovoAnimal() {
-    	
-    	
-    	
-    	
-    	tx_NomeAnimal.setText("");	
-    	tx_Raca.setText("");
-    	tx_Pelagem.setText("");
-    	tx_Peso.setText("");
-    	tx_Idade.setText("");
-    	tx_Especie.setText("");
-    	  
-    	
-    	cb_Sexo.setEditable(true);
-    	tx_NomeAnimal.setEditable(true);	
-    	tx_Raca.setEditable(true);
-    	tx_Especie.setEditable(true);
-    	tx_Pelagem.setEditable(true);
-    	tx_Peso.setEditable(true);
-    	tx_Idade.setEditable(true);
-    	
-        	       	     
-    }
-    
-    
-    @FXML
-    public void handlerSalvarNovoAnimal() { 	
-    	
-    	
-    	Animal a = new Animal(tx_NomeAnimal.getText(), tx_Especie.getText(),cb_Sexo.getValue(),Integer.parseInt(tx_Idade.getText()), tx_CPF.getText(),tx_Raca.getText(),tx_Pelagem.getText(),Double.parseDouble(tx_Peso.getText()));
-    	cb_Sexo.setEditable(false);
-    	tx_NomeAnimal.setEditable(false);	
-    	tx_Especie.setEditable(false);
-    	tx_Raca.setEditable(false);
-    	tx_Pelagem.setEditable(false);
-    	tx_Peso.setEditable(false);
-    	tx_Idade.setEditable(false);
-    	try {
-			    	
-	    	control.cadastrarAnimal(a);
-	    	alert.setHeaderText("ANIMAL SALVO COM SUCESSO");
-		    alert.showAndWait();
-						
+	@FXML
+	public void fechar() {
+		btnFecharCadastroTutor.getScene().getWindow().hide();
+	}
+
+	public Stage getStage() {
+		return stage;
+	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
+		this.stage.initStyle(StageStyle.UNDECORATED);
+	}
+
+	@FXML
+	public void handlerNovoAnimal() {
+
+		tx_NomeAnimal.setText("");
+		tx_Raca.setText("");
+		tx_Pelagem.setText("");
+		tx_Peso.setText("");
+		tx_Idade.setText("");
+		tx_Especie.setText("");
+
+		cb_Sexo.setEditable(true);
+		tx_NomeAnimal.setEditable(true);
+		tx_Raca.setEditable(true);
+		tx_Especie.setEditable(true);
+		tx_Pelagem.setEditable(true);
+		tx_Peso.setEditable(true);
+		tx_Idade.setEditable(true);
+
+	}
+
+	@FXML
+	public void handlerSalvarNovoAnimal() {
+
+		Animal a = new Animal(tx_NomeAnimal.getText(), tx_Especie.getText(), cb_Sexo.getValue(),
+				Integer.parseInt(tx_Idade.getText()), tx_CPF.getText(), tx_Raca.getText(), tx_Pelagem.getText(),
+				Double.parseDouble(tx_Peso.getText()));
+		cb_Sexo.setEditable(false);
+		tx_NomeAnimal.setEditable(false);
+		tx_Especie.setEditable(false);
+		tx_Raca.setEditable(false);
+		tx_Pelagem.setEditable(false);
+		tx_Peso.setEditable(false);
+		tx_Idade.setEditable(false);
+		try {
+
+			control.cadastrarAnimal(a);
+			alert.setHeaderText("ANIMAL SALVO COM SUCESSO");
+			alert.showAndWait();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
-    
-    
-    @FXML
-    private void handlerSalvarNovoTutor() {    	
-    	
-    	try {
-    		Endereco end = new Endereco(tx_Rua.getText(), tx_Bairro.getText(),tx_CEP.getText(),tx_Numero.getText(),tx_Complemento.getText(),tx_Cidade.getText(),cb_Estado.getValue(),tx_CPF.getText());
-    		Tutor t = new Tutor(tx_NomeTutor.getText(), tx_CPF.getText(), cb_SexoTutor.getValue(), tx_Celular.getText(), end);
-			
-    		control.cadastrarTutor(t);
-    		alert.setHeaderText("TUTOR SALVO COM SUCESSO");
-		    alert.showAndWait();
-    		tx_NomeTutor.setEditable(false);
-    		tx_CPF.setEditable(false);
-    		tx_Celular.setEditable(false);
-    		tx_Rua.setEditable(false);
-    		tx_Numero.setEditable(false);
-    		tx_Complemento.setEditable(false);
-    		tx_Bairro.setEditable(false);
-    		tx_CEP.setEditable(false);
-    		tx_Cidade.setEditable(false);
-    		
+	}
+
+	@FXML
+	private void handlerSalvarNovoTutor() {
+
+		try {
+			Endereco end = new Endereco(tx_Rua.getText(), tx_Bairro.getText(), tx_CEP.getText(), tx_Numero.getText(),
+					tx_Complemento.getText(), tx_Cidade.getText(), cb_Estado.getValue(), tx_CPF.getText());
+			Tutor t = new Tutor(tx_NomeTutor.getText(), tx_CPF.getText(), cb_SexoTutor.getValue(), tx_Celular.getText(),
+					end);
+
+			control.cadastrarTutor(t);
+			alert.setHeaderText("TUTOR SALVO COM SUCESSO");
+			alert.showAndWait();
+			tx_NomeTutor.setEditable(false);
+			tx_CPF.setEditable(false);
+			tx_Celular.setEditable(false);
+			tx_Rua.setEditable(false);
+			tx_Numero.setEditable(false);
+			tx_Complemento.setEditable(false);
+			tx_Bairro.setEditable(false);
+			tx_CEP.setEditable(false);
+			tx_Cidade.setEditable(false);
+
 		} catch (Exception e) {
 			alert.setHeaderText(e.getMessage());
-		    alert.showAndWait();
-		}   	
-    	
-    }
-    
-    private void SetCB() {
-    	
-    	cb_Estado.setItems(listEstadosCbbx);
-    	cb_Sexo.setItems(listSexoAnimaisCbbx);
-    	cb_SexoTutor.setItems(listSexoTutorCbbx);
-    	
-    }  
-       
-    
+			alert.showAndWait();
+		}
+
+	}
+
+	private void SetCB() {
+
+		cb_Estado.setItems(listEstadosCbbx);
+		cb_Sexo.setItems(listSexoAnimaisCbbx);
+		cb_SexoTutor.setItems(listSexoTutorCbbx);
+
+	}
+
 }

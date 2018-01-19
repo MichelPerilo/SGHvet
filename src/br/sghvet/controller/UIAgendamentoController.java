@@ -28,6 +28,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -47,6 +48,8 @@ public class UIAgendamentoController implements Initializable {
 	Alert alert = new Alert(AlertType.WARNING);
 	private String cpfLogado;
 	private Stage stage;
+//	@FXML
+//	private Button btnFecharCencelar;
 
 	// Painel Agenda
 
@@ -1061,6 +1064,8 @@ public class UIAgendamentoController implements Initializable {
 	}
 
 	public void setCpfLogado(String cpfLogado) {
+		
+		System.out.println(cpfLogado);
 		this.cpfLogado = cpfLogado;
 	}
 	
@@ -1084,4 +1089,10 @@ public class UIAgendamentoController implements Initializable {
 		this.stage = stage;
 	}
 	
+//	@FXML
+//	public void fechar() {
+//		btnFecharCencelar.getScene().getWindow().hide();
+//	}
+
+		
 }
