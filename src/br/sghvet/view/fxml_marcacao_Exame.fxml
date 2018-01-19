@@ -16,16 +16,16 @@
       <Label layoutX="15.0" layoutY="156.0" text="CPF TUTOR" />
       <Label layoutX="15.0" layoutY="230.0" text="SELECIONE UM ANIMAL" />
       <Label layoutX="17.0" layoutY="266.0" text="PONTUARIO" />
-      <Label layoutX="102.0" layoutY="266.0" text="xxxxxx" />
-      <TextField layoutX="80.0" layoutY="152.0" />
-      <ComboBox layoutX="153.0" layoutY="226.0" prefWidth="150.0" style="-fx-background-color: #D8D8D8;" />
+      <Label fx:id="lb_prontuario" layoutX="102.0" layoutY="266.0" text="xxxxxx" />
+      <TextField fx:id="tx_cpftutor" layoutX="80.0" layoutY="152.0" />
+      <ComboBox fx:id="cb_nomeAnimal" layoutX="153.0" layoutY="226.0" onAction="#handlerEscolheAnimal" prefWidth="150.0" style="-fx-background-color: #D8D8D8;" />
       <Label layoutX="29.0" layoutY="42.0" text="MARCAÇÃO DE EXAME" textAlignment="CENTER" textFill="#eb3131">
          <font>
             <Font name="Californian FB Bold" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="244.0" layoutY="306.0" mnemonicParsing="false" style="-fx-background-color: #BDBDBD;" text="SALVA" />
-      <Button layoutX="305.0" layoutY="9.0" mnemonicParsing="false" style="-fx-background-color: #BDBDBD;" text="x" />
-      <Button layoutX="245.0" layoutY="152.0" mnemonicParsing="false" style="-fx-background-color: #BDBDBD;" text="BUSCAR" />
+      <Button fx:id="btnSalvar" layoutX="244.0" layoutY="306.0" mnemonicParsing="false" onAction="#salvar" style="-fx-background-color: #BDBDBD;" text="SALVA" />
+      <Button fx:id="btnFecharCencelar" layoutX="305.0" layoutY="9.0" mnemonicParsing="false" onAction="#fechar" style="-fx-background-color: #BDBDBD;" text="x" />
+      <Button fx:id="btnbuscar" layoutX="245.0" layoutY="152.0" mnemonicParsing="false" onAction="#handlerPesquisar" style="-fx-background-color: #BDBDBD;" text="BUSCAR" />
    </children>
 </AnchorPane>
