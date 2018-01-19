@@ -3,6 +3,7 @@ package br.sghvet.facade;
 import java.sql.Connection;
 import java.util.List;
 
+import br.sghvet.controller.CadastroDisponibilidade;
 import br.sghvet.model.Administrativo;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Auxiliar;
@@ -89,6 +90,7 @@ public interface IFachada {
 	public List<Consulta> buscarConsultaCpf(String cpf) throws Exception;
 	public List<Consulta> buscarConsultaVet(String cpf) throws Exception;
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception; 
+
 
 
 }
