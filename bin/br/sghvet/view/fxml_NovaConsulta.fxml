@@ -4,28 +4,27 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UINovaConsultaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #CEF6F5;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UINovaConsultaController">
    <children>
       <Label layoutX="14.0" layoutY="42.0" text="DATA:" />
-      <Label layoutX="61.0" layoutY="43.0" text="DATA SELECIONADA" />
-      <Label layoutX="58.0" layoutY="98.0" text="HORARIOS DISPONIVEIS:" />
-      <ComboBox layoutX="208.0" layoutY="93.0" prefWidth="150.0" />
-      <Label layoutX="14.0" layoutY="176.0" text="CPF DO TUTOR:" />
-      <Label layoutX="14.0" layoutY="249.0" text="NOME DO ANIMAL:" />
-      <Label layoutX="398.0" layoutY="249.0" text="PRONTUARIO:" />
-      <Label layoutX="493.0" layoutY="249.0" text="XXXXXXXXX" />
-      <ComboBox layoutX="160.0" layoutY="244.0" prefHeight="28.0" prefWidth="202.0" />
-      <TextField layoutX="117.0" layoutY="172.0" prefHeight="26.0" prefWidth="223.0" />
-      <Label layoutX="16.0" layoutY="396.0" text="DESCRIÇÃO" />
-      <TextArea layoutX="112.0" layoutY="387.0" prefHeight="122.0" prefWidth="387.0" />
-      <Button layoutX="220.0" layoutY="540.0" mnemonicParsing="false" style="-fx-background-color: #04B404;" text="AGENDAR" textFill="WHITE" />
-      <Button fx:id="btnFecharCencelar" layoutX="305.0" layoutY="540.0" mnemonicParsing="false" onAction="#fechar" style="-fx-background-color: #F6CECE;" text="CANCELAR" textFill="WHITE" />
-      <Label layoutX="373.0" layoutY="98.0" text="TIPO:" />
-      <ComboBox layoutX="415.0" layoutY="93.0" prefHeight="28.0" prefWidth="157.0" />
-      <Separator layoutX="12.0" layoutY="337.0" prefHeight="3.0" prefWidth="574.0" />
+      <Label fx:id="lb_dataSelecionada" layoutX="61.0" layoutY="43.0" text="DATA SELECIONADA" />
+      <Label layoutX="329.0" layoutY="43.0" text="HORARIOS DISPONIVEIS:" />
+      <ComboBox fx:id="cb_horariosDIsponiveis" layoutX="469.0" layoutY="38.0" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #E0F2F7;" />
+      <Label layoutX="13.0" layoutY="88.0" text="CPF DO TUTOR:" />
+      <Label layoutX="14.0" layoutY="145.0" text="NOME DO ANIMAL:" />
+      <Label layoutX="305.0" layoutY="145.0" text="PRONTUARIO:" />
+      <Label fx:id="lb_prontuario" layoutX="400.0" layoutY="145.0" text="XXXXXXXXX" />
+      <ComboBox fx:id="cb_nomeAnimal" layoutX="135.0" layoutY="140.0" onAction="#handlerEscolheAnimal" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #E0F2F7;" />
+      <TextField fx:id="tx_cpftutor" layoutX="114.0" layoutY="84.0" prefHeight="26.0" prefWidth="164.0" />
+      <Button layoutX="225.0" layoutY="295.0" mnemonicParsing="false" style="-fx-background-color: #04B404;" text="AGENDAR" textFill="WHITE" />
+      <Button fx:id="btnFecharCencelar" layoutX="521.0" layoutY="308.0" mnemonicParsing="false" onAction="#fechar" style="-fx-background-color: #FE2E2E;" text="FECHAR" textFill="WHITE" />
+      <Separator layoutX="13.0" layoutY="258.0" prefHeight="3.0" prefWidth="574.0" />
+      <Label layoutX="13.0" layoutY="202.0" text="MÉDICO RESPONSAVEL:" />
+      <ComboBox fx:id="lb_medicoResponsavel" layoutX="159.0" layoutY="198.0" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #E0F2F7;" />
+      <Button fx:id="bt_cancellar" disable="true" layoutX="309.0" layoutY="295.0" mnemonicParsing="false" style="-fx-background-color: #F3F781;" text="CANCELAR" textAlignment="CENTER" textFill="#110202" />
+      <Button fx:id="handlerPesquisar" layoutX="296.0" layoutY="84.0" mnemonicParsing="false" style="-fx-background-color: #848484;" text="BUSCAR" textFill="WHITE" />
    </children>
 </AnchorPane>

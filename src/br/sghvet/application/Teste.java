@@ -1,10 +1,13 @@
 package br.sghvet.application;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -281,44 +284,54 @@ public class Teste {
 //
 //			}
 //		}
+//		
+//		IControlResultadoExame controlResultado;
+//		controlResultado = new ControlResultadoExame();
+//		CadastroReqExame cad = new CadastroReqExame();
+//		Connection conect;
+//		CadastroAnimal cada = new CadastroAnimal();
+//		CadastroTutor cadt = new CadastroTutor();
+//		CadastroVeterinario cadv = new CadastroVeterinario();
+//		CadastroUsuario cadu = new CadastroUsuario();
+//		try {
+//			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/sghvet", "admsupremo", "301716283811389038011477436469853762335");
+//			cad.conectar(conect);
+//			cadv.conectar(conect);
+//			cada.conectar(conect);
+//			cadt.conectar(conect);
+//			cadu.conectar(conect);
+//			cadu.cadastrarUsuario(new Usuario("12121212121", TipoUsuario.VETERINARIO), "123");
+//			//cadu.cadastrarUsuario(new Usuario("12345678911", TipoUsuario.VETERINARIO), "123");
+//			cadv.cadastrarVeterinario(new Veterinario("nome", "12121212121", LocalDate.of(2018, 01, 17), CargoVeterinario.MEDICO, "aba", "aba", "aba"));
+//			Tutor tut = new Tutor("tutorzinho", "07990666480", "m", "40028922123");
+//			cadt.cadastrarTutor(tut);
+//			cada.cadastrarAnimal(new Animal("juanito", "zumbi", "M", 5, "07990666480", "zumbizao", "obscura", 13.0));
+//			Animal a = (Animal)cada.buscarAnimal("07990666480").get(0);
+//			int pront = (int)a.getNumProntuario();
+//			RequisicaoExame req = new RequisicaoExame(LocalDate.of(2018, 01, 17), "07990666480", pront, "12121212121", true);
+//			cad.cadastraReqExame(req);
+//			controlResultado.conectar(conect);
+//			controlResultado.cadastrarRegistro(new ResultadoExame(1, 2, 3, 4, 5, "camser", "canser", "camcer", "cancer", "lmao", "roflmao", "gtfo", "cease", "yamero", "birdo"));
+//			ResultadoExame xablau = controlResultado.buscarRegistro(cad.buscaReqExame(1));
+//			System.out.println(xablau.getCavidadeAbdominal());
+//			xablau.setCavidadeAbdominal("viadao");
+//			controlResultado.atualizarRegistro(xablau);
+//			System.out.println(controlResultado.buscarRegistro(cad.buscaReqExame(1)).getCavidadeAbdominal());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
-		IControlResultadoExame controlResultado;
-		controlResultado = new ControlResultadoExame();
-		CadastroReqExame cad = new CadastroReqExame();
-		Connection conect;
-		CadastroAnimal cada = new CadastroAnimal();
-		CadastroTutor cadt = new CadastroTutor();
-		CadastroVeterinario cadv = new CadastroVeterinario();
-		CadastroUsuario cadu = new CadastroUsuario();
-		try {
-			conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/sghvet", "admsupremo", "301716283811389038011477436469853762335");
-			cad.conectar(conect);
-			cadv.conectar(conect);
-			cada.conectar(conect);
-			cadt.conectar(conect);
-			cadu.conectar(conect);
-			cadu.cadastrarUsuario(new Usuario("12121212121", TipoUsuario.VETERINARIO), "123");
-			//cadu.cadastrarUsuario(new Usuario("12345678911", TipoUsuario.VETERINARIO), "123");
-			cadv.cadastrarVeterinario(new Veterinario("nome", "12121212121", LocalDate.of(2018, 01, 17), CargoVeterinario.MEDICO, "aba", "aba", "aba"));
-			Tutor tut = new Tutor("tutorzinho", "07990666480", "m", "40028922123");
-			cadt.cadastrarTutor(tut);
-			cada.cadastrarAnimal(new Animal("juanito", "zumbi", "M", 5, "07990666480", "zumbizao", "obscura", 13.0));
-			Animal a = (Animal)cada.buscarAnimal("07990666480").get(0);
-			int pront = (int)a.getNumProntuario();
-			RequisicaoExame req = new RequisicaoExame(LocalDate.of(2018, 01, 17), "07990666480", pront, "12121212121", true);
-			cad.cadastraReqExame(req);
-			controlResultado.conectar(conect);
-			controlResultado.cadastrarRegistro(new ResultadoExame(1, 2, 3, 4, 5, "camser", "canser", "camcer", "cancer", "lmao", "roflmao", "gtfo", "cease", "yamero", "birdo"));
-			ResultadoExame xablau = controlResultado.buscarRegistro(cad.buscaReqExame(1));
-			System.out.println(xablau.getCavidadeAbdominal());
-			xablau.setCavidadeAbdominal("viadao");
-			controlResultado.atualizarRegistro(xablau);
-			System.out.println(controlResultado.buscarRegistro(cad.buscaReqExame(1)).getCavidadeAbdominal());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
+		  
+//		
+//		LocalDate hoje = LocalDate.now();
+//		DateTimeFormatter formatador =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//		hoje.format(formatador); //08/04/2014
+//		
+//	
+//		LocalTime agora = LocalTime.of(07, 00);
+////		DateTimeFormatter formatador =  DateTimeFormatter.ofPattern("hh:mm");
+////	    System.out.println(agora.format(formatador));
+//		System.out.println(agora);
 		
 		
 	}

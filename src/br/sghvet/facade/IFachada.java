@@ -81,6 +81,14 @@ public interface IFachada {
 	void atualizarHorario(Disponibilidade dispo) throws Exception;
 	List<Disponibilidade> buscaHorarios(String cpf_vet) throws Exception;
 	public void deletarHorario(Disponibilidade disp) throws Exception ;
+	
+	
+	public boolean cadastrarConsulta(Consulta consulta) throws Exception;
+	public boolean removerConsulta(Consulta consulta) throws Exception;	
+	public boolean atualizarConsulta(Consulta consulta) throws Exception;
+	public List<Consulta> buscarConsultaCpf(String cpf) throws Exception;
+	public List<Consulta> buscarConsultaVet(String cpf) throws Exception;
+	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception; 
 
 
 }

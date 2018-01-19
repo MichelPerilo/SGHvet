@@ -2,13 +2,16 @@ package br.sghvet.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.text.DateFormatSymbols;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.mysql.fabric.xmlrpc.base.Data;
 
 import br.sghvet.facade.Fachada;
 import br.sghvet.facade.IFachada;
@@ -357,8 +360,8 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	public void handlerPesquisar() throws Exception {
 
-		if(tx_BuscarTutor.getText() != null && !tx_BuscarTutor.getText().equals(""))
-		fazBusca(tx_BuscarTutor.getText());
+		if (tx_BuscarTutor.getText() != null && !tx_BuscarTutor.getText().equals(""))
+			fazBusca(tx_BuscarTutor.getText());
 
 	}
 
@@ -461,7 +464,7 @@ public class UIAgendamentoController implements Initializable {
 			AtualizaAnimais(tx_PNTutorDados_CPF.getText());
 			alert.setHeaderText("SALVO COM SUCESSO");
 			alert.showAndWait();
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -473,8 +476,6 @@ public class UIAgendamentoController implements Initializable {
 	public void clicarMouseItemListViewTuor() throws IOException {
 		Tutor t = tv_PaneAgendamento.getSelectionModel().getSelectedItem();
 		fazBusca(t.getCpf());
-		
-		
 
 	}
 
@@ -725,7 +726,212 @@ public class UIAgendamentoController implements Initializable {
 	}
 
 	@FXML
-	public void handlerNovoAgendamento() {
+	public void handlerNovoAgendamento01() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento01.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento02() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento02.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento03() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento03.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento04() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento04.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento05() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento05.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento06() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento06.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento07() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento07.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento08() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento08.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento09() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento09.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento10() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento10.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento11() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento12.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento12() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento12.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento13() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento13.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento14() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento14.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento15() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento15.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento16() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento16.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento17() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento17.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento18() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento18.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento19() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento19.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento20() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento20.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento21() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento21.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento22() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento22.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento23() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento23.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento24() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento24.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento25() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento25.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento26() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento26.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento27() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento27.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento28() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento28.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento29() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento29.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento30() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento30.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento31() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento31.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento32() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento32.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento33() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento33.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento34() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento34.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento35() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento35.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento36() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento36.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento37() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento37.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento38() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento38.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento39() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento39.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento40() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento40.getText()));
+	}
+	@FXML
+	public void handlerNovoAgendamento41() {
+		
+		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento41.getText()));
+	}
+
+	public void NovoAgendamento(int dia) {
 
 		try {
 
@@ -739,9 +945,15 @@ public class UIAgendamentoController implements Initializable {
 			novoStage.setScene(scene);
 			novoStage.setResizable(false);
 			UINovaConsultaController controller = loader.getController();
+			// PASSANDO ATRIBUTOS
+
+			LocalDate hoje = LocalDate.now();
+			LocalDate dtSelect = LocalDate.of(hoje.getYear(), hoje.getMonth(), dia);
+
+			controller.setDataSelecionada(dtSelect);
+
 			controller.setStage(novoStage);
 			novoStage.showAndWait();
-			
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -774,7 +986,6 @@ public class UIAgendamentoController implements Initializable {
 
 	}
 
-	
 	@FXML
 	public void handlerDisponibilidadeHorario() {
 
@@ -791,7 +1002,6 @@ public class UIAgendamentoController implements Initializable {
 			UIHorariosViewController controller = loader.getController();
 			controller.setStage(novoStage);
 			novoStage.showAndWait();
-			
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
