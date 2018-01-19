@@ -46,5 +46,5 @@ public class ControleLogin implements IControleLogin{
 	public Connection getConexao() {
 		return conect;
 	}
-
+	
 }

@@ -1,6 +1,7 @@
 package br.sghvet.facade;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import br.sghvet.controller.*;
@@ -50,6 +51,24 @@ public class Fachada implements IFachada {
 		cadastroDisp.conectar(conexao);
 		cadastroConsulta.conectar(conexao);
 		
+	}
+	
+	public void desconectar() {	//executar ao fazer logoff para reiniciar conexoes
+		try {
+			conexao.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conectar();
+		this.controlelogin = new ControleLogin();
+		this.controlfuncionario = new ControlFuncionario();
+		this.cadastroReqExame = new CadastroReqExame();
+		this.pdfControl = new ControlPdf();
+		this.controlPaciente = new ControlPaciente();
+		this.controlRegistro = new ControlResultadoExame();
+		this.cadastroDisp = new CadastroDisponibilidade();
+		this.cadastroConsulta = new CadastroConsulta();
+		conexao = null;
 	}
 
 	public void carregarAgendamento() throws Exception {
