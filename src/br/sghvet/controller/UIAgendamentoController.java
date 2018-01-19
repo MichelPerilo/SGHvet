@@ -590,6 +590,7 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	public void handlerEscolheAnimal() {
 
+		if(cb_PNTutorAnimais_Animal.getValue() != null) {
 		try {
 
 			List<Animal> listA = pegaAnimais(tx_PNTutorDados_CPF.getText());
@@ -613,6 +614,8 @@ public class UIAgendamentoController implements Initializable {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
 		}
 
 	}

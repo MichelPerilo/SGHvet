@@ -25,8 +25,7 @@ public class UINovoAnimalController implements Initializable {
 	private String cpf;
 	Alert alert = new Alert(AlertType.WARNING);
 
-	@FXML
-	private TextField tx_ProntuarioAnimal;
+
 	@FXML
 	private TextField tx_NomeAnimal;
 	@FXML
@@ -43,16 +42,17 @@ public class UINovoAnimalController implements Initializable {
 	private Button btnFecharCadastroAnimal;
 	@FXML
 	private ComboBox<String> cb_SexoAnimal;
-	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M", "F");
+	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M","F");
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 
 		try {
 
-			Fachada.getInstance().carregarAgendamento();
-			tx_ProntuarioAnimal.setEditable(false);
 			SetCB();
+			Fachada.getInstance().carregarAgendamento();
+			
+			
 
 		} catch (Exception e) {
 

@@ -68,6 +68,7 @@ public class UINovaConsultaController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		SetCB();
+		Fachada.getInstance();
 
 	}
 
@@ -122,10 +123,13 @@ public class UINovaConsultaController implements Initializable {
 	public void handlerPesquisar() throws Exception {
 
 		if (tx_cpftutor.getText() != null && !tx_cpftutor.getText().equals(""))
+			System.out.println(tx_cpftutor.getText() );
 			AtualizaAnimais(tx_cpftutor.getText());
 
 	}
 
+	
+	@FXML
 	public void AtualizaAnimais(String cpf) {
 
 		try {
