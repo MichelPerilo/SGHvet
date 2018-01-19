@@ -285,6 +285,7 @@ public class UIAgendamentoController implements Initializable {
 			control = new Fachada();
 			control.carregarAgendamento();
 			carregaDias();
+			FuncionarioLogado(getCpfLogado());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
