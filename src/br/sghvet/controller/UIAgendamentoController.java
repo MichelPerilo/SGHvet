@@ -11,10 +11,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
-
 import br.sghvet.facade.Fachada;
-import br.sghvet.facade.IFachada;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
@@ -26,32 +23,33 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class UIAgendamentoController implements Initializable {
 
-	//IFachada control;;
+	// IFachada control;;
 	Alert alert = new Alert(AlertType.WARNING);
 	private String cpfLogado;
-	private Stage stage;
-//	@FXML
-//	private Button btnFecharCencelar;
+	@FXML
+	private Button bt_Agendamento;
 
-	// Painel Agenda
+	// Painel Agenda 
 
 	@FXML
 	private Pane pn_FichaCLinica2;
@@ -59,8 +57,8 @@ public class UIAgendamentoController implements Initializable {
 	private Pane pn_FichaCLinica1;
 	@FXML
 	private Pane pn_FichaCLinica3;
-    @FXML
-    private MenuButton Mn_buttonNomeFuncionario;
+	@FXML
+	private MenuButton Mn_buttonNomeFuncionario;
 
 	// Painel FichaCLinica1
 	@FXML
@@ -590,32 +588,32 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	public void handlerEscolheAnimal() {
 
-		if(cb_PNTutorAnimais_Animal.getValue() != null) {
-		try {
+		if (cb_PNTutorAnimais_Animal.getValue() != null) {
+			try {
 
-			List<Animal> listA = pegaAnimais(tx_PNTutorDados_CPF.getText());
+				List<Animal> listA = pegaAnimais(tx_PNTutorDados_CPF.getText());
 
-			for (Animal animal : listA) {
+				for (Animal animal : listA) {
 
-				if (cb_PNTutorAnimais_Animal.getValue().equals(animal.toString())) {
+					if (cb_PNTutorAnimais_Animal.getValue().equals(animal.toString())) {
 
-					tx_PNTutorAnimais_Nome.setText(animal.getNome());
-					tx_PNTutorAnimais_Idade.setText(String.valueOf(animal.getIdade()));
-					tx_PNTutorAnimais_Raca.setText(animal.getRaça());
-					tx_PNTutorAnimais_Especie.setText(animal.getEspecie());
-					tx_PNTutorAnimais_Peso.setText(String.valueOf(animal.getPeso()));
-					tx_PNTutorAnimais_Pelagem.setText(animal.getPelagem());
-					tx_PNTutorAnimais_Sexo.setText(animal.getSexo());
-					tx_PNTutorAnimais_Prontuario.setText(String.valueOf(animal.getNumProntuario()));
+						tx_PNTutorAnimais_Nome.setText(animal.getNome());
+						tx_PNTutorAnimais_Idade.setText(String.valueOf(animal.getIdade()));
+						tx_PNTutorAnimais_Raca.setText(animal.getRaça());
+						tx_PNTutorAnimais_Especie.setText(animal.getEspecie());
+						tx_PNTutorAnimais_Peso.setText(String.valueOf(animal.getPeso()));
+						tx_PNTutorAnimais_Pelagem.setText(animal.getPelagem());
+						tx_PNTutorAnimais_Sexo.setText(animal.getSexo());
+						tx_PNTutorAnimais_Prontuario.setText(String.valueOf(animal.getNumProntuario()));
+					}
+
 				}
 
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		}
 
 	}
@@ -988,6 +986,7 @@ public class UIAgendamentoController implements Initializable {
 
 		NovoAgendamento(Integer.parseInt(lb_PN_Agendamento42.getText()));
 	}
+
 	public void NovoAgendamento(int dia) {
 
 		try {
@@ -1071,13 +1070,13 @@ public class UIAgendamentoController implements Initializable {
 	}
 
 	public void setCpfLogado(String cpfLogado) {
-		
+
 		System.out.println(cpfLogado);
 		this.cpfLogado = cpfLogado;
 	}
-	
+
 	public void FuncionarioLogado(String cpf) {
-		
+
 		try {
 			String nome = Fachada.getInstance().buscaAdm(Fachada.getInstance().getCpfLogado()).getNome();
 			System.out.println(nome);
@@ -1086,22 +1085,36 @@ public class UIAgendamentoController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+	}
+
+	@FXML
+	public void logoff() {
+		try {
+			
+			Stage stageCLose = (Stage) bt_Agendamento.getScene().getWindow(); // Obtendo a janela atual
+			stageCLose.close(); // Fechando o Stage			
+			Fachada.getInstance().desconectar();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(UiLoginController.class.getResource("../view/fxml_ui_login.fxml"));
+			VBox page = (VBox) loader.load();
+			Stage TelaInicial = new Stage();
+			Scene scene = new Scene(page);
+			TelaInicial.setScene(scene);
+			UiLoginController controller = loader.getController();
+			controller.setStage(TelaInicial);
+			TelaInicial.showAndWait();
+			
+			
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
+
 	}
 
-	public Stage getStage() {
-		return stage;
-	}
-
-	
-	public void setStage(Stage stage) {
-		this.stage = stage;
-	}
-	
-//	@FXML
-//	public void fechar() {
-//		btnFecharCencelar.getScene().getWindow().hide();
-//	}
-
-		
 }
