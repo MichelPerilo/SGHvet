@@ -69,6 +69,8 @@ public class UiCadastroFuncionarioController implements Initializable {
 	}
 
 	public void setCargoList() {
+		
+		if(choicebox_setor.getValue() != null) {
 		switch ((TipoUsuario) choicebox_setor.getValue()) {
 
 		case ADMINISTRATIVO:
@@ -87,6 +89,7 @@ public class UiCadastroFuncionarioController implements Initializable {
 					.observableArrayList(CargoVeterinario.values());
 			choicebox_cargo.setItems(itemsveterinario);
 			break;
+		}
 		}
 
 	}

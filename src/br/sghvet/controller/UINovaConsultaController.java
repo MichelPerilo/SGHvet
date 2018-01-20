@@ -123,12 +123,11 @@ public class UINovaConsultaController implements Initializable {
 	public void handlerPesquisar() throws Exception {
 
 		if (tx_cpftutor.getText() != null && !tx_cpftutor.getText().equals(""))
-			System.out.println(tx_cpftutor.getText() );
+
 			AtualizaAnimais(tx_cpftutor.getText());
 
 	}
 
-	
 	@FXML
 	public void AtualizaAnimais(String cpf) {
 
@@ -215,10 +214,13 @@ public class UINovaConsultaController implements Initializable {
 
 			for (Disponibilidade dis : listA) {
 
-				nomesA.add(Fachada.getInstance().buscaVeterinario(dis.getCpfVet()).getNome());
+				String temp = Fachada.getInstance().buscaVeterinario(dis.getCpfVet()).getNome();
+				nomesA.add(temp);
+
 			}
 
 			listmedicoResponsavel = FXCollections.observableArrayList(nomesA);
+			System.out.println(listmedicoResponsavel);
 			cb_medicoResponsavel.setItems(listmedicoResponsavel);
 
 		} catch (Exception e) {
@@ -251,11 +253,12 @@ public class UINovaConsultaController implements Initializable {
 
 			if (cb_horariosDIsponiveis.getValue() != null && !cb_horariosDIsponiveis.equals("")) {
 				List<Disponibilidade> listA = ListaMedicos(cb_horariosDIsponiveis.getValue());
+				System.out.println(listA.get(0).getCpfVet());
 
 				for (Disponibilidade dis : listA) {
 
 					if (cb_medicoResponsavel.getValue()
-							.equals(Fachada.getInstance().buscaVeterinario(dis.getCpfVet()))) {
+							.equals(Fachada.getInstance().buscaVeterinario(dis.getCpfVet()).getNome())) {
 
 						setCpfMedico(dis.getCpfVet());
 					}

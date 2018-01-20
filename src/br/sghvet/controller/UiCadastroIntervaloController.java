@@ -11,9 +11,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class UiCadastroIntervaloController implements Initializable {
 
@@ -23,6 +26,12 @@ public class UiCadastroIntervaloController implements Initializable {
 	private TextField textfield_inicio;
 	@FXML
 	private TextField textfield_fim;
+	@FXML
+	private ComboBox<String> cb_HInicio;
+	@FXML
+	private ComboBox<String> cb_Hr_Fim;
+	@FXML
+	private Button btnFecharCencelar;
 
 	private Stage stage;
 
@@ -31,17 +40,24 @@ public class UiCadastroIntervaloController implements Initializable {
 
 		ObservableList<DiaDaSemana> items = FXCollections.observableArrayList(DiaDaSemana.values());
 		choicebox_diadasemana.setItems(items);
-
-	}
-	
-	public void handlerCadastrarHorario() {
-		String inicio[] = textfield_inicio.getText().split(":");
-		String fim[] = textfield_fim.getText().split(":");
-		String dia = choicebox_diadasemana.getSelectionModel().getSelectedItem().toString();
+		ObservableList<String> horas = FXCollections.observableArrayList("07:00", "08:00", "09:00", "10:00", "11:00",
+				"12:00", "14:00", "15:00", "16:00");
 		
+		cb_HInicio.setItems(horas);		
+		cb_Hr_Fim.setItems(horas);
+	}
+
+	public void handlerCadastrarHorario() {
+		String inicio[] = cb_HInicio.getValue().split(":");
+		
+		String fim[] = cb_Hr_Fim.getValue().split(":");
+		String dia = choicebox_diadasemana.getSelectionModel().getSelectedItem().toString();
+
 		try {
-			Fachada.getInstance().cadastrarHorario(new Disponibilidade(LocalTime.of(Integer.parseInt(inicio[0]),Integer.parseInt(inicio[1])),
-					LocalTime.of(Integer.parseInt(fim[0]), Integer.parseInt(fim[1])), Fachada.getInstance().getCpfLogado(), DiaDaSemana.valueOf(dia.toUpperCase())));
+			Fachada.getInstance().cadastrarHorario(
+					new Disponibilidade(LocalTime.of(Integer.parseInt(inicio[0]), Integer.parseInt(inicio[1])),
+							LocalTime.of(Integer.parseInt(fim[0]), Integer.parseInt(fim[1])),
+							Fachada.getInstance().getCpfLogado(), DiaDaSemana.valueOf(dia.toUpperCase())));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,6 +69,13 @@ public class UiCadastroIntervaloController implements Initializable {
 
 	void setStage(Stage stage) {
 		this.stage = stage;
+		this.stage.initStyle(StageStyle.UNDECORATED);
+
+	}
+
+	@FXML
+	public void fechar() {
+		btnFecharCencelar.getScene().getWindow().hide();
 	}
 
 }

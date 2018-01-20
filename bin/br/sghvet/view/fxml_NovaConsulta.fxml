@@ -23,7 +23,7 @@
       <Button fx:id="btnFecharCencelar" layoutX="521.0" layoutY="308.0" mnemonicParsing="false" onAction="#fechar" style="-fx-background-color: #FE2E2E;" text="FECHAR" textFill="WHITE" />
       <Separator layoutX="13.0" layoutY="258.0" prefHeight="3.0" prefWidth="574.0" />
       <Label layoutX="13.0" layoutY="202.0" text="MÉDICO RESPONSAVEL:" />
-      <ComboBox fx:id="lb_medicoResponsavel" layoutX="159.0" layoutY="198.0" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #E0F2F7;" />
+      <ComboBox fx:id="cb_medicoResponsavel" layoutX="159.0" layoutY="198.0" onAction="#handleEscolheMedico" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #E0F2F7;" />
       <Button fx:id="bt_cancellar" disable="true" layoutX="309.0" layoutY="295.0" mnemonicParsing="false" style="-fx-background-color: #F3F781;" text="CANCELAR" textAlignment="CENTER" textFill="#110202" />
       <Button fx:id="handlerPesquisar" layoutX="296.0" layoutY="84.0" mnemonicParsing="false" onAction="#handlerPesquisar" style="-fx-background-color: #848484;" text="BUSCAR" textFill="WHITE" />
    </children>
