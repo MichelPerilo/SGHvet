@@ -15,5 +15,6 @@ public interface IRepositorioConsulta {
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception;
 	
 	public void conectar(Connection conect);
+	List<Consulta> buscarALLConsultas() throws Exception;
 
 }

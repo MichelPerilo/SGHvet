@@ -78,8 +78,16 @@ public class UINovaConsultaController implements Initializable {
 		if (cb_horariosDIsponiveis.getValue() != null && !cb_horariosDIsponiveis.equals("")) {
 			String[] horas = cb_horariosDIsponiveis.getValue().split(":");
 			LocalTime lt = LocalTime.of(Integer.parseInt(horas[0]), Integer.parseInt(horas[1]));
-			consulta = new Consulta(getDataSelecionada(), lt, tx_cpftutor.getText(),
-					Integer.parseInt(lb_prontuario.getText()), getCpfMedico());
+			try {
+				consulta = new Consulta(getDataSelecionada(), lt, tx_cpftutor.getText(),
+						Integer.parseInt(lb_prontuario.getText()), getCpfMedico());
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}
 

@@ -5,6 +5,7 @@ import java.net.URL;
 
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -13,6 +14,7 @@ import java.util.ResourceBundle;
 
 import br.sghvet.facade.Fachada;
 import br.sghvet.model.Animal;
+import br.sghvet.model.Consulta;
 import br.sghvet.model.Endereco;
 import br.sghvet.model.Tutor;
 import br.sghvet.controller.UINovaConsultaController;
@@ -48,8 +50,9 @@ public class UIAgendamentoController implements Initializable {
 	private String cpfLogado;
 	@FXML
 	private Button bt_Agendamento;
+	private Stage horarios;
 
-	// Painel Agenda 
+	// Painel Agenda
 
 	@FXML
 	private Pane pn_FichaCLinica2;
@@ -279,6 +282,22 @@ public class UIAgendamentoController implements Initializable {
 
 	ArrayList<Label> dias = new ArrayList<>();
 
+	@FXML
+	private TableView<Consulta> tv_consultas;
+
+	@FXML
+	private TableColumn<Consulta,LocalTime> tc_consultas_hr;
+	@FXML
+	private TableColumn<Consulta,Integer> tc_consultas_prot;
+	@FXML
+	private TableColumn<Consulta,String> tc_consultas_Ani;
+	@FXML
+	private TableColumn<Consulta,String> tc_consultas_tut;
+	private ObservableList<Consulta> observableListConsulta;
+
+	
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -291,6 +310,7 @@ public class UIAgendamentoController implements Initializable {
 			e.printStackTrace();
 		}
 		carregarTableViewTutor();
+		carregarTableViewConsulta();
 
 	}
 
@@ -303,13 +323,31 @@ public class UIAgendamentoController implements Initializable {
 		tc_AgendamentoTelefone.setCellValueFactory(new PropertyValueFactory<>("contato"));
 
 		try {
-			observableListTutor = FXCollections.observableArrayList(Fachada.getInstance().buscarALLTutor());
+			observableListTutor = FXCollections.observableArrayList(Fachada.getInstance().buscarALLConsulta());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		tv_PaneAgendamento.setItems(observableListTutor);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public void carregarTableViewConsulta() {
+
+		tc_consultas_hr.setCellValueFactory(new PropertyValueFactory<>("horario"));
+		tc_consultas_prot.setCellValueFactory(new PropertyValueFactory<>("prontuario"));
+		tc_consultas_Ani.setCellValueFactory(new PropertyValueFactory<>("nomeAnimal"));
+		tc_consultas_tut.setCellValueFactory(new PropertyValueFactory<>("nomeTutor"));
+
+		try {
+			observableListConsulta = FXCollections.observableArrayList(Fachada.getInstance().buscarALLConsulta());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		tv_consultas.setItems(observableListConsulta);
+	}
+
 
 	@FXML
 	public void handlerNovoTutor() {
@@ -1010,6 +1048,7 @@ public class UIAgendamentoController implements Initializable {
 
 			controller.setStage(novoStage);
 			novoStage.showAndWait();
+			carregarTableViewConsulta();
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -1091,9 +1130,9 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	public void logoff() {
 		try {
-			
+
 			Stage stageCLose = (Stage) bt_Agendamento.getScene().getWindow(); // Obtendo a janela atual
-			stageCLose.close(); // Fechando o Stage			
+			stageCLose.close(); // Fechando o Stage
 			Fachada.getInstance().desconectar();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(UiLoginController.class.getResource("../view/fxml_ui_login.fxml"));
@@ -1104,16 +1143,11 @@ public class UIAgendamentoController implements Initializable {
 			UiLoginController controller = loader.getController();
 			controller.setStage(TelaInicial);
 			TelaInicial.showAndWait();
-			
-			
-			
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		
 
 	}
 

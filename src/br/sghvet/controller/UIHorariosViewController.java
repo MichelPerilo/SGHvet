@@ -1,9 +1,11 @@
 package br.sghvet.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import br.sghvet.facade.IFachada;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -30,5 +32,7 @@ public class UIHorariosViewController implements Initializable {
 		this.stage = stage;
 		this.stage.initStyle(StageStyle.UNDECORATED);
 	}
+
+	
 
 }

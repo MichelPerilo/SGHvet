@@ -50,5 +50,11 @@ public class CadastroConsulta implements ICadastroConsulta{
 		return repo.buscarConsultaPro(prontuario);
 	}
 
+	@Override
+	public List buscarALLConsultas() throws Exception {
+		
+		return repo.buscarALLConsultas();
+	}
+
 
 }

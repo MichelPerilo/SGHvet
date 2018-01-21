@@ -15,4 +15,5 @@ public interface ICadastroConsulta {
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception;
 	
 	public void conectar(Connection conect);
+	public List buscarALLConsultas()throws Exception;;
 }

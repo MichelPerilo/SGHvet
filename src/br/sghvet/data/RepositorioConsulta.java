@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.sghvet.model.Consulta;
+import br.sghvet.model.Tutor;
 
 public class RepositorioConsulta implements IRepositorioConsulta{
 	
@@ -102,6 +103,27 @@ public class RepositorioConsulta implements IRepositorioConsulta{
 
 		return consultas;
 	}
+	
+	
+		
+	@Override
+	public List<Consulta> buscarALLConsultas() throws Exception {
+		String query = "select *  FROM consulta";
+		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		List<Consulta> consulta = new ArrayList<>();
+		
+		while(rs.next()){
+			consulta.add(preencherConsulta(rs));
+		}
+		ps.close();
+		rs.close();
+		
+		return consulta;
+	}
+	
+	
+	
 
 	private boolean executar(PreparedStatement ps) throws Exception{
  		boolean result;

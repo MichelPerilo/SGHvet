@@ -397,6 +397,12 @@ public class Fachada implements IFachada {
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception {
 		return cadastroConsulta.buscarConsultaPro(prontuario);
 	}
+	
+	@Override
+	public List buscarALLConsulta() throws Exception {
+
+		return cadastroConsulta.buscarALLConsultas();
+	}
 
 
 }
