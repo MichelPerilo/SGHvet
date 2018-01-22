@@ -2,6 +2,7 @@ package br.sghvet.facade;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import br.sghvet.controller.*;
@@ -404,5 +405,10 @@ public class Fachada implements IFachada {
 		return cadastroConsulta.buscarALLConsultas();
 	}
 
+	@Override
+	public Consulta buscarConsulta(String cpf) throws Exception {
+
+		return cadastroConsulta.buscarConsultas(cpf);
+	}
 
 }

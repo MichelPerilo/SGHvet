@@ -11,6 +11,7 @@ import java.util.List;
 
 import br.sghvet.model.Consulta;
 import br.sghvet.model.Tutor;
+import sun.reflect.misc.ConstructorUtil;
 
 public class RepositorioConsulta implements IRepositorioConsulta{
 	
@@ -71,6 +72,31 @@ public class RepositorioConsulta implements IRepositorioConsulta{
 
 		return consultas;
 	}
+	
+	
+	
+	@Override
+	public Consulta buscarConsulta(String cpf) throws Exception {	
+		LocalDate ld = LocalDate.now();
+	    	
+		String query = "select * from consulta where cpf_tutor = ? and data = ?";
+		
+		PreparedStatement ps = connection.prepareStatement(query);
+		ps.setString(1,cpf);
+		ps.setString(2,ld.toString());
+		
+		ResultSet rs = ps.executeQuery();
+		Consulta consultas = null ;
+		
+		while(rs.next()){
+			consultas = (preencherConsulta(rs));
+		}
+
+		return consultas;
+	}
+	
+	
+	
 
 	@Override
 	public List<Consulta> buscarConsultaVet(String cpf) throws Exception {
@@ -114,7 +140,15 @@ public class RepositorioConsulta implements IRepositorioConsulta{
 		List<Consulta> consulta = new ArrayList<>();
 		
 		while(rs.next()){
-			consulta.add(preencherConsulta(rs));
+			
+			String data =  rs.getString("dia");
+			String[] pedacoData = data.split("-");
+			LocalDate dia = LocalDate.of(Integer.parseInt(pedacoData[0]),Integer.parseInt(pedacoData[1]),Integer.parseInt(pedacoData[2]));
+            LocalDate hoje = LocalDate.now();
+	    
+		    if(dia.equals(hoje)) {	
+		 	consulta.add(preencherConsulta(rs));
+		    }
 		}
 		ps.close();
 		rs.close();

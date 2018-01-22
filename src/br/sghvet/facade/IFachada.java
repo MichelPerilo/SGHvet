@@ -92,6 +92,7 @@ public interface IFachada {
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception;
 	public List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception;
 	public List buscarALLConsulta() throws Exception;
+	public Consulta buscarConsulta(String cpf) throws Exception;
 	
 
 

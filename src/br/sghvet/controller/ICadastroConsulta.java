@@ -15,5 +15,6 @@ public interface ICadastroConsulta {
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception;
 	
 	public void conectar(Connection conect);
-	public List buscarALLConsultas()throws Exception;;
+	public List buscarALLConsultas()throws Exception;
+	public Consulta buscarConsultas(String cpf) throws Exception;
 }

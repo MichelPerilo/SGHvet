@@ -35,7 +35,8 @@ public class Consulta {
 	private int prontuario;
 	private String cpfVeterinario;
 	private String nomeTutor;
-	private String nomeAnimal;	
+	private String nomeAnimal;
+	private String nomeMedico;
 	
 	public Consulta(LocalDate dia, LocalTime horario, String cpfTutor, int prontuario, String cpfVeterinario) throws Exception {
 		this.dia = dia;
@@ -45,6 +46,7 @@ public class Consulta {
 		this.cpfVeterinario = cpfVeterinario;
 		this.setNomeTutor(getCpfTutor());
 		this.setNomeAnimal(getProntuario());
+		this.setNomeMedico(getCpfVeterinario());
 	}
 
 	public int getId() {
@@ -89,6 +91,15 @@ public class Consulta {
 
 	public void setNomeAnimal(int nomeAnimal) throws Exception {
 		this.nomeAnimal = Fachada.getInstance().buscaAnimalProntuario(nomeAnimal).getNome();
+	}
+
+	public String getNomeMedico() {
+		return nomeMedico;
+	}
+
+	public void setNomeMedico(String nomeMedico) throws Exception {
+		
+		this.nomeMedico = Fachada.getInstance().buscaVeterinario(nomeMedico).getNome();
 	}
 	
 	

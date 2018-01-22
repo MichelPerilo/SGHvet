@@ -431,7 +431,7 @@
          <children>
             <ScrollPane layoutX="561.0" layoutY="62.0" prefHeight="467.0" prefWidth="510.0">
                <content>
-                  <TableView fx:id="tv_consultas" prefHeight="467.0" prefWidth="495.0">
+                  <TableView fx:id="tv_consultas" onMouseClicked="#clicarMouseItemListViewConsulta" prefHeight="467.0" prefWidth="495.0">
                      <columns>
                         <TableColumn fx:id="tc_consultas_hr" prefWidth="62.0" text="HORARIO" />
                         <TableColumn fx:id="tc_consultas_prot" prefWidth="87.0" text="PRONTUARIO" />

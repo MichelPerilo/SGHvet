@@ -1045,7 +1045,6 @@ public class UIAgendamentoController implements Initializable {
 			LocalDate dtSelect = LocalDate.of(hoje.getYear(), hoje.getMonth(), dia);
 
 			controller.setDataSelecionada(dtSelect);
-
 			controller.setStage(novoStage);
 			novoStage.showAndWait();
 			carregarTableViewConsulta();
@@ -1081,28 +1080,28 @@ public class UIAgendamentoController implements Initializable {
 
 	}
 
-	@FXML
-	public void handlerDisponibilidadeHorario() {
-
-		try {
-
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(UIHorariosViewController.class.getResource("../view/fxml_horarios.fxml"));
-			AnchorPane page;
-			page = (AnchorPane) loader.load();
-			Stage novoStage = new Stage();
-			Scene scene = new Scene(page);
-			novoStage.setScene(scene);
-			novoStage.setResizable(false);
-			UIHorariosViewController controller = loader.getController();
-			controller.setStage(novoStage);
-			novoStage.showAndWait();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	@FXML
+//	public void handlerDisponibilidadeHorario() {
+//
+//		try {
+//
+//			FXMLLoader loader = new FXMLLoader();
+//			loader.setLocation(UIHorariosViewController.class.getResource("../view/fxml_horarios.fxml"));
+//			AnchorPane page;
+//			page = (AnchorPane) loader.load();
+//			Stage novoStage = new Stage();
+//			Scene scene = new Scene(page);
+//			novoStage.setScene(scene);
+//			novoStage.setResizable(false);
+//			UIHorariosViewController controller = loader.getController();
+//			controller.setStage(novoStage);
+//			novoStage.showAndWait();
+//
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 	public String getCpfLogado() {
 		return cpfLogado;
@@ -1150,5 +1149,48 @@ public class UIAgendamentoController implements Initializable {
 		}
 
 	}
+	
+	
+	@FXML
+	public void clicarMouseItemListViewConsulta() throws IOException {
+		Consulta c = tv_consultas.getSelectionModel().getSelectedItem();
+		fazBuscaConsulta(c);
+
+	}
+	
+	
+	public void fazBuscaConsulta(Consulta consulta) {
+
+
+		
+		try {
+
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(UINovaConsultaController.class.getResource("../view/fxml_NovaConsulta.fxml"));
+			AnchorPane page;
+			page = (AnchorPane) loader.load();
+			Stage novoStage = new Stage();
+			novoStage.setTitle("Novo Consulta");
+			Scene scene = new Scene(page);
+			novoStage.setScene(scene);
+			novoStage.setResizable(false);
+			UINovaConsultaController controller = loader.getController();
+			// PASSANDO ATRIBUTOS
+			
+			controller.pn_Agendamento1.setVisible(false);
+			controller.pn_Agendamento2.setVisible(true);
+			controller.setConsulta(consulta);
+			controller.setStage(novoStage);
+			
+			novoStage.showAndWait();
+			carregarTableViewConsulta();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 
 }

@@ -22,7 +22,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -50,6 +53,9 @@ public class UINovaConsultaController implements Initializable {
 
 	@FXML
 	private Button btnFecharCencelar;
+	@FXML
+	private Button btnFecharCencelar2;
+	
 
 	@FXML
 	private ComboBox<String> cb_medicoResponsavel;
@@ -57,16 +63,37 @@ public class UINovaConsultaController implements Initializable {
 
 	@FXML
 	private Button bt_cancellar;
+	@FXML
+	private Button bt_Pesquisar;	
+	@FXML
+	private Button bt_agendar;
+	
+	@FXML
+	private Label lb_CPFTutor;	
+	@FXML
+	private Label lb_Animal;
+	@FXML
+	private Label lb_Medico;
+	@FXML
+	private Label lb_HRSelecionada;
 
 	Alert alert = new Alert(AlertType.WARNING);
 
 	private Stage stage;
 	private LocalDate DataSelecionada;
 	private String cpfMedico;
+	private Consulta consulta;
+	public Pane pn_Agendamento1;
+	public Pane pn_Agendamento2;
+	@FXML
+	private Label lb_dataSelecionada2;
+	@FXML
+	private Label lb_prontuario2;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		
+		
 		SetCB();
 		Fachada.getInstance();
 
@@ -81,6 +108,8 @@ public class UINovaConsultaController implements Initializable {
 			try {
 				consulta = new Consulta(getDataSelecionada(), lt, tx_cpftutor.getText(),
 						Integer.parseInt(lb_prontuario.getText()), getCpfMedico());
+				alert.setHeaderText("Consulta Agendada com sucesso");
+				alert.showAndWait();
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -99,7 +128,8 @@ public class UINovaConsultaController implements Initializable {
 		}
 
 	}
-
+	
+	
 	@FXML
 	public void fechar() {
 		btnFecharCencelar.getScene().getWindow().hide();
@@ -287,6 +317,42 @@ public class UINovaConsultaController implements Initializable {
 
 	public void setCpfMedico(String cpfMedico) {
 		this.cpfMedico = cpfMedico;
+	}
+
+	
+
+	public void setConsulta(Consulta consulta) {
+		
+						
+		this.consulta = consulta;
+			
+		
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");			
+		lb_dataSelecionada2.setText(consulta.getDia().format(formatador));
+		lb_prontuario2.setText(Integer.toString(consulta.getProntuario()));
+		lb_CPFTutor.setText(consulta.getCpfTutor());
+		lb_Animal.setText(consulta.getNomeAnimal());
+		lb_Medico.setText(consulta.getNomeMedico());
+		lb_HRSelecionada.setText(consulta.getHorario().toString());
+		
+		
+		
+		
+	}	
+	
+	
+	
+	public void handleCencelaConsulta() {
+		
+		try {
+			Fachada.getInstance().removerConsulta(consulta);
+			alert.setHeaderText("Consulta cancelada com sucesso.");
+			alert.showAndWait();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

@@ -6,25 +6,50 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #CEF6F5;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UINovaConsultaController">
    <children>
-      <Label layoutX="14.0" layoutY="42.0" text="DATA:" />
-      <Label fx:id="lb_dataSelecionada" layoutX="61.0" layoutY="43.0" text="DATA SELECIONADA" />
-      <Label layoutX="329.0" layoutY="43.0" text="HORARIOS DISPONIVEIS:" />
-      <ComboBox fx:id="cb_horariosDIsponiveis" layoutX="469.0" layoutY="38.0" onAction="#handlerDisponivel" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #E0F2F7;" />
-      <Label layoutX="13.0" layoutY="88.0" text="CPF DO TUTOR:" />
-      <Label layoutX="14.0" layoutY="145.0" text="NOME DO ANIMAL:" />
-      <Label layoutX="305.0" layoutY="145.0" text="PRONTUARIO:" />
-      <Label fx:id="lb_prontuario" layoutX="400.0" layoutY="145.0" text="XXXXXXXXX" />
-      <ComboBox fx:id="cb_nomeAnimal" layoutX="135.0" layoutY="140.0" onAction="#handlerEscolheAnimal" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #E0F2F7;" />
-      <TextField fx:id="tx_cpftutor" layoutX="114.0" layoutY="84.0" prefHeight="26.0" prefWidth="164.0" />
-      <Button layoutX="225.0" layoutY="295.0" mnemonicParsing="false" onAction="#handlerAgendar" style="-fx-background-color: #04B404;" text="AGENDAR" textFill="WHITE" />
-      <Button fx:id="btnFecharCencelar" layoutX="521.0" layoutY="308.0" mnemonicParsing="false" onAction="#fechar" style="-fx-background-color: #FE2E2E;" text="FECHAR" textFill="WHITE" />
-      <Separator layoutX="13.0" layoutY="258.0" prefHeight="3.0" prefWidth="574.0" />
-      <Label layoutX="13.0" layoutY="202.0" text="MÉDICO RESPONSAVEL:" />
-      <ComboBox fx:id="cb_medicoResponsavel" layoutX="159.0" layoutY="198.0" onAction="#handleEscolheMedico" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #E0F2F7;" />
-      <Button fx:id="bt_cancellar" disable="true" layoutX="309.0" layoutY="295.0" mnemonicParsing="false" style="-fx-background-color: #F3F781;" text="CANCELAR" textAlignment="CENTER" textFill="#110202" />
-      <Button fx:id="handlerPesquisar" layoutX="296.0" layoutY="84.0" mnemonicParsing="false" onAction="#handlerPesquisar" style="-fx-background-color: #848484;" text="BUSCAR" textFill="WHITE" />
+      <Pane fx:id="pn_Agendamento1" layoutX="1.0" prefHeight="350.0" prefWidth="600.0" visible="true">
+         <children>
+            <ComboBox fx:id="cb_nomeAnimal" layoutX="145.0" layoutY="131.0" onAction="#handlerEscolheAnimal" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #E0F2F7;" />
+            <TextField fx:id="tx_cpftutor" layoutX="119.0" layoutY="75.0" prefHeight="26.0" prefWidth="164.0" />
+            <Button fx:id="bt_agendar" layoutX="212.0" layoutY="267.0" mnemonicParsing="false" onAction="#handlerAgendar" style="-fx-background-color: #04B404;" text="AGENDAR" textFill="WHITE" />
+            <Button fx:id="btnFecharCencelar" layoutX="527.0" layoutY="311.0" mnemonicParsing="false" onAction="#fechar" style="-fx-background-color: #FE2E2E;" text="FECHAR" textFill="WHITE" />
+            <Separator layoutY="250.0" prefHeight="3.0" prefWidth="600.0" />
+            <Label layoutX="24.0" layoutY="198.0" text="MÉDICO RESPONSAVEL:" />
+            <ComboBox fx:id="cb_medicoResponsavel" layoutX="164.0" layoutY="194.0" onAction="#handleEscolheMedico" prefHeight="25.0" prefWidth="179.0" style="-fx-background-color: #E0F2F7;" />
+            <Button disable="true" layoutX="305.0" layoutY="267.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #F3F781;" text="CANCELAR" textAlignment="CENTER" textFill="#110202" />
+            <Button fx:id="bt_Pesquisar" layoutX="293.0" layoutY="76.0" mnemonicParsing="false" onAction="#handlerPesquisar" style="-fx-background-color: #848484;" text="BUSCAR" textFill="WHITE" />
+            <Label layoutX="22.0" layoutY="21.0" prefHeight="17.0" prefWidth="40.0" text="DATA:" />
+            <Label fx:id="lb_dataSelecionada" layoutX="64.0" layoutY="21.0" text="DATA SELECIONADA" />
+            <Label layoutX="400.0" layoutY="29.0" text="HORARIOS:" />
+            <ComboBox fx:id="cb_horariosDIsponiveis" layoutX="462.0" layoutY="25.0" onAction="#handlerDisponivel" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #E0F2F7;" />
+            <Label layoutX="22.0" layoutY="79.0" text="CPF DO TUTOR:" />
+            <Label layoutX="24.0" layoutY="136.0" text="NOME DO ANIMAL:" />
+            <Label layoutX="343.0" layoutY="136.0" text="PRONTUARIO:" />
+            <Label fx:id="lb_prontuario" layoutX="430.0" layoutY="136.0" text="XXXXXXXXX" />
+         </children>
+      </Pane>
+      <Pane fx:id="pn_Agendamento2" layoutY="-1.0" prefHeight="350.0" prefWidth="600.0" visible="false">
+         <children>
+            <Label layoutX="29.0" layoutY="25.0" prefHeight="17.0" prefWidth="40.0" text="DATA:" />
+            <Label fx:id="lb_dataSelecionada2" layoutX="69.0" layoutY="25.0" text="DATA SELECIONADA" />
+            <Label layoutX="442.0" layoutY="25.0" text="HORARIOS:" />
+            <Label layoutX="27.0" layoutY="75.0" text="CPF DO TUTOR:" />
+            <Label layoutX="27.0" layoutY="114.0" text="NOME DO ANIMAL:" />
+            <Label layoutX="345.0" layoutY="114.0" text="PRONTUARIO:" />
+            <Label fx:id="lb_prontuario2" layoutX="429.0" layoutY="114.0" text="XXXXXXXXX" />
+            <Button disable="true" layoutX="219.0" layoutY="260.0" mnemonicParsing="false" style="-fx-background-color: #04B404;" text="AGENDAR" textFill="WHITE" />
+            <Button fx:id="btnFecharCencelar2" layoutX="530.0" layoutY="313.0" mnemonicParsing="false" onAction="#fechar" style="-fx-background-color: #FE2E2E;" text="FECHAR" textFill="WHITE" />
+            <Separator layoutX="8.0" layoutY="238.0" prefHeight="3.0" prefWidth="584.0" />
+            <Label layoutX="29.0" layoutY="175.0" text="MÉDICO RESPONSAVEL:" />
+            <Button fx:id="bt_cancellar" layoutX="306.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleCencelaConsulta" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #F3F781;" text="CANCELAR" textAlignment="CENTER" textFill="#110202" />
+            <Label fx:id="lb_CPFTutor" layoutX="124.0" layoutY="75.0" prefHeight="17.0" prefWidth="164.0" text="tutor" />
+            <Label fx:id="lb_Animal" layoutX="146.0" layoutY="114.0" prefHeight="17.0" prefWidth="146.0" text="nome animal" />
+            <Label fx:id="lb_Medico" layoutX="165.0" layoutY="175.0" prefHeight="17.0" prefWidth="179.0" text="nome medico" />
+            <Label fx:id="lb_HRSelecionada" layoutX="509.0" layoutY="25.0" prefHeight="17.0" prefWidth="77.0" text="hora" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

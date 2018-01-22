@@ -56,5 +56,11 @@ public class CadastroConsulta implements ICadastroConsulta{
 		return repo.buscarALLConsultas();
 	}
 
+	@Override
+	public Consulta buscarConsultas(String cpf) throws Exception {
+		
+		return repo.buscarConsulta(cpf);
+	}
+
 
 }
