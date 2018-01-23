@@ -1,6 +1,7 @@
 package br.sghvet.controller;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.List;
 
 import br.sghvet.data.IRepositorioConsulta;
@@ -48,6 +49,12 @@ public class CadastroConsulta implements ICadastroConsulta{
 	@Override
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception {
 		return repo.buscarConsultaPro(prontuario);
+	}
+	
+	@Override
+	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception{
+		return repo.buscarConsultasDoDia(cpf, data);
+		
 	}
 
 	@Override

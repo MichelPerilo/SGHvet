@@ -1,6 +1,7 @@
 package br.sghvet.facade;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.List;
 
 import br.sghvet.model.Administrativo;
@@ -91,6 +92,7 @@ public interface IFachada {
 	public List<Consulta> buscarConsultaVet(String cpf) throws Exception;
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception;
 	public List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception;
+	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception;
 	public List buscarALLConsulta() throws Exception;
 	public Consulta buscarConsulta(String cpf) throws Exception;
 	

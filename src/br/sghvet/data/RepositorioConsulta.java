@@ -130,7 +130,22 @@ public class RepositorioConsulta implements IRepositorioConsulta{
 		return consultas;
 	}
 	
-	
+	@Override
+	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception{
+		String query = "select * from consulta where cpf_vet = ? and dia = ?";
+		PreparedStatement ps = connection.prepareStatement(query);
+		ps.setString(1,cpf);
+		ps.setString(2, data.toString());
+
+		ResultSet rs = ps.executeQuery();
+		List<Consulta> consultas = new ArrayList<Consulta>();
+		
+		while(rs.next()){
+			consultas.add(preencherConsulta(rs));
+		}
+		return consultas;
+		
+	}
 		
 	@Override
 	public List<Consulta> buscarALLConsultas() throws Exception {

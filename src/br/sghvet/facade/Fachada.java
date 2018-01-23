@@ -1,6 +1,7 @@
 package br.sghvet.facade;
 
 import java.sql.Connection;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -395,6 +396,11 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
+	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception {
+		return cadastroConsulta.buscarConsultasDoDia(cpf, data);
+	}
+	
+	@Override
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception {
 		return cadastroConsulta.buscarConsultaPro(prontuario);
 	}
@@ -410,5 +416,7 @@ public class Fachada implements IFachada {
 
 		return cadastroConsulta.buscarConsultas(cpf);
 	}
+	
+	
 
 }
