@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="776.0" prefWidth="801.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="782.0" prefWidth="786.0">
+         <children>
+            <Label layoutX="47.0" layoutY="158.0" text="ANAMNESE (História atual, tratamento prévio, antecedentes mórbidos, condições de vida)" />
+            <Label layoutX="83.0" layoutY="188.0" text="Vacinações: (Quais e Quando) ">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextArea layoutX="83.0" layoutY="210.0" prefHeight="70.0" prefWidth="193.0" wrapText="true" />
+            <Label layoutX="53.0" layoutY="289.0" text="EXAME CLÍNICO" />
+            <Label layoutX="200.0" layoutY="318.0" text="Bat. Cardíaco:">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextField layoutX="274.0" layoutY="315.0" prefHeight="26.0" prefWidth="64.0" />
+            <Label layoutX="342.0" layoutY="320.0" text="/mim">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Separator layoutX="49.0" layoutY="176.0" prefHeight="4.0" prefWidth="311.0" />
+            <Separator layoutX="51.0" layoutY="306.0" prefHeight="4.0" prefWidth="311.0" />
+            <Pane layoutX="62.0" layoutY="34.0" prefHeight="107.0" prefWidth="656.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <Label layoutX="21.0" layoutY="14.0" prefHeight="17.0" prefWidth="52.0" text="Paciente:" />
+                  <Label layoutX="80.0" layoutY="14.0" prefHeight="17.0" prefWidth="160.0" text="nome_do_paciente" />
+                  <Label layoutX="219.0" layoutY="14.0" prefHeight="17.0" prefWidth="52.0" text="Paciente:" />
+                  <Label layoutX="278.0" layoutY="14.0" prefHeight="17.0" prefWidth="160.0" text="nome_do_paciente" />
+               </children>
+            </Pane>
+            <Label layoutX="302.0" layoutY="188.0" text="Vermifugações:">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextArea layoutX="302.0" layoutY="210.0" prefHeight="70.0" prefWidth="421.0" wrapText="true" />
+            <Label layoutX="83.0" layoutY="320.0" text="TR:">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextField layoutX="107.0" layoutY="315.0" prefHeight="26.0" prefWidth="48.0" />
+            <Label layoutX="159.0" layoutY="320.0" text="ºC">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label layoutX="400.0" layoutY="318.0" text="Mov. Respiratório:">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextField layoutX="496.0" layoutY="315.0" prefHeight="26.0" prefWidth="64.0" />
+            <Label layoutX="564.0" layoutY="320.0" text="/mim">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label layoutX="623.0" layoutY="318.0" text="Pulso:">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextField layoutX="660.0" layoutY="315.0" prefHeight="26.0" prefWidth="64.0" />
+            <Label layoutX="732.0" layoutY="320.0" text="/mim">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="369.0" text="ECTOSCOPIA (Estado geral, mucosas, pele, linfonodos, articulações, glândulas paranais, genitália, glândulas mamárias, faceis)" />
+            <Separator layoutX="51.0" layoutY="386.0" prefHeight="4.0" prefWidth="311.0" />
+            <TextArea layoutX="75.0" layoutY="399.0" prefHeight="113.0" prefWidth="652.0" wrapText="true" />
+            <Label layoutX="53.0" layoutY="539.0" text="CABEÇA E PESCOÇO (Ouvidos, olhos, nariz, cavidade bucal, traquéia, esôfago)" />
+            <Separator layoutX="51.0" layoutY="556.0" prefHeight="4.0" prefWidth="311.0" />
+            <TextArea layoutX="75.0" layoutY="569.0" prefHeight="113.0" prefWidth="652.0" wrapText="true" />
+         </children></AnchorPane>
+  </content>
+</ScrollPane>
