@@ -12,6 +12,7 @@ public class Administrativo {
 	private CargoAdm cargo;
 	private String contato;
 	private String email;
+	private String setor;
 
 	public Administrativo(String nome, String cpf, LocalDate dataNasc, CargoAdm cargo, String contato, String email) throws Exception {
 		this.nome = nome;
@@ -20,6 +21,7 @@ public class Administrativo {
 		this.cargo = cargo;
 		this.contato = contato;
 		this.email = email;
+		this.setSetor(cargo.toString());
 	}
 
 	public void setCpf(String cpf) throws Exception {
@@ -58,6 +60,14 @@ public class Administrativo {
 		String dados = this.getNome() + " - " + this.cpf + " - " + this.getEmail();
 
 		return dados;
+	}
+
+	public String getSetor() {
+		return setor;
+	}
+
+	public void setSetor(String setor) {
+		this.setor = setor;
 	}
 
 }

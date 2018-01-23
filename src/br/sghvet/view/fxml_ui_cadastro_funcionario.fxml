@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="692.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiCadastroFuncionarioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="692.0" style="-fx-background-color: F7F8E0;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiCadastroFuncionarioController">
    <children>
       <Label layoutX="264.0" layoutY="38.0" text="Novo Funcionário" textFill="ORANGE" AnchorPane.leftAnchor="264.0" AnchorPane.rightAnchor="263.0">
          <font>
@@ -52,14 +52,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="choicebox_setor" layoutX="118.0" layoutY="284.0" onMouseClicked="#setCargoList" prefHeight="35.0" prefWidth="229.0" AnchorPane.leftAnchor="118.0" />
       <Label layoutX="368.0" layoutY="292.0" text="Cargo:" textFill="#bbbbbb">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="choicebox_cargo" layoutX="434.0" layoutY="285.0" prefHeight="35.0" prefWidth="183.0" AnchorPane.rightAnchor="75.0" />
-      <Button fx:id="button_salvar" layoutX="526.0" layoutY="471.0" mnemonicParsing="false" onAction="#handler_salvar" prefHeight="35.0" prefWidth="91.0" style="-fx-background-color: ffa500; -fx-background-radius: 0;" text="Salvar" textFill="WHITE" AnchorPane.rightAnchor="75.0" />
+      <Button layoutX="526.0" layoutY="471.0" mnemonicParsing="false" onAction="#handler_salvar" prefHeight="35.0" prefWidth="91.0" style="-fx-background-color: ffa500; -fx-background-radius: 0;" text="Salvar" textFill="WHITE" AnchorPane.rightAnchor="75.0" />
       <PasswordField fx:id="passwordfield_senha" layoutX="117.0" layoutY="403.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="183.0" promptText="******" AnchorPane.leftAnchor="117.0" />
       <Label layoutX="66.0" layoutY="411.0" text="Senha:" textFill="#bbbbbb">
          <font>
@@ -74,6 +72,8 @@
          </font>
       </Label>
       <TextField fx:id="textfield_crmv" layoutX="118.0" layoutY="333.0" prefHeight="35.0" prefWidth="142.0" promptText="CRMV" visible="false" />
-      <Button fx:id="button_salvar1" layoutX="637.0" layoutY="14.0" mnemonicParsing="false" onAction="#handler_salvar" prefHeight="35.0" prefWidth="41.0" style="-fx-background-color: ffa500; -fx-background-radius: 0;" text="X" textFill="WHITE" />
+      <Button fx:id="button_sar" layoutX="637.0" layoutY="14.0" mnemonicParsing="false" onAction="#fechar" prefHeight="35.0" prefWidth="41.0" style="-fx-background-color: ffa500; -fx-background-radius: 0;" text="X" textFill="WHITE" />
+      <ComboBox fx:id="choicebox_setor" layoutX="118.0" layoutY="290.0" onAction="#setCargoList" prefHeight="25.0" prefWidth="229.0" />
+      <ComboBox fx:id="choicebox_cargo" layoutX="435.0" layoutY="290.0" prefHeight="25.0" prefWidth="183.0" />
    </children>
 </AnchorPane>

@@ -28,6 +28,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -47,11 +48,11 @@ public class UiCadastroFuncionarioController implements Initializable {
 	@FXML
 	private DatePicker datepicker_datanascimento;
 	@FXML
-	private ChoiceBox choicebox_setor;
+	private ComboBox<Object> choicebox_setor;
 	@FXML
-	private ChoiceBox choicebox_cargo;
+	private ComboBox<Object> choicebox_cargo;
 	@FXML
-	private Button button_salvar;
+	private Button button_sar;
 	@FXML
 	private PasswordField passwordfield_senha;
 	@FXML
@@ -63,11 +64,12 @@ public class UiCadastroFuncionarioController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		ObservableList<TipoUsuario> items = FXCollections.observableArrayList(TipoUsuario.values());
+		ObservableList<Object> items = FXCollections.observableArrayList(TipoUsuario.values());
 		choicebox_setor.setItems(items);
 
 	}
 
+	@FXML
 	public void setCargoList() {
 		
 		if(choicebox_setor.getValue() != null) {
@@ -75,17 +77,17 @@ public class UiCadastroFuncionarioController implements Initializable {
 
 		case ADMINISTRATIVO:
 			textfield_crmv.setVisible(false);
-			ObservableList<CargoAdm> itemsadm = FXCollections.observableArrayList(CargoAdm.values());
+			ObservableList<Object> itemsadm = FXCollections.observableArrayList(CargoAdm.values());
 			choicebox_cargo.setItems(itemsadm);
 			break;
 		case AUXILIAR:
 			textfield_crmv.setVisible(false);
-			ObservableList<CargoAuxiliar> itemsauxiliar = FXCollections.observableArrayList(CargoAuxiliar.values());
+			ObservableList<Object> itemsauxiliar = FXCollections.observableArrayList(CargoAuxiliar.values());
 			choicebox_cargo.setItems(itemsauxiliar);
 			break;
 		case VETERINARIO:
 			textfield_crmv.setVisible(true);
-			ObservableList<CargoVeterinario> itemsveterinario = FXCollections
+			ObservableList<Object> itemsveterinario = FXCollections
 					.observableArrayList(CargoVeterinario.values());
 			choicebox_cargo.setItems(itemsveterinario);
 			break;
@@ -244,5 +246,12 @@ public class UiCadastroFuncionarioController implements Initializable {
 	private Stage getStage() {
 		return stage;
 	}
+	
+	@FXML
+	public void fechar() {
+		button_sar.getScene().getWindow().hide();
+	}
+
+	
 
 }

@@ -12,6 +12,7 @@ public class Veterinario {
 	private String contato;
 	private String email;
 	private String crmv;
+	private String setor;
 
 	public Veterinario(String nome, String cpf, LocalDate dataNasc, CargoVeterinario cargo, String contato,
 			String email, String crmv) throws Exception {
@@ -22,6 +23,7 @@ public class Veterinario {
 		this.contato = contato;
 		this.email = email;
 		this.crmv = crmv;
+		this.setSetor(cargo.toString());
 	}
 
 	public void setCpf(String cpf) throws Exception {
@@ -64,6 +66,13 @@ public class Veterinario {
 		String dados = this.getNome() + " - " + this.cpf + " - " + this.getEmail();
 		
 		return dados;
+	}
+	public String getSetor() {
+		return setor;
+	}
+
+	public void setSetor(String setor) {
+		this.setor = setor;
 	}
 	
 }

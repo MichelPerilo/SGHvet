@@ -13,6 +13,7 @@ public class Auxiliar {
 	private CargoAuxiliar cargo;
 	private String contato;
 	private String email;
+	private String setor;
 
 	public Auxiliar(String nome, String cpf, LocalDate dataNasc, CargoAuxiliar cargo, String contato, String email) throws Exception {
 		super();
@@ -22,6 +23,7 @@ public class Auxiliar {
 		this.cargo = cargo;
 		this.contato = contato;
 		this.email = email;
+		this.setSetor(cargo.toString());
 	}
 
 	public void setCpf(String cpf) throws Exception {
@@ -61,6 +63,13 @@ public class Auxiliar {
 		String dados = this.getNome() + " - " + this.cpf + " - " + this.getEmail();
 
 		return dados;
+	}
+	public String getSetor() {
+		return setor;
+	}
+
+	public void setSetor(String setor) {
+		this.setor = setor;
 	}
 
 }
