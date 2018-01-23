@@ -47,5 +47,12 @@ public class Disponibilidade {
 	public void setCpfVet(String cpfVet) {
 		this.cpfVet = cpfVet;
 	}
+	
+	@Override
+	public String toString(){
+		String result = this.getDia().toString() + ": " + this.getHorarioInicio() + " - " + this.getHorarioFinal();
+		
+		return result;
+	}
 
 }
