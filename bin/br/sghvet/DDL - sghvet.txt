@@ -135,6 +135,7 @@ CREATE TABLE req_exame(
 
 CREATE TABLE registro(
 	id_exame int,
+	id_consulta int,
     temperatura float,
     batimentoPorMin float,
     movRespPorMin float,

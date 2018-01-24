@@ -18,7 +18,7 @@
             <Font name="Footlight MT Light" size="35.0" />
          </font>
       </Label>
-      <Label alignment="TOP_RIGHT" layoutX="761.0" layoutY="20.0" prefHeight="17.0" prefWidth="200.0" text="Funcionario logado">
+      <Label fx:id="lb_Funcionario" alignment="TOP_RIGHT" layoutX="761.0" layoutY="20.0" prefHeight="17.0" prefWidth="200.0" text="Funcionario logado">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -41,7 +41,7 @@
       <ComboBox fx:id="cb_tipo" layoutX="780.0" layoutY="184.0" onAction="#setFiltro" prefHeight="25.0" prefWidth="181.0" />
       <ScrollPane fx:id="PN_sp1" layoutX="43.0" layoutY="256.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="256.0">
          <content>
-            <TableView fx:id="tv_funcionarios" prefHeight="444.0" prefWidth="916.0">
+            <TableView fx:id="tv_funcionarios" onMouseClicked="#clicarMouseItemListViewFuncionario" prefHeight="444.0" prefWidth="916.0">
                <columns>
                   <TableColumn fx:id="tccpfFunc" prefWidth="143.0" text="CPF" />
                   <TableColumn fx:id="tcnome" prefWidth="258.0" text="NOME" />
@@ -54,7 +54,7 @@
       </ScrollPane>
       <ScrollPane fx:id="PN_sp2" layoutX="43.0" layoutY="256.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="256.0">
          <content>
-            <TableView fx:id="tv_funcionarios2" prefHeight="444.0" prefWidth="916.0">
+            <TableView fx:id="tv_funcionarios2" onMouseClicked="#clicarMouseItemListViewFuncionario" prefHeight="444.0" prefWidth="916.0">
                <columns>
                   <TableColumn fx:id="tccpfFunc2" prefWidth="143.0" text="CPF" />
                   <TableColumn fx:id="tcnome2" prefWidth="258.0" text="NOME" />
@@ -67,7 +67,7 @@
       </ScrollPane>
       <ScrollPane fx:id="PN_sp3" layoutX="43.0" layoutY="256.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="256.0">
          <content>
-            <TableView fx:id="tv_funcionarios3" prefHeight="444.0" prefWidth="916.0">
+            <TableView fx:id="tv_funcionarios3" onMouseClicked="#clicarMouseItemListViewFuncionario" prefHeight="444.0" prefWidth="916.0">
                <columns>
                   <TableColumn fx:id="tccpfFunc3" prefWidth="143.0" text="CPF" />
                   <TableColumn fx:id="tcnome3" prefWidth="258.0" text="NOME" />

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sun.xml.internal.ws.org.objectweb.asm.Label;
+
 import br.sghvet.facade.Fachada;
 import br.sghvet.facade.IFachada;
 import br.sghvet.model.Administrativo;
@@ -13,6 +15,7 @@ import br.sghvet.model.CargoAuxiliar;
 import br.sghvet.model.CargoVeterinario;
 import br.sghvet.model.Consulta;
 import br.sghvet.model.TipoUsuario;
+import br.sghvet.model.Tutor;
 import br.sghvet.model.Veterinario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,6 +41,8 @@ public class UiGerenciamentoPessoasController implements Initializable {
 	private Button button_novocadastro;
 	@FXML
 	private ComboBox<TipoUsuario> cb_tipo;
+	@FXML
+	private javafx.scene.control.Label lb_Funcionario;
 
 //    Administrativo
 	
@@ -93,8 +98,15 @@ public class UiGerenciamentoPessoasController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+	
 
+
+		try {
+			lb_Funcionario.setText(Fachada.getInstance().buscaAdm(Fachada.getInstance().getCpfLogado()).getNome());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ObservableList<TipoUsuario> items = FXCollections.observableArrayList(TipoUsuario.values());
 		cb_tipo.setItems(items);
 
@@ -104,49 +116,17 @@ public class UiGerenciamentoPessoasController implements Initializable {
 		switch ((TipoUsuario) cb_tipo.getValue()) {
 
 		case ADMINISTRATIVO:
-			
-			PN_sp1.setVisible(true);
-			PN_sp2.setVisible(false);
-			PN_sp3.setVisible(false);
-			tccpfFunc.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-			tcnome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-			tcsetor.setCellValueFactory(new PropertyValueFactory<>("setor"));
-			tcemail.setCellValueFactory(new PropertyValueFactory<>("email"));
-			tccont.setCellValueFactory(new PropertyValueFactory<>("contato"));
-
-			
-			ObservableList<Administrativo> adms = FXCollections.observableArrayList(Fachada.getInstance().buscaTodosAdm());
-			tv_funcionarios.setItems(adms);			
+			carregaTBADM();
+				
 			break;
 		case AUXILIAR:
 			
-			PN_sp1.setVisible(false);
-			PN_sp2.setVisible(true);
-			PN_sp3.setVisible(false);
-			tccpfFunc2.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-			tcnome2.setCellValueFactory(new PropertyValueFactory<>("nome"));
-			tcsetor2.setCellValueFactory(new PropertyValueFactory<>("setor"));
-			tcemail2.setCellValueFactory(new PropertyValueFactory<>("email"));
-			tccont2.setCellValueFactory(new PropertyValueFactory<>("contato"));
-
-			
-			ObservableList<Auxiliar> aux = FXCollections.observableArrayList(Fachada.getInstance().buscaTodosAuxiliar());
-			tv_funcionarios2.setItems(aux);	
-
+			carregaTBAUX();
 
 			break;
 		case VETERINARIO:
 
-			PN_sp1.setVisible(false);
-			PN_sp2.setVisible(false);
-			PN_sp3.setVisible(true);
-			tccpfFunc3.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-			tcnome3.setCellValueFactory(new PropertyValueFactory<>("nome"));
-			tcsetor3.setCellValueFactory(new PropertyValueFactory<>("setor"));
-			tcemail3.setCellValueFactory(new PropertyValueFactory<>("email"));
-			tccont3.setCellValueFactory(new PropertyValueFactory<>("contato"));			
-			ObservableList<Veterinario> vet = FXCollections.observableArrayList(Fachada.getInstance().buscaTodosVeterinario());
-			tv_funcionarios3.setItems(vet);	
+			carregaVET();
 			
 			break;
 		default:
@@ -154,6 +134,136 @@ public class UiGerenciamentoPessoasController implements Initializable {
 			break;
 		}
 	}
+	
+	
+	public void carregaTBADM() {
+		
+		PN_sp1.setVisible(true);
+		PN_sp2.setVisible(false);
+		PN_sp3.setVisible(false);
+		tccpfFunc.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		tcnome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		tcsetor.setCellValueFactory(new PropertyValueFactory<>("setor"));
+		tcemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		tccont.setCellValueFactory(new PropertyValueFactory<>("contato"));
+
+		
+		ObservableList<Administrativo> adms;
+		try {
+			adms = FXCollections.observableArrayList(Fachada.getInstance().buscaTodosAdm());
+			tv_funcionarios.setItems(adms);		
+					
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void carregaTBAUX() {
+		
+		PN_sp1.setVisible(false);
+		PN_sp2.setVisible(true);
+		PN_sp3.setVisible(false);
+		tccpfFunc2.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		tcnome2.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		tcsetor2.setCellValueFactory(new PropertyValueFactory<>("setor"));
+		tcemail2.setCellValueFactory(new PropertyValueFactory<>("email"));
+		tccont2.setCellValueFactory(new PropertyValueFactory<>("contato"));
+
+		
+		try {
+			ObservableList<Auxiliar> aux = FXCollections.observableArrayList(Fachada.getInstance().buscaTodosAuxiliar());
+			tv_funcionarios2.setItems(aux);	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		
+	}
+	
+	public void carregaVET() {
+		
+		PN_sp1.setVisible(false);
+		PN_sp2.setVisible(false);
+		PN_sp3.setVisible(true);
+		tccpfFunc3.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+		tcnome3.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		tcsetor3.setCellValueFactory(new PropertyValueFactory<>("setor"));
+		tcemail3.setCellValueFactory(new PropertyValueFactory<>("email"));
+		tccont3.setCellValueFactory(new PropertyValueFactory<>("contato"));			
+		try {
+			ObservableList<Veterinario> vet = FXCollections.observableArrayList(Fachada.getInstance().buscaTodosVeterinario());
+			tv_funcionarios3.setItems(vet);	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
+	
+	@FXML
+	public void clicarMouseItemListViewFuncionario() throws IOException {
+		
+	TipoUsuario tp = null;
+		
+		switch ((TipoUsuario) cb_tipo.getValue()) {
+
+		case ADMINISTRATIVO:
+			
+			Administrativo adm = tv_funcionarios.getSelectionModel().getSelectedItem();
+			abrirPNView(tp.ADMINISTRATIVO ,adm);
+			carregaTBADM();
+			break;
+		case AUXILIAR:
+			
+			Auxiliar aux = tv_funcionarios2.getSelectionModel().getSelectedItem();
+			abrirPNView(tp.AUXILIAR ,aux);
+			carregaTBAUX();
+			break;
+		case VETERINARIO:
+
+			Veterinario vet = tv_funcionarios3.getSelectionModel().getSelectedItem();
+			abrirPNView(tp.VETERINARIO ,vet);
+			carregaVET();
+
+			break;
+		default:
+
+			break;
+		}
+		
+	
+	}
+	
+	public void abrirPNView(TipoUsuario tp, Object obj) throws IOException {
+		
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(	UiCadastroFuncionarioController.class.getResource("../view/fxml_ui_cadastro_funcionario.fxml"));
+		AnchorPane page = (AnchorPane) loader.load();
+		Stage Funcionario = new Stage();
+		Scene scene = new Scene(page);
+		Funcionario.setScene(scene);
+		Funcionario.setResizable(false);
+		UiCadastroFuncionarioController controller = loader.getController();
+		controller.carregaDados(tp, obj);
+		controller.setStage(Funcionario);
+
+		Funcionario.showAndWait();
+		
+	}
+	
+	
+	
+	
 
 
 	@FXML
@@ -175,6 +285,9 @@ public class UiGerenciamentoPessoasController implements Initializable {
 		controller.setStage(cadastroFuncionario);
 
 		cadastroFuncionario.showAndWait();
+		carregaTBADM();
+		carregaTBAUX();
+		carregaVET();
 
 	}
 
