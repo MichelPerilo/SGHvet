@@ -55,5 +55,10 @@
       <Label layoutX="269.0" layoutY="376.0" text="Especie" />
       <TextField fx:id="tx_Especie" layoutX="320.0" layoutY="372.0" prefHeight="26.0" prefWidth="132.0" />
       <Button fx:id="btnFecharCadastroTutor" layoutX="609.0" layoutY="507.0" mnemonicParsing="false" onAction="#fechar" text="sair" />
+      <Label layoutX="322.0" layoutY="280.0" text="PET">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
 	</children>
 </AnchorPane>

@@ -323,7 +323,7 @@ public class UIAgendamentoController implements Initializable {
 		tc_AgendamentoTelefone.setCellValueFactory(new PropertyValueFactory<>("contato"));
 
 		try {
-			observableListTutor = FXCollections.observableArrayList(Fachada.getInstance().buscarALLConsulta());
+			observableListTutor = FXCollections.observableArrayList(Fachada.getInstance().buscarALLTutor());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

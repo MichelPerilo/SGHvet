@@ -382,7 +382,7 @@
 								</ScrollPane>
 							</content>
 						</Tab>
-						<Tab text="Historicos">
+						<Tab disable="true" text="Historicos">
 							<content>
                         <ScrollPane prefWidth="974.0">
                            <content>
