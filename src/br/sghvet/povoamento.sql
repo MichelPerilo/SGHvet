@@ -1,8 +1,8 @@
 -- ADM
 -- senha de admsupremo eh 'abcd'
-CREATE USER IF NOT EXISTS '10103566406'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335';
-INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('10103566406', 'ADMINISTRATIVO');
-INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', '10103566406', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
+-- CREATE USER IF NOT EXISTS '10103566406'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335';
+-- INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('10103566406', 'ADMINISTRATIVO');
+-- INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', '10103566406', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
 
 -- VETERINARIO
 -- senha é vetteste

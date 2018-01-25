@@ -93,13 +93,14 @@ public class RepositorioAuxiliar implements IRepositorioAuxiliar {
 	@Override
 	public boolean atualizarAuxiliar(Auxiliar aux) throws Exception {
 
-		String query = "update auxiliar set nome = ?, dataNasc = ?, cargo = ?, contato = ?, email = ?";
+		String query = "update auxiliar set nome = ?, dataNasc = ?, cargo = ?, contato = ?, email = ? where cpf = ?";
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
 		ps.setString(1, aux.getNome());
 		ps.setString(2, aux.getDataNasc().toString());
 		ps.setString(3, aux.getCargo().toString());
 		ps.setString(4, aux.getContato());
 		ps.setString(5, aux.getEmail());
+		ps.setString(6, aux.getCpf());
 		
 		return !executar(ps);		
 	}

@@ -78,13 +78,14 @@ public class RepositorioAdm implements IRepositorioAdm {
 	@Override
 	public boolean atualizaAdm(Administrativo adm) throws Exception {
 
-		String query = "update administrativo set nome = ?, dataNasc = ?, cargo = ?, contato = ?, email = ?";
+		String query = "update administrativo set nome = ?, dataNasc = ?, cargo = ?, contato = ?, email = ? where cpf = ?";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, adm.getNome());
 		ps.setString(2, adm.getDataNasc().toString());
 		ps.setString(3, adm.getCargo().toString());
 		ps.setString(4, adm.getContato());
 		ps.setString(5, adm.getEmail());
+		ps.setString(6, adm.getCpf());
 
 		return !executar(ps);
 	}
