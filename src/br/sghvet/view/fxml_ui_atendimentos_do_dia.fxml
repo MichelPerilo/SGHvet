@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiAtendimentosDoDiaController">
    <children>
-      <TableView fx:id="tableview_atendimentos" layoutX="47.0" layoutY="115.0" prefHeight="463.0" prefWidth="942.0">
+      <TableView fx:id="tableview_atendimentos" layoutX="47.0" layoutY="115.0" onMouseClicked="#tableViewClick" prefHeight="463.0" prefWidth="942.0">
         <columns>
           <TableColumn fx:id="tablecolumn_horario" prefWidth="323.0" text="Horário" />
           <TableColumn fx:id="tablecolumn_paciente" minWidth="0.0" prefWidth="327.0" text="Paciente" />
