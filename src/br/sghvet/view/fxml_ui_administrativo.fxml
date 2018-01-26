@@ -8,11 +8,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiAdministrativoController">
+<AnchorPane prefHeight="731.0" prefWidth="1124.0" style="-fx-background-color: F2F2F2;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiAdministrativoController">
    <children>
-      <ToolBar layoutY="114.0" orientation="VERTICAL" prefHeight="606.0" prefWidth="263.0" style="-fx-background-color: #1e90ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="114.0">
+      <ToolBar orientation="VERTICAL" prefHeight="720.0" prefWidth="1270.0" style="-fx-background-color: #A9E2F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <Button fx:id="button_gerenciamentopessoas" contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_GerenciamentoPessoas" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #8187a3; -fx-background-radius: 0;" text="Gerenciamento de Pessoas" textFill="WHITE">
+            <ImageView fitHeight="79.0" fitWidth="228.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../assets/imgs/simgeh.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="button_gerenciamentopessoas" contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_GerenciamentoPessoas" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="Gerenciamento de Pessoas" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
@@ -20,7 +25,7 @@
                   <DropShadow blurType="ONE_PASS_BOX" color="WHITE" radius="7.775" width="12.1" />
                </effect>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_GerenciamentoPessoas" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #8187a3; -fx-background-radius: 0;" text="Logoff" textFill="WHITE">
+            <Button fx:id="bt_logoff" contentDisplay="TOP" mnemonicParsing="false" onAction="#logoff" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="Logoff" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
@@ -30,12 +35,13 @@
             </Button>
          </items>
       </ToolBar>
-      <AnchorPane layoutX="305.0" layoutY="88.0" prefHeight="22.0" prefWidth="234.0" />
-      <ImageView fitHeight="79.0" fitWidth="228.0" layoutX="7.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../assets/imgs/simgeh.png" />
-         </image>
-      </ImageView>
-      <AnchorPane fx:id="anchorpane_info" layoutX="273.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="1004.0" />
+      <AnchorPane fx:id="anchorpane_info" layoutX="266.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="731.0" prefWidth="1004.0" style="-fx-background-color: #CEF6F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="266.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="img_boasvindas" fitHeight="731.0" fitWidth="866.0" layoutX="118.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="118.0" AnchorPane.rightAnchor="117.44403076171875" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../../../../assets/Icones/BOASVINDAS.PNG" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

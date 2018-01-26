@@ -1,6 +1,9 @@
 package br.sghvet.facade;
 
 import java.sql.Connection;
+
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import br.sghvet.controller.*;
@@ -17,18 +20,24 @@ public class Fachada implements IFachada {
 	private IControlPaciente controlPaciente;
 	private CadastroReqExame cadastroReqExame;
 	private ControlPdf pdfControl;
-	private IControlRegistroConsulta controlRegistro;
+	private IControlResultadoExame controlRegistro;
+	private CadastroDisponibilidade cadastroDisp;
+	private ICadastroConsulta cadastroConsulta;
+	
+	private String cpfLogado;
+	
+	private static Fachada instance;
 
-	public static Fachada instance;
-
-	public Fachada() {
+	private Fachada() {
 		
 		this.controlelogin = new ControleLogin();
 		this.controlfuncionario = new ControlFuncionario();
 		this.cadastroReqExame = new CadastroReqExame();
 		this.pdfControl = new ControlPdf();
 		this.controlPaciente = new ControlPaciente();
-		this.controlRegistro = new ControlRegistroConsulta();
+		this.controlRegistro = new ControlResultadoExame();
+		this.cadastroDisp = new CadastroDisponibilidade();
+		this.cadastroConsulta = new CadastroConsulta();
 	}
 
 	public static Fachada getInstance() {
@@ -40,9 +49,34 @@ public class Fachada implements IFachada {
 
 	public void conectar() { // executar após fazer login para persistir conexao
 		controlfuncionario.conectar(conexao);
-		cadastroReqExame.conectar(conexao);
 		controlPaciente.conectar(conexao);
 		controlRegistro.conectar(conexao);
+		cadastroReqExame.conectar(conexao);
+		cadastroDisp.conectar(conexao);
+		cadastroConsulta.conectar(conexao);
+		
+	}
+	
+	public void desconectar() {	//executar ao fazer logoff para reiniciar conexoes
+		try {
+			conexao.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		conectar();
+		this.controlelogin = new ControleLogin();
+		this.controlfuncionario = new ControlFuncionario();
+		this.cadastroReqExame = new CadastroReqExame();
+		this.pdfControl = new ControlPdf();
+		this.controlPaciente = new ControlPaciente();
+		this.controlRegistro = new ControlResultadoExame();
+		this.cadastroDisp = new CadastroDisponibilidade();
+		this.cadastroConsulta = new CadastroConsulta();
+		conexao = null;
+	}
+	
+	public String getCpfLogado() {
+		return this.cpfLogado;
 	}
 
 	public void carregarAgendamento() throws Exception {
@@ -65,6 +99,7 @@ public class Fachada implements IFachada {
 			// System.out.println("blow this shit up");
 			// }
 		}
+		cpfLogado = cpf;
 		return user;
 	}
 
@@ -296,18 +331,92 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public RegistroConsulta buscarRegistro(Consulta consulta) throws Exception {
+	public ResultadoExame buscarRegistro(RequisicaoExame consulta) throws Exception {
 		return controlRegistro.buscarRegistro(consulta);
 	}
 
 	@Override
-	public boolean cadastrarRegistro(RegistroConsulta registroConsulta) throws Exception {
+	public boolean cadastrarRegistro(ResultadoExame registroConsulta) throws Exception {
 		return controlRegistro.cadastrarRegistro(registroConsulta);
 	}
 
 	@Override
-	public boolean atualizarRegistro(RegistroConsulta registroConsulta) throws Exception {
+	public boolean atualizarRegistro(ResultadoExame registroConsulta) throws Exception {
 		return controlRegistro.atualizarRegistro(registroConsulta);
 	}
+
+	@Override
+	public void cadastrarHorario(Disponibilidade disp) throws Exception {
+		cadastroDisp.cadastrarHorario(disp);
+	}
+
+	@Override
+	public void atualizarHorario(Disponibilidade dispo) throws Exception {
+		cadastroDisp.atualizarHorario(dispo);
+	}
+
+	@Override
+	public List<Disponibilidade> buscaHorarios(String cpf_vet) throws Exception {
+		return cadastroDisp.buscaHorarios(cpf_vet);
+	}
+	
+	@Override
+	public List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception {
+		return cadastroDisp.buscaDisponibilidade(horario);
+	}
+
+	@Override
+	public void deletarHorario(Disponibilidade disp) throws Exception {
+		cadastroDisp.deletarHorario(disp);
+	}
+	
+	
+	public boolean cadastrarConsulta(Consulta consulta) throws Exception {
+		return cadastroConsulta.cadastrarConsulta(consulta);
+	}
+
+	@Override
+	public boolean removerConsulta(Consulta consulta) throws Exception {
+		return cadastroConsulta.removerConsulta(consulta);
+	}
+
+	@Override
+	public boolean atualizarConsulta(Consulta consulta) throws Exception {
+		return cadastroConsulta.atualizarConsulta(consulta);
+	}
+
+	@Override
+	public List<Consulta> buscarConsultaCpf(String cpf) throws Exception {
+		return cadastroConsulta.buscarConsultaCpf(cpf);
+	}
+
+	@Override
+	public List<Consulta> buscarConsultaVet(String cpf) throws Exception {
+		return cadastroConsulta.buscarConsultaVet(cpf);
+	}
+
+	@Override
+	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception {
+		return cadastroConsulta.buscarConsultasDoDia(cpf, data);
+	}
+	
+	@Override
+	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception {
+		return cadastroConsulta.buscarConsultaPro(prontuario);
+	}
+	
+	@Override
+	public List buscarALLConsulta() throws Exception {
+
+		return cadastroConsulta.buscarALLConsultas();
+	}
+
+	@Override
+	public Consulta buscarConsulta(String cpf) throws Exception {
+
+		return cadastroConsulta.buscarConsultas(cpf);
+	}
+	
+	
 
 }

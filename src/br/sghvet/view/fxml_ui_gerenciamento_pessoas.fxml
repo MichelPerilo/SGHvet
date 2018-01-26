@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiGerenciamentoPessoasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="731.0" prefWidth="1004.0" style="-fx-background-color: F2F2F2;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiGerenciamentoPessoasController">
    <children>
-      <Button fx:id="button_novocadastro" layoutX="47.0" layoutY="50.0" mnemonicParsing="false" onAction="#handler_NovoCadastro" prefHeight="38.0" prefWidth="156.0" style="-fx-background-color: #1e90ff; -fx-background-radius: 5cm;" text="Novo Cadastro" textFill="WHITE">
+      <Label layoutX="304.0" layoutY="91.0" text="Gerencioador de usuarios">
+         <font>
+            <Font name="Footlight MT Light" size="35.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_Funcionario" alignment="TOP_RIGHT" layoutX="761.0" layoutY="20.0" prefHeight="17.0" prefWidth="200.0" text="Funcionario logado">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="button_novocadastro" layoutX="43.0" layoutY="177.0" mnemonicParsing="false" onAction="#handler_NovoCadastro" prefHeight="38.0" prefWidth="156.0" style="-fx-background-color: #1e90ff; -fx-background-radius: 5cm;" text="Novo Cadastro" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
@@ -22,8 +34,49 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <ListView fx:id="listview_funcionarios" layoutX="47.0" layoutY="140.0" prefHeight="410.0" prefWidth="910.0" />
-      <Label layoutX="734.0" layoutY="109.0" text="Setor:" />
-      <ChoiceBox fx:id="choicebox_setor" layoutX="776.0" layoutY="100.0" onMouseClicked="#setLisView" prefHeight="35.0" prefWidth="181.0" />
+      <Label layoutX="721.0" layoutY="184.0" text="SETOR:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <ComboBox fx:id="cb_tipo" layoutX="780.0" layoutY="184.0" onAction="#setFiltro" prefHeight="25.0" prefWidth="181.0" />
+      <ScrollPane fx:id="PN_sp1" layoutX="43.0" layoutY="256.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="256.0">
+         <content>
+            <TableView fx:id="tv_funcionarios" onMouseClicked="#clicarMouseItemListViewFuncionario" prefHeight="444.0" prefWidth="916.0">
+               <columns>
+                  <TableColumn fx:id="tccpfFunc" prefWidth="143.0" text="CPF" />
+                  <TableColumn fx:id="tcnome" prefWidth="258.0" text="NOME" />
+                  <TableColumn fx:id="tcsetor" minWidth="0.0" prefWidth="161.0" text="SETOR" />
+                  <TableColumn fx:id="tcemail" prefWidth="167.0" text="EMAIL" />
+                  <TableColumn fx:id="tccont" prefWidth="185.0" text="CONTATO" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="PN_sp2" layoutX="43.0" layoutY="256.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="256.0">
+         <content>
+            <TableView fx:id="tv_funcionarios2" onMouseClicked="#clicarMouseItemListViewFuncionario" prefHeight="444.0" prefWidth="916.0">
+               <columns>
+                  <TableColumn fx:id="tccpfFunc2" prefWidth="143.0" text="CPF" />
+                  <TableColumn fx:id="tcnome2" prefWidth="258.0" text="NOME" />
+                  <TableColumn fx:id="tcsetor2" minWidth="0.0" prefWidth="161.0" text="SETOR" />
+                  <TableColumn fx:id="tcemail2" prefWidth="167.0" text="EMAIL" />
+                  <TableColumn fx:id="tccont2" prefWidth="185.0" text="CONTATO" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="PN_sp3" layoutX="43.0" layoutY="256.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="256.0">
+         <content>
+            <TableView fx:id="tv_funcionarios3" onMouseClicked="#clicarMouseItemListViewFuncionario" prefHeight="444.0" prefWidth="916.0">
+               <columns>
+                  <TableColumn fx:id="tccpfFunc3" prefWidth="143.0" text="CPF" />
+                  <TableColumn fx:id="tcnome3" prefWidth="258.0" text="NOME" />
+                  <TableColumn fx:id="tcsetor3" minWidth="0.0" prefWidth="161.0" text="SETOR" />
+                  <TableColumn fx:id="tcemail3" prefWidth="167.0" text="EMAIL" />
+                  <TableColumn fx:id="tccont3" prefWidth="185.0" text="CONTATO" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

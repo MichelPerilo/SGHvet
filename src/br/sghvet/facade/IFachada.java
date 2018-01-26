@@ -1,14 +1,16 @@
 package br.sghvet.facade;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.List;
 
 import br.sghvet.model.Administrativo;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Auxiliar;
 import br.sghvet.model.Consulta;
+import br.sghvet.model.Disponibilidade;
 import br.sghvet.model.Endereco;
-import br.sghvet.model.RegistroConsulta;
+import br.sghvet.model.ResultadoExame;
 import br.sghvet.model.RequisicaoExame;
 import br.sghvet.model.TipoUsuario;
 import br.sghvet.model.Tutor;
@@ -19,6 +21,7 @@ import exceptions.ConectionException;
 public interface IFachada {
 	
 	public void conectar();
+	public void desconectar();
 	public void carregarAgendamento() throws Exception;
 	public Usuario loginUsuario(String cpf, String senha) throws Exception;
 	
@@ -70,11 +73,29 @@ public interface IFachada {
 	public boolean atualizaReqExame(RequisicaoExame e) throws Exception;
 	public boolean deletarReqExame(int id) throws Exception;
 
-	public RegistroConsulta buscarRegistro(Consulta consulta) throws Exception;
-	public boolean cadastrarRegistro(RegistroConsulta registroConsulta) throws Exception;
-	public boolean atualizarRegistro(RegistroConsulta registroConsulta) throws Exception;     
+	public ResultadoExame buscarRegistro(RequisicaoExame consulta) throws Exception;
+	public boolean cadastrarRegistro(ResultadoExame registroConsulta) throws Exception;
+	public boolean atualizarRegistro(ResultadoExame registroConsulta) throws Exception;     
 	
 	public void gerarPdfRequisicao(RequisicaoExame req) throws Exception;
+	
+	public void cadastrarHorario(Disponibilidade disp)	throws Exception;
+	void atualizarHorario(Disponibilidade dispo) throws Exception;
+	List<Disponibilidade> buscaHorarios(String cpf_vet) throws Exception;
+	public void deletarHorario(Disponibilidade disp) throws Exception ;
+	
+	
+	public boolean cadastrarConsulta(Consulta consulta) throws Exception;
+	public boolean removerConsulta(Consulta consulta) throws Exception;	
+	public boolean atualizarConsulta(Consulta consulta) throws Exception;
+	public List<Consulta> buscarConsultaCpf(String cpf) throws Exception;
+	public List<Consulta> buscarConsultaVet(String cpf) throws Exception;
+	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception;
+	public List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception;
+	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception;
+	public List buscarALLConsulta() throws Exception;
+	public Consulta buscarConsulta(String cpf) throws Exception;
+	
 
 
 }

@@ -1,10 +1,12 @@
---create schema sghvet;
+drop schema if exists sghvet;
+create schema if not exists sghvet;
+use sghvet;
 
-CREATE USER IF NOT EXISTS 'admsupremo'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335cargo';
+CREATE USER IF NOT EXISTS '10103566406'@'localhost' IDENTIFIED BY '301716283811389038011477436469853762335';
 -- senha de admsupremo eh 'abcd'
 FLUSH PRIVILEGES;
-GRANT CREATE USER, RELOAD ON *.* TO 'admsupremo'@'localhost' WITH GRANT OPTION;
-GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO 'admsupremo'@'localhost';
+GRANT CREATE USER, RELOAD ON *.* TO '10103566406'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO '10103566406'@'localhost';
 FLUSH PRIVILEGES;
 CREATE TABLE veterinario(
 nome varchar(100) not null,
@@ -132,12 +134,14 @@ CREATE TABLE req_exame(
 ) ENGINE = innodb;
 
 CREATE TABLE registro(
-	id_consulta int,
+	id_exame int,
     temperatura float,
     batimentoPorMin float,
     movRespPorMin float,
     pulso float,
     ectoscopia varchar(300),
+    vacinacoes varchar(300),
+    vermifugacoes varchar(300),
     cabecaPescoco varchar(300),
     cavidadeToracica varchar(300),
     cavidadeAbdominal varchar(300),
@@ -147,13 +151,12 @@ CREATE TABLE registro(
     examesComplementares varchar(150),
     diagnosticoDefinitivo varchar(150),
     prognostico varchar(150),
-    primary key (id_consulta),
-    foreign key (id_consulta) references consulta(id) ON DELETE CASCADE
+    primary key (id_exame),
+    foreign key (id_exame) references consulta(id) ON DELETE CASCADE,
 ) ENGINE = innodb;
 
-INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('admsupremo', 'ADMINISTRATIVO');
-INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', 'admsupremo', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
+INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('10103566406', 'ADMINISTRATIVO');
+INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', '10103566406', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
 
-
--- select * from usuario;
+ -- select * from usuario;
 -- SELECT * from administrativo;

@@ -98,7 +98,7 @@ public class RepositorioVeterinario implements IRepositorioVeterinario {
 	@Override
 	public boolean atualizarVeterinario(Veterinario vet) throws Exception {
 		
-		String query = "update veterinario set nome = ?, dataNasc = ?, cargo = ?, contato = ?, email = ?, crmv = ?";
+		String query = "update veterinario set nome = ?, dataNasc = ?, cargo = ?, contato = ?, email = ?, crmv = ? where cpf = ?";
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
 		ps.setString(1, vet.getNome());
 		ps.setString(2, vet.getDataNasc().toString());
@@ -106,6 +106,7 @@ public class RepositorioVeterinario implements IRepositorioVeterinario {
 		ps.setString(4, vet.getContato());
 		ps.setString(5, vet.getEmail());
 		ps.setString(6, vet.getCrmv());
+		ps.setString(7, vet.getCpf());
 		
 		return !executar(ps);
 	}

@@ -1,78 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="692.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiCadastroFuncionarioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="692.0" style="-fx-background-color: F7F8E0;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiCadastroFuncionarioController">
    <children>
-      <Label layoutX="264.0" layoutY="38.0" text="Novo Funcionário" textFill="ORANGE" AnchorPane.leftAnchor="264.0" AnchorPane.rightAnchor="263.0">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <TextField fx:id="textfield_nome" layoutX="118.0" layoutY="122.0" prefHeight="35.0" prefWidth="499.0" promptText="Pedro de Alcântara Francisco António João Carlos Xavier de Paula Miguel Rafael Joaquim José Gonzaga Pascoal Cipriano Serafim" AnchorPane.leftAnchor="118.0" AnchorPane.rightAnchor="75.0" />
-      <TextField fx:id="textfield_cpf" layoutX="118.0" layoutY="175.0" prefHeight="35.0" prefWidth="142.0" promptText="111.111.111-11" AnchorPane.leftAnchor="118.0" />
-      <DatePicker fx:id="datepicker_datanascimento" layoutX="443.0" layoutY="175.0" prefHeight="35.0" promptText="12/10/1798" AnchorPane.rightAnchor="75.0" />
-      <TextField fx:id="textfield_contato" layoutX="462.0" layoutY="230.0" prefHeight="35.0" prefWidth="155.0" promptText="(00) 0 0000-0000" AnchorPane.rightAnchor="75.0" />
-      <Label layoutX="64.0" layoutY="130.0" text="Nome:" textFill="#bbbbbb">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="64.0" layoutY="182.0" text="CPF:" textFill="#bbbbbb">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="286.0" layoutY="183.0" text="Data de Nascimento:" textFill="#bbbbbb">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="64.0" layoutY="237.0" text="Email:" textFill="#bbbbbb">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="374.0" layoutY="237.0" text="Telefone:" textFill="#bbbbbb">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="textfield_email" layoutX="118.0" layoutY="230.0" prefHeight="35.0" prefWidth="229.0" promptText="dompedroi@imperiodobrasil.com.pt" AnchorPane.leftAnchor="118.0" />
-      <Label layoutX="66.0" layoutY="291.0" text="Setor:" textFill="#bbbbbb">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <ChoiceBox fx:id="choicebox_setor" layoutX="118.0" layoutY="284.0" onMouseClicked="#setCargoList" prefHeight="35.0" prefWidth="229.0" AnchorPane.leftAnchor="118.0" />
-      <Label layoutX="368.0" layoutY="292.0" text="Cargo:" textFill="#bbbbbb">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <ChoiceBox fx:id="choicebox_cargo" layoutX="434.0" layoutY="285.0" prefHeight="35.0" prefWidth="183.0" AnchorPane.rightAnchor="75.0" />
-      <Button fx:id="button_salvar" layoutX="526.0" layoutY="471.0" mnemonicParsing="false" onAction="#handler_salvar" prefHeight="35.0" prefWidth="91.0" style="-fx-background-color: ffa500; -fx-background-radius: 0;" text="Salvar" textFill="WHITE" AnchorPane.rightAnchor="75.0" />
-      <PasswordField fx:id="passwordfield_senha" layoutX="117.0" layoutY="403.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="183.0" promptText="******" AnchorPane.leftAnchor="117.0" />
-      <Label layoutX="66.0" layoutY="411.0" text="Senha:" textFill="#bbbbbb">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Separator layoutX="110.0" layoutY="385.0" prefHeight="2.0" prefWidth="447.0" />
-      <PasswordField fx:id="passwordfield_confirmsenha" layoutX="413.0" layoutY="403.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="204.0" promptText="******" />
-      <Label layoutX="323.0" layoutY="411.0" text="Confirmação:" textFill="#bbbbbb">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="textfield_crmv" layoutX="118.0" layoutY="333.0" prefHeight="35.0" prefWidth="142.0" promptText="CRMV" visible="false" />
+      <Pane fx:id="Pn1" layoutX="-4.0" layoutY="2.0" prefHeight="528.0" prefWidth="698.0">
+         <children>
+            <Label layoutX="263.0" layoutY="30.0" text="Novo Funcionário" textFill="ORANGE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textfield_nome" layoutX="117.0" layoutY="114.0" prefHeight="35.0" prefWidth="499.0" promptText="Pedro de Alcântara Francisco António João Carlos Xavier de Paula Miguel Rafael Joaquim José Gonzaga Pascoal Cipriano Serafim" />
+            <TextField fx:id="textfield_cpf" layoutX="117.0" layoutY="167.0" prefHeight="35.0" prefWidth="142.0" promptText="111.111.111-11" />
+            <DatePicker fx:id="datepicker_datanascimento" layoutX="442.0" layoutY="167.0" prefHeight="35.0" promptText="12/10/1798" />
+            <TextField fx:id="textfield_contato" layoutX="461.0" layoutY="222.0" prefHeight="35.0" prefWidth="155.0" promptText="(00) 0 0000-0000" />
+            <Label layoutX="63.0" layoutY="122.0" text="Nome:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="63.0" layoutY="174.0" text="CPF:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="285.0" layoutY="175.0" text="Data de Nascimento:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="63.0" layoutY="229.0" text="Email:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="373.0" layoutY="229.0" text="Telefone:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textfield_email" layoutX="117.0" layoutY="222.0" prefHeight="35.0" prefWidth="229.0" promptText="dompedroi@imperiodobrasil.com.pt" />
+            <Label layoutX="65.0" layoutY="283.0" text="Setor:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="367.0" layoutY="284.0" text="Cargo:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="525.0" layoutY="463.0" mnemonicParsing="false" onAction="#handler_salvar" prefHeight="35.0" prefWidth="91.0" style="-fx-background-color: ffa500; -fx-background-radius: 0;" text="Salvar" textFill="WHITE" />
+            <PasswordField fx:id="passwordfield_senha" layoutX="116.0" layoutY="395.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="183.0" promptText="******" />
+            <Label layoutX="65.0" layoutY="403.0" text="Senha:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator layoutX="9.0" layoutY="378.0" prefHeight="2.0" prefWidth="683.0" />
+            <PasswordField fx:id="passwordfield_confirmsenha" layoutX="412.0" layoutY="395.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="204.0" promptText="******" />
+            <Label layoutX="322.0" layoutY="403.0" text="Confirmação:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textfield_crmv" layoutX="54.0" layoutY="319.0" prefHeight="35.0" prefWidth="142.0" promptText="CRMV" visible="false" />
+            <Button fx:id="button_sar" layoutX="630.0" layoutY="28.0" mnemonicParsing="false" onAction="#fechar" prefHeight="35.0" prefWidth="41.0" style="-fx-background-color: ffa500; -fx-background-radius: 0;" text="X" textFill="WHITE" />
+            <ComboBox fx:id="choicebox_setor" layoutX="117.0" layoutY="282.0" onAction="#setCargoList" prefHeight="25.0" prefWidth="229.0" />
+            <ComboBox fx:id="choicebox_cargo" layoutX="434.0" layoutY="282.0" prefHeight="25.0" prefWidth="183.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="Pn2" layoutX="1.0" layoutY="-1.0" prefHeight="528.0" prefWidth="692.0" visible="false">
+         <children>
+            <TextField fx:id="textfield_nome1" layoutX="125.0" layoutY="143.0" prefHeight="25.0" prefWidth="474.0" promptText="Pedro de Alcântara Francisco António João Carlos Xavier de Paula Miguel Rafael Joaquim José Gonzaga Pascoal Cipriano Serafim" />
+            <TextField fx:id="textfield_cpf1" layoutX="125.0" layoutY="196.0" prefHeight="25.0" prefWidth="129.0" promptText="111.111.111-11" />
+            <DatePicker fx:id="datepicker_datanascimento1" layoutX="450.0" layoutY="196.0" prefHeight="20.0" prefWidth="149.0" promptText="12/10/1798" />
+            <TextField fx:id="textfield_contato1" layoutX="469.0" layoutY="251.0" prefHeight="25.0" prefWidth="129.0" promptText="(00) 0 0000-0000" />
+            <Label layoutX="69.0" layoutY="146.0" text="Nome:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="203.0" text="CPF:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="317.0" layoutY="199.0" text="Data de Nascimento:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="258.0" text="Email:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="406.0" layoutY="258.0" text="Telefone:" textFill="#bbbbbb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textfield_email1" layoutX="125.0" layoutY="251.0" prefHeight="25.0" prefWidth="198.0" promptText="dompedroi@imperiodobrasil.com.pt" />
+            <Button fx:id="bt_atualizar" layoutX="245.0" layoutY="453.0" mnemonicParsing="false" onAction="#atualizar" prefHeight="35.0" prefWidth="91.0" style="-fx-background-color: ffa500; -fx-background-radius: 0;" text="Atualizar" textFill="WHITE" />
+            <PasswordField fx:id="passwordfield_senha1" layoutX="125.0" layoutY="387.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="165.0" promptText="******" />
+            <PasswordField fx:id="passwordfield_confirmsenha1" layoutX="421.0" layoutY="387.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="155.0" promptText="******" />
+            <Button layoutX="640.0" mnemonicParsing="false" onAction="#fechar" prefHeight="35.0" prefWidth="41.0" style="-fx-background-color: ffa500; -fx-background-radius: 0;" text="X" textFill="WHITE" />
+            <Separator layoutY="327.0" prefHeight="3.0" prefWidth="692.0" />
+            <Label layoutX="273.0" layoutY="35.0" prefHeight="48.0" prefWidth="142.0" text="Atulização">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="71.0" layoutY="390.0" text="Senha" textFill="#8d8d8d" />
+            <Label layoutX="348.0" layoutY="390.0" text="Confirmação" textFill="#b2b2b2" />
+            <Button layoutX="370.0" layoutY="453.0" mnemonicParsing="false" onAction="#deletar" prefHeight="35.0" prefWidth="91.0" style="-fx-background-color: #B40404; -fx-background-radius: 0;" text="Deletar" textFill="WHITE" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

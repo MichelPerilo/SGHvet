@@ -1,6 +1,7 @@
 package br.sghvet.controller;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.List;
 
 import br.sghvet.model.Consulta;
@@ -13,6 +14,9 @@ public interface ICadastroConsulta {
 	public List<Consulta> buscarConsultaCpf(String cpf) throws Exception;
 	public List<Consulta> buscarConsultaVet(String cpf) throws Exception;
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception;
+	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception;
 	
 	public void conectar(Connection conect);
+	public List buscarALLConsultas()throws Exception;
+	public Consulta buscarConsultas(String cpf) throws Exception;
 }

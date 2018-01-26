@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -22,11 +23,9 @@ public class UINovoAnimalController implements Initializable {
 
 	private Stage stage;
 	private String cpf;
-	IFachada control;
 	Alert alert = new Alert(AlertType.WARNING);
 
-	@FXML
-	private TextField tx_ProntuarioAnimal;
+
 	@FXML
 	private TextField tx_NomeAnimal;
 	@FXML
@@ -39,26 +38,32 @@ public class UINovoAnimalController implements Initializable {
 	private TextField tx_PesoAnimal;
 	@FXML
 	private TextField tx_IdadeAnimal;
-
+	@FXML
+	private Button btnFecharCadastroAnimal;
 	@FXML
 	private ComboBox<String> cb_SexoAnimal;
-	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M", "F");
+	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M","F");
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 
 		try {
 
-			control = new Fachada();
-			control.carregarAgendamento();
-			tx_ProntuarioAnimal.setEditable(false);
 			SetCB();
+			Fachada.getInstance().carregarAgendamento();
+			
+			
 
 		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
 
+	}
+	
+	@FXML
+	public void fechar() {
+    	btnFecharCadastroAnimal.getScene().getWindow().hide();
 	}
 
 	public Stage getStage() {
@@ -95,7 +100,7 @@ public class UINovoAnimalController implements Initializable {
 				tx_PelagemAnimal.getText(), Double.parseDouble(tx_PesoAnimal.getText()));
 
 		try {
-			control.cadastrarAnimal(a);
+			Fachada.getInstance().cadastrarAnimal(a);
 			alert.setHeaderText("ANIMAL CADASTRADO COM SUCESSO");
 			alert.showAndWait();
 

@@ -1,6 +1,8 @@
 package br.sghvet.model;
 import java.time.LocalDate;
 
+import br.sghvet.controller.ValidadorCPF;
+
 public class Veterinario {
 
 	private String nome;
@@ -10,16 +12,25 @@ public class Veterinario {
 	private String contato;
 	private String email;
 	private String crmv;
+	private String setor;
 
 	public Veterinario(String nome, String cpf, LocalDate dataNasc, CargoVeterinario cargo, String contato,
-			String email, String crmv) {
+			String email, String crmv) throws Exception {
 		this.nome = nome;
-		this.cpf = cpf;
+		setCpf(cpf);
 		this.dataNasc = dataNasc;
 		this.cargo = cargo;
 		this.contato = contato;
 		this.email = email;
 		this.crmv = crmv;
+		this.setSetor(cargo.toString());
+	}
+
+	public void setCpf(String cpf) throws Exception {
+		if(ValidadorCPF.getInstance().validarCPF(cpf)) {
+			this.cpf = cpf; 
+		}else 
+			throw new Exception("Cpf invalido");
 	}
 
 	public String getNome() {
@@ -55,6 +66,13 @@ public class Veterinario {
 		String dados = this.getNome() + " - " + this.cpf + " - " + this.getEmail();
 		
 		return dados;
+	}
+	public String getSetor() {
+		return setor;
+	}
+
+	public void setSetor(String setor) {
+		this.setor = setor;
 	}
 	
 }

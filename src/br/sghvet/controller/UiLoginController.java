@@ -8,15 +8,22 @@ import br.sghvet.model.TipoUsuario;
 import br.sghvet.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.sun.javafx.tk.Toolkit;
+
 import javafx.fxml.Initializable;
 
 /**
@@ -34,6 +41,7 @@ public class UiLoginController implements Initializable{
 	private TextField textfield_cpf;
 	@FXML
 	private AnchorPane anchorpane_principal;
+	private Stage stage;
 	
 
 
@@ -41,13 +49,15 @@ public class UiLoginController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		
 		DropShadow dropShadow = new DropShadow();
 		 dropShadow.setRadius(10.0);
 		 dropShadow.setOffsetX(1.0);
 		 dropShadow.setOffsetY(1.0);
 		 dropShadow.setColor(Color.color (0.4, 0.4, 0.4, 0.4));
-		 
 		 login_component.setEffect(dropShadow);
+	
+		 
 		
 	}
 	
@@ -57,18 +67,17 @@ public class UiLoginController implements Initializable{
 		  
 		try {
 			
-			 IFachada fachada = new Fachada();
-			 fachada.conectar();
-			 Usuario  user = fachada.loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText());
+			 Usuario  user = Fachada.getInstance().loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText());
 			 
 			switch(user.getTipo()){
 			
 				case ADMINISTRATIVO:
 					
-					if((fachada.buscaAdm(user.getCpf()).getCargo()) == CargoAdm.ATENDENTE) {
+					if((Fachada.getInstance().buscaAdm(user.getCpf()).getCargo()) == CargoAdm.ATENDENTE) {
 						
 						AnchorPane  secretaria = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
-						anchorpane_principal.getChildren().setAll(secretaria);
+						anchorpane_principal.getChildren().setAll(secretaria);	
+						
 					}else {
 					
 					AnchorPane anchorpane_administrativo = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_administrativo.fxml"));
@@ -96,8 +105,15 @@ public class UiLoginController implements Initializable{
 		}
 		
 	}
-	 
-	 
+
+	public Stage getStage() {
+		return stage;
+	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
+		 
+	}
 	 
 
 }
