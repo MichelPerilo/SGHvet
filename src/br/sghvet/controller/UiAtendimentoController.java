@@ -1,11 +1,17 @@
 package br.sghvet.controller;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import br.sghvet.facade.Fachada;
 import br.sghvet.model.Consulta;
+import br.sghvet.model.ResultadoExame;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -45,6 +51,8 @@ public class UiAtendimentoController implements Initializable {
 	private TextArea textarea_vacinacoes;
 	@FXML 
 	private TextArea textarea_vermifugacoes;
+	@FXML
+	private TextArea textarea_ectoscopia;
 	@FXML 
 	private TextField textfield_batcardiaco;
 	@FXML 
@@ -53,8 +61,12 @@ public class UiAtendimentoController implements Initializable {
 	private TextField textfield_pulso;
 	@FXML 
 	private TextField textfield_tr;
+	@FXML
+	private Button button_salvar;
 	
 	private Stage stage;
+	
+	private Consulta consulta;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -78,6 +90,67 @@ public class UiAtendimentoController implements Initializable {
 		label_id_consulta.setText(Integer.toString(c.getId()));
 		label_nome_paciente.setText(c.getNomeAnimal());
 		label_nome_tutor.setText(c.getNomeTutor()); 
+		setConsulta(c);
+		
+	}
+	
+	public void handlerSalvar() throws Exception{
+		
+		try{
+		
+			ResultadoExame registro = new ResultadoExame(consulta.getId(), Float.parseFloat(textfield_tr.getText()), 
+					Float.parseFloat(textfield_batcardiaco.getText()), Float.parseFloat(textfield_movrespiratorio.getText()),
+					Float.parseFloat(textfield_pulso.getText()), textarea_ectoscopia.getText(), 
+					textarea_cabecapescoco.getText(), textarea_cavtoracica.getText(), 
+					textarea_cavabdominal.getText(), textarea_sislocomotor.getText(), 
+					textarea_sisnervoso.getText(), textarea_diagprovavel.getText(), 
+					textarea_examescomple.getText(), textarea_diagdefinitivo.getText(),
+					textarea_prognostico.getText(), textarea_vacinacoes.getText(),
+					textarea_vermifugacoes.getText());
+					
+			Fachada.getInstance().cadastrarRegistro(registro);
+			
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setHeaderText("Dados salvos com sucesso");
+			alert.setTitle("Confirmação");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				// ... user chose OK
+				alert.close();
+				stage.close();
+
+			} else {
+				// ... user chose CANCEL or closed the dialog
+			}
+			
+		}catch(NullPointerException e){
+			
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText("Ocorreu um erro ao salvar");
+			alert.setTitle("Erro");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				// ... user chose OK
+				alert.close();
+				stage.close();
+
+			} else {
+				// ... user chose CANCEL or closed the dialog
+			}
+			
+		}
+		
+		
+	}
+
+	private Consulta getConsulta() {
+		return consulta;
+	}
+
+	void setConsulta(Consulta c) {
+		this.consulta = c;
 	}
 
 }

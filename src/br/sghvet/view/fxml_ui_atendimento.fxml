@@ -90,7 +90,7 @@
             </Label>
             <Label layoutX="53.0" layoutY="369.0" text="ECTOSCOPIA (Estado geral, mucosas, pele, linfonodos, articulações, glândulas paranais, genitália, glândulas mamárias, faceis)" />
             <Separator layoutX="51.0" layoutY="386.0" prefHeight="4.0" prefWidth="311.0" />
-            <TextArea fx:id="textfield_ectoscopia" layoutX="75.0" layoutY="399.0" prefHeight="113.0" prefWidth="652.0" wrapText="true" />
+            <TextArea fx:id="textarea_ectoscopia" layoutX="75.0" layoutY="399.0" prefHeight="113.0" prefWidth="652.0" wrapText="true" />
             <Label layoutX="53.0" layoutY="539.0" text="CABEÇA E PESCOÇO (Ouvidos, olhos, nariz, cavidade bucal, traquéia, esôfago)" />
             <Separator layoutX="51.0" layoutY="556.0" prefHeight="4.0" prefWidth="311.0" />
             <TextArea fx:id="textarea_cabecapescoco" layoutX="75.0" layoutY="569.0" prefHeight="113.0" prefWidth="652.0" wrapText="true" />
@@ -123,7 +123,7 @@
             <Label layoutX="441.0" layoutY="1589.0" prefHeight="17.0" prefWidth="712.0" text="PROGNÓSTICO" />
             <Separator layoutX="444.0" layoutY="1609.0" prefHeight="0.0" prefWidth="282.0" />
             <TextArea fx:id="textarea_prognostico" layoutX="440.0" layoutY="1619.0" prefHeight="113.0" prefWidth="288.0" wrapText="true" />
-            <Button layoutX="646.0" layoutY="1770.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="81.0" text="Salvar" />
+            <Button fx:id="button_salvar" layoutX="646.0" layoutY="1770.0" mnemonicParsing="false" onAction="#handlerSalvar" prefHeight="38.0" prefWidth="81.0" text="Salvar" />
          </children></AnchorPane>
   </content>
 </ScrollPane>

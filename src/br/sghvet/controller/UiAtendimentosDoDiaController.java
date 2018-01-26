@@ -76,6 +76,7 @@ public class UiAtendimentosDoDiaController implements Initializable{
 	}
 	
 	public void showAtendimento(Consulta c) throws IOException{
+		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(	UiAtendimentoController.class.getResource("../view/fxml_ui_atendimento.fxml"));
 		ScrollPane page = (ScrollPane) loader.load();
@@ -86,7 +87,7 @@ public class UiAtendimentosDoDiaController implements Initializable{
 		UiAtendimentoController controller = loader.getController();
 		controller.setStage(atendimento);
 		controller.setDados(c);
-
+		
 		atendimento.showAndWait();
 	}
 

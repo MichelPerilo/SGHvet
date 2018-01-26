@@ -23,13 +23,15 @@ public class ResultadoExame {
 	private String examesComplementares;
 	private String diagnosticoDefinitivo;
 	private String prognostico;
+	private String vacinacoes;
+	private String vermifugacoes;
 	
 	
 	
-	public ResultadoExame(int IdConsulta, float temperatura, float batimentoPorMin, float movRespPorMin, float pulso,
+	public ResultadoExame(int IdConsulta,float temperatura, float batimentoPorMin, float movRespPorMin, float pulso,
 			String ectoscopia, String cabecaPescoco, String cavidadeToracica, String cavidadeAbdominal,
 			String sistemaLocomotor, String sistemaNervoso, String diagnosticoProvavel, String examesComplementares,
-			String diagnosticoDefinitivo, String prognostico) {
+			String diagnosticoDefinitivo, String prognostico, String vacinacoes, String vermifugacoes) {
 		this.IdConsulta = IdConsulta;
 		this.temperatura = temperatura;
 		this.batimentoPorMin = batimentoPorMin;
@@ -45,6 +47,8 @@ public class ResultadoExame {
 		this.examesComplementares = examesComplementares;
 		this.diagnosticoDefinitivo = diagnosticoDefinitivo;
 		this.prognostico = prognostico;
+		this.setVermifugacoes(vermifugacoes);
+		this.setVacinacoes(vacinacoes);
 	}
 	
 	public int getIdConsulta() {
@@ -136,6 +140,22 @@ public class ResultadoExame {
 	}
 	public void setPrognostico(String prognostico) {
 		this.prognostico = prognostico;
+	}
+
+	public String getVacinacoes() {
+		return vacinacoes;
+	}
+
+	public void setVacinacoes(String vacinacoes) {
+		this.vacinacoes = vacinacoes;
+	}
+
+	public String getVermifugacoes() {
+		return vermifugacoes;
+	}
+
+	public void setVermifugacoes(String vermifugacoes) {
+		this.vermifugacoes = vermifugacoes;
 	}
 	
 	

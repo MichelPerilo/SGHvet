@@ -21,7 +21,7 @@ public class RepositorioResultadoExame implements IRepositorioResultadoExame{
 	public boolean CadastrarRegistro(ResultadoExame registro) throws Exception {
 		String query = "insert into registro(id_exame,temperatura,batimentoPorMin,movRespPorMin,pulso, ectoscopia,"
 				+ "cabecaPescoco,cavidadeToracica,cavidadeAbdominal,sistemaLocomotor,sistemaNervoso,diagnosticoProvavel,"
-				+ "examesComplementares,diagnosticoDefinitivo,prognostico) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+				+ "examesComplementares,diagnosticoDefinitivo,prognostico, vacinacoes, vermifugacoes) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setInt(1, registro.getIdConsulta());
 		ps.setFloat(2, registro.getTemp());
@@ -38,6 +38,8 @@ public class RepositorioResultadoExame implements IRepositorioResultadoExame{
 		ps.setString(13, registro.getExamesComplementares());
 		ps.setString(14, registro.getDiagnosticoDefinitivo());
 		ps.setString(15, registro.getPrognostico());
+		ps.setString(16, registro.getVacinacoes());
+		ps.setString(17, registro.getVermifugacoes());
 		
 		return !executar(ps);
 	}
@@ -93,11 +95,11 @@ public class RepositorioResultadoExame implements IRepositorioResultadoExame{
 	private ResultadoExame preencherRegistro(ResultSet rs) {
 		ResultadoExame rc;
 		try {
-			rc = new ResultadoExame(rs.getInt("id_exame"), rs.getFloat("temperatura"), rs.getFloat("batimentoPorMin"),
+			rc = new ResultadoExame(rs.getInt("id_exame"),rs.getFloat("temperatura"), rs.getFloat("batimentoPorMin"),
 					rs.getFloat("movRespPorMin"), rs.getFloat("pulso"), rs.getString("ectoscopia"), rs.getString("cabecaPescoco"),
 					rs.getString("cavidadeToracica"), rs.getString("cavidadeAbdominal"), rs.getString("sistemaLocomotor"), 
 					rs.getString("sistemaNervoso"), rs.getString("diagnosticoProvavel"), rs.getString("examesComplementares"), 
-					rs.getString("diagnosticoDefinitivo"), rs.getString("prognostico"));
+					rs.getString("diagnosticoDefinitivo"), rs.getString("prognostico"), rs.getString("vacinacoes"), rs.getString("vermifugacoes"));
 			return rc;
 		} catch (SQLException e) {
 			e.printStackTrace();
