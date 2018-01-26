@@ -135,7 +135,6 @@ CREATE TABLE req_exame(
 
 CREATE TABLE registro(
 	id_exame int,
-	id_consulta int,
     temperatura float,
     batimentoPorMin float,
     movRespPorMin float,
@@ -153,8 +152,7 @@ CREATE TABLE registro(
     diagnosticoDefinitivo varchar(150),
     prognostico varchar(150),
     primary key (id_exame),
-    foreign key (id_exame) references req_exame(id) ON DELETE CASCADE,
-    foreign key (id_consulta) references consulta(id) ON DELETE CASCADE
+    foreign key (id_exame) references consulta(id) ON DELETE CASCADE,
 ) ENGINE = innodb;
 
 INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('10103566406', 'ADMINISTRATIVO');
