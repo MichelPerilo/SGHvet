@@ -78,6 +78,7 @@ public interface IFachada {
 	public boolean atualizarRegistro(ResultadoExame registroConsulta) throws Exception;     
 	
 	public void gerarPdfRequisicao(RequisicaoExame req) throws Exception;
+	public void gerarPdfResultado(ResultadoExame result) throws Exception;
 	
 	public void cadastrarHorario(Disponibilidade disp)	throws Exception;
 	void atualizarHorario(Disponibilidade dispo) throws Exception;

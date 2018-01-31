@@ -416,6 +416,11 @@ public class Fachada implements IFachada {
 
 		return cadastroConsulta.buscarConsultas(cpf);
 	}
+
+	@Override
+	public void gerarPdfResultado(ResultadoExame result) throws Exception {
+		pdfControl.gerarPdfResultado(result);
+	}
 	
 	
 
