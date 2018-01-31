@@ -124,6 +124,8 @@ public class UiAtendimentoController implements Initializable {
 				// ... user chose CANCEL or closed the dialog
 			}
 			
+			Fachada.getInstance().gerarPdfResultado(registro);
+			
 		}catch(NullPointerException e){
 			
 			Alert alert = new Alert(Alert.AlertType.ERROR);
