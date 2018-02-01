@@ -16,6 +16,7 @@ import br.sghvet.facade.Fachada;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Consulta;
 import br.sghvet.model.Endereco;
+import br.sghvet.model.ResultadoExame;
 import br.sghvet.model.Tutor;
 import br.sghvet.controller.UINovaConsultaController;
 import br.sghvet.controller.UINovaSenhaController;
@@ -36,6 +37,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -146,6 +148,44 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	private ComboBox<String> cb_PNTutorAnimais_Animal;
 	private ObservableList<String> listAnimais;
+	
+	
+	@FXML 
+	private TextArea textarea_cabecapescoco;
+	@FXML 
+	private TextArea textarea_cavabdominal;
+	@FXML 
+	private TextArea textarea_cavtoracica;
+	@FXML 
+	private TextArea textarea_diagdefinitivo;
+	@FXML 
+	private TextArea textarea_diagprovavel;
+	@FXML 
+	private TextArea textarea_examescomple;
+	@FXML 
+	private TextArea textarea_prognostico;
+	@FXML 
+	private TextArea textarea_sislocomotor;
+	@FXML 
+	private TextArea textarea_sisnervoso;
+	@FXML 
+	private TextArea textarea_vacinacoes;
+	@FXML 
+	private TextArea textarea_vermifugacoes;
+	@FXML
+	private TextArea textarea_ectoscopia;
+	@FXML 
+	private TextField textfield_batcardiaco;
+	@FXML 
+	private TextField textfield_movrespiratorio;
+	@FXML 
+	private TextField textfield_pulso;
+	@FXML 
+	private TextField textfield_tr;
+	
+	
+	
+	
 
 	// Painel FichaCLinica3
 
@@ -643,6 +683,9 @@ public class UIAgendamentoController implements Initializable {
 						tx_PNTutorAnimais_Pelagem.setText(animal.getPelagem());
 						tx_PNTutorAnimais_Sexo.setText(animal.getSexo());
 						tx_PNTutorAnimais_Prontuario.setText(String.valueOf(animal.getNumProntuario()));
+						
+												
+						
 					}
 
 				}
@@ -655,6 +698,36 @@ public class UIAgendamentoController implements Initializable {
 		}
 
 	}
+	
+	
+	public void selecionarRegistro(Consulta consulta) {
+		
+		
+		
+//		textarea_cabecapescoco;
+//		textarea_cavabdominal;
+//		textarea_cavtoracica;
+//		textarea_diagdefinitivo;
+//		textarea_diagprovavel;
+//		textarea_examescomple;
+//		extarea_sislocomotor;
+//		textarea_sisnervoso;
+//	    textarea_vacinacoes;
+//		textarea_vermifugacoes;
+//		textarea_ectoscopia;
+//		textfield_batcardiaco;
+//		textfield_pulso;
+//		textfield_tr;
+		
+		
+		
+		ResultadoExame registro;
+		registro = Fachada.getInstance().buscarRegistro(consulta);
+		
+		
+	}
+	
+	
 
 	@FXML
 	public void handleAgendamento() {

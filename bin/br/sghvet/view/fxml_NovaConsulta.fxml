@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #CEF6F5;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UINovaConsultaController">
    <children>
-      <Pane fx:id="pn_Agendamento1" layoutX="1.0" prefHeight="350.0" prefWidth="600.0" visible="true">
+      <Pane fx:id="pn_Agendamento1" layoutX="1.0" prefHeight="350.0" prefWidth="600.0">
          <children>
             <ComboBox fx:id="cb_nomeAnimal" layoutX="145.0" layoutY="131.0" onAction="#handlerEscolheAnimal" prefHeight="28.0" prefWidth="146.0" style="-fx-background-color: #E0F2F7;" />
             <TextField fx:id="tx_cpftutor" layoutX="119.0" layoutY="75.0" prefHeight="26.0" prefWidth="164.0" />

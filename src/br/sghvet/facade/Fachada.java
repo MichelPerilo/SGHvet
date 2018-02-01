@@ -331,7 +331,7 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public ResultadoExame buscarRegistro(RequisicaoExame consulta) throws Exception {
+	public ResultadoExame buscarRegistro(Consulta consulta) throws Exception {
 		return controlRegistro.buscarRegistro(consulta);
 	}
 

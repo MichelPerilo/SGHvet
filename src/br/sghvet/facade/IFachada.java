@@ -73,7 +73,7 @@ public interface IFachada {
 	public boolean atualizaReqExame(RequisicaoExame e) throws Exception;
 	public boolean deletarReqExame(int id) throws Exception;
 
-	public ResultadoExame buscarRegistro(RequisicaoExame consulta) throws Exception;
+	public ResultadoExame buscarRegistro(Consulta consulta) throws Exception;
 	public boolean cadastrarRegistro(ResultadoExame registroConsulta) throws Exception;
 	public boolean atualizarRegistro(ResultadoExame registroConsulta) throws Exception;     
 	
