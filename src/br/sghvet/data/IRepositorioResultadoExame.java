@@ -12,7 +12,7 @@ public interface IRepositorioResultadoExame {
 	
 	public boolean CadastrarRegistro(ResultadoExame registro) throws Exception;
 	public boolean atualizarRegistro(ResultadoExame registro) throws Exception;
-	public ResultadoExame buscarRegistro(RequisicaoExame consulta) throws Exception;
+	public ResultadoExame buscarRegistro(Consulta consulta) throws Exception;
 	
 
 }

@@ -366,7 +366,7 @@
 												<Label layoutX="159.0" layoutY="2371.0" text="(Comportamento, reflexos, paralisias, sensibilidade superficial e profunda)" />
                                     <ScrollPane layoutX="36.0" layoutY="2403.0">
                                        <content>
-      												<TextArea fx:id="textarea_sislocomotor" prefHeight="200.0" prefWidth="653.0" />
+      												<TextArea fx:id="textarea_sisnervoso" prefHeight="200.0" prefWidth="653.0" />
                                        </content>
                                     </ScrollPane>
 												<Label layoutX="29.0" layoutY="2615.0" text="Diagnóstico provável">
@@ -429,11 +429,11 @@
                                     </Label>
                                     <ScrollPane layoutX="19.0" layoutY="396.0">
                                        <content>
-                                          <TableView prefHeight="278.0" prefWidth="373.0">
+                                          <TableView fx:id="tv_consultas2" onMouseClicked="#clicarMouseItemListViewConsultas2" prefHeight="278.0" prefWidth="373.0">
                                             <columns>
-                                              <TableColumn prefWidth="75.0" text="DATA" />
-                                              <TableColumn prefWidth="75.0" text="HORA" />
-                                                <TableColumn prefWidth="222.0" text="MEDICO" />
+                                              <TableColumn fx:id="tc_consulta_data" prefWidth="75.0" text="DATA" />
+                                              <TableColumn fx:id="tc_consulta_hora" prefWidth="75.0" text="HORA" />
+                                                <TableColumn fx:id="tc_consulta_medico" prefWidth="222.0" text="MEDICO" />
                                             </columns>
                                           </TableView>
                                        </content>
@@ -441,16 +441,16 @@
                                     <Pane layoutX="433.0" layoutY="423.0" prefHeight="253.0" prefWidth="474.0" style="-fx-background-color: #E0E6F8; -fx-background-radius: 2CM; -fx-border-color: #F5A9A9; -fx-border-radius: 2CM;">
                                        <children>
                                           <Label layoutX="16.0" layoutY="49.0" prefHeight="17.0" prefWidth="40.0" text="DATA:" />
-                                          <Label fx:id="lb_dataSelecionada" layoutX="56.0" layoutY="49.0" />
+                                          <Label fx:id="lb_dataSelecionada" layoutX="56.0" layoutY="49.0" prefHeight="18.0" prefWidth="96.0" />
                                           <Label layoutX="275.0" layoutY="49.0" text="HORARIOS:" />
                                           <Label layoutX="14.0" layoutY="99.0" text="CPF DO TUTOR:" />
                                           <Label layoutX="14.0" layoutY="138.0" text="NOME DO ANIMAL:" />
-                                          <Label layoutX="309.0" layoutY="138.0" text="PRONTUARIO:" />
-                                          <Label fx:id="lb_prontuario" layoutX="392.0" layoutY="138.0" />
+                                          <Label layoutX="285.0" layoutY="138.0" text="PRONTUARIO:" />
+                                          <Label fx:id="lb_prontuario" layoutX="375.0" layoutY="138.0" prefHeight="18.0" prefWidth="87.0" />
                                           <Label layoutX="14.0" layoutY="182.0" text="MÉDICO RESPONSAVEL:" />
                                           <Label fx:id="lb_CPFTutor" layoutX="111.0" layoutY="99.0" prefHeight="17.0" prefWidth="164.0" />
                                           <Label fx:id="lb_Animal" layoutX="133.0" layoutY="138.0" prefHeight="17.0" prefWidth="146.0" />
-                                          <Label fx:id="lb_Medico" layoutX="148.0" layoutY="182.0" prefHeight="17.0" prefWidth="179.0" />
+                                          <Label fx:id="lb_Medico" layoutX="168.0" layoutY="182.0" prefHeight="17.0" prefWidth="179.0" />
                                           <Label fx:id="lb_HRSelecionada" layoutX="347.0" layoutY="49.0" prefHeight="17.0" prefWidth="77.0" />
                                        </children>
                                     </Pane>

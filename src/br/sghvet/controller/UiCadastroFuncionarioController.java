@@ -166,8 +166,10 @@ public class UiCadastroFuncionarioController implements Initializable {
 
 			} catch (Exception integrityexception) {
 
+				
+				
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setHeaderText("Ocorreu um erro na tentatica de cadastro");
+				alert.setHeaderText("Ocorreu um erro na tentativa de cadastro");
 				alert.setTitle("Erro");
 
 				Optional<ButtonType> result = alert.showAndWait();
@@ -179,7 +181,7 @@ public class UiCadastroFuncionarioController implements Initializable {
 				} else {
 					// ... user chose CANCEL or closed the dialog
 				}
-
+				
 			}
 
 			break;
@@ -209,7 +211,7 @@ public class UiCadastroFuncionarioController implements Initializable {
 			} catch (Exception integrityexception) {
 
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setHeaderText("Ocorreu um erro na tentatica de cadastro");
+				alert.setHeaderText("Ocorreu um erro na tentativa de cadastro");
 				alert.setTitle("Erro");
 
 				Optional<ButtonType> result = alert.showAndWait();
@@ -251,7 +253,7 @@ public class UiCadastroFuncionarioController implements Initializable {
 			} catch (Exception integrityexception) {
 
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setHeaderText("Ocorreu um erro na tentatica de cadastro");
+				alert.setHeaderText("Ocorreu um erro na tentativa de cadastro");
 				alert.setTitle("Erro");
 
 				Optional<ButtonType> result = alert.showAndWait();

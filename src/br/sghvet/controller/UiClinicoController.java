@@ -4,23 +4,55 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import br.sghvet.facade.Fachada;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class UiClinicoController implements Initializable {
 
 	@FXML
 	private AnchorPane anchorpane_info;
+	@FXML
+	private Button logoff;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 
 	}
+	
+	
+	
+	@FXML
+	public void logoff() {
+		try {
+
+			Stage stageCLose = (Stage) logoff.getScene().getWindow(); // Obtendo a janela atual
+			stageCLose.close(); // Fechando o Stage
+			Fachada.getInstance().desconectar();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(UiLoginController.class.getResource("../view/fxml_ui_login.fxml"));
+			VBox page = (VBox) loader.load();
+			Stage TelaInicial = new Stage();
+			Scene scene = new Scene(page);
+			TelaInicial.setScene(scene);
+			UiLoginController controller = loader.getController();
+			controller.setStage(TelaInicial);
+			TelaInicial.showAndWait();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
 
 	public void handler_AtendimentosDoDia() throws IOException {
 		AnchorPane anchorpane_atendimentos_do_dia = (AnchorPane) FXMLLoader

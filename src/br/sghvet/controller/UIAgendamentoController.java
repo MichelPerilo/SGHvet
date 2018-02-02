@@ -6,6 +6,7 @@ import java.net.URL;
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -183,6 +184,28 @@ public class UIAgendamentoController implements Initializable {
 	@FXML 
 	private TextField textfield_tr;
 	
+	@FXML
+    private TableView<Consulta> tv_consultas2;
+    @FXML
+    private TableColumn<Consulta, String> tc_consulta_data;
+    @FXML
+    private TableColumn<Consulta, String> tc_consulta_hora;
+    @FXML
+    private TableColumn<Consulta, String> tc_consulta_medico;
+    private ObservableList<Consulta> observableListConsulta2;
+    
+    @FXML
+	private Label lb_dataSelecionada;
+	@FXML
+	private Label lb_HRSelecionada;
+	@FXML
+	private Label lb_CPFTutor;
+	@FXML
+	private Label lb_Animal;
+	@FXML
+	private Label lb_prontuario;
+	@FXML
+	private Label lb_Medico;
 	
 	
 	
@@ -684,9 +707,11 @@ public class UIAgendamentoController implements Initializable {
 						tx_PNTutorAnimais_Sexo.setText(animal.getSexo());
 						tx_PNTutorAnimais_Prontuario.setText(String.valueOf(animal.getNumProntuario()));
 						
-												
+						carregaTabelaConsultas2();
+						break;
 						
 					}
+					
 
 				}
 
@@ -700,29 +725,85 @@ public class UIAgendamentoController implements Initializable {
 	}
 	
 	
+	
+	public void carregaTabelaConsultas2() {
+		
+		tc_consulta_data.setCellValueFactory(new PropertyValueFactory<>("dia"));
+		tc_consulta_hora.setCellValueFactory(new PropertyValueFactory<>("horario"));
+		tc_consulta_medico.setCellValueFactory(new PropertyValueFactory<>("nomeMedico"));
+	
+		try {
+			
+			List <Consulta> filtro = new ArrayList<>();
+			List <Consulta> allConsultas = Fachada.getInstance().buscarALLConsulta();
+			
+			for(Consulta c : allConsultas) {
+				
+				
+				if(cb_PNTutorAnimais_Animal.getValue().equals(c.getNomeAnimal())) {
+					filtro.add(c);
+					System.out.println(c.getNomeAnimal());
+				}
+				
+			}
+			
+			
+			
+			observableListConsulta2 = FXCollections.observableArrayList(filtro);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		tv_consultas2.setItems(observableListConsulta2);
+	}
+	
+	@FXML
+	public void clicarMouseItemListViewConsultas2() throws IOException {
+		Consulta c = tv_consultas2.getSelectionModel().getSelectedItem();
+		selecionarRegistro(c);
+
+	}
+	
+	
 	public void selecionarRegistro(Consulta consulta) {
+				
 		
 		
-		
-//		textarea_cabecapescoco;
-//		textarea_cavabdominal;
-//		textarea_cavtoracica;
-//		textarea_diagdefinitivo;
-//		textarea_diagprovavel;
-//		textarea_examescomple;
-//		extarea_sislocomotor;
-//		textarea_sisnervoso;
-//	    textarea_vacinacoes;
-//		textarea_vermifugacoes;
-//		textarea_ectoscopia;
-//		textfield_batcardiaco;
-//		textfield_pulso;
-//		textfield_tr;
-		
-		
-		
-		ResultadoExame registro;
-		registro = Fachada.getInstance().buscarRegistro(consulta);
+		try {
+			ResultadoExame registro;
+			registro = Fachada.getInstance().buscarRegistro(consulta);
+			
+			
+			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			lb_dataSelecionada.setText(consulta.getDia().format(formatador));
+			lb_HRSelecionada.setText(consulta.getHorario().toString());
+			lb_CPFTutor.setText(consulta.getNomeTutor());
+			lb_Animal.setText(consulta.getNomeAnimal());
+			lb_prontuario.setText(String.valueOf(consulta.getProntuario()));
+			lb_Medico.setText(consulta.getNomeMedico());
+			
+			textarea_cabecapescoco.setText(registro.getCabecaPescoco());
+			textarea_cavabdominal.setText(registro.getCavidadeAbdominal());
+			textarea_cavtoracica.setText(registro.getCavidadeToracica());
+			textarea_diagdefinitivo.setText(registro.getDiagnosticoDefinitivo());
+			textarea_diagprovavel.setText(registro.getDiagnosticoProvavel());
+			textarea_examescomple.setText(registro.getExamesComplementares());
+			textarea_sislocomotor.setText(registro.getSistemaLocomotor());		
+		    textarea_vacinacoes.setText(registro.getVacinacoes());
+			textarea_vermifugacoes.setText(registro.getVermifugacoes());
+			textarea_ectoscopia.setText(registro.getEctoscopia());
+			textfield_batcardiaco.setText( String.valueOf(registro.getBatimentoPorMin()));
+			textfield_pulso.setText( String.valueOf(registro.getPulso()));
+			textfield_tr.setText( String.valueOf(registro.getTemp()));
+			textarea_prognostico.setText(registro.getPrognostico());
+			textfield_movrespiratorio.setText( String.valueOf(registro.getMovRespPorMin()));			
+			textarea_sisnervoso.setText(registro.getSistemaNervoso());
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}

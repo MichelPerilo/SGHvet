@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.sghvet.model.Consulta;
 import br.sghvet.model.RequisicaoExame;
 import br.sghvet.model.ResultadoExame;
 
@@ -71,7 +72,7 @@ public class RepositorioResultadoExame implements IRepositorioResultadoExame{
 	}
 	
 	@Override
-	public ResultadoExame buscarRegistro(RequisicaoExame consulta) throws Exception {
+	public ResultadoExame buscarRegistro(Consulta consulta) throws Exception {
 		String query = "SELECT * FROM registro WHERE id_exame = "+consulta.getId();
 		PreparedStatement ps = connection.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();

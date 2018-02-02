@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiClinicoController">
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiClinicoController">
    <children>
       <ToolBar layoutY="114.0" orientation="VERTICAL" prefHeight="606.0" prefWidth="263.0" style="-fx-background-color: #1e90ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="114.0">
          <items>
@@ -52,7 +52,7 @@
                   <DropShadow blurType="ONE_PASS_BOX" color="WHITE" radius="7.775" width="12.1" />
                </effect>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #8187a3; -fx-background-radius: 0;" text="Logoff" textFill="WHITE">
+            <Button fx:id="logoff" contentDisplay="TOP" mnemonicParsing="false" onAction="#logoff" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #8187a3; -fx-background-radius: 0;" text="Logoff" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>

@@ -152,8 +152,9 @@ CREATE TABLE registro(
     diagnosticoDefinitivo varchar(150),
     prognostico varchar(150),
     primary key (id_exame),
-    foreign key (id_exame) references consulta(id) ON DELETE CASCADE,
+    foreign key (id_exame) references consulta(id) ON DELETE CASCADE
 ) ENGINE = innodb;
+
 
 INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('10103566406', 'ADMINISTRATIVO');
 INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', '10103566406', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');

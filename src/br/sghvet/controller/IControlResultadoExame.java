@@ -11,7 +11,7 @@ import br.sghvet.model.RequisicaoExame;
  */
 public interface IControlResultadoExame {
      
-    public ResultadoExame buscarRegistro(RequisicaoExame consulta) throws Exception;
+    public ResultadoExame buscarRegistro(Consulta consulta) throws Exception;
 	public boolean cadastrarRegistro(ResultadoExame registroConsulta) throws Exception;
 	public boolean atualizarRegistro(ResultadoExame registroConsulta) throws Exception;     
 

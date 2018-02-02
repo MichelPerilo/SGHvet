@@ -20,7 +20,7 @@ public class ControlResultadoExame implements IControlResultadoExame {
     }
     
     @Override
-	public ResultadoExame buscarRegistro(RequisicaoExame consulta) throws Exception {
+	public ResultadoExame buscarRegistro(Consulta consulta) throws Exception {
 		return repo.buscarRegistro(consulta);
 	}
 
