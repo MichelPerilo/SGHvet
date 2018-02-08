@@ -4,6 +4,8 @@ import br.sghvet.facade.Fachada;
 import br.sghvet.facade.IFachada;
 import br.sghvet.model.Administrativo;
 import br.sghvet.model.CargoAdm;
+import br.sghvet.model.CargoAuxiliar;
+import br.sghvet.model.CargoVeterinario;
 import br.sghvet.model.TipoUsuario;
 import br.sghvet.model.Usuario;
 import javafx.fxml.FXML;
@@ -29,81 +31,84 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  */
-public class UiLoginController implements Initializable{
-	
+public class UiLoginController implements Initializable {
+
 	@FXML
 	private AnchorPane login_component;
-	@FXML 
+	@FXML
 	private Button button_entrar;
 	@FXML
-	private PasswordField passwordfield_senha; 
+	private PasswordField passwordfield_senha;
 	@FXML
 	private TextField textfield_cpf;
 	@FXML
 	private AnchorPane anchorpane_principal;
 	private Stage stage;
-	
-
-
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
+
 		DropShadow dropShadow = new DropShadow();
-		 dropShadow.setRadius(10.0);
-		 dropShadow.setOffsetX(1.0);
-		 dropShadow.setOffsetY(1.0);
-		 dropShadow.setColor(Color.color (0.4, 0.4, 0.4, 0.4));
-		 login_component.setEffect(dropShadow);
-	
-		 
-		
+		dropShadow.setRadius(10.0);
+		dropShadow.setOffsetX(1.0);
+		dropShadow.setOffsetY(1.0);
+		dropShadow.setColor(Color.color(0.4, 0.4, 0.4, 0.4));
+		login_component.setEffect(dropShadow);
+
 	}
-	
-	public void handler_entrar(){
-		
-		 
-		  
+
+	public void handler_entrar() {
+
 		try {
-			
-			 Usuario  user = Fachada.getInstance().loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText());
-			 
-			switch(user.getTipo()){
-			
-				case ADMINISTRATIVO:
-					
-					if((Fachada.getInstance().buscaAdm(user.getCpf()).getCargo()) == CargoAdm.ATENDENTE) {
-						
-						AnchorPane  secretaria = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
-						anchorpane_principal.getChildren().setAll(secretaria);	
-						
-					}else {
-					
-					AnchorPane anchorpane_administrativo = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_administrativo.fxml"));
-				    anchorpane_principal.getChildren().setAll(anchorpane_administrativo);
-					}
-					
-					break;
-					
-				case VETERINARIO:
-					AnchorPane anchorpane_clinico = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/fxml_ui_clinico.fxml"));
-				    anchorpane_principal.getChildren().setAll(anchorpane_clinico);
-					
-					break;
-				case AUXILIAR:
-					
-					
-					break; 
-					
-				default:
-								
-					break;
+
+			Usuario user = Fachada.getInstance().loginUsuario(textfield_cpf.getText(), passwordfield_senha.getText());
+
+			switch (user.getTipo()) {
+
+			case ADMINISTRATIVO:
+
+				if ((Fachada.getInstance().buscaAdm(user.getCpf()).getCargo()) == CargoAdm.ATENDENTE) {
+
+					AnchorPane secretaria = (AnchorPane) FXMLLoader
+							.load(getClass().getResource("../view/fxml_Agendamento.fxml"));
+					anchorpane_principal.getChildren().setAll(secretaria);
+
+				} else {
+
+					AnchorPane anchorpane_administrativo = (AnchorPane) FXMLLoader
+							.load(getClass().getResource("../view/fxml_ui_administrativo.fxml"));
+					anchorpane_principal.getChildren().setAll(anchorpane_administrativo);
+				}
+
+				break;
+
+			case VETERINARIO:
+
+				if ((Fachada.getInstance().buscaVeterinario(user.getCpf()).getCargo()) == CargoVeterinario.CIRURGIAO) {
+
+					AnchorPane anchorpane_clinico = (AnchorPane) FXMLLoader
+							.load(getClass().getResource("../view/fxml_ui_clinico.fxml"));
+					anchorpane_principal.getChildren().setAll(anchorpane_clinico);
+				} else {
+
+				}
+
+				break;
+			case AUXILIAR:
+				if ((Fachada.getInstance().buscaAuxiliar(user.getCpf()).getCargo()) == CargoAuxiliar.FARMACEUTICO) {
+				} else {
+
+				}
+				break;
+
+			default:
+
+				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public Stage getStage() {
@@ -112,8 +117,7 @@ public class UiLoginController implements Initializable{
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
-		 
+
 	}
-	 
 
 }

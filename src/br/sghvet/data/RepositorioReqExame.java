@@ -21,7 +21,7 @@ public class RepositorioReqExame implements IRepositorioReqExame {
 
 	@Override
 	public boolean cadastraReqExame(RequisicaoExame e) throws Exception {
-		String query = "insert into req_exame (cpf_vet,cpf_tutor,prontuario,data_exame,realizado) values (?,?,?,?,?)";
+		String query = "insert into exame (cpf_vet,cpf_tutor,prontuario,data_exame,realizado) values (?,?,?,?,?)";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, e.getCpfVeterinario());
 		ps.setString(2, e.getCpfTutor());
@@ -35,7 +35,7 @@ public class RepositorioReqExame implements IRepositorioReqExame {
 	@Override
 	public RequisicaoExame buscaReqExame(int id) throws Exception {
 
-		String query = "select * from req_exame where id = ?";
+		String query = "select * from exame where id = ?";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
@@ -51,7 +51,7 @@ public class RepositorioReqExame implements IRepositorioReqExame {
 
 	@Override
 	public boolean atualizaReqExame(RequisicaoExame req) throws Exception {
-		String query = "UPDATE req_exame SET data_exame = ?, prontuario = ?, cpf_vet = ? WHERE id = ?;";
+		String query = "UPDATE exame SET data_exame = ?, prontuario = ?, cpf_vet = ? WHERE id = ?;";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, req.getData().toString());
 		ps.setInt(2, req.getProntuario());
@@ -63,7 +63,7 @@ public class RepositorioReqExame implements IRepositorioReqExame {
 
 	@Override
 	public List<RequisicaoExame> buscaReqExameCPF(String cpf) throws Exception {
-		String query = "select * from req_exame where cpf_tutor = ?";
+		String query = "select * from exame where cpf_tutor = ?";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, cpf);
 
@@ -79,7 +79,7 @@ public class RepositorioReqExame implements IRepositorioReqExame {
 
 	@Override
 	public boolean deletarReqExame(int id) throws Exception {
-		String query = "delete from req_exame where id = ?";
+		String query = "delete from exame where id = ?";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setInt(1, id);
 
@@ -88,7 +88,7 @@ public class RepositorioReqExame implements IRepositorioReqExame {
 
 	@Override
 	public List<RequisicaoExame> buscaReqExameVet(String cpf_vet) throws Exception {
-		String query = "select * from req_exame where cpf_vet = ?";
+		String query = "select * from exame where cpf_vet = ?";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, cpf_vet);
 		ResultSet rs = ps.executeQuery();
@@ -104,7 +104,7 @@ public class RepositorioReqExame implements IRepositorioReqExame {
 
 	@Override
 	public List<RequisicaoExame> buscaReqExameProntuario(int id) throws Exception {
-		String query = "select * from req_exame where prontuario = ?";
+		String query = "select * from exame where prontuario = ?";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
