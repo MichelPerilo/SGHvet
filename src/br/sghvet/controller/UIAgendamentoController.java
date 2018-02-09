@@ -54,6 +54,7 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	private Button bt_Agendamento;
 	private Stage horarios;
+	
 
 	// Painel Agenda
 
@@ -103,6 +104,12 @@ public class UIAgendamentoController implements Initializable {
 	private Label lb_PN_Cidade;
 
 	// Painel FichaCLinica2 Dados
+	
+	@FXML
+	private Button bt_PNTutorDadosEditar;
+	@FXML
+	private Button bt_PNTutorDadosSalvar;
+	private Tutor tut;
 
 	@FXML
 	private TextField tx_PNTutorDados_Nome;
@@ -128,6 +135,23 @@ public class UIAgendamentoController implements Initializable {
 	private TextField tx_PNTutorDados_Estado;
 
 	// Painel FichaCLinica2 Aniamal
+	
+	@FXML
+	private Pane pnEdit;
+	@FXML
+	private Button bt_PNTutorAnimalEditar;
+	@FXML
+	private Button bt_PNTutorAnimalSalvar;
+	private Animal ani;
+	
+	@FXML
+	private ComboBox<String> cb_Especie;
+	@FXML
+	private ComboBox<String> cb_RacaAnimal;
+	@FXML
+	private ComboBox<String> cb_PelagemAnimal;
+	private ObservableList<String> listPelagemAnimalCbbx = FXCollections.observableArrayList("Dupla pelagem",
+			"Peculiares", "Dura", "Arame", "Curto", "Longo", "Longo sedoso sem ondulações");
 
 	@FXML
 	private TextField tx_PNTutorAnimais_Nome;
@@ -368,6 +392,7 @@ public class UIAgendamentoController implements Initializable {
 			Fachada.getInstance().carregarAgendamento();
 			carregaDias();
 			FuncionarioLogado(getCpfLogado());
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -493,6 +518,9 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	public void handlerEditarTutor() {
 
+		bt_PNTutorDadosEditar.setVisible(false);
+		bt_PNTutorDadosSalvar.setVisible(true);
+		
 		tx_PNTutorDados_Nome.setEditable(true);
 		tx_PNTutorDados_CPF.setEditable(true);
 		tx_PNTutorDados_Celular.setEditable(true);
@@ -506,11 +534,33 @@ public class UIAgendamentoController implements Initializable {
 		tx_PNTutorDados_Estado.setEditable(true);
 
 	}
+	
+	
+	
+	@FXML
+	public void handlerDeletaTutor() {
+		
+		try {
+			Fachada.getInstance().deletarTutor(tut);
+			handlerVoltarTutor();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 
 	@FXML
 	public void handlerSalvarEditTutor() {
 
 		try {
+			
+			bt_PNTutorDadosEditar.setVisible(true);
+			bt_PNTutorDadosSalvar.setVisible(false);
+			
+			
 			Endereco e = new Endereco(tx_PNTutorDados_Rua.getText(), tx_PNTutorDados_Bairro.getText(),
 					tx_PNTutorDados_CEP.getText(), tx_PNTutorDados_Numero.getText(),
 					tx_PNTutorDados_Complemento.getText(), tx_PNTutorDados_Cidade.getText(),
@@ -540,23 +590,66 @@ public class UIAgendamentoController implements Initializable {
 
 	@FXML
 	public void handlerEditarAnimal() {
+		
+		pnEdit.setVisible(true);
+		bt_PNTutorAnimalEditar.setVisible(false);
+		bt_PNTutorAnimalSalvar.setVisible(true);
+		cb_PelagemAnimal.setItems(listPelagemAnimalCbbx);
+		AtualizaEspecie();
 
 		tx_PNTutorAnimais_Nome.setEditable(true);
 		tx_PNTutorAnimais_Idade.setEditable(true);
-		tx_PNTutorAnimais_Raca.setEditable(true);
-		tx_PNTutorAnimais_Especie.setEditable(true);
 		tx_PNTutorAnimais_Peso.setEditable(true);
-		tx_PNTutorAnimais_Pelagem.setEditable(true);
 		tx_PNTutorAnimais_Sexo.setEditable(true);
 
+	}
+	
+	public void AtualizaEspecie() {
+
+		try {
+
+			ObservableList<String> listEsp = FXCollections
+					.observableArrayList(Fachada.getInstance().buscarALLEspeciel());
+			cb_Especie.setItems(listEsp);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void AtualizaRaca() {
+		
+		cb_RacaAnimal.setItems(null);
+		try {
+
+			if (cb_Especie.getValue().equals("CACHORRO")) {
+				ObservableList<String> listC = FXCollections.observableArrayList(Fachada.getInstance().buscarRaca(1));
+				cb_RacaAnimal.setItems(listC);
+			}
+
+			if (cb_Especie.getValue().equals("GATO")) {
+				ObservableList<String> listG = FXCollections.observableArrayList(Fachada.getInstance().buscarRaca(2));
+				cb_RacaAnimal.setItems(listG);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
 	public void handlerSalvarEditAnimal() {
+		
+		pnEdit.setVisible(false);
+		bt_PNTutorAnimalEditar.setVisible(true);
+		bt_PNTutorAnimalSalvar.setVisible(false);
 
-		Animal a = new Animal(tx_PNTutorAnimais_Nome.getText(), tx_PNTutorAnimais_Especie.getText(),
+		Animal a = new Animal(tx_PNTutorAnimais_Nome.getText(), cb_Especie.getValue(),
 				tx_PNTutorAnimais_Sexo.getText(), Integer.parseInt(tx_PNTutorAnimais_Idade.getText()),
-				lb_PN_CPF.getText(), tx_PNTutorAnimais_Raca.getText(), tx_PNTutorAnimais_Pelagem.getText(),
+				lb_PN_CPF.getText(), cb_RacaAnimal.getValue(), cb_PelagemAnimal.getValue(),
 				Double.parseDouble(tx_PNTutorAnimais_Peso.getText()));
 		a.setNumProntuario(Long.parseLong(tx_PNTutorAnimais_Prontuario.getText()));
 
@@ -565,7 +658,7 @@ public class UIAgendamentoController implements Initializable {
 			tx_PNTutorAnimais_Nome.setEditable(false);
 			tx_PNTutorAnimais_Idade.setEditable(false);
 			tx_PNTutorAnimais_Raca.setEditable(false);
-			tx_PNTutorAnimais_Especie.setEditable(false);
+			tx_PNTutorAnimais_Especie.setEditable(false); 	 	
 			tx_PNTutorAnimais_Peso.setEditable(false);
 			tx_PNTutorAnimais_Pelagem.setEditable(false);
 			tx_PNTutorAnimais_Sexo.setEditable(false);
@@ -579,6 +672,29 @@ public class UIAgendamentoController implements Initializable {
 		}
 
 	}
+	
+	@FXML
+	public void handlerDeletaAnimal() {
+		
+		try {
+			Fachada.getInstance().deletarAnimal(ani);
+			tx_PNTutorAnimais_Nome.setText("");
+			tx_PNTutorAnimais_Idade.setText("");
+			tx_PNTutorAnimais_Raca.setText("");
+			tx_PNTutorAnimais_Especie.setText("");
+			tx_PNTutorAnimais_Peso.setText("");
+			tx_PNTutorAnimais_Pelagem.setText("");
+			tx_PNTutorAnimais_Sexo.setText("");
+			tx_PNTutorAnimais_Prontuario.setText("");
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 	@FXML
 	public void clicarMouseItemListViewTuor() throws IOException {
@@ -595,6 +711,7 @@ public class UIAgendamentoController implements Initializable {
 		Tutor t;
 		try {
 			t = Fachada.getInstance().buscarTutor(cpf);
+			this.tut = t;
 
 			lb_PNTutorNOME.setText(t.getNome());
 			lb_PN_Nome.setText("Nome: " + t.getNome());
@@ -695,6 +812,8 @@ public class UIAgendamentoController implements Initializable {
 				List<Animal> listA = pegaAnimais(tx_PNTutorDados_CPF.getText());
 
 				for (Animal animal : listA) {
+					
+					this.ani = animal;
 
 					if (cb_PNTutorAnimais_Animal.getValue().equals(animal.toString())) {
 

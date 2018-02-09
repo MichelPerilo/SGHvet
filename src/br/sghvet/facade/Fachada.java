@@ -23,6 +23,7 @@ public class Fachada implements IFachada {
 	private IControlResultadoExame controlRegistro;
 	private CadastroDisponibilidade cadastroDisp;
 	private ICadastroConsulta cadastroConsulta;
+	private RepositorioRacaEspecie repoRE;
 	
 	private String cpfLogado;
 	
@@ -38,6 +39,7 @@ public class Fachada implements IFachada {
 		this.controlRegistro = new ControlResultadoExame();
 		this.cadastroDisp = new CadastroDisponibilidade();
 		this.cadastroConsulta = new CadastroConsulta();
+		
 	}
 
 	public static Fachada getInstance() {
@@ -85,9 +87,25 @@ public class Fachada implements IFachada {
 		conect = new Conexao().getConexao("root", "");
 
 		this.controlPaciente = new ControlPaciente();
+		this.repoRE = new RepositorioRacaEspecie();
 
 		controlPaciente.conectar(conect);
+		repoRE.conectar(conect);
 	}
+	
+	public List<String> buscarALLEspeciel() throws Exception{
+		
+		return repoRE.buscarALLEspeciel();
+		
+	}
+	
+	public List<String> buscarRaca(int cod) throws Exception{
+		
+		return repoRE.buscarRaca(cod);
+	}
+	
+	
+		
 
 	@Override
 	public Usuario loginUsuario(String cpf, String senha) throws Exception { // salvar conexao
@@ -246,9 +264,9 @@ public class Fachada implements IFachada {
 
 	@Override
 	public void deletarTutor(Tutor t) throws Exception {
-
-		this.deletarEndereco(t.getEndereco());
+		
 		controlPaciente.deletarTutor(t);
+//		this.deletarEndereco(t.getEndereco());
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package br.sghvet.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import br.sghvet.facade.Fachada;
@@ -25,15 +27,16 @@ public class UINovoAnimalController implements Initializable {
 	private String cpf;
 	Alert alert = new Alert(AlertType.WARNING);
 
-
 	@FXML
 	private TextField tx_NomeAnimal;
 	@FXML
-	private TextField tx_Especie;
+	private ComboBox<String> cb_Especie;
 	@FXML
-	private TextField tx_RacaAnimal;
+	private ComboBox<String> cb_RacaAnimal;
 	@FXML
-	private TextField tx_PelagemAnimal;
+	private ComboBox<String> cb_PelagemAnimal;
+	private ObservableList<String> listPelagemAnimalCbbx = FXCollections.observableArrayList("Dupla pelagem",
+			"Peculiares", "Dura", "Arame", "Curto", "Longo", "Longo sedoso sem ondulações");
 	@FXML
 	private TextField tx_PesoAnimal;
 	@FXML
@@ -42,7 +45,7 @@ public class UINovoAnimalController implements Initializable {
 	private Button btnFecharCadastroAnimal;
 	@FXML
 	private ComboBox<String> cb_SexoAnimal;
-	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M","F");
+	private ObservableList<String> listSexoAnimaisCbbx = FXCollections.observableArrayList("M", "F");
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -51,8 +54,7 @@ public class UINovoAnimalController implements Initializable {
 
 			SetCB();
 			Fachada.getInstance().carregarAgendamento();
-			
-			
+			AtualizaEspecie();
 
 		} catch (Exception e) {
 
@@ -60,10 +62,10 @@ public class UINovoAnimalController implements Initializable {
 		}
 
 	}
-	
+
 	@FXML
 	public void fechar() {
-    	btnFecharCadastroAnimal.getScene().getWindow().hide();
+		btnFecharCadastroAnimal.getScene().getWindow().hide();
 	}
 
 	public Stage getStage() {
@@ -89,15 +91,16 @@ public class UINovoAnimalController implements Initializable {
 	private void SetCB() {
 
 		cb_SexoAnimal.setItems(listSexoAnimaisCbbx);
+		cb_PelagemAnimal.setItems(listPelagemAnimalCbbx);
 
 	}
 
 	@FXML
 	public void handlerSalvarNovoAnimal() {
 
-		Animal a = new Animal(tx_NomeAnimal.getText(), tx_Especie.getText(), cb_SexoAnimal.getValue(),
-				Integer.parseInt(tx_IdadeAnimal.getText()), getCPF(), tx_RacaAnimal.getText(),
-				tx_PelagemAnimal.getText(), Double.parseDouble(tx_PesoAnimal.getText()));
+		Animal a = new Animal(tx_NomeAnimal.getText(), cb_Especie.getValue(), cb_SexoAnimal.getValue(),
+				Integer.parseInt(tx_IdadeAnimal.getText()), getCPF(), cb_RacaAnimal.getValue(),
+				cb_PelagemAnimal.getValue(), Double.parseDouble(tx_PesoAnimal.getText()));
 
 		try {
 			Fachada.getInstance().cadastrarAnimal(a);
@@ -105,12 +108,48 @@ public class UINovoAnimalController implements Initializable {
 			alert.showAndWait();
 
 			tx_NomeAnimal.setEditable(false);
-			tx_Especie.setEditable(false);
+			cb_Especie.setEditable(false);
 			cb_SexoAnimal.setEditable(false);
 			tx_IdadeAnimal.setEditable(false);
-			tx_RacaAnimal.setEditable(false);
-			tx_PelagemAnimal.setEditable(false);
+			cb_RacaAnimal.setEditable(false);
+			cb_PelagemAnimal.setEditable(false);
 			tx_PesoAnimal.setEditable(false);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void AtualizaEspecie() {
+
+		try {
+
+			ObservableList<String> listEsp = FXCollections
+					.observableArrayList(Fachada.getInstance().buscarALLEspeciel());
+			cb_Especie.setItems(listEsp);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void AtualizaRaca() {
+		
+		cb_RacaAnimal.setItems(null);
+		try {
+
+			if (cb_Especie.getValue().equals("CACHORRO")) {
+				ObservableList<String> listC = FXCollections.observableArrayList(Fachada.getInstance().buscarRaca(1));
+				cb_RacaAnimal.setItems(listC);
+			}
+
+			if (cb_Especie.getValue().equals("GATO")) {
+				ObservableList<String> listG = FXCollections.observableArrayList(Fachada.getInstance().buscarRaca(2));
+				cb_RacaAnimal.setItems(listG);
+			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

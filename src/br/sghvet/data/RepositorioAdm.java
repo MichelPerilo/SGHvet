@@ -21,7 +21,7 @@ public class RepositorioAdm implements IRepositorioAdm {
 		// try {
 		// if (RepositorioAdm.connection != null)
 		// RepositorioAdm.connection.close();
-		RepositorioAdm.connection = conect;
+		    RepositorioAdm.connection = conect;
 		// } catch (SQLException e) {
 		// e.printStackTrace();
 		// }
