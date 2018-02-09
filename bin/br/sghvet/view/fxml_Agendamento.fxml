@@ -164,7 +164,7 @@
 												<Image url="@../../../../assets/imgs/Pets.png" />
 											</image>
 										</ImageView>
-										<Button fx:id="bt_PNTutorDadosSalvar" layoutX="911.0" layoutY="17.0" minHeight="0.0" mnemonicParsing="false" onAction="#handlerSalvarEditTutor" prefHeight="37.0" prefWidth="63.0" style="-fx-background-color: #000000;" text="Salvar" textFill="WHITE" AnchorPane.leftAnchor="911.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="17.0" />
+										<Button fx:id="bt_PNTutorDadosSalvar" layoutX="842.0" layoutY="18.0" minHeight="0.0" mnemonicParsing="false" onAction="#handlerSalvarEditTutor" prefHeight="37.0" prefWidth="63.0" style="-fx-background-color: #000000;" text="Salvar" textFill="WHITE" visible="false" AnchorPane.leftAnchor="842.0" AnchorPane.rightAnchor="91.0" AnchorPane.topAnchor="18.0" />
 										<Label layoutX="14.0" layoutY="130.0" text="Rua">
 											<font>
 												<Font size="18.0" />
@@ -208,6 +208,7 @@
 										<Button fx:id="bt_PNTutorDadosEditar" layoutX="842.0" layoutY="16.0" minHeight="0.0" mnemonicParsing="false" onAction="#handlerEditarTutor" prefHeight="39.0" prefWidth="62.0" style="-fx-background-color: #848484;" text="Editar" textFill="WHITE" AnchorPane.leftAnchor="842.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="16.0" />
                               <TextField fx:id="tx_PNTutorDados_Sexo" layoutX="335.0" layoutY="78.0" prefHeight="25.0" prefWidth="82.0" />
                               <TextField fx:id="tx_PNTutorDados_Estado" layoutX="352.0" layoutY="319.0" prefHeight="25.0" prefWidth="59.0" />
+                              <Button layoutX="915.0" layoutY="17.0" mnemonicParsing="false" onAction="#handlerDeletaTutor" prefHeight="39.0" prefWidth="75.0" style="-fx-background-color: #FA5858;" text="DELETAR" />
 									</children>
 								</AnchorPane>
 							</content>
@@ -228,12 +229,12 @@
 														<Font size="18.0" />
 													</font>
 												</Label>
-												<Label layoutX="20.0" layoutY="213.0" text="Especie">
+												<Label layoutX="20.0" layoutY="152.0" text="Especie">
 													<font>
 														<Font size="18.0" />
 													</font>
 												</Label>
-												<Label layoutX="20.0" layoutY="151.0" text="Raça">
+												<Label layoutX="23.0" layoutY="213.0" text="Raça">
 													<font>
 														<Font size="18.0" />
 													</font>
@@ -265,17 +266,17 @@
 												</Label>
 												<TextField fx:id="tx_PNTutorAnimais_Prontuario" layoutX="505.0" layoutY="19.0" prefHeight="25.0" prefWidth="188.0" />
 												<TextField fx:id="tx_PNTutorAnimais_Idade" layoutX="396.0" layoutY="72.0" prefHeight="25.0" prefWidth="73.0" />
-												<TextField fx:id="tx_PNTutorAnimais_Raca" layoutX="107.0" layoutY="152.0" prefHeight="25.0" prefWidth="169.0" />
+												<TextField fx:id="tx_PNTutorAnimais_Raca" layoutX="110.0" layoutY="214.0" prefHeight="25.0" prefWidth="169.0" />
 												<TextField fx:id="tx_PNTutorAnimais_Pelagem" layoutX="107.0" layoutY="283.0" prefHeight="25.0" prefWidth="172.0" />
-												<TextField fx:id="tx_PNTutorAnimais_Especie" layoutX="107.0" layoutY="214.0" prefHeight="25.0" prefWidth="171.0" />
+												<TextField fx:id="tx_PNTutorAnimais_Especie" layoutX="107.0" layoutY="153.0" prefHeight="25.0" prefWidth="171.0" />
 												<TextField fx:id="tx_PNTutorAnimais_Peso" layoutX="395.0" layoutY="214.0" prefHeight="25.0" prefWidth="96.0" />
 												<ImageView fitHeight="165.0" fitWidth="415.0" layoutX="531.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
 													<image>
 														<Image url="@../../../../assets/imgs/PEt2.jpg" />
 													</image>
 												</ImageView>
-												<Button fx:id="bt_PNTutorAnimalEditar" layoutX="815.0" layoutY="19.0" mnemonicParsing="false" onAction="#handlerEditarAnimal" prefHeight="39.0" prefWidth="54.0" style="-fx-background-color: #848484;" text="Editar" textFill="WHITE" />
-												<Button fx:id="bt_PNTutorAnimalSalvar" layoutX="875.0" layoutY="19.0" mnemonicParsing="false" onAction="#handlerSalvarEditAnimal" prefHeight="39.0" prefWidth="60.0" style="-fx-background-color: #000000;" text="Salvar" textFill="WHITE" />
+												<Button fx:id="bt_PNTutorAnimalEditar" layoutX="815.0" layoutY="19.0" mnemonicParsing="false" onAction="#handlerEditarAnimal" prefHeight="39.0" prefWidth="62.0" style="-fx-background-color: #848484;" text="Editar" textFill="WHITE" />
+												<Button fx:id="bt_PNTutorAnimalSalvar" layoutX="815.0" layoutY="19.0" mnemonicParsing="false" onAction="#handlerSalvarEditAnimal" prefHeight="39.0" prefWidth="60.0" style="-fx-background-color: #000000;" text="Salvar" textFill="WHITE" visible="false" />
 												<TextField fx:id="tx_PNTutorAnimais_Nome" layoutX="87.0" layoutY="72.0" prefHeight="25.0" prefWidth="188.0" />
 												<Separator layoutX="19.0" layoutY="337.0" prefHeight="17.0" prefWidth="945.0" />
 												<Label layoutX="111.0" layoutY="718.0" text=" (Historia atua, tratamento prévio, antecedentes mórbidos,  condições de vida)" />
@@ -454,6 +455,29 @@
                                           <Label fx:id="lb_HRSelecionada" layoutX="347.0" layoutY="49.0" prefHeight="17.0" prefWidth="77.0" />
                                        </children>
                                     </Pane>
+                                    <Pane fx:id="pnEdit" layoutX="9.0" layoutY="127.0" prefHeight="214.0" prefWidth="284.0" style="-fx-background-color: #FFFFFF;" visible="false">
+                                       <children>
+                                          <ComboBox fx:id="cb_Especie" layoutX="97.0" layoutY="23.0" onAction="#AtualizaRaca" prefHeight="28.0" prefWidth="179.0" />
+                                          <Label layoutX="14.0" layoutY="23.0" text="Especie">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="14.0" layoutY="87.0" text="Raça">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="17.0" layoutY="155.0" text="Pelagem">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox fx:id="cb_PelagemAnimal" layoutX="97.0" layoutY="155.0" prefHeight="28.0" prefWidth="179.0" />
+                                          <ComboBox fx:id="cb_RacaAnimal" layoutX="90.0" layoutY="87.0" prefHeight="28.0" prefWidth="184.0" />
+                                       </children>
+                                    </Pane>
+                                    <Button layoutX="881.0" layoutY="19.0" mnemonicParsing="false" onAction="#handlerDeletaAnimal" prefHeight="39.0" prefWidth="63.0" style="-fx-background-color: #FA5858;" text="DELETE" />
 											</children>
 										</AnchorPane>
 									</content>

@@ -68,11 +68,13 @@ public class UINovoTutorController implements Initializable {
 	@FXML
 	private TextField tx_NomeAnimal;
 	@FXML
-	private TextField tx_Especie;
+	private ComboBox<String> cb_Especie;
 	@FXML
-	private TextField tx_Raca;
+	private ComboBox<String> cb_RacaAnimal;
 	@FXML
-	private TextField tx_Pelagem;
+	private ComboBox<String> cb_PelagemAnimal;
+	private ObservableList<String> listPelagemAnimalCbbx = FXCollections.observableArrayList("Dupla pelagem",
+			"Peculiares", "Dura", "Arame", "Curto", "Longo", "Longo sedoso sem ondulações");
 	@FXML
 	private TextField tx_Peso;
 	@FXML
@@ -93,6 +95,7 @@ public class UINovoTutorController implements Initializable {
 		try {
 
 			Fachada.getInstance().carregarAgendamento();
+			AtualizaEspecie();
 
 		} catch (Exception e) {
 
@@ -116,22 +119,57 @@ public class UINovoTutorController implements Initializable {
 		this.stage = stage;
 		this.stage.initStyle(StageStyle.UNDECORATED);
 	}
+	
+	
+	public void AtualizaEspecie() {
+
+		try {
+
+			ObservableList<String> listEsp = FXCollections
+					.observableArrayList(Fachada.getInstance().buscarALLEspeciel());
+			cb_Especie.setItems(listEsp);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void AtualizaRaca() {
+		
+		cb_RacaAnimal.setItems(null);
+		try {
+
+			if (cb_Especie.getValue().equals("CACHORRO")) {
+				ObservableList<String> listC = FXCollections.observableArrayList(Fachada.getInstance().buscarRaca(1));
+				cb_RacaAnimal.setItems(listC);
+			}
+
+			if (cb_Especie.getValue().equals("GATO")) {
+				ObservableList<String> listG = FXCollections.observableArrayList(Fachada.getInstance().buscarRaca(2));
+				cb_RacaAnimal.setItems(listG);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 
 	@FXML
 	public void handlerNovoAnimal() {
 
 		tx_NomeAnimal.setText("");
-		tx_Raca.setText("");
-		tx_Pelagem.setText("");
 		tx_Peso.setText("");
 		tx_Idade.setText("");
-		tx_Especie.setText("");
-
+	
 		cb_Sexo.setEditable(true);
 		tx_NomeAnimal.setEditable(true);
-		tx_Raca.setEditable(true);
-		tx_Especie.setEditable(true);
-		tx_Pelagem.setEditable(true);
+		cb_RacaAnimal.setEditable(true);
+		cb_Especie.setEditable(true);
+		cb_PelagemAnimal.setEditable(true);
 		tx_Peso.setEditable(true);
 		tx_Idade.setEditable(true);
 
@@ -140,14 +178,14 @@ public class UINovoTutorController implements Initializable {
 	@FXML
 	public void handlerSalvarNovoAnimal() {
 
-		Animal a = new Animal(tx_NomeAnimal.getText(), tx_Especie.getText(), cb_Sexo.getValue(),
-				Integer.parseInt(tx_Idade.getText()), tx_CPF.getText(), tx_Raca.getText(), tx_Pelagem.getText(),
+		Animal a = new Animal(tx_NomeAnimal.getText(), cb_Especie.getValue(), cb_Sexo.getValue(),
+				Integer.parseInt(tx_Idade.getText()), tx_CPF.getText(), cb_RacaAnimal.getValue(), cb_PelagemAnimal.getValue(),
 				Double.parseDouble(tx_Peso.getText()));
 		cb_Sexo.setEditable(false);
 		tx_NomeAnimal.setEditable(false);
-		tx_Especie.setEditable(false);
-		tx_Raca.setEditable(false);
-		tx_Pelagem.setEditable(false);
+		cb_Especie.setEditable(false);
+		cb_RacaAnimal.setEditable(false);
+		cb_PelagemAnimal.setEditable(false);
 		tx_Peso.setEditable(false);
 		tx_Idade.setEditable(false);
 		try {
@@ -196,6 +234,7 @@ public class UINovoTutorController implements Initializable {
 		cb_Estado.setItems(listEstadosCbbx);
 		cb_Sexo.setItems(listSexoAnimaisCbbx);
 		cb_SexoTutor.setItems(listSexoTutorCbbx);
+		cb_PelagemAnimal.setItems(listPelagemAnimalCbbx);
 
 	}
 

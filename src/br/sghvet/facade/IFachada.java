@@ -21,8 +21,8 @@ import exceptions.ConectionException;
 public interface IFachada {
 	
 	public void conectar();
+	
 	public void desconectar();
-	public void carregarAgendamento() throws Exception;
 	public Usuario loginUsuario(String cpf, String senha) throws Exception;
 	
 	public Usuario buscaUsuario(String cpf) throws Exception; // Login

@@ -199,19 +199,6 @@ public class RepositorioTutor implements IRepositorioTutor {
 		return tutores;
 	}
 	
-//	private Object preencherAnimal(ResultSet rs) throws Exception{
-//		Animal a1;
-//		try{
-//			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"),rs.getInt("idade"),
-//					rs.getString("cpfTutor"),rs.getString("raca"),rs.getString("pelagem"),rs.getDouble("peso"));
-//			a1.setNumProntuario(rs.getInt("prontuario"));
-//		}catch(SQLException e){
-//			throw new Exception("Animal possui dados invalidos");
-//		}
-//		
-//		return a1;
-//	}
-//	
-	
+
 
 }
