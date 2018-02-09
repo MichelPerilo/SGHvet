@@ -84,7 +84,7 @@ public class UiLoginController implements Initializable {
 
 			case VETERINARIO:
 
-				if ((Fachada.getInstance().buscaVeterinario(user.getCpf()).getCargo()) == CargoVeterinario.CIRURGIAO) {
+				if ((Fachada.getInstance().buscaVeterinario(user.getCpf()).getCargo()) == CargoVeterinario.CLINICO) {
 
 					AnchorPane anchorpane_clinico = (AnchorPane) FXMLLoader
 							.load(getClass().getResource("../view/fxml_ui_clinico.fxml"));

@@ -96,6 +96,7 @@ public interface IFachada {
 	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception;
 	public List buscarALLConsulta() throws Exception;
 	public Consulta buscarConsulta(String cpf) throws Exception;
+	public List<Animal> allAnimals() throws Exception;
 	
 
 

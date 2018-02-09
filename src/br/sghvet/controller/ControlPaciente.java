@@ -84,6 +84,12 @@ public class ControlPaciente implements IControlPaciente {
 	public void deletarTutor(Tutor t) throws Exception {
 		cadTutor.deletarTutor(t);
 	}
+	
+	@Override
+	public List<Animal> allAnimals() throws Exception{
+		return cadAnimal.allAnimals();
+	}
+	
 
 	@Override
 	public boolean cadastraEndereco(Endereco e1) throws Exception {

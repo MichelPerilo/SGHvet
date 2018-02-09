@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="1004.0" style="-fx-background-color: F2F2F2;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiTabelaAnimalXConsultaController">
+   <children>
+      <Label layoutX="395.0" layoutY="72.0" text="Animal x Consultas">
+         <font>
+            <Font name="Footlight MT Light" size="35.0" />
+         </font>
+      </Label>
+      <ScrollPane fx:id="PN_sp1" layoutX="147.0" layoutY="415.0" prefHeight="180.0" prefWidth="754.0" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="147.0" AnchorPane.rightAnchor="103.0" AnchorPane.topAnchor="415.0">
+         <content>
+            <TableView fx:id="tv_consulta" prefHeight="176.0" prefWidth="750.0">
+               <columns>
+                  <TableColumn fx:id="cl_consulta_data" prefWidth="143.0" text="DATA" />
+                  <TableColumn fx:id="cl_consulta_hora" prefWidth="258.0" text="HORÁRIO" />
+                  <TableColumn fx:id="cl_consulta_vet" minWidth="0.0" prefWidth="161.0" text="VETERINÁRIO" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="PN_sp2" layoutX="43.0" layoutY="158.0" prefHeight="180.0" prefWidth="918.0" AnchorPane.bottomAnchor="325.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="158.0">
+         <content>
+            <TableView fx:id="tv_animal" onMouseClicked="#tableViewClick" prefHeight="174.0" prefWidth="916.0">
+               <columns>
+                  <TableColumn fx:id="cl_animal_nome" prefWidth="143.0" text="NOME" />
+                  <TableColumn fx:id="cl_animal_especie" prefWidth="258.0" text="ESPÉCIE" />
+                  <TableColumn fx:id="cl_animal_raca" minWidth="0.0" prefWidth="161.0" text="RAÇA" />
+                  <TableColumn fx:id="cl_animal_sexo" prefWidth="167.0" text="SEXO" />
+                  <TableColumn fx:id="cl_animal_idade" prefWidth="185.0" text="IDADE" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

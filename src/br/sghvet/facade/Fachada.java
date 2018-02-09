@@ -215,6 +215,11 @@ public class Fachada implements IFachada {
 	public Animal buscaAnimalProntuario(int prontuario) throws Exception {
 		return controlPaciente.buscaAnimalProntuario(prontuario);
 	}
+	
+	@Override
+	public List<Animal> allAnimals() throws Exception{
+		return controlPaciente.allAnimals();
+	}
 
 	@Override
 	public Tutor buscarTutor(String cpf) throws Exception {

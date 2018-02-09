@@ -67,6 +67,19 @@ public class UiClinicoController implements Initializable {
 		anchorpane_info.getChildren().setAll(anchorpane_disponibilidade_medica);
 
 	}
+	
+	public void handler_TutorxAnimal() throws IOException{
+		AnchorPane anchorpane_tutorxanimal = (AnchorPane) FXMLLoader
+				.load(getClass().getResource("../view/fxml_ui_tabela_tutorxanimal.fxml"));
+		anchorpane_info.getChildren().setAll(anchorpane_tutorxanimal);
+
+	}
+	
+	public void handler_AnimalxConsulta() throws IOException{
+		AnchorPane anchorpane_animalxconsulta = (AnchorPane) FXMLLoader
+				.load(getClass().getResource("../view/fxml_ui_tabela_animalxconsulta.fxml"));
+		anchorpane_info.getChildren().setAll(anchorpane_animalxconsulta);
+	}
 
 	@FXML
 	public void handlerMarcacaoExame() {

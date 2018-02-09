@@ -85,6 +85,22 @@ public class RepositorioAnimal implements IRepositorioAnimal {
 
 		return animais;
 	}
+	
+	@Override
+	public List<Animal> allAnimals() throws Exception {
+		String query = "select * from animal";
+		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		List<Animal> animais = new ArrayList<>();
+
+		while (rs.next()) {
+			animais.add(preencherAnimal(rs));
+		}
+		ps.close();
+		rs.close();
+
+		return animais;
+	}
 
 	@Override
 	public Animal buscaAnimalProntuario(int prontuario) throws Exception {
