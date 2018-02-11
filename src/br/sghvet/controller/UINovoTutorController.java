@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
@@ -78,7 +79,7 @@ public class UINovoTutorController implements Initializable {
 	@FXML
 	private TextField tx_Peso;
 	@FXML
-	private TextField tx_Idade;
+	private DatePicker dt_Idade;
 
 	private ObservableList<String> listEstadosCbbx = FXCollections.observableArrayList("AC", "AL", "AP", "AM", "BA",
 			"CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR",
@@ -163,23 +164,21 @@ public class UINovoTutorController implements Initializable {
 
 		tx_NomeAnimal.setText("");
 		tx_Peso.setText("");
-		tx_Idade.setText("");
-	
 		cb_Sexo.setEditable(true);
 		tx_NomeAnimal.setEditable(true);
 		cb_RacaAnimal.setEditable(true);
 		cb_Especie.setEditable(true);
 		cb_PelagemAnimal.setEditable(true);
 		tx_Peso.setEditable(true);
-		tx_Idade.setEditable(true);
+		dt_Idade.setEditable(true);
 
 	}
 
 	@FXML
 	public void handlerSalvarNovoAnimal() {
 
-		Animal a = new Animal(tx_NomeAnimal.getText(), cb_Especie.getValue(), cb_Sexo.getValue(),
-				Integer.parseInt(tx_Idade.getText()), tx_CPF.getText(), cb_RacaAnimal.getValue(), cb_PelagemAnimal.getValue(),
+		Animal a = new Animal(dt_Idade.getValue(), tx_NomeAnimal.getText(), cb_Especie.getValue(), cb_Sexo.getValue(),
+				 tx_CPF.getText(), cb_RacaAnimal.getValue(), cb_PelagemAnimal.getValue(),
 				Double.parseDouble(tx_Peso.getText()));
 		cb_Sexo.setEditable(false);
 		tx_NomeAnimal.setEditable(false);
@@ -187,7 +186,7 @@ public class UINovoTutorController implements Initializable {
 		cb_RacaAnimal.setEditable(false);
 		cb_PelagemAnimal.setEditable(false);
 		tx_Peso.setEditable(false);
-		tx_Idade.setEditable(false);
+		dt_Idade.setEditable(false);
 		try {
 
 			Fachada.getInstance().cadastrarAnimal(a);

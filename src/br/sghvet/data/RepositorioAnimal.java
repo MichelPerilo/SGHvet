@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import br.sghvet.model.Animal;
@@ -27,7 +28,7 @@ public class RepositorioAnimal implements IRepositorioAnimal {
 	@Override
 	public boolean cadastrarAnimal(Animal a) throws Exception {
 
-		String query = "insert into animal (nome, especie, raca, pelagem, peso, sexo, idade, cpfTutor)values(?,?,?,?,?,?,?,?)";
+		String query = "insert into animal (nome, especie, raca, pelagem, peso, sexo, dataNascimento, cpfTutor)values(?,?,?,?,?,?,?,?)";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, a.getNome());
 		ps.setString(2, a.getEspecie());
@@ -35,7 +36,7 @@ public class RepositorioAnimal implements IRepositorioAnimal {
 		ps.setString(4, a.getPelagem());
 		ps.setDouble(5, a.getPeso());
 		ps.setString(6, a.getSexo());
-		ps.setInt(7, a.getIdade());
+		ps.setString(7, a.getDataNascimento().toString());
 		ps.setString(8, a.getCpfTutor());
 
 		ps.executeUpdate();
@@ -45,15 +46,15 @@ public class RepositorioAnimal implements IRepositorioAnimal {
 	@Override
 	public boolean atualizarAnimal(Animal a) throws Exception {
 
-		String query = "update animal set nome = ?, especie =?, raca =?, pelagem =?, peso =?, sexo =?, idade =? where prontuario =?";
+		String query = "update animal set nome = ?, especie =?, raca =?, pelagem =?, peso =?, sexo =?, dataNascimento =? where prontuario =?";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, a.getNome());
-		ps.setString(2, a.getEspecie());
+		ps.setString(2, a.getEspecie().toString());
 		ps.setString(3, a.getRaça());
 		ps.setString(4, a.getPelagem());
 		ps.setDouble(5, a.getPeso());
 		ps.setString(6, a.getSexo());
-		ps.setInt(7, a.getIdade());
+		ps.setString(7,a.getDataNascimento().toString());
 		ps.setLong(8, a.getNumProntuario());
 
 		return ps.execute();
@@ -124,9 +125,13 @@ public class RepositorioAnimal implements IRepositorioAnimal {
 	private Animal preencherAnimal(ResultSet rs) throws Exception {
 		Animal a1;
 		try {
-			a1 = new Animal(rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"), rs.getInt("idade"),
-					rs.getString("cpfTutor"), rs.getString("raca"), rs.getString("pelagem"), rs.getDouble("peso"));
+			String data =  rs.getString("dataNascimento");
+			String[] pedacoData = data.split("-");
+			LocalDate dia = LocalDate.of(Integer.parseInt(pedacoData[0]),Integer.parseInt(pedacoData[1]),Integer.parseInt(pedacoData[2]));
+			
+			a1 = new Animal(dia,rs.getString("nome"), rs.getString("especie"), rs.getString("sexo"),rs.getString("cpfTutor"), rs.getString("raca"), rs.getString("pelagem"), rs.getDouble("peso"));
 			a1.setNumProntuario(rs.getLong("prontuario"));
+			a1.setIdade(rs.getInt("idade"));
 		} catch (SQLException e) {
 			throw new Exception("Animal possui dados invalidos");
 		}
@@ -134,6 +139,8 @@ public class RepositorioAnimal implements IRepositorioAnimal {
 		return a1;
 	}
 
+	
+	
 	private boolean executar(PreparedStatement ps) throws Exception {
 
 		boolean result;

@@ -1,11 +1,14 @@
 package exceptions;
-
+/**
+ *
+ * @author Raylison
+ */
 public class ProcuraProdutoInexistenteExeception extends Exception{
    
 	
 	public ProcuraProdutoInexistenteExeception(){
 		
-		super("PRODUTO NAO EXISTENTE!!!");
+		super("PESSOA NAO EXISTENTE!!!");
 		
 	}
     

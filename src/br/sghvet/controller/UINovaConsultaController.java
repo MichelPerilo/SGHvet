@@ -238,8 +238,7 @@ public class UINovaConsultaController implements Initializable {
 	@FXML
 	public void handlerDisponivel() throws Exception {
 
-		if (cb_horariosDIsponiveis.getValue() != null && !cb_horariosDIsponiveis.equals(""))
-			AtualizaVeterinario(cb_horariosDIsponiveis.getValue());
+		AtualizaVeterinario(cb_horariosDIsponiveis.getValue());
 
 	}
 
@@ -270,11 +269,12 @@ public class UINovaConsultaController implements Initializable {
 
 	private List<Disponibilidade> ListaMedicos(String horario) {
 
+		LocalDate ld = getDataSelecionada();
 		List<Disponibilidade> list = new ArrayList<>();
 
 		try {
 
-			list = Fachada.getInstance().buscaDisponibilidade(horario);
+			list = Fachada.getInstance().buscaDisponibilidade(horario, ld);
 
 		} catch (Exception e) {
 

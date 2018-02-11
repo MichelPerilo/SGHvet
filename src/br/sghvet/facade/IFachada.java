@@ -53,6 +53,7 @@ public interface IFachada {
 	public boolean deletarAnimal(Animal a) throws Exception;
 	public List buscarAnimal(String cpfTutor) throws Exception;
 	public Animal buscaAnimalProntuario(int prontuario) throws Exception;
+	public List<Animal> allAnimals() throws Exception;
 	
 	public Tutor buscarTutor(String cpf) throws Exception;
 	public List buscarALLTutor() throws Exception;
@@ -83,6 +84,7 @@ public interface IFachada {
 	public void cadastrarHorario(Disponibilidade disp)	throws Exception;
 	void atualizarHorario(Disponibilidade dispo) throws Exception;
 	List<Disponibilidade> buscaHorarios(String cpf_vet) throws Exception;
+	List<Disponibilidade> buscaDisponibilidade(String horario, LocalDate ld) throws Exception;
 	public void deletarHorario(Disponibilidade disp) throws Exception ;
 	
 	
@@ -92,11 +94,12 @@ public interface IFachada {
 	public List<Consulta> buscarConsultaCpf(String cpf) throws Exception;
 	public List<Consulta> buscarConsultaVet(String cpf) throws Exception;
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception;
-	public List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception;
 	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception;
 	public List buscarALLConsulta() throws Exception;
 	public Consulta buscarConsulta(String cpf) throws Exception;
-	public List<Animal> allAnimals() throws Exception;
+	
+
+	
 	
 
 

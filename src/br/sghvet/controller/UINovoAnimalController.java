@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
@@ -40,7 +41,7 @@ public class UINovoAnimalController implements Initializable {
 	@FXML
 	private TextField tx_PesoAnimal;
 	@FXML
-	private TextField tx_IdadeAnimal;
+	private DatePicker  dt_IdadeAnimal;
 	@FXML
 	private Button btnFecharCadastroAnimal;
 	@FXML
@@ -98,8 +99,8 @@ public class UINovoAnimalController implements Initializable {
 	@FXML
 	public void handlerSalvarNovoAnimal() {
 
-		Animal a = new Animal(tx_NomeAnimal.getText(), cb_Especie.getValue(), cb_SexoAnimal.getValue(),
-				Integer.parseInt(tx_IdadeAnimal.getText()), getCPF(), cb_RacaAnimal.getValue(),
+		Animal a = new Animal(dt_IdadeAnimal.getValue(), tx_NomeAnimal.getText(), cb_Especie.getValue(), cb_SexoAnimal.getValue(),
+				 getCPF(), cb_RacaAnimal.getValue(),
 				cb_PelagemAnimal.getValue(), Double.parseDouble(tx_PesoAnimal.getText()));
 
 		try {
@@ -110,7 +111,7 @@ public class UINovoAnimalController implements Initializable {
 			tx_NomeAnimal.setEditable(false);
 			cb_Especie.setEditable(false);
 			cb_SexoAnimal.setEditable(false);
-			tx_IdadeAnimal.setEditable(false);
+			dt_IdadeAnimal.setEditable(false);
 			cb_RacaAnimal.setEditable(false);
 			cb_PelagemAnimal.setEditable(false);
 			tx_PesoAnimal.setEditable(false);

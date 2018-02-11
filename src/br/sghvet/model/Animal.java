@@ -1,5 +1,7 @@
 package br.sghvet.model;
 
+import java.time.LocalDate;
+
 public class Animal {
 
 	private static long geraProntuario = 0000000; 
@@ -12,19 +14,21 @@ public class Animal {
 	private String sexo;
 	private int idade;
 	private String cpfTutor;
+	private LocalDate dataNascimento; 
 	
 
-	public Animal(String nome, String especie, String sexo, int idade, String cpftutor, String raca, String pelagem,
+	public Animal(LocalDate ld, String nome, String especie, String sexo, String cpftutor, String raca, String pelagem,
 			Double peso) {
 
 		setNome(nome);
 		setEspecie(especie);
 		setSexo(sexo);
-		setIdade(idade);
 		setCpfTutor(cpftutor);
 		setRaça(raca);
 		setPelagem(pelagem);
 		setPeso(peso);
+		setDataNascimento(ld);
+		
 		this.numProntuario = geraProntuario + 1;
 		++geraProntuario;
 		
@@ -118,6 +122,14 @@ public class Animal {
 	@Override
 	public String toString() {
 		return getNome();
+	}
+
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 }

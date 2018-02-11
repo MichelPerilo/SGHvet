@@ -1,6 +1,9 @@
 package exceptions;
 
-
+/**
+ *
+ * @author Raylison
+ */
 public class CadatroProdutoExistenteExeception extends Exception{
     
     private String nome;

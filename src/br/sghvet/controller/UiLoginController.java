@@ -66,6 +66,15 @@ public class UiLoginController implements Initializable {
 			switch (user.getTipo()) {
 
 			case ADMINISTRATIVO:
+				
+				if(textfield_cpf.getText().equals("10103566406")) {
+					
+					AnchorPane ADMINITRADOR = (AnchorPane) FXMLLoader
+							.load(getClass().getResource("../view/FXML_MODO_ADMINISTRADOR.fxml"));
+					anchorpane_principal.getChildren().setAll(ADMINITRADOR);
+					
+				}else {
+				
 
 				if ((Fachada.getInstance().buscaAdm(user.getCpf()).getCargo()) == CargoAdm.ATENDENTE) {
 
@@ -80,6 +89,7 @@ public class UiLoginController implements Initializable {
 					anchorpane_principal.getChildren().setAll(anchorpane_administrativo);
 				}
 
+				}
 				break;
 
 			case VETERINARIO:

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -254,7 +255,7 @@
 														<Font size="18.0" />
 													</font>
 												</Label>
-												<Label layoutX="325.0" layoutY="71.0" text="Idade">
+												<Label layoutX="326.0" layoutY="72.0" text="Idade">
 													<font>
 														<Font size="18.0" />
 													</font>
@@ -265,7 +266,6 @@
 													</font>
 												</Label>
 												<TextField fx:id="tx_PNTutorAnimais_Prontuario" layoutX="505.0" layoutY="19.0" prefHeight="25.0" prefWidth="188.0" />
-												<TextField fx:id="tx_PNTutorAnimais_Idade" layoutX="396.0" layoutY="72.0" prefHeight="25.0" prefWidth="73.0" />
 												<TextField fx:id="tx_PNTutorAnimais_Raca" layoutX="110.0" layoutY="214.0" prefHeight="25.0" prefWidth="169.0" />
 												<TextField fx:id="tx_PNTutorAnimais_Pelagem" layoutX="107.0" layoutY="283.0" prefHeight="25.0" prefWidth="172.0" />
 												<TextField fx:id="tx_PNTutorAnimais_Especie" layoutX="107.0" layoutY="153.0" prefHeight="25.0" prefWidth="171.0" />
@@ -478,6 +478,31 @@
                                        </children>
                                     </Pane>
                                     <Button layoutX="881.0" layoutY="19.0" mnemonicParsing="false" onAction="#handlerDeletaAnimal" prefHeight="39.0" prefWidth="63.0" style="-fx-background-color: #FA5858;" text="DELETE" />
+                                    <Label fx:id="tx_PNTutorAnimais_Idade" layoutX="384.0" layoutY="73.0" prefHeight="18.0" prefWidth="48.0" text="idade">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="503.0" layoutY="71.0" text="Nascimento">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="tx_PNTutorAnimais_nascimento" layoutX="605.0" layoutY="72.0" text="--/--/--">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane fx:id="pnEdit2" layoutX="488.0" layoutY="64.0" prefHeight="53.0" prefWidth="263.0" style="-fx-background-color: #FFFFFF;" visible="false">
+                                       <children>
+                                          <DatePicker fx:id="dt_PNTutorAnimais_Nascimento" layoutX="113.0" layoutY="14.0" prefHeight="26.0" prefWidth="146.0" />
+                                          <Label layoutX="14.0" layoutY="13.0" text="Nascimento">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
 											</children>
 										</AnchorPane>
 									</content>

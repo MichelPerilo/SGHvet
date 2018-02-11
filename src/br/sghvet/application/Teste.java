@@ -8,8 +8,10 @@ import java.text.DateFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.Scanner;
 
 import br.sghvet.controller.CadastroAnimal;
@@ -37,6 +39,10 @@ import br.sghvet.model.Veterinario;
 public class Teste {
 
 	public static void main(String[] args) {
+//		LocalDate ld = LocalDate.of(2018,2,5);
+//		String dia = ld.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
+//		System.out.println(dia.substring(0,dia.indexOf("-")));
+		
 		//
 		// try {
 		//// IControleLogin cl = new ControleLogin();

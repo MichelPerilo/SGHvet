@@ -384,8 +384,8 @@ public class Fachada implements IFachada {
 	}
 	
 	@Override
-	public List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception {
-		return cadastroDisp.buscaDisponibilidade(horario);
+	public List<Disponibilidade> buscaDisponibilidade(String horario, LocalDate ld) throws Exception {
+		return cadastroDisp.buscaDisponibilidade(horario, ld);
 	}
 
 	@Override

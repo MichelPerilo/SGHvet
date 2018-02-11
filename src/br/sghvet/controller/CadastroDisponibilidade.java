@@ -1,6 +1,7 @@
 package br.sghvet.controller;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.List;
 
 import br.sghvet.data.IRepositorioDisponibilidade;
@@ -35,8 +36,8 @@ public class CadastroDisponibilidade {
 		repo.deletarHorario(disp);
 	}
 
-	public List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception {
-		return repo.buscaDisponibilidade(horario);
+	public List<Disponibilidade> buscaDisponibilidade(String horario, LocalDate ld) throws Exception {
+		return repo.buscaDisponibilidade(horario, ld);
 		
 	}
 }

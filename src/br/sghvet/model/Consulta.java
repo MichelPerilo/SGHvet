@@ -7,25 +7,7 @@ import br.sghvet.facade.Fachada;
 
 public class Consulta {
 	
-	public void setDia(LocalDate dia) {
-		this.dia = dia;
-	}
-
-	public void setHorario(LocalTime horario) {
-		this.horario = horario;
-	}
-
-	public void setCpfTutor(String cpfTutor) {
-		this.cpfTutor = cpfTutor;
-	}
-
-	public void setProntuario(int prontuario) {
-		this.prontuario = prontuario;
-	}
-
-	public void setCpfVeterinario(String cpfVeterinario) {
-		this.cpfVeterinario = cpfVeterinario;
-	}
+	
 
 	private int id;
 	
@@ -102,6 +84,24 @@ public class Consulta {
 		this.nomeMedico = Fachada.getInstance().buscaVeterinario(nomeMedico).getNome();
 	}
 	
-	
+	public void setDia(LocalDate dia) {
+		this.dia = dia;
+	}
+
+	public void setHorario(LocalTime horario) {
+		this.horario = horario;
+	}
+
+	public void setCpfTutor(String cpfTutor) {
+		this.cpfTutor = cpfTutor;
+	}
+
+	public void setProntuario(int prontuario) {
+		this.prontuario = prontuario;
+	}
+
+	public void setCpfVeterinario(String cpfVeterinario) {
+		this.cpfVeterinario = cpfVeterinario;
+	}
 	
 }

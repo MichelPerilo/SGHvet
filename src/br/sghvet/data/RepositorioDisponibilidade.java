@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Locale;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Consulta;
 import br.sghvet.model.DiaDaSemana;
@@ -119,22 +120,29 @@ public class RepositorioDisponibilidade implements IRepositorioDisponibilidade {
 	
 	@Override
 
-    public List<Disponibilidade> buscaDisponibilidade(String horario) throws Exception {
+    public List<Disponibilidade> buscaDisponibilidade(String horario, LocalDate dia) throws Exception {
 
-        String query = "select * from disponibilidade_vet where horario_inicio = ? ";
+        String query = "select * from disponibilidade_vet where dia = ?";
 
         PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
-
-        ps.setString(1, horario);
+        
+        String diaSemana = dia.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
+        ps.setString(1, diaSemana.substring(0,diaSemana.indexOf("-")));
 
         ResultSet rs = ps.executeQuery();
 
         List<Disponibilidade> horarios = new ArrayList<>();
 
 
+        String horarioinicio = rs.getString("horario_inicio");
+		String horarioFim = rs.getString("horario_fim");
+		String[] inicio = horarioinicio.split(":");
+		String[] fim = horarioFim.split(":");
+		String[] atual = horario.split(":");
 
         while (rs.next()) {
 
+        	if(Integer.parseInt(atual[0]) >= Integer.parseInt(inicio[0]) &&  Integer.parseInt(atual[0]) <= Integer.parseInt(fim[0]))
             horarios.add(preencherDisponibilidade(rs));
 
         }
@@ -143,11 +151,11 @@ public class RepositorioDisponibilidade implements IRepositorioDisponibilidade {
 
         rs.close();
 
-
-
-        return horarios;
+      return horarios;
 
     }
+	
+	
 	
 	
 }

@@ -33,6 +33,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -54,7 +55,6 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	private Button bt_Agendamento;
 	private Stage horarios;
-	
 
 	// Painel Agenda
 
@@ -104,7 +104,7 @@ public class UIAgendamentoController implements Initializable {
 	private Label lb_PN_Cidade;
 
 	// Painel FichaCLinica2 Dados
-	
+
 	@FXML
 	private Button bt_PNTutorDadosEditar;
 	@FXML
@@ -135,15 +135,17 @@ public class UIAgendamentoController implements Initializable {
 	private TextField tx_PNTutorDados_Estado;
 
 	// Painel FichaCLinica2 Aniamal
-	
+
 	@FXML
 	private Pane pnEdit;
+	@FXML
+	private Pane pnEdit2;
 	@FXML
 	private Button bt_PNTutorAnimalEditar;
 	@FXML
 	private Button bt_PNTutorAnimalSalvar;
 	private Animal ani;
-	
+
 	@FXML
 	private ComboBox<String> cb_Especie;
 	@FXML
@@ -156,7 +158,11 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	private TextField tx_PNTutorAnimais_Nome;
 	@FXML
-	private TextField tx_PNTutorAnimais_Idade;
+	private Label tx_PNTutorAnimais_Idade;
+	@FXML
+	private DatePicker dt_PNTutorAnimais_Nascimento;
+	@FXML
+	private Label tx_PNTutorAnimais_nascimento;
 	@FXML
 	private TextField tx_PNTutorAnimais_Raca;
 	@FXML
@@ -173,52 +179,51 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	private ComboBox<String> cb_PNTutorAnimais_Animal;
 	private ObservableList<String> listAnimais;
-	
-	
-	@FXML 
+
+	@FXML
 	private TextArea textarea_cabecapescoco;
-	@FXML 
+	@FXML
 	private TextArea textarea_cavabdominal;
-	@FXML 
+	@FXML
 	private TextArea textarea_cavtoracica;
-	@FXML 
+	@FXML
 	private TextArea textarea_diagdefinitivo;
-	@FXML 
+	@FXML
 	private TextArea textarea_diagprovavel;
-	@FXML 
+	@FXML
 	private TextArea textarea_examescomple;
-	@FXML 
+	@FXML
 	private TextArea textarea_prognostico;
-	@FXML 
+	@FXML
 	private TextArea textarea_sislocomotor;
-	@FXML 
+	@FXML
 	private TextArea textarea_sisnervoso;
-	@FXML 
+	@FXML
 	private TextArea textarea_vacinacoes;
-	@FXML 
+	@FXML
 	private TextArea textarea_vermifugacoes;
 	@FXML
 	private TextArea textarea_ectoscopia;
-	@FXML 
-	private TextField textfield_batcardiaco;
-	@FXML 
-	private TextField textfield_movrespiratorio;
-	@FXML 
-	private TextField textfield_pulso;
-	@FXML 
-	private TextField textfield_tr;
-	
 	@FXML
-    private TableView<Consulta> tv_consultas2;
-    @FXML
-    private TableColumn<Consulta, String> tc_consulta_data;
-    @FXML
-    private TableColumn<Consulta, String> tc_consulta_hora;
-    @FXML
-    private TableColumn<Consulta, String> tc_consulta_medico;
-    private ObservableList<Consulta> observableListConsulta2;
-    
-    @FXML
+	private TextField textfield_batcardiaco;
+	@FXML
+	private TextField textfield_movrespiratorio;
+	@FXML
+	private TextField textfield_pulso;
+	@FXML
+	private TextField textfield_tr;
+
+	@FXML
+	private TableView<Consulta> tv_consultas2;
+	@FXML
+	private TableColumn<Consulta, String> tc_consulta_data;
+	@FXML
+	private TableColumn<Consulta, String> tc_consulta_hora;
+	@FXML
+	private TableColumn<Consulta, String> tc_consulta_medico;
+	private ObservableList<Consulta> observableListConsulta2;
+
+	@FXML
 	private Label lb_dataSelecionada;
 	@FXML
 	private Label lb_HRSelecionada;
@@ -230,9 +235,6 @@ public class UIAgendamentoController implements Initializable {
 	private Label lb_prontuario;
 	@FXML
 	private Label lb_Medico;
-	
-	
-	
 
 	// Painel FichaCLinica3
 
@@ -373,18 +375,15 @@ public class UIAgendamentoController implements Initializable {
 	private TableView<Consulta> tv_consultas;
 
 	@FXML
-	private TableColumn<Consulta,LocalTime> tc_consultas_hr;
+	private TableColumn<Consulta, LocalTime> tc_consultas_hr;
 	@FXML
-	private TableColumn<Consulta,Integer> tc_consultas_prot;
+	private TableColumn<Consulta, Integer> tc_consultas_prot;
 	@FXML
-	private TableColumn<Consulta,String> tc_consultas_Ani;
+	private TableColumn<Consulta, String> tc_consultas_Ani;
 	@FXML
-	private TableColumn<Consulta,String> tc_consultas_tut;
+	private TableColumn<Consulta, String> tc_consultas_tut;
 	private ObservableList<Consulta> observableListConsulta;
 
-	
-	
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -392,7 +391,7 @@ public class UIAgendamentoController implements Initializable {
 			Fachada.getInstance().carregarAgendamento();
 			carregaDias();
 			FuncionarioLogado(getCpfLogado());
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -418,7 +417,7 @@ public class UIAgendamentoController implements Initializable {
 		}
 		tv_PaneAgendamento.setItems(observableListTutor);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public void carregarTableViewConsulta() {
 
@@ -435,7 +434,6 @@ public class UIAgendamentoController implements Initializable {
 		}
 		tv_consultas.setItems(observableListConsulta);
 	}
-
 
 	@FXML
 	public void handlerNovoTutor() {
@@ -520,7 +518,7 @@ public class UIAgendamentoController implements Initializable {
 
 		bt_PNTutorDadosEditar.setVisible(false);
 		bt_PNTutorDadosSalvar.setVisible(true);
-		
+
 		tx_PNTutorDados_Nome.setEditable(true);
 		tx_PNTutorDados_CPF.setEditable(true);
 		tx_PNTutorDados_Celular.setEditable(true);
@@ -534,12 +532,10 @@ public class UIAgendamentoController implements Initializable {
 		tx_PNTutorDados_Estado.setEditable(true);
 
 	}
-	
-	
-	
+
 	@FXML
 	public void handlerDeletaTutor() {
-		
+
 		try {
 			Fachada.getInstance().deletarTutor(tut);
 			handlerVoltarTutor();
@@ -547,20 +543,17 @@ public class UIAgendamentoController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
 
 	@FXML
 	public void handlerSalvarEditTutor() {
 
 		try {
-			
+
 			bt_PNTutorDadosEditar.setVisible(true);
 			bt_PNTutorDadosSalvar.setVisible(false);
-			
-			
+
 			Endereco e = new Endereco(tx_PNTutorDados_Rua.getText(), tx_PNTutorDados_Bairro.getText(),
 					tx_PNTutorDados_CEP.getText(), tx_PNTutorDados_Numero.getText(),
 					tx_PNTutorDados_Complemento.getText(), tx_PNTutorDados_Cidade.getText(),
@@ -590,20 +583,20 @@ public class UIAgendamentoController implements Initializable {
 
 	@FXML
 	public void handlerEditarAnimal() {
-		
+
 		pnEdit.setVisible(true);
+		pnEdit2.setVisible(true);
 		bt_PNTutorAnimalEditar.setVisible(false);
 		bt_PNTutorAnimalSalvar.setVisible(true);
 		cb_PelagemAnimal.setItems(listPelagemAnimalCbbx);
 		AtualizaEspecie();
 
 		tx_PNTutorAnimais_Nome.setEditable(true);
-		tx_PNTutorAnimais_Idade.setEditable(true);
 		tx_PNTutorAnimais_Peso.setEditable(true);
 		tx_PNTutorAnimais_Sexo.setEditable(true);
 
 	}
-	
+
 	public void AtualizaEspecie() {
 
 		try {
@@ -620,7 +613,7 @@ public class UIAgendamentoController implements Initializable {
 
 	@FXML
 	public void AtualizaRaca() {
-		
+
 		cb_RacaAnimal.setItems(null);
 		try {
 
@@ -633,7 +626,7 @@ public class UIAgendamentoController implements Initializable {
 				ObservableList<String> listG = FXCollections.observableArrayList(Fachada.getInstance().buscarRaca(2));
 				cb_RacaAnimal.setItems(listG);
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -642,23 +635,61 @@ public class UIAgendamentoController implements Initializable {
 
 	@FXML
 	public void handlerSalvarEditAnimal() {
-		
+
 		pnEdit.setVisible(false);
+		pnEdit2.setVisible(false);
 		bt_PNTutorAnimalEditar.setVisible(true);
 		bt_PNTutorAnimalSalvar.setVisible(false);
 
-		Animal a = new Animal(tx_PNTutorAnimais_Nome.getText(), cb_Especie.getValue(),
-				tx_PNTutorAnimais_Sexo.getText(), Integer.parseInt(tx_PNTutorAnimais_Idade.getText()),
-				lb_PN_CPF.getText(), cb_RacaAnimal.getValue(), cb_PelagemAnimal.getValue(),
-				Double.parseDouble(tx_PNTutorAnimais_Peso.getText()));
+		LocalDate dataNew;
+		String raca;
+		String especie;
+		String pelo;
+		if (dt_PNTutorAnimais_Nascimento.getValue() == null) {
+
+			String[] Convertedate = tx_PNTutorAnimais_nascimento.getText().split("/");
+			dataNew = LocalDate.of(Integer.parseInt(Convertedate[2]), Integer.parseInt(Convertedate[1]),
+					Integer.parseInt(Convertedate[0]));
+
+		} else {
+			dataNew = dt_PNTutorAnimais_Nascimento.getValue();
+		}
+
+		if (cb_Especie.getValue() == null) {
+
+			especie = tx_PNTutorAnimais_Especie.getText();
+
+		} else {
+
+			especie = cb_Especie.getValue();
+
+		}
+		if (cb_RacaAnimal.getValue() == null) {
+			raca = tx_PNTutorAnimais_Raca.getText();
+
+		} else {
+			raca = cb_RacaAnimal.getValue();
+		}
+		if (cb_PelagemAnimal.getValue() == null) {
+
+			pelo = tx_PNTutorAnimais_Pelagem.getText();
+
+		} else {
+
+			pelo = cb_PelagemAnimal.getValue();
+
+		}
+
+		Animal a = new Animal(dataNew, tx_PNTutorAnimais_Nome.getText(), especie, tx_PNTutorAnimais_Sexo.getText(),
+				lb_PN_CPF.getText(), raca, pelo, Double.parseDouble(tx_PNTutorAnimais_Peso.getText()));
 		a.setNumProntuario(Long.parseLong(tx_PNTutorAnimais_Prontuario.getText()));
 
 		try {
 			Fachada.getInstance().atualizarAnimal(a);
+
 			tx_PNTutorAnimais_Nome.setEditable(false);
-			tx_PNTutorAnimais_Idade.setEditable(false);
 			tx_PNTutorAnimais_Raca.setEditable(false);
-			tx_PNTutorAnimais_Especie.setEditable(false); 	 	
+			tx_PNTutorAnimais_Especie.setEditable(false);
 			tx_PNTutorAnimais_Peso.setEditable(false);
 			tx_PNTutorAnimais_Pelagem.setEditable(false);
 			tx_PNTutorAnimais_Sexo.setEditable(false);
@@ -667,15 +698,15 @@ public class UIAgendamentoController implements Initializable {
 			alert.showAndWait();
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch blocks
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	@FXML
 	public void handlerDeletaAnimal() {
-		
+
 		try {
 			Fachada.getInstance().deletarAnimal(ani);
 			tx_PNTutorAnimais_Nome.setText("");
@@ -686,15 +717,12 @@ public class UIAgendamentoController implements Initializable {
 			tx_PNTutorAnimais_Pelagem.setText("");
 			tx_PNTutorAnimais_Sexo.setText("");
 			tx_PNTutorAnimais_Prontuario.setText("");
-			
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	@FXML
 	public void clicarMouseItemListViewTuor() throws IOException {
@@ -747,7 +775,6 @@ public class UIAgendamentoController implements Initializable {
 			tx_PNTutorDados_Estado.setText(t.getEndereco().getEstado());
 
 			tx_PNTutorAnimais_Nome.setEditable(false);
-			tx_PNTutorAnimais_Idade.setEditable(false);
 			tx_PNTutorAnimais_Raca.setEditable(false);
 			tx_PNTutorAnimais_Especie.setEditable(false);
 			tx_PNTutorAnimais_Peso.setEditable(false);
@@ -812,25 +839,26 @@ public class UIAgendamentoController implements Initializable {
 				List<Animal> listA = pegaAnimais(tx_PNTutorDados_CPF.getText());
 
 				for (Animal animal : listA) {
-					
+
 					this.ani = animal;
 
 					if (cb_PNTutorAnimais_Animal.getValue().equals(animal.toString())) {
 
 						tx_PNTutorAnimais_Nome.setText(animal.getNome());
 						tx_PNTutorAnimais_Idade.setText(String.valueOf(animal.getIdade()));
+						DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						tx_PNTutorAnimais_nascimento.setText(animal.getDataNascimento().format(formatador));
 						tx_PNTutorAnimais_Raca.setText(animal.getRaça());
 						tx_PNTutorAnimais_Especie.setText(animal.getEspecie());
 						tx_PNTutorAnimais_Peso.setText(String.valueOf(animal.getPeso()));
 						tx_PNTutorAnimais_Pelagem.setText(animal.getPelagem());
 						tx_PNTutorAnimais_Sexo.setText(animal.getSexo());
 						tx_PNTutorAnimais_Prontuario.setText(String.valueOf(animal.getNumProntuario()));
-						
+
 						carregaTabelaConsultas2();
 						break;
-						
+
 					}
-					
 
 				}
 
@@ -842,32 +870,27 @@ public class UIAgendamentoController implements Initializable {
 		}
 
 	}
-	
-	
-	
+
 	public void carregaTabelaConsultas2() {
-		
+
 		tc_consulta_data.setCellValueFactory(new PropertyValueFactory<>("dia"));
 		tc_consulta_hora.setCellValueFactory(new PropertyValueFactory<>("horario"));
 		tc_consulta_medico.setCellValueFactory(new PropertyValueFactory<>("nomeMedico"));
-	
+
 		try {
-			
-			List <Consulta> filtro = new ArrayList<>();
-			List <Consulta> allConsultas = Fachada.getInstance().buscarALLConsulta();
-			
-			for(Consulta c : allConsultas) {
-				
-				
-				if(cb_PNTutorAnimais_Animal.getValue().equals(c.getNomeAnimal())) {
+
+			List<Consulta> filtro = new ArrayList<>();
+			List<Consulta> allConsultas = Fachada.getInstance().buscarALLConsulta();
+
+			for (Consulta c : allConsultas) {
+
+				if (cb_PNTutorAnimais_Animal.getValue().equals(c.getNomeAnimal())) {
 					filtro.add(c);
 					System.out.println(c.getNomeAnimal());
 				}
-				
+
 			}
-			
-			
-			
+
 			observableListConsulta2 = FXCollections.observableArrayList(filtro);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -875,24 +898,20 @@ public class UIAgendamentoController implements Initializable {
 		}
 		tv_consultas2.setItems(observableListConsulta2);
 	}
-	
+
 	@FXML
 	public void clicarMouseItemListViewConsultas2() throws IOException {
 		Consulta c = tv_consultas2.getSelectionModel().getSelectedItem();
 		selecionarRegistro(c);
 
 	}
-	
-	
+
 	public void selecionarRegistro(Consulta consulta) {
-				
-		
-		
+
 		try {
 			ResultadoExame registro;
 			registro = Fachada.getInstance().buscarRegistro(consulta);
-			
-			
+
 			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			lb_dataSelecionada.setText(consulta.getDia().format(formatador));
 			lb_HRSelecionada.setText(consulta.getHorario().toString());
@@ -900,34 +919,30 @@ public class UIAgendamentoController implements Initializable {
 			lb_Animal.setText(consulta.getNomeAnimal());
 			lb_prontuario.setText(String.valueOf(consulta.getProntuario()));
 			lb_Medico.setText(consulta.getNomeMedico());
-			
+
 			textarea_cabecapescoco.setText(registro.getCabecaPescoco());
 			textarea_cavabdominal.setText(registro.getCavidadeAbdominal());
 			textarea_cavtoracica.setText(registro.getCavidadeToracica());
 			textarea_diagdefinitivo.setText(registro.getDiagnosticoDefinitivo());
 			textarea_diagprovavel.setText(registro.getDiagnosticoProvavel());
 			textarea_examescomple.setText(registro.getExamesComplementares());
-			textarea_sislocomotor.setText(registro.getSistemaLocomotor());		
-		    textarea_vacinacoes.setText(registro.getVacinacoes());
+			textarea_sislocomotor.setText(registro.getSistemaLocomotor());
+			textarea_vacinacoes.setText(registro.getVacinacoes());
 			textarea_vermifugacoes.setText(registro.getVermifugacoes());
 			textarea_ectoscopia.setText(registro.getEctoscopia());
-			textfield_batcardiaco.setText( String.valueOf(registro.getBatimentoPorMin()));
-			textfield_pulso.setText( String.valueOf(registro.getPulso()));
-			textfield_tr.setText( String.valueOf(registro.getTemp()));
+			textfield_batcardiaco.setText(String.valueOf(registro.getBatimentoPorMin()));
+			textfield_pulso.setText(String.valueOf(registro.getPulso()));
+			textfield_tr.setText(String.valueOf(registro.getTemp()));
 			textarea_prognostico.setText(registro.getPrognostico());
-			textfield_movrespiratorio.setText( String.valueOf(registro.getMovRespPorMin()));			
+			textfield_movrespiratorio.setText(String.valueOf(registro.getMovRespPorMin()));
 			textarea_sisnervoso.setText(registro.getSistemaNervoso());
-			
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 	}
-	
-	
 
 	@FXML
 	public void handleAgendamento() {
@@ -1353,28 +1368,28 @@ public class UIAgendamentoController implements Initializable {
 
 	}
 
-//	@FXML
-//	public void handlerDisponibilidadeHorario() {
-//
-//		try {
-//
-//			FXMLLoader loader = new FXMLLoader();
-//			loader.setLocation(UIHorariosViewController.class.getResource("../view/fxml_horarios.fxml"));
-//			AnchorPane page;
-//			page = (AnchorPane) loader.load();
-//			Stage novoStage = new Stage();
-//			Scene scene = new Scene(page);
-//			novoStage.setScene(scene);
-//			novoStage.setResizable(false);
-//			UIHorariosViewController controller = loader.getController();
-//			controller.setStage(novoStage);
-//			novoStage.showAndWait();
-//
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+	// @FXML
+	// public void handlerDisponibilidadeHorario() {
+	//
+	// try {
+	//
+	// FXMLLoader loader = new FXMLLoader();
+	// loader.setLocation(UIHorariosViewController.class.getResource("../view/fxml_horarios.fxml"));
+	// AnchorPane page;
+	// page = (AnchorPane) loader.load();
+	// Stage novoStage = new Stage();
+	// Scene scene = new Scene(page);
+	// novoStage.setScene(scene);
+	// novoStage.setResizable(false);
+	// UIHorariosViewController controller = loader.getController();
+	// controller.setStage(novoStage);
+	// novoStage.showAndWait();
+	//
+	// } catch (IOException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// }
 
 	public String getCpfLogado() {
 		return cpfLogado;
@@ -1422,20 +1437,16 @@ public class UIAgendamentoController implements Initializable {
 		}
 
 	}
-	
-	
+
 	@FXML
 	public void clicarMouseItemListViewConsulta() throws IOException {
 		Consulta c = tv_consultas.getSelectionModel().getSelectedItem();
 		fazBuscaConsulta(c);
 
 	}
-	
-	
+
 	public void fazBuscaConsulta(Consulta consulta) {
 
-
-		
 		try {
 
 			FXMLLoader loader = new FXMLLoader();
@@ -1449,12 +1460,12 @@ public class UIAgendamentoController implements Initializable {
 			novoStage.setResizable(false);
 			UINovaConsultaController controller = loader.getController();
 			// PASSANDO ATRIBUTOS
-			
+
 			controller.pn_Agendamento1.setVisible(false);
 			controller.pn_Agendamento2.setVisible(true);
 			controller.setConsulta(consulta);
 			controller.setStage(novoStage);
-			
+
 			novoStage.showAndWait();
 			carregarTableViewConsulta();
 
@@ -1462,9 +1473,7 @@ public class UIAgendamentoController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	}
-	
 
+	}
 
 }

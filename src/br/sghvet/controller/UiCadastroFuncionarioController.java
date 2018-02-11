@@ -166,8 +166,7 @@ public class UiCadastroFuncionarioController implements Initializable {
 
 			} catch (Exception integrityexception) {
 
-				
-				
+							
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setHeaderText("Ocorreu um erro na tentativa de cadastro");
 				alert.setTitle("Erro");
