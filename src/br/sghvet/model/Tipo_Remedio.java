@@ -11,5 +11,5 @@ package br.sghvet.model;
  */
 public enum Tipo_Remedio {
     
-	Analgesicos, Antibioticos, Antiinflamatorios
+	Analgesicos, Antibioticos, Antiflamatorio
 }

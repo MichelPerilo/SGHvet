@@ -3,7 +3,7 @@ package br.sghvet.model;
 import java.time.LocalDate;
 
 
-public class item_Estoque {
+public class Item_Estoque {
 	
 	private int id_intem_estoque;
 	private LocalDate data_entrada;
@@ -11,17 +11,23 @@ public class item_Estoque {
 	private int qtd_atual;
 	private int codigo_remedio_ie;
 	private String nome;
+	private String tipo;
 	
 	
-	public item_Estoque(LocalDate dv, int qtd, int cr) {
+	public Item_Estoque(LocalDate dv, int qtd, int cr) {
 		
-		data_entrada = LocalDate.now();
+		
 		setData_validade(dv);
 		setQtd_atual(qtd);
 		setCodigo_remedio_ie(cr);
-		setNome(cr);
+	
 					
 		
+	}
+	
+	
+	public void logCadastro() {
+		data_entrada = LocalDate.now();
 	}
 
 
@@ -59,6 +65,9 @@ public class item_Estoque {
 		return data_entrada;
 	}
 
+	public void setData_entrada(LocalDate ld) {
+		data_entrada = ld;
+	}
 
 	
 	public int getQtd_atual() {
@@ -76,10 +85,20 @@ public class item_Estoque {
 	}
 
 
-	public void setNome(int cr) {
+	public void setNome(String nome) {
 		
-//		realizar uma busca pelo nome e setar na variavel fazer deppois que terminar o repositorio de farmaco		
-		
+      		this.nome = nome;
+      				
+	}
+
+
+	public String getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 	

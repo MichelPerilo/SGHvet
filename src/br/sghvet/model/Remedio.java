@@ -45,6 +45,9 @@ public class Remedio {
         return id;
     }
 
+    public void setId(int id) {
+         this.id = id;
+    }
    
     private void setNome(String nome) {
         if(nome != null && nome.length() > 0){

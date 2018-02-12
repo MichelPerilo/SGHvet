@@ -24,6 +24,7 @@ public class Fachada implements IFachada {
 	private CadastroDisponibilidade cadastroDisp;
 	private ICadastroConsulta cadastroConsulta;
 	private RepositorioRacaEspecie repoRE;
+	private CadastroRemedio cadastroRemedio;
 	
 	private String cpfLogado;
 	
@@ -39,6 +40,7 @@ public class Fachada implements IFachada {
 		this.controlRegistro = new ControlResultadoExame();
 		this.cadastroDisp = new CadastroDisponibilidade();
 		this.cadastroConsulta = new CadastroConsulta();
+		this.cadastroRemedio = new CadastroRemedio();
 		
 	}
 
@@ -56,6 +58,7 @@ public class Fachada implements IFachada {
 		cadastroReqExame.conectar(conexao);
 		cadastroDisp.conectar(conexao);
 		cadastroConsulta.conectar(conexao);
+		cadastroRemedio.conectar(conexao);
 		
 	}
 	
@@ -65,15 +68,16 @@ public class Fachada implements IFachada {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		conectar();
-		this.controlelogin = new ControleLogin();
-		this.controlfuncionario = new ControlFuncionario();
-		this.cadastroReqExame = new CadastroReqExame();
-		this.pdfControl = new ControlPdf();
-		this.controlPaciente = new ControlPaciente();
-		this.controlRegistro = new ControlResultadoExame();
-		this.cadastroDisp = new CadastroDisponibilidade();
-		this.cadastroConsulta = new CadastroConsulta();
+//		conectar();
+//		this.controlelogin = new ControleLogin();
+//		this.controlfuncionario = new ControlFuncionario();
+//		this.cadastroReqExame = new CadastroReqExame();
+//		this.pdfControl = new ControlPdf();
+//		this.controlPaciente = new ControlPaciente();
+//		this.controlRegistro = new ControlResultadoExame();
+//		this.cadastroDisp = new CadastroDisponibilidade();
+//		this.cadastroConsulta = new CadastroConsulta();
+//		this.cadastroRemedio = new CadastroRemedio();
 		conexao = null;
 	}
 	
@@ -446,5 +450,75 @@ public class Fachada implements IFachada {
 	}
 	
 	
+public boolean cadastrarRemedio(Remedio remedio) throws Exception {
+		
+		return cadastroRemedio.cadastrarRemedio(remedio);
+		
+	}
+
+
+	public Remedio buscaRemedio(int codigo) throws Exception {
+
+	 return cadastroRemedio.buscaRemedio(codigo);
+		
+	}
+
+
+
+	public boolean atualizaRemedio(Remedio remedio) throws Exception {
+
+		return cadastroRemedio.atualizaRemedio(remedio);
+	}
+
+
+
+	public boolean deletarRemedio(Remedio remedio) throws Exception {
+
+		return cadastroRemedio.deletarRemedio(remedio);
+	}
+
+	
+	public List<Remedio> buscarALLRemedio() throws Exception {
+				
+		return cadastroRemedio.buscarALLRemedio();
+	}
+	
+	
+	public boolean cadastrarIntem_Estoque(Item_Estoque itEstoque) throws Exception {
+		return cadastroRemedio.cadastrarIntem_Estoque(itEstoque);
+	}
+
+
+	public Item_Estoque buscaIntem_Estoque(String codigo) throws Exception {
+
+	return cadastroRemedio.buscaIntem_Estoque(codigo);		
+		
+	}
+
+
+
+	public boolean atualizaIntem_Estoque(Item_Estoque itEstoque) throws Exception {
+
+		return cadastroRemedio.atualizaIntem_Estoque(itEstoque);
+	}
+
+
+
+	public boolean deletarIntem_Estoque(Item_Estoque itEstoque) throws Exception {
+
+		return cadastroRemedio.deletarIntem_Estoque(itEstoque);
+	}
+
+	
+	
+	public List<Item_Estoque> buscarALLIntem_Estoque() throws Exception {
+		
+		return cadastroRemedio.buscarALLIntem_Estoque();
+	}
+	
+public int  idCadastrado(String pesquisa) throws Exception {
+		
+		return cadastroRemedio.idCadastrado(pesquisa);
+	}
 
 }
