@@ -25,6 +25,8 @@ public class Fachada implements IFachada {
 	private ICadastroConsulta cadastroConsulta;
 	private RepositorioRacaEspecie repoRE;
 	private CadastroRemedio cadastroRemedio;
+	private ICadastroCirurgia cadcirurgia;
+	private ICadastroMembroCirurgia cadmembrocirurgia;
 	
 	private String cpfLogado;
 	
@@ -41,6 +43,8 @@ public class Fachada implements IFachada {
 		this.cadastroDisp = new CadastroDisponibilidade();
 		this.cadastroConsulta = new CadastroConsulta();
 		this.cadastroRemedio = new CadastroRemedio();
+		this.cadcirurgia = new CadastroCirurgia();
+		this.cadmembrocirurgia = new CadastroMembroCirurgia();
 		
 	}
 
@@ -59,6 +63,8 @@ public class Fachada implements IFachada {
 		cadastroDisp.conectar(conexao);
 		cadastroConsulta.conectar(conexao);
 		cadastroRemedio.conectar(conexao);
+		cadcirurgia.conectar(conexao);
+		cadmembrocirurgia.conectar(conexao);
 		
 	}
 	
@@ -520,5 +526,58 @@ public int  idCadastrado(String pesquisa) throws Exception {
 		
 		return cadastroRemedio.idCadastrado(pesquisa);
 	}
+
+/* ----------------------------------------------------------------------- */
+
+@Override
+public boolean cadastrarCirurgia(Cirurgia cirugia) throws Exception{
+	return cadcirurgia.cadastrarCirurgia(cirugia);
+}
+
+
+@Override
+public boolean removerCirurgia(Cirurgia cirurgia) throws Exception{
+	return cadcirurgia.removerCirurgia(cirurgia);
+}
+
+@Override
+public boolean atualizarCirurgia(Cirurgia cirurgia) throws Exception{
+	return cadcirurgia.atualizarCirurgia(cirurgia);
+}
+
+@Override
+public List<Cirurgia> buscarCirurgias(int prontuario_id) throws Exception{
+	return cadcirurgia.buscarCirurgias(prontuario_id);
+}
+
+@Override
+public List<Cirurgia> buscarALLCirurgia() throws Exception{
+	return cadcirurgia.buscarALLCirurgia();
+}
+
+@Override
+public boolean cadastrarMembroCirurgia(MembroCirurgia membro) throws Exception{
+	return cadmembrocirurgia.cadastrarMembroCirurgia(membro);
+}
+
+@Override
+public boolean removerMembroCirurgia(MembroCirurgia membro) throws Exception{
+	return cadmembrocirurgia.removerMembroCirurgia(membro);
+}
+
+@Override
+public boolean atualizarMembroCirurgia(MembroCirurgia membro) throws Exception{
+	return cadmembrocirurgia.atualizarMembroCirurgia(membro);
+}
+
+@Override
+public List<MembroCirurgia> buscarMembros(int cirurgia_id) throws Exception{
+	return cadmembrocirurgia.buscarMembros(cirurgia_id);
+}
+
+@Override
+public List<MembroCirurgia> buscarCirurgias(String cpf_membro) throws Exception{
+	return cadmembrocirurgia.buscarCirurgias(cpf_membro);
+}
 
 }

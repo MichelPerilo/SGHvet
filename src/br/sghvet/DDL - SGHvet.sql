@@ -21,7 +21,7 @@ FLUSH PRIVILEGES;
 GRANT CREATE USER, RELOAD ON *.* TO '10103566406'@'localhost' WITH GRANT OPTION;
 GRANT SELECT, INSERT, UPDATE, DELETE ON sghvet.* TO '10103566406'@'localhost';
 FLUSH PRIVILEGES;
-
+SET FOREIGN_KEY_CHECKS = 0;
 
 
 -- -----------------------------------------------------
@@ -41,17 +41,17 @@ primary key(cpf)
 -- -----------------------------------------------------
 
 CREATE TABLE veterinario(
-id_vet int  auto_increment,
+
 nome varchar(100) not null,
 cpf char(11) not null,
 dataNasc date not null,
 cargo enum('CLINICO', 'CIRURGIAO') not null,
-contato varchar(11) not null,
+contato varchar(12) not null,
 email varchar(40) not null,
-crmv varchar(20) not null,
-primary key(id_vet),
+crmv varchar(20) not null, 
+primary key(cpf),
 foreign key (cpf)references usuario(cpf)
-
+ON DELETE CASCADE
 )ENGINE = innodb;
 
 -- -----------------------------------------------------
@@ -60,15 +60,15 @@ foreign key (cpf)references usuario(cpf)
 
 CREATE TABLE administrativo(
 
-id_adm int  auto_increment,
 nome varchar(100) not null,
 cpf char(11) not null,
 dataNasc date not null,
 cargo enum('ATENDENTE',  'ADMINISTRADOR') not null,
-contato varchar(11) not null,
+contato varchar(12) not null,
 email varchar(40) not null,
-primary key(id_adm),
+primary key(cpf),
 foreign key (cpf) references usuario(cpf)
+ON DELETE CASCADE
 )ENGINE = innodb;
 
 -- -----------------------------------------------------
@@ -76,16 +76,17 @@ foreign key (cpf) references usuario(cpf)
 -- -----------------------------------------------------
 
 CREATE TABLE auxiliar(
-id_aux int  auto_increment,
+
 nome varchar(100) not null,
 cpf char(11) not null,
 dataNasc date not null,
 cargo enum('LABORATORIO', 'FARMACEUTICO') not null,
-crf VARCHAR(45) NOT NULL,
-contato varchar(11) not null,
+crf VARCHAR(45),
+contato varchar(12) not null,
 email varchar(40) not null,
-primary key(id_aux),
+primary key(cpf),
 foreign key (cpf) references usuario(cpf)
+ON DELETE CASCADE
 )ENGINE = innodb;
 
 -- -----------------------------------------------------
@@ -100,9 +101,10 @@ CREATE TABLE aluno(
   email VARCHAR(45) NOT NULL,
   periodo VARCHAR(45) NOT NULL,
   turma VARCHAR(45) NOT NULL,
-  contato VARCHAR(45) NOT NULL,
+  contato VARCHAR(12) NOT NULL,
   PRIMARY KEY (id_aluno),
   foreign key (cpf)references usuario(cpf)
+  ON DELETE CASCADE
 )ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -165,6 +167,7 @@ estado varchar(30) not null,
 cpfTutor char(11) not null,
 primary key(id),
 foreign key(cpfTutor) references tutor(cpf)
+ON DELETE CASCADE
 )ENGINE = innodb;
 
 
@@ -172,7 +175,7 @@ foreign key(cpfTutor) references tutor(cpf)
 -- Table `sghvet`.`especie`
 -- -----------------------------------------------------
 CREATE TABLE especie(
-  codEsp INT(11) auto_increment,
+  codEsp INT auto_increment,
   nome VARCHAR(45) NOT NULL,
   PRIMARY KEY (codEsp)
 )ENGINE = innodb;
@@ -182,11 +185,12 @@ CREATE TABLE especie(
 -- Table `sghvet`.`raça`
 -- -----------------------------------------------------
 CREATE TABLE raça (
-  codRac INT(11) auto_increment,
+  codRac INT auto_increment,
   nome VARCHAR(45) NOT NULL,
-  cod_esp INT(11) NOT NULL,
+  cod_esp INT NOT NULL,
   PRIMARY KEY (codRac),
   FOREIGN KEY (cod_esp) REFERENCES especie(codEsp) 
+  ON DELETE CASCADE
 )ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -194,7 +198,7 @@ CREATE TABLE raça (
 -- -----------------------------------------------------
 
 CREATE TABLE animal(
-prontuario int auto_increment,
+prontuario int auto_increment,	
 nome varchar(50) not null,
 especie varchar(50) not null,
 raca varchar(50),
@@ -203,11 +207,10 @@ peso decimal(5,2),
 sexo char(1)not null,
 idade int not null,
 cpfTutor char(11) not null,
-cod_especie_a INT,
 
 primary key(prontuario,cpfTutor),
-foreign key(cpfTutor) references tutor(cpf),
-foreign key (cod_especie_a) references especie(codEsp)
+foreign key(cpfTutor) references tutor(cpf)
+ON DELETE CASCADE
 )ENGINE = innodb;
 
 
@@ -228,6 +231,7 @@ primary key(id),
 foreign key(cpf_tutor) references tutor(cpf),
 foreign key(cpf_vet) references veterinario(cpf),
 foreign key(prontuario) references animal(prontuario)
+ON DELETE CASCADE
 ) ENGINE = innodb;
 
 
@@ -250,12 +254,12 @@ CREATE TABLE disponibilidade_vet(
 
 CREATE TABLE exame(
     id int AUTO_INCREMENT,
-    cpf_vet char(11) not null,
+    cpf_aux char(11) not null,
     cpf_tutor char(11) not null,
     prontuario int not null,
     data_exame date not null,
     realizado boolean default '0',
-    foreign key(cpf_vet) references veterinario(cpf),
+    foreign key(cpf_aux) references auxiliar(cpf),
     foreign key(cpf_tutor) references tutor(cpf), 
     foreign key(prontuario) references animal(prontuario),
     primary key(id)
@@ -294,49 +298,66 @@ CREATE TABLE registro(
 CREATE TABLE logDataHoraVet(
   codlog int  auto_increment,
   nome VARCHAR(45) NOT NULL,
-  data_cadastro date not null,
+  data_cadastro DATETIME not null,
+  id_vet int not null,
+  PRIMARY KEY (codlog)
+ )ENGINE = innodb;
+ 
+ -- -----------------------------------------------------
+-- Table `sghvet`.`logDataHoraVet`
+-- -----------------------------------------------------
+
+CREATE TABLE logDataHoraAux(
+  codlog int  auto_increment,
+  nome VARCHAR(45) NOT NULL,
+  data_cadastro DATETIME not null,
+  id_aux int not null,
+  PRIMARY KEY (codlog)
+ )ENGINE = innodb;
+ 
+ -- -----------------------------------------------------
+-- Table `sghvet`.`logDataHoraVet`
+-- -----------------------------------------------------
+
+CREATE TABLE logDataHoraAdm(
+  codlog int  auto_increment,
+  nome VARCHAR(45) NOT NULL,
+  data_cadastro DATETIME not null,
+  id_adm int not null,
   PRIMARY KEY (codlog)
  )ENGINE = innodb;
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
--- -----------------------------------------------------
--- Table `sghvet`.`equipe_cirurgica`
--- -----------------------------------------------------
-CREATE TABLE equipe_cirurgica (
-  coidEqCi INT(11) AUTO_INCREMENT,
-  nome VARCHAR(45) NOT NULL,
-  participantes VARCHAR(500) NOT NULL,
-  quantidade INT NOT NULL,
-  PRIMARY KEY (coidEqCi)
-)ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `bdsghvet`.`tipo_cirurgia`
--- -----------------------------------------------------
-CREATE TABLE tipo_cirurgia (
-  id_tipoCir INT(11) AUTO_INCREMENT,
-  nome VARCHAR(45) NOT NULL,
-  PRIMARY KEY (id_tipoCir)
-)ENGINE = InnoDB;	
-
-
 --------------------------------------------------
 -- Table `sghvet`.`cirurgia`
 -- -----------------------------------------------------
 CREATE TABLE cirurgia (
-  id_CIR INT(11) AUTO_INCREMENT,
+  id INT(11) AUTO_INCREMENT,
+  tipo enum('GERAL', 'ESPECISLISTA') not null,
+  especialidade varchar(60), 
   data_cir date NOT NULL,
-  hr_fim time NOT NULL,
+  hr_fim time,
+  sala enum('SALA_A', 'SALA_B', 'SALA_C', 'SALA_D' , 'SALA_E') NOT NULL,
   hr_inic time NOT NULL,
   prontuario INT(11) NOT NULL,
-  coid_Equipe_c INT(11) NOT NULL,
-  id_tipo_c INT(11) NOT NULL,
-  PRIMARY KEY (id_CIR),
-    FOREIGN KEY(coid_Equipe_c) REFERENCES equipe_cirurgica(coidEqCi),  
-    FOREIGN KEY(id_tipo_c) REFERENCES tipo_cirurgia(id_tipoCir),
+  PRIMARY KEY (id),
     FOREIGN KEY (prontuario) REFERENCES animal (prontuario)  
 )ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sghvet`.`equipe_cirurgica`
+-- -----------------------------------------------------
+CREATE TABLE membro_cirurgia (
+  id INT(11) AUTO_INCREMENT,
+  id_cirur INT(11) NOT NULL,
+  cpf_membro char(11) NOT NULL,
+  PRIMARY KEY (id),
+	FOREIGN KEY(id_cirur) REFERENCES cirurgia(id),
+    FOREIGN KEY(cpf_membro) REFERENCES veterinario(cpf) 
+)ENGINE = InnoDB;
+
 
 -- ------------------------------------------------------- -----------------------------------------------------
 -- FARMACIA
@@ -434,8 +455,26 @@ FOREIGN KEY (id_estoque_ie) REFERENCES estoque(id)
 )ENGINE = InnoDB;
 
 -- -----------------------------------------------------
+-- Table `bdsghvet`.`terceirizado`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS terceirizado(
+id_terc INT NOT NULL,
+nome varchar(70),
+cpf char(11),
+PRIMARY KEY (id_terc)
+)ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `bdsghvet`.`servico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS servico(
+id_servico INT NOT NULL,
+descricao char(100),
+id_executor int,
+PRIMARY KEY (id_servico),
+FOREIGN KEY (id_executor) REFERENCES terceirizado(id_terc) ON DELETE CASCADE
+)ENGINE = InnoDB;
+
+-- -----------------------------------------------------
 INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('10103566406', 'ADMINISTRATIVO');
 INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', '10103566406', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
-
-select * from cargosVeterinario
-

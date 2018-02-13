@@ -7,9 +7,11 @@ import java.util.List;
 import br.sghvet.model.Administrativo;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Auxiliar;
+import br.sghvet.model.Cirurgia;
 import br.sghvet.model.Consulta;
 import br.sghvet.model.Disponibilidade;
 import br.sghvet.model.Endereco;
+import br.sghvet.model.MembroCirurgia;
 import br.sghvet.model.ResultadoExame;
 import br.sghvet.model.RequisicaoExame;
 import br.sghvet.model.TipoUsuario;
@@ -97,6 +99,26 @@ public interface IFachada {
 	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception;
 	public List buscarALLConsulta() throws Exception;
 	public Consulta buscarConsulta(String cpf) throws Exception;
+
+	boolean cadastrarCirurgia(Cirurgia cirugia) throws Exception;
+
+	boolean removerCirurgia(Cirurgia cirurgia) throws Exception;
+
+	boolean atualizarCirurgia(Cirurgia cirurgia) throws Exception;
+
+	List<Cirurgia> buscarCirurgias(int prontuario_id) throws Exception;
+
+	List<Cirurgia> buscarALLCirurgia() throws Exception;
+
+	boolean cadastrarMembroCirurgia(MembroCirurgia membro) throws Exception;
+
+	boolean removerMembroCirurgia(MembroCirurgia membro) throws Exception;
+
+	boolean atualizarMembroCirurgia(MembroCirurgia membro) throws Exception;
+
+	List<MembroCirurgia> buscarMembros(int cirurgia_id) throws Exception;
+
+	List<MembroCirurgia> buscarCirurgias(String cpf_membro) throws Exception;
 	
 
 	
