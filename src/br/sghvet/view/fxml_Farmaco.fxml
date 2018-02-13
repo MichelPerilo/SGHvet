@@ -18,7 +18,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: E6E6E6;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UIFarmacoController">
    <children>
-      <ComboBox fx:id="cb_selecionar_tipo" layoutX="14.0" layoutY="127.0" prefHeight="25.0" prefWidth="260.0" promptText="SELECIONAR TIPO DE MEDICAMENTO" />
+      <ComboBox fx:id="cb_selecionar_tipo" layoutX="14.0" layoutY="127.0" onAction="#carregaTableViewRemedioFiltro" prefHeight="25.0" prefWidth="260.0" promptText="SELECIONAR TIPO DE MEDICAMENTO" />
       <Button id="ButtonOK" fx:id="tx_Busca_OK" layoutX="988.0" layoutY="161.0" mnemonicParsing="false" onAction="#handlerPesquisarProduto" text="ok" />
       <TextField fx:id="tx_Busca_remedio" layoutX="793.0" layoutY="161.0" prefHeight="26.0" prefWidth="193.0" promptText="BUSCAR" />
       <Button id="ButtonNew" fx:id="bt_Novo_remedio" layoutX="1128.0" layoutY="152.0" mnemonicParsing="false" onAction="#handlerNovoRemedio" prefHeight="26.0" prefWidth="125.0" style="-fx-background-color: #5882FA;" text="NOVO" textFill="WHITE" />

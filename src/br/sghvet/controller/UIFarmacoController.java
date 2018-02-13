@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
 import br.sghvet.facade.Fachada;
 import br.sghvet.model.Consulta;
 import br.sghvet.model.Item_Estoque;
@@ -75,9 +74,8 @@ public class UIFarmacoController implements Initializable {
 
 	@FXML
 	private TableColumn<Item_Estoque, String> tc_R_Nome;
-	
+
 	private ObservableList<Item_Estoque> observableListItem_Estoque;
-	
 
 	// Medicamento selecionado
 
@@ -127,7 +125,7 @@ public class UIFarmacoController implements Initializable {
 
 	@FXML
 	private Pane pn_NovoProduto2;
-	
+
 	@FXML
 	private Pane pn_novo_salvar;
 
@@ -161,9 +159,8 @@ public class UIFarmacoController implements Initializable {
 
 	@FXML
 	private TableColumn<Requisicoes, String> tc_R_Clinico;
-	
+
 	private ObservableList<Requisicoes> observableListRequisicoes;
-	
 
 	// Painel pessoal
 
@@ -176,13 +173,13 @@ public class UIFarmacoController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		Fachada.getInstance();		
+		Fachada.getInstance();
 		FuncionarioLogado();
 		setCB();
 		carregarTableViewRemedio();
 
 	}
-	
+
 	public void carregarTableViewRemedio() {
 
 		tc_R_ID.setCellValueFactory(new PropertyValueFactory<>("id_intem_estoque"));
@@ -191,31 +188,56 @@ public class UIFarmacoController implements Initializable {
 		tc_R_Nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
 		try {
-			observableListItem_Estoque = FXCollections.observableArrayList(Fachada.getInstance().buscarALLIntem_Estoque());
+			observableListItem_Estoque = FXCollections
+					.observableArrayList(Fachada.getInstance().buscarALLIntem_Estoque());
 		} catch (Exception e) {
-		
+
 			e.printStackTrace();
 		}
 		tv_Estoque.setItems(observableListItem_Estoque);
 	}
-	
-	
-	
+
+	@FXML
+	public void carregaTableViewRemedioFiltro() {
+
+		tc_R_ID.setCellValueFactory(new PropertyValueFactory<>("id_intem_estoque"));
+		tc_R_Tipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+		tc_R_CDR.setCellValueFactory(new PropertyValueFactory<>("codigo_remedio_ie"));
+		tc_R_Nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+
+		List<Item_Estoque> filtro = new ArrayList<>();
+
+		try {
+
+			for (Item_Estoque item : Fachada.getInstance().buscarALLIntem_Estoque()) {
+
+				if (cb_selecionar_tipo.getValue()
+						.equals(Fachada.getInstance().buscaRemedio(item.getCodigo_remedio_ie()).getTipo().toString())) {
+					filtro.add(item);
+				}
+			}
+
+			observableListItem_Estoque = FXCollections.observableArrayList(filtro);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		tv_Estoque.setItems(observableListItem_Estoque);
+
+	}
 
 	@FXML
 	public void handlerPesquisarProduto() throws Exception {
-		
-		
+
 		limpaRemedio();
 		pn_NovoProduto.setVisible(false);
 		pn_NovoProduto2.setVisible(false);
- 
+
 		if (tx_Busca_remedio.getText() != null && !tx_Busca_remedio.getText().equals(""))
 			fazBusca(tx_Busca_remedio.getText());
 
 	}
-	
-	
+
 	@FXML
 	public void clicarMouseItemListViewIntemRemedio() throws IOException {
 
@@ -225,7 +247,6 @@ public class UIFarmacoController implements Initializable {
 		fazBusca(String.valueOf(ie.getCodigo_remedio_ie()));
 
 	}
-	
 
 	public void fazBusca(String id) {
 
@@ -237,8 +258,6 @@ public class UIFarmacoController implements Initializable {
 			r = Fachada.getInstance().buscaRemedio(ie.getCodigo_remedio_ie());
 			idEstoqueSelecionado = String.valueOf(ie.getId_intem_estoque());
 
-			
-		
 			tx_nome_remedio.setEditable(false);
 			tx_qtd_remedio.setEditable(false);
 			tx_descricap_remedio.setEditable(false);
@@ -256,7 +275,6 @@ public class UIFarmacoController implements Initializable {
 			tx_restricao_remedio.setText(r.getRestricao());
 			carregarTableViewRemedio();
 
-
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -270,7 +288,6 @@ public class UIFarmacoController implements Initializable {
 		setCB();
 		pn_NovoProduto.setVisible(true);
 		pn_NovoProduto2.setVisible(true);
-		
 
 		bt_atualizar_remedio.setVisible(false);
 		bt_salvar_remedio.setVisible(true);
@@ -284,7 +301,6 @@ public class UIFarmacoController implements Initializable {
 	@FXML
 	public void handlerSalvarRemedio() throws Exception {
 
-		
 		pn_NovoProduto.setVisible(false);
 		pn_NovoProduto2.setVisible(false);
 		lb_data_vencimento_remedio.setVisible(true);
@@ -328,8 +344,8 @@ public class UIFarmacoController implements Initializable {
 						tx_restricao_remedio.getText());
 
 			else if (lb_tipo_remedio.getText().equals(Tipo_Remedio.Antiflamatorio.toString()))
-				r = new Remedio(tx_nome_remedio.getText(), Tipo_Remedio.Antiflamatorio,
-						tx_descricap_remedio.getText(), tx_restricao_remedio.getText());
+				r = new Remedio(tx_nome_remedio.getText(), Tipo_Remedio.Antiflamatorio, tx_descricap_remedio.getText(),
+						tx_restricao_remedio.getText());
 
 		} else {
 
@@ -342,9 +358,8 @@ public class UIFarmacoController implements Initializable {
 						tx_restricao_remedio.getText());
 
 			else if (cb_tipo_rremedio.getValue().equals(Tipo_Remedio.Antiflamatorio.toString()))
-				r = new Remedio(tx_nome_remedio.getText(), Tipo_Remedio.Antiflamatorio,
-						tx_descricap_remedio.getText(), tx_restricao_remedio.getText());
-			
+				r = new Remedio(tx_nome_remedio.getText(), Tipo_Remedio.Antiflamatorio, tx_descricap_remedio.getText(),
+						tx_restricao_remedio.getText());
 
 		}
 
@@ -354,9 +369,7 @@ public class UIFarmacoController implements Initializable {
 		Fachada.getInstance().atualizaRemedio(r);
 		carregarTableViewRemedio();
 		handlerPesquisarProduto();
-		
-		
- 
+
 	}
 
 	@FXML
@@ -370,45 +383,39 @@ public class UIFarmacoController implements Initializable {
 
 	@FXML
 	public void handlerNovoRemedio() throws Exception {
-		
+
 		limpaRemedio();
 		pn_NovoProduto.setVisible(true);
 		pn_NovoProduto2.setVisible(true);
 		pn_novo_salvar.setVisible(true);
 		lb_data_vencimento_remedio.setVisible(false);
 		lb_tipo_remedio.setVisible(false);
-       	tx_qtd_remedio.setEditable(true);
-       	tx_nome_remedio.setEditable(true);
+		tx_qtd_remedio.setEditable(true);
+		tx_nome_remedio.setEditable(true);
 		tx_descricap_remedio.setEditable(true);
 		tx_restricao_remedio.setEditable(true);
-		
-		        
-        
+
 	}
-	
-	
+
 	public void limpaRemedio() {
-		
+
 		tx_nome_remedio.setText("");
 		tx_qtd_remedio.setText("");
 		tx_descricap_remedio.setText("");
 		tx_restricao_remedio.setText("");
 		lb_data_cadastro_remedio.setText("");
 		lb_data_vencimento_remedio.setText("");
-        lb_id_remedio.setText("");
-        lb_tipo_remedio.setText("");
-        
+		lb_id_remedio.setText("");
+		lb_tipo_remedio.setText("");
+
 	}
-	
-	
+
 	@FXML
-	public void handlerSalvarNewRemedio() throws Exception{
-		
-		
+	public void handlerSalvarNewRemedio() throws Exception {
+
 		Item_Estoque ie;
 		Remedio r = null;
 
-	
 		if (cb_tipo_rremedio.getValue().equals(Tipo_Remedio.Analgesicos.toString()))
 			r = new Remedio(tx_nome_remedio.getText(), Tipo_Remedio.Analgesicos, tx_descricap_remedio.getText(),
 					tx_restricao_remedio.getText());
@@ -416,53 +423,46 @@ public class UIFarmacoController implements Initializable {
 		else if (cb_tipo_rremedio.getValue().equals(Tipo_Remedio.Antibioticos.toString())) {
 			r = new Remedio(tx_nome_remedio.getText(), Tipo_Remedio.Antibioticos, tx_descricap_remedio.getText(),
 					tx_restricao_remedio.getText());
-              System.out.println("chegouijhdfihsdfhio");
-		}
-		else if (cb_tipo_rremedio.getValue().equals(Tipo_Remedio.Antiflamatorio.toString()))
+			System.out.println("chegouijhdfihsdfhio");
+		} else if (cb_tipo_rremedio.getValue().equals(Tipo_Remedio.Antiflamatorio.toString()))
 			r = new Remedio(tx_nome_remedio.getText(), Tipo_Remedio.Antiflamatorio, tx_descricap_remedio.getText(),
 					tx_restricao_remedio.getText());
 
-		
-		Fachada.getInstance().cadastrarRemedio(r);		
-		ie = new Item_Estoque(dp_data_vencimento.getValue(), Integer.parseInt(tx_qtd_remedio.getText()),Fachada.getInstance().idCadastrado(r.getNome()));
-					
+		Fachada.getInstance().cadastrarRemedio(r);
+		ie = new Item_Estoque(dp_data_vencimento.getValue(), Integer.parseInt(tx_qtd_remedio.getText()),
+				Fachada.getInstance().idCadastrado(r.getNome()));
+
 		Fachada.getInstance().cadastrarIntem_Estoque(ie);
 		carregarTableViewRemedio();
-		
-		
+
 		pn_NovoProduto.setVisible(false);
 		pn_NovoProduto2.setVisible(false);
 		pn_novo_salvar.setVisible(false);
 		lb_data_vencimento_remedio.setVisible(true);
 		lb_tipo_remedio.setVisible(true);
-		
+
 		tx_nome_remedio.setEditable(false);
 		tx_qtd_remedio.setEditable(false);
 		tx_descricap_remedio.setEditable(false);
 		tx_restricao_remedio.setEditable(false);
-		
+
 		limpaRemedio();
-	
-		
+
 	}
-	
-	
-	
+
 	public void setCB() {
-		
-	
+
 		List<String> listaTipo = new ArrayList<>();
 		listaTipo.add(Tipo_Remedio.Analgesicos.toString());
 		listaTipo.add(Tipo_Remedio.Antibioticos.toString());
 		listaTipo.add(Tipo_Remedio.Antiflamatorio.toString());
-				
+
 		ObservableList<String> listTipos = FXCollections.observableArrayList(listaTipo);
 		cb_tipo_rremedio.setItems(listTipos);
 		cb_selecionar_tipo.setItems(listTipos);
-		
+
 	}
-	
-	
+
 	@FXML
 	public void logoff() {
 		try {
@@ -481,13 +481,12 @@ public class UIFarmacoController implements Initializable {
 			TelaInicial.showAndWait();
 
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 
 	}
-	
-	
+
 	public void FuncionarioLogado() {
 
 		try {
@@ -495,14 +494,10 @@ public class UIFarmacoController implements Initializable {
 			System.out.println(nome);
 			lb_Logado.setText(nome);
 		} catch (Exception e) {
-		
+
 			e.printStackTrace();
 		}
 
 	}
-	
-	
-	
-	
 
 }
