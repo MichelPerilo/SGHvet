@@ -2,5 +2,5 @@ package br.sghvet.model;
 
 public enum DiaDaSemana {
 
-	Segunda, Terca, Quarta, Quinta, Sexta, Sábado, Domingo
+	Segunda, Terça, Quarta, Quinta, Sexta, Sábado, Domingo
 }

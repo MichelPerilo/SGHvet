@@ -21,21 +21,25 @@ public class UiDisponibilidadeMedicaController implements Initializable {
 
 	@FXML
 	private ListView listview_horarios;
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-	
-						
-		ObservableList<Disponibilidade> disp;
+		atualizaDsiponibilidade();
+
+	}
+
+	public void atualizaDsiponibilidade() {
+
 		try {
-			disp = FXCollections.observableArrayList ( Fachada.getInstance().buscaHorarios(Fachada.getInstance().getCpfLogado()));
+			ObservableList<Disponibilidade> disp;
+			disp = FXCollections
+					.observableArrayList(Fachada.getInstance().buscaHorarios(Fachada.getInstance().getCpfLogado()));
 			listview_horarios.setItems(disp);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
-
 	}
 
 	@FXML
@@ -60,6 +64,8 @@ public class UiDisponibilidadeMedicaController implements Initializable {
 		controller.setStage(cadastroIntervalo);
 
 		cadastroIntervalo.showAndWait();
+		
+		atualizaDsiponibilidade();
 	}
 
 }

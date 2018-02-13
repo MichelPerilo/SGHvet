@@ -179,33 +179,16 @@ public class RepositorioRemedio {
 		Item_Estoque itEstoque = null;
 
 		for (Item_Estoque ie : buscarALLIntem_Estoque()) {
+			
 
-			if (pesquisa.equals(ie.getNome()) || Integer.parseInt(pesquisa) == ie.getCodigo_remedio_ie()) {
+			if (Integer.parseInt(pesquisa) == ie.getCodigo_remedio_ie()) {
+				System.out.println(ie.getNome());
+		
 				itEstoque = ie;
 				break;
 			}
 
 		}
-
-		// String query = "select * from intem_estoque where id_intem_estoque = ?";
-		// PreparedStatement ps = (PreparedStatement)
-		// connection.prepareStatement(query);
-		// ps.setInt(1, codigo);
-		// ResultSet rs = ps.executeQuery();
-		//
-		// while(rs.next()){
-		//
-		// String st = rs.getString("data_validade");
-		// String[] Data = st.split("-");
-		// LocalDate validade =
-		// LocalDate.of(Integer.parseInt(Data[2]),Integer.parseInt(Data[1]),Integer.parseInt(Data[0]));
-		//
-		// itEstoque = new Item_Estoque(validade, rs.getInt("qtd_atual"),
-		// rs.getInt("codigo_remedio_ie"));
-		//
-		// }
-		// ps.isClosed();
-		// rs.close();
 
 		return itEstoque;
 
@@ -216,7 +199,6 @@ public class RepositorioRemedio {
 		String query = "update intem_estoque set data_validade = ?, qtd_atual = ? where id_intem_estoque = ?";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 
-			
 		ps.setString(1, itEstoque.getData_validade().toString());
 		ps.setInt(2, itEstoque.getQtd_atual());
 		ps.setInt(3, itEstoque.getId_intem_estoque());
@@ -258,10 +240,10 @@ public class RepositorioRemedio {
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
 		List<Item_Estoque> itEstoque = new ArrayList<>();
-		
+
 		while (rs.next()) {
 			itEstoque.add(preencherIntem_Estoque(rs));
-			
+
 		}
 		ps.close();
 		rs.close();
@@ -271,37 +253,35 @@ public class RepositorioRemedio {
 
 	private Item_Estoque preencherIntem_Estoque(ResultSet rs) throws Exception {
 		Item_Estoque itEstoque;
-        List<Remedio> remedio = new ArrayList<>();
+		List<Remedio> remedio = new ArrayList<>();
 		remedio = this.buscarALLRemedio();
-		
+
 		try {
 
 			String st = rs.getString("data_entrada");
 			String[] Data = st.split("-");
-			
+
 			LocalDate validade = LocalDate.of(Integer.parseInt(Data[0]), Integer.parseInt(Data[1]),
 					Integer.parseInt(Data[2]));
-			
+
 			String st2 = rs.getString("data_validade");
 			String[] Data2 = st2.split("-");
-			
+
 			LocalDate validade2 = LocalDate.of(Integer.parseInt(Data2[0]), Integer.parseInt(Data2[1]),
 					Integer.parseInt(Data2[2]));
-			
-			
+
 			itEstoque = new Item_Estoque(validade2, rs.getInt("qtd_atual"), rs.getInt("codigo_remedio_ie"));
 			itEstoque.setId_intem_estoque(rs.getInt("id_intem_estoque"));
 			itEstoque.setData_entrada(validade);
-			
-			
-			for(Remedio r : remedio) {
-				if(itEstoque.getCodigo_remedio_ie() == r.getId()) {
-					
+
+			for (Remedio r : remedio) {
+				if (itEstoque.getCodigo_remedio_ie() == r.getId()) {
+
 					itEstoque.setNome(r.getNome());
-					itEstoque.setTipo( r.getTipo().toString());
+					itEstoque.setTipo(r.getTipo().toString());
 					break;
-					}
-									
+				}
+
 			}
 
 		} catch (SQLException e) {
@@ -309,22 +289,21 @@ public class RepositorioRemedio {
 		}
 		return itEstoque;
 	}
-	
-	
-	public int  idCadastrado(String pesquisa) throws Exception {
+
+	public int idCadastrado(String pesquisa) throws Exception {
 
 		Remedio r = null;
 
 		for (Remedio reme : this.buscarALLRemedio()) {
 
 			if (pesquisa.equals(reme.getNome())) {
-		
-				r = reme;			
+
+				r = reme;
 				break;
 			}
 
 		}
-	
+
 		return r.getId();
 	}
 
