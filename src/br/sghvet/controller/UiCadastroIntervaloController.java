@@ -57,7 +57,9 @@ public class UiCadastroIntervaloController implements Initializable {
 			Fachada.getInstance().cadastrarHorario(
 					new Disponibilidade(LocalTime.of(Integer.parseInt(inicio[0]), Integer.parseInt(inicio[1])),
 							LocalTime.of(Integer.parseInt(fim[0]), Integer.parseInt(fim[1])),
-							Fachada.getInstance().getCpfLogado(), DiaDaSemana.valueOf(dia.toUpperCase())));
+							Fachada.getInstance().getCpfLogado(), DiaDaSemana.valueOf(dia)));
+			
+			btnFecharCencelar.getScene().getWindow().hide();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

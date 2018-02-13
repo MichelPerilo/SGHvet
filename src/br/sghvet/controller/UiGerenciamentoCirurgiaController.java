@@ -41,7 +41,7 @@ public class UiGerenciamentoCirurgiaController implements Initializable {
 	@FXML
 	private Button button_novocadastro;
 
-//    Administrativo
+
 	
 	@FXML
     private ScrollPane PN_sp1;

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.TextStyle;
@@ -93,7 +94,7 @@ public class RepositorioDisponibilidade implements IRepositorioDisponibilidade {
 			LocalTime horario_fim = LocalTime.of(Integer.parseInt(fim[0]), Integer.parseInt(fim[1]));
 
 			d1 = new Disponibilidade(horario_inicio, horario_fim, rs.getString("cpf_vet"),
-					DiaDaSemana.valueOf(rs.getString("dia").toUpperCase()));
+					DiaDaSemana.valueOf(rs.getString("dia")));
 		} catch (SQLException e) {
 			throw new Exception("Consulta possui dados invalidos");
 		}
@@ -117,45 +118,38 @@ public class RepositorioDisponibilidade implements IRepositorioDisponibilidade {
 
 	}
 
-	
 	@Override
 
-    public List<Disponibilidade> buscaDisponibilidade(String horario, LocalDate dia) throws Exception {
+	public List<Disponibilidade> buscaDisponibilidade(String horario, LocalDate dia) throws Exception {
 
-        String query = "select * from disponibilidade_vet where dia = ?";
+		String query = "select * from disponibilidade_vet where dia = ?";
+		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
+		String diaSemana = dia.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
+		String dias = diaSemana.substring(0, diaSemana.indexOf("-"));
+		ps.setString(1, dias);
+		ResultSet rs = ps.executeQuery();
+		List<Disponibilidade> horarios = new ArrayList<>();
 
-        PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
-        
-        String diaSemana = dia.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
-        ps.setString(1, diaSemana.substring(0,diaSemana.indexOf("-")));
+		while (rs.next()) {
 
-        ResultSet rs = ps.executeQuery();
+			String horarioinicio = rs.getString("horario_inicio");
+			String horarioFim = rs.getString("horario_fim");
+			String[] inicio = horarioinicio.split(":");
+			String[] fim = horarioFim.split(":");
+			String[] atual = horario.split(":");
 
-        List<Disponibilidade> horarios = new ArrayList<>();
+			if (Integer.parseInt(atual[0]) >= Integer.parseInt(inicio[0])
+					&& Integer.parseInt(atual[0]) <= Integer.parseInt(fim[0]))
+				horarios.add(preencherDisponibilidade(rs));
 
+		}
 
-        String horarioinicio = rs.getString("horario_inicio");
-		String horarioFim = rs.getString("horario_fim");
-		String[] inicio = horarioinicio.split(":");
-		String[] fim = horarioFim.split(":");
-		String[] atual = horario.split(":");
+		ps.close();
 
-        while (rs.next()) {
+		rs.close();
 
-        	if(Integer.parseInt(atual[0]) >= Integer.parseInt(inicio[0]) &&  Integer.parseInt(atual[0]) <= Integer.parseInt(fim[0]))
-            horarios.add(preencherDisponibilidade(rs));
+		return horarios;
 
-        }
+	}
 
-        ps.close();
-
-        rs.close();
-
-      return horarios;
-
-    }
-	
-	
-	
-	
 }

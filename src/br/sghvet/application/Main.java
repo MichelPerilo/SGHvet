@@ -14,8 +14,7 @@ Stage window;
     public void start(Stage stage) throws Exception {
        
       
-      //stage.getIcons().add(new Image("/SGHvet/assets/Icones/Tutor.png"));
-        
+ 
         window = stage;
         window.setTitle("SGHvet");
         Parent root = FXMLLoader.load(getClass().getResource("../view/fxml_ui_login.fxml"));
@@ -26,9 +25,6 @@ Stage window;
         
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }

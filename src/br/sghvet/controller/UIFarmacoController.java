@@ -204,7 +204,12 @@ public class UIFarmacoController implements Initializable {
 
 	@FXML
 	public void handlerPesquisarProduto() throws Exception {
-
+		
+		
+		limpaRemedio();
+		pn_NovoProduto.setVisible(false);
+		pn_NovoProduto2.setVisible(false);
+ 
 		if (tx_Busca_remedio.getText() != null && !tx_Busca_remedio.getText().equals(""))
 			fazBusca(tx_Busca_remedio.getText());
 
@@ -213,9 +218,11 @@ public class UIFarmacoController implements Initializable {
 	
 	@FXML
 	public void clicarMouseItemListViewIntemRemedio() throws IOException {
-		carregarTableViewRemedio();
+
+		pn_NovoProduto.setVisible(false);
+		pn_NovoProduto2.setVisible(false);
 		Item_Estoque ie = tv_Estoque.getSelectionModel().getSelectedItem();
-		fazBusca(ie.getNome());
+		fazBusca(String.valueOf(ie.getCodigo_remedio_ie()));
 
 	}
 	
@@ -280,6 +287,8 @@ public class UIFarmacoController implements Initializable {
 		
 		pn_NovoProduto.setVisible(false);
 		pn_NovoProduto2.setVisible(false);
+		lb_data_vencimento_remedio.setVisible(true);
+		lb_tipo_remedio.setVisible(true);
 
 		bt_atualizar_remedio.setVisible(true);
 		bt_salvar_remedio.setVisible(false);
@@ -345,6 +354,8 @@ public class UIFarmacoController implements Initializable {
 		Fachada.getInstance().atualizaRemedio(r);
 		carregarTableViewRemedio();
 		handlerPesquisarProduto();
+		
+		
  
 	}
 
@@ -352,13 +363,15 @@ public class UIFarmacoController implements Initializable {
 	public void handlerDeletarRemedio() throws Exception {
 
 		Fachada.getInstance().deletarIntem_Estoque(Fachada.getInstance().buscaIntem_Estoque(idEstoqueSelecionado));
+		carregarTableViewRemedio();
+		limpaRemedio();
 
 	}
 
 	@FXML
 	public void handlerNovoRemedio() throws Exception {
 		
-		
+		limpaRemedio();
 		pn_NovoProduto.setVisible(true);
 		pn_NovoProduto2.setVisible(true);
 		pn_novo_salvar.setVisible(true);
@@ -368,9 +381,25 @@ public class UIFarmacoController implements Initializable {
        	tx_nome_remedio.setEditable(true);
 		tx_descricap_remedio.setEditable(true);
 		tx_restricao_remedio.setEditable(true);
-
-
+		
+		        
+        
 	}
+	
+	
+	public void limpaRemedio() {
+		
+		tx_nome_remedio.setText("");
+		tx_qtd_remedio.setText("");
+		tx_descricap_remedio.setText("");
+		tx_restricao_remedio.setText("");
+		lb_data_cadastro_remedio.setText("");
+		lb_data_vencimento_remedio.setText("");
+        lb_id_remedio.setText("");
+        lb_tipo_remedio.setText("");
+        
+	}
+	
 	
 	@FXML
 	public void handlerSalvarNewRemedio() throws Exception{
@@ -412,10 +441,7 @@ public class UIFarmacoController implements Initializable {
 		tx_descricap_remedio.setEditable(false);
 		tx_restricao_remedio.setEditable(false);
 		
-		tx_nome_remedio.setText("");
-		tx_qtd_remedio.setText("");
-		tx_descricap_remedio.setText("");
-		tx_restricao_remedio.setText("");
+		limpaRemedio();
 	
 		
 	}
