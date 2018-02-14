@@ -27,7 +27,7 @@ public class Fachada implements IFachada {
 	private CadastroRemedio cadastroRemedio;
 	private ICadastroCirurgia cadcirurgia;
 	private ICadastroMembroCirurgia cadmembrocirurgia;
-	//private CadastroRequisicaoFarmaco cadastroReqFarma;
+	private CadastroRequisicaoFarmaco cadastroReqFarma;
 	
 	private String cpfLogado;
 	
@@ -67,7 +67,7 @@ public class Fachada implements IFachada {
 		cadastroRemedio.conectar(conexao);
 		cadcirurgia.conectar(conexao);
 		cadmembrocirurgia.conectar(conexao);
-		//cadastroReqFarma.conectar(conexao);
+		cadastroReqFarma.conectar(conexao);
 		
 	}
 	
@@ -270,7 +270,7 @@ public class Fachada implements IFachada {
 	public void deletarTutor(Tutor t) throws Exception {
 		
 		controlPaciente.deletarTutor(t);
-//		this.deletarEndereco(t.getEndereco());
+		this.deletarEndereco(t.getEndereco());
 	}
 
 	@Override
@@ -572,7 +572,7 @@ public List<MembroCirurgia> buscarCirurgias(String cpf_membro) throws Exception{
 
 /* ----------------------------------------------------------------------- */
 
-/*
+
 public boolean cadastraReqFarmaco(RequisicoesFarmaco rf) throws Exception {
 	
 	
@@ -614,5 +614,5 @@ public boolean deletarReqFarmaco(int id) throws Exception {
 	return cadastroReqFarma.deletarReqFarmaco(id);
 }
 
-*/
+
 }
