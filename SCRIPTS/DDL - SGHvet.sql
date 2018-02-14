@@ -346,6 +346,17 @@ CREATE TABLE logDataHoraAdm(
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
+-- -----------------------------------------------------
+-- Table `sghvet`.`equipe_cirurgica`
+-- -----------------------------------------------------
+CREATE TABLE equipe_cirurgica (
+  coidEqCi INT(11) AUTO_INCREMENT,
+  nome VARCHAR(45) NOT NULL,
+  participantes VARCHAR(500) NOT NULL,
+  quantidade INT NOT NULL,
+  PRIMARY KEY (coidEqCi)
+)ENGINE = InnoDB;
+
 --------------------------------------------------
 -- Table `sghvet`.`cirurgia`
 -- -----------------------------------------------------
@@ -353,8 +364,7 @@ CREATE TABLE cirurgia (
   tipo enum('GERAL', 'ESPECISLISTA') not null,
   especialidade varchar(60), 
   data_cir date NOT NULL,
-  hr_fim time,
-  sala enum('SALA_A', 'SALA_B', 'SALA_C', 'SALA_D' , 'SALA_E') NOT NULL,
+  hr_fim time NOT NULL,
   hr_inic time NOT NULL,
   prontuario INT(11) NOT NULL,
   cod_cirur INT(11) NOT NULL, 

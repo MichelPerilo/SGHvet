@@ -14,68 +14,88 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.fxml.Initializable;
 
-public class UIRequisicaoFarmacoController implements Initializable{
+public class UIRequisicaoFarmacoController implements Initializable {
 
-	
-    @FXML
-    private TextArea ta_descricao;
+	@FXML
+	private TextArea ta_descricao;
 
-    @FXML
-    private TextArea ta_justificativa;
+	@FXML
+	private TextArea ta_justificativa;
 
-    @FXML
-    private TextField tx_qtd_solicitada;
+	@FXML
+	private TextField tx_qtd_solicitada;
 
-    @FXML
-    private Label lb_id;
+	@FXML
+	private Label lb_id;
 
-    @FXML
-    private Button bt_sair;
-    
-    private Stage stage;
+	@FXML
+	private Button bt_sair;
+	@FXML
+	private Button bt_salvar;
 
-    
-	
+	private Stage stage;
+
+	private RequisicoesFarmaco requisição;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 		Fachada.getInstance();
-		
-	}
-	
 
-	
-	
-    @FXML
+	}
+
+	@FXML
 	public void fechar() {
-    	bt_sair.getScene().getWindow().hide();
-    	
-	}
-    
-    
-    @FXML
-  	public void salvar() {
+		bt_sair.getScene().getWindow().hide();
 
-          RequisicoesFarmaco r = new RequisicoesFarmaco(Integer.parseInt(tx_qtd_solicitada.getText()), ta_descricao.getText(), ta_justificativa.getText());
-    	  try {
+	}
+
+	@FXML
+	public void salvar() {
+
+		RequisicoesFarmaco r = new RequisicoesFarmaco(Integer.parseInt(tx_qtd_solicitada.getText()),
+				ta_descricao.getText(), ta_justificativa.getText(), Fachada.getInstance().getCpfLogado());
+		try {
+			r.setNomeMedico(Fachada.getInstance().buscaVeterinario(Fachada.getInstance().getCpfLogado()).getNome());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
 			Fachada.getInstance().cadastraReqFarmaco(r);
 			bt_sair.getScene().getWindow().hide();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-  	}
-
-
-
-
-	public void setStage(Stage solicitaFarma) {
-		
-		this.stage = solicitaFarma;
-		this.stage.initStyle(StageStyle.UNDECORATED);
-		
 	}
 
-    
+	public void setStage(Stage solicitaFarma) {
+
+		this.stage = solicitaFarma;
+		this.stage.initStyle(StageStyle.UNDECORATED);
+
+	}
+
+	public RequisicoesFarmaco getRequisição() {
+		return requisição;
+	}
+
+	public void setRequisição(RequisicoesFarmaco requisição) {
+		this.requisição = requisição;
+		
+		 
+		    ta_descricao.setEditable(false);
+            ta_justificativa.setEditable(false);
+            tx_qtd_solicitada.setEditable(false);
+            
+            ta_descricao.setText(requisição.getDescricao());
+            ta_justificativa.setText(requisição.getJustificativa());
+            tx_qtd_solicitada.setText(String.valueOf(requisição.getQtd()));
+            lb_id.setText(String.valueOf(requisição.getId()));
+		    bt_salvar.setVisible(false);
+		
+		
+	}
 
 }

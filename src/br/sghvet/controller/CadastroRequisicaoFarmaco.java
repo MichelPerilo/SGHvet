@@ -1,6 +1,8 @@
 package br.sghvet.controller;
 
 import java.sql.Connection;
+import java.util.List;
+
 import br.sghvet.data.RepositorioRequisicaoFarmaco;
 import br.sghvet.model.RequisicoesFarmaco;
 public class CadastroRequisicaoFarmaco {
@@ -30,6 +32,14 @@ public class CadastroRequisicaoFarmaco {
 	
 		return repo.buscaReqFarmaco(id);
 	}
+	
+	
+
+	public List<RequisicoesFarmaco> buscaALLReqFarmaco() throws Exception {
+
+	
+		return repo.buscaALLReqFarmaco();
+	}
 
 
 	public boolean atualizaReqFarmaco(RequisicoesFarmaco req) throws Exception {
@@ -51,5 +61,8 @@ public class CadastroRequisicaoFarmaco {
 
 		return repo.deletarReqFarmaco(id);
 	}
+	
+	
+	
 
 }
