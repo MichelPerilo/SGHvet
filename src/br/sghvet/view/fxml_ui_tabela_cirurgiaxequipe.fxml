@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="1004.0" style="-fx-background-color: F2F2F2;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiTabelaCirurgiaXEquipe">
+   <children>
+      <Label layoutX="395.0" layoutY="72.0" text="Cirurgia e Equipe">
+         <font>
+            <Font name="Footlight MT Light" size="35.0" />
+         </font>
+      </Label>
+      <ScrollPane fx:id="PN_sp1" layoutX="48.0" layoutY="145.0" prefHeight="170.0" prefWidth="908.0" AnchorPane.bottomAnchor="348.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="145.0">
+         <content>
+            <TableView fx:id="tv_cirurgia" onMouseClicked="#clickcirurgia" prefHeight="167.0" prefWidth="903.0">
+               <columns>
+                  <TableColumn fx:id="tc_data" prefWidth="143.0" text="DATA" />
+                  <TableColumn fx:id="tc_inicio" prefWidth="75.0" text="INICIO" />
+                  <TableColumn fx:id="tc_termino" prefWidth="73.0" text="TERMINO" />
+                  <TableColumn fx:id="tc_tipo" minWidth="0.0" prefWidth="206.0" text="TIPO" />
+                  <TableColumn fx:id="tc_especialidade" minWidth="0.0" prefWidth="280.0" text="ESPECIALIDADE" />
+                  <TableColumn fx:id="tc_prontuario" prefWidth="124.0" resizable="false" text="PRONTUARIO" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="PN_sp2" layoutX="267.0" layoutY="408.0" prefHeight="180.0" prefWidth="470.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="267.0" AnchorPane.rightAnchor="267.0" AnchorPane.topAnchor="408.0">
+         <content>
+            <TableView fx:id="tv_equipe" prefHeight="174.0" prefWidth="467.0">
+               <columns>
+                  <TableColumn fx:id="cl_vet_nome" prefWidth="143.0" text="NOME" />
+                  <TableColumn fx:id="cl_vet_cargo" minWidth="0.0" prefWidth="161.0" text="CARGO" />
+                  <TableColumn fx:id="cl_vet_email" minWidth="0.0" prefWidth="161.0" text="EMAIL" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

@@ -54,10 +54,11 @@ private static Connection connection;
 	
 	@Override
 	public boolean atualizarMembroCirurgia(MembroCirurgia membro) throws Exception {
-		String query = "UPDATE cirurgia SET id_cirur = ?, cpf_membro = ? WHERE id = ?;";
+		String query = "UPDATE membro_cirurgia SET id_cirur = ?, cpf_membro = ? WHERE id = ?;";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setInt(1, membro.getCirurgia_id());
 		ps.setString(2, membro.getMembro_cpf().toString());
+		ps.setInt(3, membro.getId());
 		
 		
 		

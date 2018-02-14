@@ -94,54 +94,55 @@ public class UiGerenciamentoCirurgiaController implements Initializable {
 	
 	
 	
-	/*
-	public void abrirPNView(TipoUsuario tp, Object obj) throws IOException {
+	
+	public void clickcirurgia() throws Exception {
 		
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(	UiCadastroFuncionarioController.class.getResource("../view/fxml_ui_cadastro_funcionario.fxml"));
+		loader.setLocation(
+				UiCadastroFuncionarioController.class.getResource("../view/fxml_ui_cadastro_cirurgia.fxml"));
 		AnchorPane page = (AnchorPane) loader.load();
-		Stage Funcionario = new Stage();
+		Stage cadastroCirurgia = new Stage();
+		cadastroCirurgia.setTitle("Procedimento Cirurgico");
 		Scene scene = new Scene(page);
-		Funcionario.setScene(scene);
-		Funcionario.setResizable(false);
-		UiCadastroFuncionarioController controller = loader.getController();
-		controller.carregaDados(tp, obj);
-		controller.setStage(Funcionario);
+		cadastroCirurgia.setScene(scene);
+		// cadastroFuncionario.getIcons().add(new
+		// Image(getClass().getResourceAsStream("qms_v2_h_rgb.png")));
+		cadastroCirurgia.setResizable(false);
 
-		Funcionario.showAndWait();
+		UiCadastroCirurgiaController controller = loader.getController();
+		controller.setStage(cadastroCirurgia);
+		controller.carregarDados((Cirurgia) tv_cirurgia.getSelectionModel().getSelectedItem());
+		cadastroCirurgia.showAndWait();
+		setTvCirurgia();
 		
 	}
-	
-	
-	
 	
 
 
 	@FXML
-	public void handler_NovoCadastro() throws IOException {
+	public void handler_NovoCadastro() throws Exception {
 		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(
-				UiCadastroFuncionarioController.class.getResource("../view/fxml_ui_cadastro_funcionario.fxml"));
+				UiCadastroFuncionarioController.class.getResource("../view/fxml_ui_cadastro_cirurgia.fxml"));
 		AnchorPane page = (AnchorPane) loader.load();
-		Stage cadastroFuncionario = new Stage();
-		cadastroFuncionario.setTitle("Novo Funcionario");
+		Stage cadastroCirurgia = new Stage();
+		cadastroCirurgia.setTitle("Procedimento Cirurgico");
 		Scene scene = new Scene(page);
-		cadastroFuncionario.setScene(scene);
+		cadastroCirurgia.setScene(scene);
 		// cadastroFuncionario.getIcons().add(new
 		// Image(getClass().getResourceAsStream("qms_v2_h_rgb.png")));
-		cadastroFuncionario.setResizable(false);
+		cadastroCirurgia.setResizable(false);
 
-		UiCadastroFuncionarioController controller = loader.getController();
-		controller.setStage(cadastroFuncionario);
+		UiCadastroCirurgiaController controller = loader.getController();
+		controller.setStage(cadastroCirurgia);
 
-		cadastroFuncionario.showAndWait();
-		carregaTBADM();
-		carregaTBAUX();
-		carregaVET();
+		cadastroCirurgia.showAndWait();
+		setTvCirurgia();
+		
 
 	}
 
-	*/
+
 }

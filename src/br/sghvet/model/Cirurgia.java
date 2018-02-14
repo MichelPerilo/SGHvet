@@ -23,8 +23,9 @@ public class Cirurgia {
 	private LocalTime hora_fim;
 	private SalaDeCirurgia sala;
 	private int prontuario_id;
+	private int cod_cirurgia;
 
-	public Cirurgia(TipoCirurgia tipo, String especialidade, LocalDate data, LocalTime hora_inicio, LocalTime hora_fim, SalaDeCirurgia sala, int prontuario){
+	public Cirurgia(TipoCirurgia tipo, String especialidade, LocalDate data, LocalTime hora_inicio, LocalTime hora_fim, SalaDeCirurgia sala, int prontuario, int cod_cirurgia){
 		
 		this.setTipo(tipo);
 		this.setEspecialidade(especialidade);
@@ -33,6 +34,7 @@ public class Cirurgia {
 		this.setHora_fim(hora_fim);
 		this.setSala(sala);
 		this.setProntuario_id(prontuario);
+		this.setCod_cirurgia(cod_cirurgia);
 	}
 
 	public TipoCirurgia getTipo() {
@@ -97,6 +99,14 @@ public class Cirurgia {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getCod_cirurgia() {
+		return cod_cirurgia;
+	}
+
+	private void setCod_cirurgia(int cod_cirurgia) {
+		this.cod_cirurgia = cod_cirurgia;
 	}
 	
 	

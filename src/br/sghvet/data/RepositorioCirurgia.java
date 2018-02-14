@@ -37,7 +37,7 @@ private static Connection connection;
 
 	@Override
 	public boolean cadastrarCirurgia(Cirurgia cirurgia) throws Exception {
-		String query = "INSERT INTO cirurgia (tipo, especialidade, data_cir, hr_fim, sala, hr_inic, prontuario) values (?,?,?,?,?,?,?);";
+		String query = "INSERT INTO cirurgia (tipo, especialidade, data_cir, hr_fim, sala, hr_inic, prontuario, cod_cirur) values (?,?,?,?,?,?,?,?);";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, cirurgia.getTipo().toString());
 		ps.setString(2, cirurgia.getEspecialidade().toString());
@@ -46,6 +46,7 @@ private static Connection connection;
 		ps.setString(5, cirurgia.getSala().toString());
 		ps.setString(6, cirurgia.getHora_inicio().toString());
 		ps.setInt(7, cirurgia.getProntuario_id());
+		ps.setInt(8, cirurgia.getCod_cirurgia());
 		
 		
 		return !executar(ps);
@@ -54,9 +55,9 @@ private static Connection connection;
 
 	@Override
 	public boolean removerCirurgia(Cirurgia cirurgia) throws Exception {
-		String query = "DELETE FROM cirurgia WHERE id = ? ;";
+		String query = "DELETE FROM cirurgia WHERE cod_cirur = ? ;";
 		PreparedStatement ps = connection.prepareStatement(query);
-		ps.setInt(1, cirurgia.getId());
+		ps.setInt(1, cirurgia.getCod_cirurgia());
 		
 		return !executar(ps);
 	}
@@ -64,7 +65,7 @@ private static Connection connection;
 
 	@Override
 	public boolean atualizarCirurgia(Cirurgia cirurgia) throws Exception {
-		String query = "UPDATE cirurgia SET tipo = ?, especialidade = ?, data_cir = ?, hr_fim = ? , sala = ? , hr_inic = ?, prontuario = ? WHERE id = ?;";
+		String query = "UPDATE cirurgia SET tipo = ?, especialidade = ?, data_cir = ?, hr_fim = ? , sala = ? , hr_inic = ?, prontuario = ?, cod_cirur = ? WHERE cod_cirur = ?;";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, cirurgia.getTipo().toString());
 		ps.setString(2, cirurgia.getEspecialidade().toString());
@@ -73,7 +74,8 @@ private static Connection connection;
 		ps.setString(5, cirurgia.getSala().toString());
 		ps.setString(6, cirurgia.getHora_inicio().toString());
 		ps.setInt(7, cirurgia.getProntuario_id());
-		ps.setInt(8, cirurgia.getId());
+		ps.setInt(8, cirurgia.getCod_cirurgia());
+		ps.setInt(9, cirurgia.getCod_cirurgia());
 		
 		
 		return !executar(ps);		
@@ -106,14 +108,8 @@ private static Connection connection;
 		
 		while(rs.next()){
 			
-			String data =  rs.getString("data_cir");
-			String[] pedacoData = data.split("-");
-			LocalDate dia = LocalDate.of(Integer.parseInt(pedacoData[0]),Integer.parseInt(pedacoData[1]),Integer.parseInt(pedacoData[2]));
-            LocalDate hoje = LocalDate.now();
-	    
-		    if(dia.equals(hoje)) {	
 		 	cirurgias.add(preencherCirurgia(rs));
-		    }
+		   
 		}
 		ps.close();
 		rs.close();
@@ -153,8 +149,7 @@ private static Connection connection;
 			SalaDeCirurgia sala = SalaDeCirurgia.valueOf(rs.getString("sala").toUpperCase());
 			TipoCirurgia tipo = TipoCirurgia.valueOf(rs.getString("tipo").toUpperCase());
 
-			c1 = new Cirurgia(tipo, rs.getString("especialidade"), data_o, hora_inicio, hora_fim, sala, rs.getInt("prontuario"));
-			c1.setId(rs.getInt("id"));
+			c1 = new Cirurgia(tipo, rs.getString("especialidade"), data_o, hora_inicio, hora_fim, sala, rs.getInt("prontuario"), rs.getInt("cod_cirur"));
 		}catch(SQLException e){
 			throw new Exception("Cirurgia possui dados invalidos");
 		}

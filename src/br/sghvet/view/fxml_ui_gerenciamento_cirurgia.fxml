@@ -15,13 +15,13 @@
             <Font name="Footlight MT Light" size="35.0" />
          </font>
       </Label>
-      <Button fx:id="button_novocadastro" layoutX="43.0" layoutY="177.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="156.0" style="-fx-background-color: #1e90ff; -fx-background-radius: 5cm;" text="Agendar Procedimento" textFill="WHITE">
+      <Button fx:id="button_novocadastro" layoutX="43.0" layoutY="177.0" mnemonicParsing="false" onAction="#handler_NovoCadastro" prefHeight="38.0" prefWidth="156.0" style="-fx-background-color: #1e90ff; -fx-background-radius: 5cm;" text="Agendar Procedimento" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font></Button>
       <ScrollPane fx:id="PN_sp1" layoutX="43.0" layoutY="256.0" prefHeight="446.0" prefWidth="905.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="256.0">
          <content>
-            <TableView fx:id="tv_cirurgia" prefHeight="444.0" prefWidth="903.0">
+            <TableView fx:id="tv_cirurgia" onMouseClicked="#clickcirurgia" prefHeight="444.0" prefWidth="903.0">
                <columns>
                   <TableColumn fx:id="tc_data" prefWidth="143.0" text="DATA" />
                   <TableColumn fx:id="tc_inicio" prefWidth="75.0" text="INICIO" />
