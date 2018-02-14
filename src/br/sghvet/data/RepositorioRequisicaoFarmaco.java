@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.sghvet.facade.Fachada;
 import br.sghvet.model.RequisicoesFarmaco;
 
 public class RepositorioRequisicaoFarmaco {
@@ -20,11 +21,14 @@ public class RepositorioRequisicaoFarmaco {
 
 
 	public boolean cadastraReqFarmaco(RequisicoesFarmaco rf) throws Exception {
-		String query = "insert into requisicaoFarmaco (quantidade,descricao,justificativa) values (?,?,?)";
+		String query = "insert into requisicaoFarmaco (quantidade,descricao,justificativa,idmedico,nomeMedico) values (?,?,?,?,?)";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setInt(1, rf.getQtd());
 		ps.setString(2, rf.getDescricao());
 		ps.setString(3, rf.getJustificativa());
+		ps.setString(4,rf.getId_medico());
+		ps.setString(5,rf.getNomeMedico());
+		
 	
 		return !executar(ps);
 	}
@@ -45,6 +49,25 @@ public class RepositorioRequisicaoFarmaco {
 
 		return requisicoes.get(0);
 	}
+	
+	
+	
+	public List<RequisicoesFarmaco>  buscaALLReqFarmaco() throws Exception {
+
+		String query = "select * from requisicaoFarmaco";
+		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		
+		List<RequisicoesFarmaco> requisicoes = new ArrayList<RequisicoesFarmaco>();
+
+		while (rs.next()) {
+			requisicoes.add(preencherRequisicao(rs));
+		}
+
+		return requisicoes;
+	}
+	
+	
 
 
 	public boolean atualizaReqFarmaco(RequisicoesFarmaco req) throws Exception {
@@ -86,8 +109,9 @@ public class RepositorioRequisicaoFarmaco {
 		try {
 			if (rs.getInt("id") > 0) {
 				
-				r1 = new RequisicoesFarmaco(rs.getInt("quantidade"), rs.getString("descricao"),	rs.getString("justificativa"));
+				r1 = new RequisicoesFarmaco(rs.getInt("quantidade"), rs.getString("descricao"),	rs.getString("justificativa"), rs.getString("idmedico"));
 				r1.setId(rs.getInt("id"));
+				r1.setNomeMedico(rs.getString("nomeMedico"));
 				return r1;
 			}
 		} catch (SQLException e) {
@@ -108,6 +132,7 @@ public class RepositorioRequisicaoFarmaco {
 			ps.close();
 			return result;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new Exception("Falha ao realizar operação no banco de dados");
 		}
 

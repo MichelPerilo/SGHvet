@@ -26,6 +26,6 @@
       <TextField fx:id="tx_qtd_solicitada" layoutX="150.0" layoutY="74.0" prefHeight="25.0" prefWidth="55.0" />
       <Label fx:id="lb_id" layoutX="46.0" layoutY="38.0" text="xxxxxxxxxxxx" />
       <Button fx:id="bt_sair" layoutX="547.0" layoutY="14.0" mnemonicParsing="false" onAction="#fechar" style="-fx-background-color: F5A9A9;" text="X" textFill="WHITE" />
-      <Button layoutX="256.0" layoutY="431.0" mnemonicParsing="false" onAction="#salvar" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #088A08;" text="SALVAR" textFill="WHITE" />
+      <Button fx:id="bt_salvar" layoutX="256.0" layoutY="431.0" mnemonicParsing="false" onAction="#salvar" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #088A08;" text="SALVAR" textFill="WHITE" />
        </children>
 </AnchorPane>

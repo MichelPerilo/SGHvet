@@ -93,11 +93,11 @@
                   </Label>
                   <ScrollPane layoutX="18.0" layoutY="55.0" prefHeight="122.0" prefWidth="441.0">
                      <content>
-                        <TextArea prefHeight="120.0" prefWidth="439.0" />
+                        <TextArea fx:id="taJustificativa" prefHeight="120.0" prefWidth="439.0" />
                      </content>
                   </ScrollPane>
-                  <Button layoutX="161.0" layoutY="193.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #31B404;" text="SALVAR" textFill="WHITE" />
-                  <Button layoutX="243.0" layoutY="193.0" mnemonicParsing="false" style="-fx-background-color: #FA5858;" text="CANCELAR" textFill="WHITE" />
+                  <Button layoutX="161.0" layoutY="193.0" mnemonicParsing="false" onAction="#handlerSalvarNegacaoProduto" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #31B404;" text="SALVAR" textFill="WHITE" />
+                  <Button layoutX="243.0" layoutY="193.0" mnemonicParsing="false" onAction="#handlerFecharaNegacaoProduto" style="-fx-background-color: #FA5858;" text="CANCELAR" textFill="WHITE" />
                </children>
             </Pane>
          </children>
@@ -123,12 +123,12 @@
             <Label fx:id="lb_id_requisicao" layoutX="163.0" layoutY="23.0" prefHeight="17.0" prefWidth="32.0" text="ID" />
             <Label layoutX="209.0" layoutY="23.0" text="QTD: " />
             <Label fx:id="lb_qtd_requisicao" layoutX="239.0" layoutY="22.0" text="XX" />
-            <Button fx:id="bt_liberar_requisicao" layoutX="282.0" layoutY="17.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="77.0" style="-fx-background-color: #01DF01;" text="LIBERAR" textFill="WHITE">
+            <Button fx:id="bt_liberar_requisicao" layoutX="282.0" layoutY="17.0" mnemonicParsing="false" onAction="#handlerLiberarProduto" prefHeight="29.0" prefWidth="77.0" style="-fx-background-color: #01DF01;" text="LIBERAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="bt_liberar_requisicao1" layoutX="375.0" layoutY="16.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="77.0" style="-fx-background-color: #F78181;" text="NEGAR" textFill="WHITE">
+            <Button fx:id="bt_liberar_requisicao1" layoutX="375.0" layoutY="16.0" mnemonicParsing="false" onAction="#handlerNegarProduto" prefHeight="29.0" prefWidth="77.0" style="-fx-background-color: #F78181;" text="NEGAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -139,7 +139,7 @@
          <children>
             <ScrollPane layoutX="7.0" layoutY="47.0" prefHeight="142.0" prefWidth="506.0">
                <content>
-                  <TableView fx:id="tv_Requisições" prefHeight="140.0" prefWidth="503.0">
+                  <TableView fx:id="tv_Requisições" onMouseClicked="#clicarMouseItemListViewIntemRequisicao" prefHeight="140.0" prefWidth="503.0">
                     <columns>
                       <TableColumn fx:id="tc_R_id" prefWidth="89.0" text="ID" />
                         <TableColumn fx:id="tc_R_QTD" prefWidth="108.0" text="QTD" />

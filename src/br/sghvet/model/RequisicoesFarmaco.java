@@ -1,5 +1,7 @@
 package br.sghvet.model;
 
+import br.sghvet.facade.Fachada;
+
 public class RequisicoesFarmaco {
 	
 	private int id;
@@ -7,13 +9,16 @@ public class RequisicoesFarmaco {
 	private String descricao;
 	private String Justificativa;
 	private String JustificativaNegacao;
+	private String id_medico;
+	private String nomeMedico;
 	
-	public RequisicoesFarmaco(int qtd, String descri, String just) {
+	public RequisicoesFarmaco(int qtd, String descri, String just,String id_medico) {
 		
 		setQtd(qtd);
 		setDescricao(descri);
 		setJustificativa(just);
-		
+		setId_medico(id_medico);
+			
 		
 	}
 
@@ -55,6 +60,24 @@ public class RequisicoesFarmaco {
 
 	public void setJustificativaNegacao(String justificativaNegacao) {
 		JustificativaNegacao = justificativaNegacao;
+	}
+
+	public String getId_medico() {
+		return id_medico;
+	}
+
+	public void setId_medico(String id_medico) {
+		this.id_medico = id_medico;
+	}
+
+	public String getNomeMedico() {
+		return nomeMedico;
+	}
+
+	public void setNomeMedico(String nomeMedico) {
+	
+			this.nomeMedico = nomeMedico;
+	
 	}
 	
 	

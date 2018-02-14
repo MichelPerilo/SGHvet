@@ -587,6 +587,13 @@ public RequisicoesFarmaco buscaReqFarmaco(int id) throws Exception {
 }
 
 
+public List<RequisicoesFarmaco> buscaALLReqFarmaco() throws Exception {
+
+	
+	return cadastroReqFarma.buscaALLReqFarmaco();
+}
+
+
 public boolean atualizaReqFarmaco(RequisicoesFarmaco req) throws Exception {
 
 	return cadastroReqFarma.atualizaReqFarmaco(req);

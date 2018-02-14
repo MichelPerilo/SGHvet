@@ -27,16 +27,19 @@ import javafx.collections.ObservableList;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -169,6 +172,11 @@ public class UIFarmacoController implements Initializable {
 
 	@FXML
 	private Button bt_Logoff;
+	@FXML
+	private Pane pn_JustificativaRequisicao;
+	@FXML
+	private TextArea taJustificativa;
+	private RequisicoesFarmaco rf;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -177,8 +185,95 @@ public class UIFarmacoController implements Initializable {
 		FuncionarioLogado();
 		setCB();
 		carregarTableViewRemedio();
+		carregarTableViewRequisicoes();
 
 	}
+	
+	public void carregarTableViewRequisicoes() {
+
+		tc_R_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+		tc_R_QTD.setCellValueFactory(new PropertyValueFactory<>("qtd"));
+		tc_R_Clinico.setCellValueFactory(new PropertyValueFactory<>("nomeMedico"));
+
+		try {
+			observableListRequisicoes = FXCollections
+					.observableArrayList(Fachada.getInstance().buscaALLReqFarmaco());
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		tv_Requisições.setItems(observableListRequisicoes);
+	}
+	
+	
+	
+	@FXML
+	public void clicarMouseItemListViewIntemRequisicao() throws IOException {
+
+		rf = tv_Requisições.getSelectionModel().getSelectedItem();
+		lb_id_requisicao.setText(String.valueOf(rf.getId()));
+		lb_qtd_requisicao.setText(String.valueOf(rf.getQtd()));
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(	UIRequisicaoFarmacoController.class.getResource("../view/fxml_requisicao_farmaco.fxml"));
+		AnchorPane page = (AnchorPane) loader.load();
+		Stage solicitaFarma = new Stage();
+		Scene scene = new Scene(page);
+		solicitaFarma.setScene(scene);
+		solicitaFarma.setResizable(false);
+		UIRequisicaoFarmacoController controller = loader.getController();
+		controller.setRequisição(rf);
+		controller.setStage(solicitaFarma);				
+		solicitaFarma.showAndWait();
+	
+
+	}
+
+	
+	@FXML
+	public void handlerNegarProduto() throws Exception {
+
+		
+		pn_JustificativaRequisicao.setVisible(true);
+			
+	}
+	
+	@FXML
+	public void handlerSalvarNegacaoProduto() throws Exception {
+
+		
+		pn_JustificativaRequisicao.setVisible(true);
+		rf.setJustificativaNegacao(taJustificativa.getText());
+		Fachada.getInstance().atualizaReqFarmacoJustificativa(rf);
+			
+	}
+	
+	
+	@FXML
+	public void handlerFecharaNegacaoProduto() throws Exception {
+
+		
+		pn_JustificativaRequisicao.setVisible(false);
+		taJustificativa.setText("");
+		
+			
+	}
+	
+	@FXML
+	public void handlerLiberarProduto() throws Exception {
+
+//		rf;
+		Item_Estoque ie =  Fachada.getInstance().buscaIntem_Estoque(lb_id_remedio.getText());
+		int debitar = Integer.parseInt(tx_qtd_remedio.getText()) - Integer.parseInt(lb_qtd_requisicao.getText());
+		
+		ie.setQtd_atual(debitar);
+		Fachada.getInstance().atualizaIntem_Estoque(ie);
+		
+			
+	}
+	
+	
+	
 
 	public void carregarTableViewRemedio() {
 
@@ -196,6 +291,9 @@ public class UIFarmacoController implements Initializable {
 		}
 		tv_Estoque.setItems(observableListItem_Estoque);
 	}
+	
+
+	
 
 	@FXML
 	public void carregaTableViewRemedioFiltro() {

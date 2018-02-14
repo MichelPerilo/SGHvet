@@ -31,23 +31,23 @@
       </Label>
       <Pane fx:id="pn_Consulta_Farmaco" layoutX="707.0" layoutY="149.0" prefHeight="256.0" prefWidth="279.0" style="-fx-background-color: #D8D8D8;" visible="false">
          <children>
-            <Label layoutX="18.0" layoutY="88.0" text="NOME">
+            <Label layoutX="11.0" layoutY="59.0" text="NOME">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="lb_Nome_Farmaco" layoutX="73.0" layoutY="88.0" prefHeight="17.0" prefWidth="110.0" text="XXXXXXXXXXXX">
+            <Label fx:id="lb_Nome_Farmaco" layoutX="97.0" layoutY="59.0" prefHeight="17.0" prefWidth="110.0" text="XXXXXXXXXXXX">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button fx:id="bt_newSolicitation" layoutX="86.0" layoutY="207.0" mnemonicParsing="false" onAction="#solicitaFarmaco" text="SOLICITAR FARMACO" />
-            <Label layoutX="14.0" layoutY="27.0" text="ID DA CONSULTA">
+            <Button fx:id="bt_newSolicitation" alignment="CENTER" layoutX="11.0" layoutY="208.0" mnemonicParsing="false" onAction="#solicitaFarmaco" prefHeight="25.0" prefWidth="256.0" text="SOLICITAR FARMACO" />
+            <Label layoutX="12.0" layoutY="27.0" text="ID DA CONSULTA">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="53.0" layoutY="152.0" text="PACIENTE ATENDIDO COM SUCESSO" />
+            <Label layoutX="41.0" layoutY="153.0" text="PACIENTE ATENDIDO COM SUCESSO" />
             <Label fx:id="lb_idConsulta_Farmaco" layoutX="152.0" layoutY="29.0" text="XXXXX">
                <font>
                   <Font size="15.0" />
