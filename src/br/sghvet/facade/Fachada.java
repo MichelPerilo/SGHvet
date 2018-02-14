@@ -46,7 +46,7 @@ public class Fachada implements IFachada {
 		this.cadastroRemedio = new CadastroRemedio();
 		this.cadcirurgia = new CadastroCirurgia();
 		this.cadmembrocirurgia = new CadastroMembroCirurgia();
-		//this.cadastroReqFarma =  new CadastroRequisicaoFarmaco();
+		this.cadastroReqFarma =  new CadastroRequisicaoFarmaco();
 		
 	}
 

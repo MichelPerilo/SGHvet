@@ -268,6 +268,10 @@ public class UIFarmacoController implements Initializable {
 		
 		ie.setQtd_atual(debitar);
 		Fachada.getInstance().atualizaIntem_Estoque(ie);
+		rf.setAtendido(1);
+		Fachada.getInstance().atualizaReqFarmaco(rf);
+		carregarTableViewRequisicoes();
+		fazBusca(lb_id_remedio.getText());
 		
 			
 	}

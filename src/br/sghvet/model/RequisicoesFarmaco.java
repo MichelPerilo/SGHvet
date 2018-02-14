@@ -11,6 +11,7 @@ public class RequisicoesFarmaco {
 	private String JustificativaNegacao;
 	private String id_medico;
 	private String nomeMedico;
+	private int atendido;
 	
 	public RequisicoesFarmaco(int qtd, String descri, String just,String id_medico) {
 		
@@ -78,6 +79,14 @@ public class RequisicoesFarmaco {
 	
 			this.nomeMedico = nomeMedico;
 	
+	}
+
+	public int getAtendido() {
+		return atendido;
+	}
+
+	public void setAtendido(int atendido) {
+		this.atendido = atendido;
 	}
 	
 	

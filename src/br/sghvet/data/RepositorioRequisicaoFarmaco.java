@@ -61,22 +61,42 @@ public class RepositorioRequisicaoFarmaco {
 		List<RequisicoesFarmaco> requisicoes = new ArrayList<RequisicoesFarmaco>();
 
 		while (rs.next()) {
-			requisicoes.add(preencherRequisicao(rs));
+			
+			requisicoes.add(preencherRequisicaoFARMACO(rs));
+			
 		}
 
 		return requisicoes;
 	}
 	
 	
+	private RequisicoesFarmaco preencherRequisicaoFARMACO(ResultSet rs) throws Exception {
+		RequisicoesFarmaco r1;
+		try {
+			if (rs.getInt("id") > 0 && rs.getInt("atendido") != 1) {
+				
+				r1 = new RequisicoesFarmaco(rs.getInt("quantidade"), rs.getString("descricao"),	rs.getString("justificativa"), rs.getString("idmedico"));
+				r1.setId(rs.getInt("id"));
+				r1.setNomeMedico(rs.getString("nomeMedico"));
+				return r1;
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return null;
+	}
+	
 
 
 	public boolean atualizaReqFarmaco(RequisicoesFarmaco req) throws Exception {
-		String query = "UPDATE requisicaoFarmaco SET quantidade = ?, descricao = ?, justificativa = ? WHERE id = ?;";
+		String query = "UPDATE requisicaoFarmaco SET quantidade = ?, descricao = ?, justificativa = ?, atendido = ? WHERE id = ?;";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setInt(1, req.getQtd());
 		ps.setString(2, req.getDescricao());
 		ps.setString(3, req.getJustificativa());
-		ps.setInt(4, req.getId());
+		ps.setInt(4, req.getAtendido());
+		ps.setInt(5, req.getId());
 
 		return !executar(ps);
 	}
@@ -84,10 +104,11 @@ public class RepositorioRequisicaoFarmaco {
 	
 	
 	public boolean atualizaReqFarmacoJustificativa(RequisicoesFarmaco req) throws Exception {
-		String query = "UPDATE requisicaoFarmaco SET justificativaNull = ? WHERE id = ?;";
+		String query = "UPDATE requisicaoFarmaco SET justificativaNull = ?, atendido = ? WHERE id = ?;";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, req.getJustificativaNegacao());		
-		ps.setInt(2, req.getId());
+		ps.setInt(2, 1);		
+		ps.setInt(3, req.getId());
 
 		return !executar(ps);
 	}
