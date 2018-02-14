@@ -15,13 +15,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class UiAtendimentosDoDiaController implements Initializable{
@@ -38,6 +41,15 @@ public class UiAtendimentosDoDiaController implements Initializable{
 	@FXML
 	TableColumn <Consulta,String> tablecolumn_tutor;
 	
+
+    @FXML
+    private Label lb_idConsulta_Farmaco;
+    @FXML
+    private Pane pn_Consulta_Farmaco;
+    @FXML
+    private Label lb_Nome_Farmaco;
+    @FXML
+    private Button bt_newSolicitation;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -71,6 +83,7 @@ public class UiAtendimentosDoDiaController implements Initializable{
 	}
 	
 	public void tableViewClick() throws IOException{
+		pn_Consulta_Farmaco.setVisible(false);
 		Consulta c =  tableview_atendimentos.getSelectionModel().getSelectedItem();
 		showAtendimento(c);
 	}
@@ -89,6 +102,30 @@ public class UiAtendimentosDoDiaController implements Initializable{
 		controller.setDados(c);
 		
 		atendimento.showAndWait();
+		
+		pn_Consulta_Farmaco.setVisible(true);
+		lb_idConsulta_Farmaco.setText(String.valueOf(c.getId()));
+		lb_Nome_Farmaco.setText(c.getNomeAnimal());
+	}
+	
+	public void solicitaFarmaco() throws IOException{
+		
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(	UIRequisicaoFarmacoController.class.getResource("../view/fxml_requisicao_farmaco.fxml"));
+		AnchorPane page = (AnchorPane) loader.load();
+		Stage solicitaFarma = new Stage();
+		Scene scene = new Scene(page);
+		solicitaFarma.setScene(scene);
+		solicitaFarma.setResizable(false);
+		UIRequisicaoFarmacoController controller = loader.getController();
+		controller.setStage(solicitaFarma);
+				
+		solicitaFarma.showAndWait();
+		bt_newSolicitation.setDisable(true);
+		bt_newSolicitation.setText("SOLICITAÇÃO REALIZADA COM SUCESSO");
+		
+		
 	}
 
 }

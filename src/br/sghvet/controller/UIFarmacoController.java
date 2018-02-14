@@ -12,7 +12,7 @@ import br.sghvet.facade.Fachada;
 import br.sghvet.model.Consulta;
 import br.sghvet.model.Item_Estoque;
 import br.sghvet.model.Remedio;
-import br.sghvet.model.Requisicoes;
+import br.sghvet.model.RequisicoesFarmaco;
 import br.sghvet.model.Tipo_Remedio;
 import br.sghvet.model.Tutor;
 import javafx.fxml.Initializable;
@@ -149,18 +149,18 @@ public class UIFarmacoController implements Initializable {
 	private Button bt_liberar_requisicao;
 
 	@FXML
-	private TableView<Requisicoes> tv_Requisições;
+	private TableView<RequisicoesFarmaco> tv_Requisições;
 
 	@FXML
-	private TableColumn<Requisicoes, String> tc_R_id;
+	private TableColumn<RequisicoesFarmaco, String> tc_R_id;
 
 	@FXML
-	private TableColumn<Requisicoes, String> tc_R_QTD;
+	private TableColumn<RequisicoesFarmaco, String> tc_R_QTD;
 
 	@FXML
-	private TableColumn<Requisicoes, String> tc_R_Clinico;
+	private TableColumn<RequisicoesFarmaco, String> tc_R_Clinico;
 
-	private ObservableList<Requisicoes> observableListRequisicoes;
+	private ObservableList<RequisicoesFarmaco> observableListRequisicoes;
 
 	// Painel pessoal
 

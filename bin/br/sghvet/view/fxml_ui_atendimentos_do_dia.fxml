@@ -1,19 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#tableViewClick" prefHeight="606.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiAtendimentosDoDiaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#tableViewClick" prefHeight="606.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiAtendimentosDoDiaController">
    <children>
-      <TableView fx:id="tableview_atendimentos" layoutX="47.0" layoutY="115.0" onMouseClicked="#tableViewClick" prefHeight="463.0" prefWidth="942.0">
-        <columns>
-          <TableColumn fx:id="tablecolumn_horario" prefWidth="323.0" text="Horário" />
-          <TableColumn fx:id="tablecolumn_paciente" minWidth="0.0" prefWidth="327.0" text="Paciente" />
-            <TableColumn fx:id="tablecolumn_tutor" prefWidth="291.0" text="Tutor" />
-        </columns>
-      </TableView>
-      <DatePicker fx:id="datepicker_data" layoutX="782.0" layoutY="51.0" onAction="#setDatePicker" prefHeight="31.0" prefWidth="191.0" />
+      <ScrollPane layoutX="47.0" layoutY="149.0" prefHeight="431.0" prefWidth="648.0">
+         <content>
+            <TableView fx:id="tableview_atendimentos" onMouseClicked="#tableViewClick" prefHeight="428.0" prefWidth="646.0">
+              <columns>
+                <TableColumn fx:id="tablecolumn_horario" prefWidth="105.0" text="Horário" />
+                <TableColumn fx:id="tablecolumn_paciente" minWidth="0.0" prefWidth="238.0" text="Paciente" />
+                  <TableColumn fx:id="tablecolumn_tutor" prefWidth="302.0" text="Tutor" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <DatePicker fx:id="datepicker_data" layoutX="47.0" layoutY="106.0" onAction="#setDatePicker" prefHeight="31.0" prefWidth="191.0" />
+      <Label layoutX="357.0" layoutY="46.0" text="ATENDIMENTOS">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Pane fx:id="pn_Consulta_Farmaco" layoutX="707.0" layoutY="149.0" prefHeight="256.0" prefWidth="279.0" style="-fx-background-color: #D8D8D8;" visible="false">
+         <children>
+            <Label layoutX="18.0" layoutY="88.0" text="NOME">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="lb_Nome_Farmaco" layoutX="73.0" layoutY="88.0" prefHeight="17.0" prefWidth="110.0" text="XXXXXXXXXXXX">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="bt_newSolicitation" layoutX="86.0" layoutY="207.0" mnemonicParsing="false" onAction="#solicitaFarmaco" text="SOLICITAR FARMACO" />
+            <Label layoutX="14.0" layoutY="27.0" text="ID DA CONSULTA">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="152.0" text="PACIENTE ATENDIDO COM SUCESSO" />
+            <Label fx:id="lb_idConsulta_Farmaco" layoutX="152.0" layoutY="29.0" text="XXXXX">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

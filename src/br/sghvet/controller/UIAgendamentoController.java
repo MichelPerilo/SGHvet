@@ -717,6 +717,28 @@ public class UIAgendamentoController implements Initializable {
 			tx_PNTutorAnimais_Pelagem.setText("");
 			tx_PNTutorAnimais_Sexo.setText("");
 			tx_PNTutorAnimais_Prontuario.setText("");
+			textarea_vermifugacoes.setText("");
+			textfield_tr.setText("");
+			textfield_batcardiaco.setText("");
+			textfield_movrespiratorio.setText("");
+			textfield_pulso.setText("");
+			textarea_ectoscopia.setText("");
+			textarea_cabecapescoco.setText("");
+			textarea_cavtoracica.setText("");
+			textarea_cavabdominal.setText("");
+			textarea_sislocomotor.setText("");
+			textarea_sisnervoso.setText("");
+			textarea_diagprovavel.setText("");
+			textarea_prognostico.setText("");
+			textarea_examescomple.setText("");
+			textarea_diagdefinitivo.setText("");
+			lb_dataSelecionada.setText("");
+			lb_prontuario.setText("");
+			lb_CPFTutor.setText("");
+			lb_Animal.setText("");
+			lb_HRSelecionada.setText("");
+			lb_Medico.setText("");
+			carregarTableViewConsulta();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -50,7 +50,7 @@ public class Disponibilidade {
 	
 	@Override
 	public String toString(){
-		String result = this.getDia().toString() + ": " + this.getHorarioInicio() + " - " + this.getHorarioFinal();
+		String result = this.getDia().toString() + ":   ------------------ das " + this.getHorarioInicio()+ " horas até as " + this.getHorarioFinal() + " horas ";
 		
 		return result;
 	}

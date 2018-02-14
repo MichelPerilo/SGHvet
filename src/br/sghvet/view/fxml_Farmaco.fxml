@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: E6E6E6;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UIFarmacoController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: E6E6E6; -fx-border-radius: 5 cm;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UIFarmacoController">
    <children>
       <ComboBox fx:id="cb_selecionar_tipo" layoutX="14.0" layoutY="127.0" onAction="#carregaTableViewRemedioFiltro" prefHeight="25.0" prefWidth="260.0" promptText="SELECIONAR TIPO DE MEDICAMENTO" />
       <Button id="ButtonOK" fx:id="tx_Busca_OK" layoutX="988.0" layoutY="161.0" mnemonicParsing="false" onAction="#handlerPesquisarProduto" text="ok" />
@@ -84,6 +84,22 @@
             <Label fx:id="lb_data_vencimento_remedio" layoutX="335.0" layoutY="18.0" prefHeight="17.0" prefWidth="100.0" text="--/--/--" />
             <Label fx:id="lb_id_remedio" layoutX="356.0" layoutY="68.0" prefHeight="17.0" prefWidth="77.0" />
             <Label fx:id="lb_tipo_remedio" layoutX="76.0" layoutY="68.0" prefHeight="17.0" prefWidth="125.0" />
+            <Pane fx:id="pn_JustificativaRequisicao" layoutX="-6.0" layoutY="202.0" prefHeight="232.0" prefWidth="478.0" style="-fx-border-radius: 10 cm; -fx-background-color: #B45F04;" visible="false">
+               <children>
+                  <Label layoutX="187.0" layoutY="14.0" text="JUSTIFICATIVA" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane layoutX="18.0" layoutY="55.0" prefHeight="122.0" prefWidth="441.0">
+                     <content>
+                        <TextArea prefHeight="120.0" prefWidth="439.0" />
+                     </content>
+                  </ScrollPane>
+                  <Button layoutX="161.0" layoutY="193.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #31B404;" text="SALVAR" textFill="WHITE" />
+                  <Button layoutX="243.0" layoutY="193.0" mnemonicParsing="false" style="-fx-background-color: #FA5858;" text="CANCELAR" textFill="WHITE" />
+               </children>
+            </Pane>
          </children>
       </Pane>
       <ImageView fitHeight="103.0" fitWidth="179.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -107,7 +123,12 @@
             <Label fx:id="lb_id_requisicao" layoutX="163.0" layoutY="23.0" prefHeight="17.0" prefWidth="32.0" text="ID" />
             <Label layoutX="209.0" layoutY="23.0" text="QTD: " />
             <Label fx:id="lb_qtd_requisicao" layoutX="239.0" layoutY="22.0" text="XX" />
-            <Button fx:id="bt_liberar_requisicao" layoutX="282.0" layoutY="17.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="162.0" style="-fx-background-color: #01DF01;" text="LIBERAR" textFill="WHITE">
+            <Button fx:id="bt_liberar_requisicao" layoutX="282.0" layoutY="17.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="77.0" style="-fx-background-color: #01DF01;" text="LIBERAR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="bt_liberar_requisicao1" layoutX="375.0" layoutY="16.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="77.0" style="-fx-background-color: #F78181;" text="NEGAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

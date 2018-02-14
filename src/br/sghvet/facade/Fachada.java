@@ -27,6 +27,7 @@ public class Fachada implements IFachada {
 	private CadastroRemedio cadastroRemedio;
 	private ICadastroCirurgia cadcirurgia;
 	private ICadastroMembroCirurgia cadmembrocirurgia;
+	private CadastroRequisicaoFarmaco cadastroReqFarma;
 	
 	private String cpfLogado;
 	
@@ -45,6 +46,7 @@ public class Fachada implements IFachada {
 		this.cadastroRemedio = new CadastroRemedio();
 		this.cadcirurgia = new CadastroCirurgia();
 		this.cadmembrocirurgia = new CadastroMembroCirurgia();
+		this.cadastroReqFarma =  new CadastroRequisicaoFarmaco();
 		
 	}
 
@@ -65,6 +67,7 @@ public class Fachada implements IFachada {
 		cadastroRemedio.conectar(conexao);
 		cadcirurgia.conectar(conexao);
 		cadmembrocirurgia.conectar(conexao);
+		cadastroReqFarma.conectar(conexao);
 		
 	}
 	
@@ -74,16 +77,6 @@ public class Fachada implements IFachada {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-//		conectar();
-//		this.controlelogin = new ControleLogin();
-//		this.controlfuncionario = new ControlFuncionario();
-//		this.cadastroReqExame = new CadastroReqExame();
-//		this.pdfControl = new ControlPdf();
-//		this.controlPaciente = new ControlPaciente();
-//		this.controlRegistro = new ControlResultadoExame();
-//		this.cadastroDisp = new CadastroDisponibilidade();
-//		this.cadastroConsulta = new CadastroConsulta();
-//		this.cadastroRemedio = new CadastroRemedio();
 		conexao = null;
 	}
 	
@@ -116,16 +109,12 @@ public class Fachada implements IFachada {
 	
 	
 		
-
-	@Override
 	public Usuario loginUsuario(String cpf, String senha) throws Exception { // salvar conexao
 		Usuario user = controlelogin.loginUsuario(cpf, senha);
 		if (user != null) {
 			this.conexao = controlelogin.getConexao();
 			conectar();
-			// if(conexao == null) {
-			// System.out.println("blow this shit up");
-			// }
+	
 		}
 		cpfLogado = cpf;
 		return user;
@@ -579,5 +568,44 @@ public List<MembroCirurgia> buscarMembros(int cirurgia_id) throws Exception{
 public List<MembroCirurgia> buscarCirurgias(String cpf_membro) throws Exception{
 	return cadmembrocirurgia.buscarCirurgias(cpf_membro);
 }
+
+
+/* ----------------------------------------------------------------------- */
+
+
+public boolean cadastraReqFarmaco(RequisicoesFarmaco rf) throws Exception {
+	
+	
+	return cadastroReqFarma.cadastraReqFarmaco(rf);
+}
+
+
+public RequisicoesFarmaco buscaReqFarmaco(int id) throws Exception {
+
+
+	return cadastroReqFarma.buscaReqFarmaco(id);
+}
+
+
+public boolean atualizaReqFarmaco(RequisicoesFarmaco req) throws Exception {
+
+	return cadastroReqFarma.atualizaReqFarmaco(req);
+}
+
+
+
+public boolean atualizaReqFarmacoJustificativa(RequisicoesFarmaco req) throws Exception {
+	
+
+	return cadastroReqFarma.atualizaReqFarmacoJustificativa(req);
+}
+
+
+public boolean deletarReqFarmaco(int id) throws Exception {
+	
+
+	return cadastroReqFarma.deletarReqFarmaco(id);
+}
+
 
 }
