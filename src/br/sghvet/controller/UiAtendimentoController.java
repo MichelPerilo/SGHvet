@@ -125,6 +125,7 @@ public class UiAtendimentoController implements Initializable {
 			}
 			
 			Fachada.getInstance().gerarPdfResultado(registro);
+			Fachada.getInstance().atualizarSTATUSConsulta(consulta);
 			
 		}catch(NullPointerException e){
 			

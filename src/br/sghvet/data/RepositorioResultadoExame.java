@@ -107,5 +107,5 @@ public class RepositorioResultadoExame implements IRepositorioResultadoExame{
 		}
 		return null;
 	}
-
+	
 }

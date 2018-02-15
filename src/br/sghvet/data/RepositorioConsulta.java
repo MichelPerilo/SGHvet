@@ -56,6 +56,18 @@ public class RepositorioConsulta implements IRepositorioConsulta{
 		
 		return !executar(ps);		
 	}
+	
+	@Override
+	public boolean atualizarSTATUSConsulta(Consulta consulta) throws Exception {
+		String query = "UPDATE consulta SET concluido = ? WHERE id = ?;";
+		PreparedStatement ps = connection.prepareStatement(query);
+		ps.setBoolean(1, true);
+		ps.setInt(5, consulta.getId());
+		
+		return !executar(ps);		
+	}
+	
+	
 
 	@Override
 	public List<Consulta> buscarConsultaCpf(String cpf) throws Exception {
@@ -132,10 +144,11 @@ public class RepositorioConsulta implements IRepositorioConsulta{
 	
 	@Override
 	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception{
-		String query = "select * from consulta where cpf_vet = ? and dia = ?";
+		String query = "select * from consulta where cpf_vet = ? and dia = ? and concluido = ?";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1,cpf);
 		ps.setString(2, data.toString());
+		ps.setBoolean(3, false);
 
 		ResultSet rs = ps.executeQuery();
 		List<Consulta> consultas = new ArrayList<Consulta>();
@@ -149,8 +162,9 @@ public class RepositorioConsulta implements IRepositorioConsulta{
 		
 	@Override
 	public List<Consulta> buscarALLConsultas() throws Exception {
-		String query = "select *  FROM consulta";
+		String query = "select *  FROM consulta where concluido = ?";		
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
+		ps.setBoolean(1, false);
 		ResultSet rs = ps.executeQuery();
 		List<Consulta> consulta = new ArrayList<>();
 		

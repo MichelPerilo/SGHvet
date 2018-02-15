@@ -321,7 +321,7 @@ CREATE TABLE logDataHoraVet(
  )ENGINE = innodb;
  
  -- -----------------------------------------------------
--- Table `sghvet`.`logDataHoraVet`
+-- Table `sghvet`.`logDataHoraAux`
 -- -----------------------------------------------------
 
 CREATE TABLE logDataHoraAux(
@@ -333,7 +333,7 @@ CREATE TABLE logDataHoraAux(
  )ENGINE = innodb;
  
  -- -----------------------------------------------------
--- Table `sghvet`.`logDataHoraVet`
+-- Table `sghvet`.`logDataHoraAdm`
 -- -----------------------------------------------------
 
 CREATE TABLE logDataHoraAdm(
@@ -346,35 +346,28 @@ CREATE TABLE logDataHoraAdm(
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
--- -----------------------------------------------------
--- Table `sghvet`.`equipe_cirurgica`
--- -----------------------------------------------------
-CREATE TABLE equipe_cirurgica (
-  coidEqCi INT(11) AUTO_INCREMENT,
-  nome VARCHAR(45) NOT NULL,
-  participantes VARCHAR(500) NOT NULL,
-  quantidade INT NOT NULL,
-  PRIMARY KEY (coidEqCi)
-)ENGINE = InnoDB;
-
 --------------------------------------------------
 -- Table `sghvet`.`cirurgia`
 -- -----------------------------------------------------
 CREATE TABLE cirurgia (
-  tipo enum('GERAL', 'ESPECISLISTA') not null,
+  cod_cirur INT(11) NOT NULL, 
+  tipo enum('GERAL', 'ESPECIALISTA') not null,
   especialidade varchar(60), 
   data_cir date NOT NULL,
-  hr_fim time NOT NULL,
   hr_inic time NOT NULL,
+  hr_fim time,
+  sala enum('SALA_A', 'SALA_B', 'SALA_C', 'SALA_D' , 'SALA_E') NOT NULL,
+  cod_remedio int,
+  qtd_remedio int,
   prontuario INT(11) NOT NULL,
-  cod_cirur INT(11) NOT NULL, 
   PRIMARY KEY (cod_cirur),
-    FOREIGN KEY (prontuario) REFERENCES animal (prontuario)  
+    FOREIGN KEY (prontuario) REFERENCES animal (prontuario),
+	FOREIGN KEY (cod_remedio) references remedio(codigo)
 )ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `sghvet`.`equipe_cirurgica`
+-- Table `sghvet`.`membro_cirurgica`
 -- -----------------------------------------------------
 CREATE TABLE membro_cirurgia (
   id INT(11) AUTO_INCREMENT,
@@ -390,9 +383,6 @@ CREATE TABLE membro_cirurgia (
 -- FARMACIA
 -- ------------------------------------------------------- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Table `bdsghvet`.`estoque`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS estoque (
 id INT auto_increment,
 id_intemEstoque int not null,
@@ -440,6 +430,7 @@ justificativa VARCHAR(45) NOT NULL,
 justificativaNull VARCHAR(45),
 idmedico char(11) not Null,
 nomeMedico VARCHAR(45) NOT NULL,
+atendido  int,
 
 PRIMARY KEY (id),
 foreign key(idmedico) references veterinario (cpf)
@@ -470,8 +461,11 @@ CREATE TABLE IF NOT EXISTS receituario(
 id_rec INT(11) NOT NULL,
 dt_emissão date NOT NULL,
 id_tratamento_r INT(11) NOT NULL,
+cod_remedio int,
+qtd_remedio int,
 PRIMARY KEY (id_rec),
-FOREIGN KEY (id_tratamento_r) REFERENCES tratamento (id_tratamento)
+FOREIGN KEY (id_tratamento_r) REFERENCES tratamento (id_tratamento),
+FOREIGN KEY (cod_remedio) references remedio(codigo)
 
 )ENGINE = InnoDB;
 
@@ -524,6 +518,17 @@ FOREIGN KEY(cpf) references usuario(cpf) ON DELETE CASCADE,
 FOREIGN KEY(id_cli) references clinica(id_clinica) ON DELETE CASCADE
 )ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `bdsghvet`.`consultorio`
+-- -----------------------------------------------------
+CREATE TABLE consultorio (
+id_consultorio int, 
+id_clinica int, 
+nome varchar(40),
+PRIMARY KEY (id_consultorio),
+FOREIGN KEY (id_clinica) references clinica (id_clinica)
+)  ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 INSERT INTO sghvet.usuario (`cpf`, `tipo`) VALUES ('10103566406', 'ADMINISTRATIVO');
@@ -532,6 +537,4 @@ INSERT INTO sghvet.veterinario (nome, cpf, dataNasc, cargo, contato, email , crm
 -- INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', '10103566406', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
 -- INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', '10103566406', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
 -- INSERT INTO sghvet.administrativo (nome, cpf, dataNasc, cargo, contato, email) VALUES ('admS', '10103566406', '1990-12-30', 'ADMINISTRADOR', '99998888', 'adm@adm.com');
-
-
 

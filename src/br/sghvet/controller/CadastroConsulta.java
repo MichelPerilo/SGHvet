@@ -1,6 +1,7 @@
 package br.sghvet.controller;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -67,6 +68,13 @@ public class CadastroConsulta implements ICadastroConsulta{
 	public Consulta buscarConsultas(String cpf) throws Exception {
 		
 		return repo.buscarConsulta(cpf);
+	}
+	
+	@Override
+	public boolean atualizarSTATUSConsulta(Consulta consulta) throws Exception {
+		
+		
+		return repo.atualizarSTATUSConsulta(consulta);		
 	}
 
 

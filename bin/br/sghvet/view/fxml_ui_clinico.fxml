@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiClinicoController">
+<AnchorPane style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UiClinicoController">
    <children>
       <ToolBar layoutY="114.0" orientation="VERTICAL" prefHeight="606.0" prefWidth="263.0" style="-fx-background-color: #086A87;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="114.0">
          <items>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handlerMarcacaoExame" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #04B404; -fx-background-radius: 0;" text="Marca Exame" textFill="WHITE">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handlerMarcacaoExame" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #04B404; -fx-background-radius: 0;" text="MARCA EXAME" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -22,7 +22,15 @@
                   <DropShadow blurType="ONE_PASS_BOX" color="WHITE" radius="7.775" width="12.1" />
                </effect>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_Cirurgia" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #8187a3; -fx-background-radius: 0;" text="Cirurgias" textFill="WHITE">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_Cirurgia" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #8187a3; -fx-background-radius: 0;" text="MARCA CIRURGIA" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" color="WHITE" radius="7.775" width="12.1" />
+               </effect>
+            </Button>
+            <Button fx:id="button_atendimentosdodia" contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_AtendimentosDoDia" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="ATENDIMENTOS DO DIA">
                <font>
                   <Font size="13.0" />
                </font>
@@ -30,7 +38,7 @@
                   <DropShadow blurType="ONE_PASS_BOX" color="WHITE" radius="7.775" width="12.1" />
                </effect>
             </Button>
-            <Button fx:id="button_atendimentosdodia" contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_AtendimentosDoDia" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="Atendimentos do dia">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_CirurgiaxEquipe" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="HISTORICO CIRURGICO">
                <font>
                   <Font size="13.0" />
                </font>
@@ -39,31 +47,7 @@
                </effect>
             </Button>
 
-            <Button fx:id="button_disponibilidademedica" contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_DisponibilidadeMedica" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="Disponibilidade Médica">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <effect>
-                  <DropShadow blurType="ONE_PASS_BOX" color="WHITE" radius="7.775" width="12.1" />
-               </effect>
-            </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_TutorxAnimal" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="TUTORxANIMAL">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <effect>
-                  <DropShadow blurType="ONE_PASS_BOX" color="WHITE" radius="7.775" width="12.1" />
-               </effect>
-            </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_AnimalxConsulta" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="ANIMALxCONSULTA">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <effect>
-                  <DropShadow blurType="ONE_PASS_BOX" color="WHITE" radius="7.775" width="12.1" />
-               </effect>
-            </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_CirurgiaxEquipe" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="CIRURGIAxEQUIPE">
+            <Button fx:id="button_disponibilidademedica" contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_DisponibilidadeMedica" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="DISPONIBILIDADE MEDICA">
                <font>
                   <Font size="13.0" />
                </font>
@@ -72,6 +56,22 @@
                </effect>
             </Button>
             <Button fx:id="logoff" contentDisplay="TOP" mnemonicParsing="false" onAction="#logoff" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #F78181; -fx-background-radius: 0;" text="SAIR" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" color="WHITE" radius="7.775" width="12.1" />
+               </effect>
+            </Button>
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_TutorxAnimal" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="TUTORxANIMAL" visible="false">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" color="WHITE" radius="7.775" width="12.1" />
+               </effect>
+            </Button>
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#handler_AnimalxConsulta" prefHeight="38.0" prefWidth="256.0" style="-fx-background-color: #A4A4A4; -fx-background-radius: 0;" text="ANIMALxCONSULTA" visible="false">
                <font>
                   <Font size="13.0" />
                </font>

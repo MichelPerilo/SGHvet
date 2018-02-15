@@ -20,5 +20,6 @@ public interface IRepositorioConsulta {
 	public void conectar(Connection conect);
 	public List<Consulta> buscarALLConsultas() throws Exception;
 	public Consulta buscarConsulta(String cpf) throws Exception;
+	boolean atualizarSTATUSConsulta(Consulta consulta) throws Exception;
 
 }

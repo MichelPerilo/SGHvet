@@ -41,13 +41,7 @@ public class UIModoAdministradorController implements Initializable {
 
 	}
 
-	public void handler_CIRURGIAO() {
-
-		//
-
-	}
-
-	public void handler_LABORATORIO() {
+	public void handler_RELATORIO() {
 
 		//
 

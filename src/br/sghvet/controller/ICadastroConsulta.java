@@ -19,4 +19,5 @@ public interface ICadastroConsulta {
 	public void conectar(Connection conect);
 	public List buscarALLConsultas()throws Exception;
 	public Consulta buscarConsultas(String cpf) throws Exception;
+	boolean atualizarSTATUSConsulta(Consulta consulta) throws Exception;
 }

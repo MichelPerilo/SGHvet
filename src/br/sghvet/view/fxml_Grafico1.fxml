@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Separator layoutX="4.0" layoutY="555.0" prefHeight="4.0" prefWidth="710.0" />
+      <DatePicker fx:id="dtDE" layoutX="86.0" layoutY="95.0" />
+      <DatePicker fx:id="dtATE" layoutX="315.0" layoutY="95.0" />
+      <Label layoutX="99.0" layoutY="14.0" text="Gerar relatório de um  TUTOR por certo período de tempo, por seus ANIMAIS, AGENDAMENTOS  " />
+      <Label layoutX="63.0" layoutY="99.0" text="DE" />
+      <Label layoutX="287.0" layoutY="99.0" prefHeight="17.0" prefWidth="28.0" text="ATE" />
+      <Button layoutX="520.0" layoutY="137.0" mnemonicParsing="false" text="Gerar" />
+      <BarChart fx:id="bc_animalXconsulta" layoutX="37.0" layoutY="194.0" prefHeight="354.0" prefWidth="627.0">
+        <xAxis>
+          <CategoryAxis fx:id="animais" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="NConsultas" label="ANIMAIS" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Label layoutX="63.0" layoutY="141.0" text="SELECIONE TUTOR" />
+      <ComboBox fx:id="cb_Nome_Tutor" layoutX="185.0" layoutY="137.0" prefHeight="25.0" prefWidth="308.0" />
+   </children>
+</AnchorPane>

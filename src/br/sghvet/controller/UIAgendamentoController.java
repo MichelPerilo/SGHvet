@@ -1031,40 +1031,43 @@ public class UIAgendamentoController implements Initializable {
 
 		Calendar c = new GregorianCalendar();
 		DateFormatSymbols symbols = new DateFormatSymbols();
-		String[] nomeDia = symbols.getWeekdays();
-		String[] nomeMes = symbols.getMonths();
+		String[] nomeMes = symbols.getMonths();		
+		String s = symbols.getWeekdays()[Calendar.DAY_OF_MONTH];
+		
+		
 
 		int dayM = 0;
-
-		switch (nomeDia[c.getActualMinimum(Calendar.DAY_OF_MONTH)]) {
+		switch (s) {
+		
+		
 
 		case "Domingo":
-			dayM = 1;
+			dayM = 0;
 			break;
 
 		case "Segunda-feira":
 
-			dayM = 2;
+			dayM = 1;
 			break;
 		case "Terça-feira":
 
-			dayM = 3;
+			dayM = 2;
 			break;
 		case "Quarta-feira":
 
-			dayM = 4;
+			dayM = 3;
 			break;
 		case "Quinta-feira":
 
-			dayM = 5;
+			dayM = 4;
 			break;
 		case "Sexta-feria":
 
-			dayM = 6;
+			dayM = 5;
 			break;
 		case "Sábado":
 
-			dayM = 7;
+			dayM = 6;
 			break;
 
 		default:

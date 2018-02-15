@@ -106,6 +106,13 @@ public class UiAtendimentosDoDiaController implements Initializable{
 		pn_Consulta_Farmaco.setVisible(true);
 		lb_idConsulta_Farmaco.setText(String.valueOf(c.getId()));
 		lb_Nome_Farmaco.setText(c.getNomeAnimal());
+		
+		try {
+			setTableView(datepicker_data.getValue());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void solicitaFarmaco() throws IOException{

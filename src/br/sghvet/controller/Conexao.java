@@ -8,6 +8,8 @@ public class Conexao {
 
 	private String host = "localhost";
 	private String projeto = "jdbc:mysql://" + host + ":3306/sghvet";
+	
+//	jdbc:mysql://127.0.0.1:3306/sghvet
 
 	public Connection getConexao(String usuario, String senha) throws Exception {
 

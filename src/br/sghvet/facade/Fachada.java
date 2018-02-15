@@ -406,6 +406,12 @@ public class Fachada implements IFachada {
 	public boolean atualizarConsulta(Consulta consulta) throws Exception {
 		return cadastroConsulta.atualizarConsulta(consulta);
 	}
+	
+	@Override
+	public boolean atualizarSTATUSConsulta(Consulta consulta) throws Exception {		
+		
+		return cadastroConsulta.atualizarSTATUSConsulta(consulta);		
+	}
 
 	@Override
 	public List<Consulta> buscarConsultaCpf(String cpf) throws Exception {
