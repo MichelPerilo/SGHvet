@@ -9,6 +9,7 @@ import br.sghvet.facade.Fachada;
 import br.sghvet.model.Animal;
 import br.sghvet.model.Consulta;
 import br.sghvet.model.Tutor;
+import br.sghvet.model.Veterinario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,9 +49,28 @@ public class UIRelatorios implements Initializable {
 	private DatePicker dt_fim;
 
 	@FXML
+	private DatePicker dt_inicio1;
+
+	@FXML
+	private DatePicker dt_fim1;
+
+	@FXML
+	private ComboBox<String> cb_nomeVeterinario;
+
+	@FXML
 	private ComboBox<String> cb_nomeTutor;
+
+	@FXML
+	private BarChart<?, ?> consultas_X_medicos;
+	@FXML
+	private CategoryAxis x1;
+	@FXML
+	private NumberAxis y1;
+
 	private ObservableList<String> listaNomes;
+	private ObservableList<String> listaNomesVet;
 	private List<Tutor> listaT;
+	private List<Veterinario> listaV;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -73,6 +93,7 @@ public class UIRelatorios implements Initializable {
 		pn_relatorio1.setVisible(false);
 		pn_relatorio2.setVisible(true);
 		pn_relatorio3.setVisible(false);
+		carregarVet();
 
 	}
 
@@ -105,12 +126,44 @@ public class UIRelatorios implements Initializable {
 
 	}
 
+	public void carregarVet() {
+
+		List<String> veterinarios = new ArrayList<>();
+
+		try {
+
+			listaV = Fachada.getInstance().buscaTodosVeterinario();
+			for (Veterinario v : listaV) {
+				veterinarios.add(v.getNome());
+			}
+
+			listaNomesVet = FXCollections.observableArrayList(veterinarios);
+			cb_nomeVeterinario.setItems(listaNomesVet);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
 	public String achaTutor() {
 		String cpf = null;
 
 		for (Tutor t : listaT) {
 			if (cb_nomeTutor.getValue() != null && cb_nomeTutor.getValue().equals(t.getNome())) {
 				cpf = t.getCpf();
+			}
+		}
+		return cpf;
+	}
+
+	public String achaVet() {
+		String cpf = null;
+
+		for (Veterinario v : listaV) {
+			if (cb_nomeVeterinario.getValue() != null && cb_nomeVeterinario.getValue().equals(v.getNome())) {
+				cpf = v.getCpf();
 			}
 		}
 		return cpf;
@@ -138,6 +191,34 @@ public class UIRelatorios implements Initializable {
 		}
 
 		consultas_X_animais.getData().addAll(set);
+
+	}
+
+	@FXML
+	public void handleGerarRelatorio2() throws Exception {
+
+		String cpf = achaVet();
+		List<Consulta> consultas2 = Fachada.getInstance().buscarRelatorio2(dt_inicio1.getValue(), dt_fim1.getValue(),
+				cpf);
+
+		List<Animal> animais = Fachada.getInstance().allAnimals();
+		consultas_X_animais.getData().clear();
+		XYChart.Series set1 = new XYChart.Series<>();
+
+		for (Animal a : animais) {
+
+			int qtd = 0;
+			for (Consulta c : consultas2) {
+				if (a.getNumProntuario() == c.getProntuario()) {
+					
+					++qtd;
+				}
+			}
+
+			set1.getData().add(new XYChart.Data(a.getNome(), qtd));
+		}
+
+		consultas_X_animais.getData().addAll(set1);
 
 	}
 

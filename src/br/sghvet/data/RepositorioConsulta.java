@@ -106,9 +106,7 @@ public class RepositorioConsulta implements IRepositorioConsulta{
 
 		return consultas;
 	}
-	
-	
-	
+		
 
 	@Override
 	public List<Consulta> buscarConsultaVet(String cpf) throws Exception {
@@ -214,9 +212,40 @@ public class RepositorioConsulta implements IRepositorioConsulta{
 		
 		return consulta;
 	}
-	
+	@Override
+	public List<Consulta> buscarRelatorio2(LocalDate inicio, LocalDate fim, String cpf_vet) throws Exception {
+		String query = "select * from consulta where cpf_vet = ? and concluido = true and dia between date(?) and date(?)";		
+		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
+		ps.setString(1, cpf_vet);
+		ps.setString(2, inicio.toString());
+		ps.setString(3, fim.toString());
+		ResultSet rs = ps.executeQuery();
+		List<Consulta> consultas = new ArrayList<>();
 		
-	
+		while(rs.next()){
+			Consulta c1;
+			String data =  rs.getString("dia");
+			String horarioS = rs.getString("horario");
+			String[] pedacoData = data.split("-");
+			String[] pedacoHora = horarioS.split(":");
+			LocalDate dia = LocalDate.of(Integer.parseInt(pedacoData[0]),Integer.parseInt(pedacoData[1]),Integer.parseInt(pedacoData[2]));
+			LocalTime horario = LocalTime.of(Integer.parseInt(pedacoHora[0]),Integer.parseInt(pedacoHora[1]));
+System.out.println(rs.getString("cpf_vet"));
+			c1 = new Consulta(dia, horario, rs.getString("cpf_tutor"), rs.getInt("prontuario"),rs.getString("cpf_vet"));
+			c1.setId(rs.getInt("id"));
+			consultas.add(c1);
+		}
+		ps.close();
+		rs.close();
+		
+		for (Consulta c : consultas) {
+			       
+			       System.out.println(c.getProntuario());
+			
+			}
+		
+		return consultas;
+	}
 	
 
 	private boolean executar(PreparedStatement ps) throws Exception{

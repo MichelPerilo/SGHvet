@@ -23,7 +23,7 @@
       </ToolBar>
       <Pane fx:id="pn_relatorio1" layoutX="148.0" prefHeight="720.0" prefWidth="1132.0" style="-fx-background-color: #D8D8D8;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <BarChart fx:id="consultas_X_animais" layoutX="28.0" layoutY="234.0" prefHeight="457.0" prefWidth="1084.0">
+            <BarChart fx:id="consultas_X_animais" layoutX="28.0" layoutY="234.0" prefHeight="457.0" prefWidth="1007.0">
               <xAxis>
                 <CategoryAxis label="ANIMAIS" side="BOTTOM" fx:id="x" />
               </xAxis>
@@ -54,9 +54,43 @@
                </font>
             </Label>
             <ComboBox fx:id="cb_nomeTutor" layoutX="756.0" layoutY="169.0" prefHeight="25.0" prefWidth="214.0" />
-            <Button layoutX="987.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleGerarRelatorio1" style="-fx-background-color: #08298A; -fx-border-radius: 5 CM;" text="GERAR" textFill="#ebebeb" />
+            <Button layoutX="987.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleGerarRelatorio1" style="-fx-background-color: #08298A;" text="GERAR" textFill="#ebebeb" />
          </children></Pane>
-      <Pane fx:id="pn_relatorio2" layoutX="148.0" prefHeight="720.0" prefWidth="1132.0" style="-fx-background-color: #D8D8D8;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane fx:id="pn_relatorio2" layoutX="148.0" prefHeight="720.0" prefWidth="1132.0" style="-fx-background-color: #D8D8D8;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <DatePicker fx:id="dt_inicio1" layoutX="351.0" layoutY="149.0" />
+            <DatePicker fx:id="dt_fim1" layoutX="127.0" layoutY="149.0" />
+            <Label layoutX="96.0" layoutY="151.0" text="DE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="314.0" layoutY="151.0" text="ATÉ">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="348.0" layoutY="50.0" text="Gerar relatório de CONSULTAS, POR MEDICO, POR ANIMAL">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="546.0" layoutY="151.0" text="SELECIONE O VETERINARIO">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cb_nomeVeterinario" layoutX="734.0" layoutY="149.0" prefHeight="25.0" prefWidth="214.0" />
+            <BarChart fx:id="consultas_X_medicos" layoutX="25.0" layoutY="195.0" prefHeight="506.0" prefWidth="1007.0">
+              <xAxis>
+                <CategoryAxis label="ANIMAIS" side="BOTTOM" fx:id="x1" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="y1" label="CONSULTAS" side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <Button layoutX="967.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleGerarRelatorio2" text="GERAR" />
+         </children></Pane>
       <Pane fx:id="pn_relatorio3" layoutX="148.0" prefHeight="720.0" prefWidth="1132.0" style="-fx-background-color: #D8D8D8;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

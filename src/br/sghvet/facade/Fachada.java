@@ -28,13 +28,13 @@ public class Fachada implements IFachada {
 	private ICadastroCirurgia cadcirurgia;
 	private ICadastroMembroCirurgia cadmembrocirurgia;
 	private CadastroRequisicaoFarmaco cadastroReqFarma;
-	
+
 	private String cpfLogado;
-	
+
 	private static Fachada instance;
 
 	private Fachada() {
-		
+
 		this.controlelogin = new ControleLogin();
 		this.controlfuncionario = new ControlFuncionario();
 		this.cadastroReqExame = new CadastroReqExame();
@@ -46,8 +46,8 @@ public class Fachada implements IFachada {
 		this.cadastroRemedio = new CadastroRemedio();
 		this.cadcirurgia = new CadastroCirurgia();
 		this.cadmembrocirurgia = new CadastroMembroCirurgia();
-		this.cadastroReqFarma =  new CadastroRequisicaoFarmaco();
-		
+		this.cadastroReqFarma = new CadastroRequisicaoFarmaco();
+
 	}
 
 	public static Fachada getInstance() {
@@ -68,10 +68,10 @@ public class Fachada implements IFachada {
 		cadcirurgia.conectar(conexao);
 		cadmembrocirurgia.conectar(conexao);
 		cadastroReqFarma.conectar(conexao);
-		
+
 	}
-	
-	public void desconectar() {	//executar ao fazer logoff para reiniciar conexoes
+
+	public void desconectar() { // executar ao fazer logoff para reiniciar conexoes
 		try {
 			conexao.close();
 		} catch (SQLException e) {
@@ -79,7 +79,7 @@ public class Fachada implements IFachada {
 		}
 		conexao = null;
 	}
-	
+
 	public String getCpfLogado() {
 		return this.cpfLogado;
 	}
@@ -95,26 +95,24 @@ public class Fachada implements IFachada {
 		controlPaciente.conectar(conect);
 		repoRE.conectar(conect);
 	}
-	
-	public List<String> buscarALLEspeciel() throws Exception{
-		
+
+	public List<String> buscarALLEspeciel() throws Exception {
+
 		return repoRE.buscarALLEspeciel();
-		
+
 	}
-	
-	public List<String> buscarRaca(int cod) throws Exception{
-		
+
+	public List<String> buscarRaca(int cod) throws Exception {
+
 		return repoRE.buscarRaca(cod);
 	}
-	
-	
-		
+
 	public Usuario loginUsuario(String cpf, String senha) throws Exception { // salvar conexao
 		Usuario user = controlelogin.loginUsuario(cpf, senha);
 		if (user != null) {
 			this.conexao = controlelogin.getConexao();
 			conectar();
-	
+
 		}
 		cpfLogado = cpf;
 		return user;
@@ -232,9 +230,9 @@ public class Fachada implements IFachada {
 	public Animal buscaAnimalProntuario(int prontuario) throws Exception {
 		return controlPaciente.buscaAnimalProntuario(prontuario);
 	}
-	
+
 	@Override
-	public List<Animal> allAnimals() throws Exception{
+	public List<Animal> allAnimals() throws Exception {
 		return controlPaciente.allAnimals();
 	}
 
@@ -268,7 +266,7 @@ public class Fachada implements IFachada {
 
 	@Override
 	public void deletarTutor(Tutor t) throws Exception {
-		
+
 		controlPaciente.deletarTutor(t);
 		this.deletarEndereco(t.getEndereco());
 	}
@@ -381,7 +379,7 @@ public class Fachada implements IFachada {
 	public List<Disponibilidade> buscaHorarios(String cpf_vet) throws Exception {
 		return cadastroDisp.buscaHorarios(cpf_vet);
 	}
-	
+
 	@Override
 	public List<Disponibilidade> buscaDisponibilidade(String horario, LocalDate ld) throws Exception {
 		return cadastroDisp.buscaDisponibilidade(horario, ld);
@@ -391,8 +389,7 @@ public class Fachada implements IFachada {
 	public void deletarHorario(Disponibilidade disp) throws Exception {
 		cadastroDisp.deletarHorario(disp);
 	}
-	
-	
+
 	public boolean cadastrarConsulta(Consulta consulta) throws Exception {
 		return cadastroConsulta.cadastrarConsulta(consulta);
 	}
@@ -406,11 +403,11 @@ public class Fachada implements IFachada {
 	public boolean atualizarConsulta(Consulta consulta) throws Exception {
 		return cadastroConsulta.atualizarConsulta(consulta);
 	}
-	
+
 	@Override
-	public boolean atualizarSTATUSConsulta(Consulta consulta) throws Exception {		
-		
-		return cadastroConsulta.atualizarSTATUSConsulta(consulta);		
+	public boolean atualizarSTATUSConsulta(Consulta consulta) throws Exception {
+
+		return cadastroConsulta.atualizarSTATUSConsulta(consulta);
 	}
 
 	@Override
@@ -427,23 +424,29 @@ public class Fachada implements IFachada {
 	public List<Consulta> buscarConsultasDoDia(String cpf, LocalDate data) throws Exception {
 		return cadastroConsulta.buscarConsultasDoDia(cpf, data);
 	}
-	
+
 	@Override
 	public List<Consulta> buscarConsultaPro(int prontuario) throws Exception {
 		return cadastroConsulta.buscarConsultaPro(prontuario);
 	}
-	
+
 	@Override
 	public List buscarALLConsulta() throws Exception {
 
 		return cadastroConsulta.buscarALLConsultas();
 	}
-	
+
 	@Override
 	public List<Consulta> buscarRelatorio1(LocalDate inicio, LocalDate fim, String cpf_tutor) throws Exception {
-		
+
 		return cadastroConsulta.buscarRelatorio1(inicio, fim, cpf_tutor);
-		
+
+	}
+	@Override
+	public List<Consulta> buscarRelatorio2(LocalDate inicio, LocalDate fim, String cpf_vet) throws Exception {
+
+		return cadastroConsulta.buscarRelatorio2(inicio, fim, cpf_vet);
+
 	}
 
 	@Override
@@ -456,176 +459,146 @@ public class Fachada implements IFachada {
 	public void gerarPdfResultado(ResultadoExame result) throws Exception {
 		pdfControl.gerarPdfResultado(result);
 	}
-	
-	
-public boolean cadastrarRemedio(Remedio remedio) throws Exception {
-		
-		return cadastroRemedio.cadastrarRemedio(remedio);
-		
-	}
 
+	public boolean cadastrarRemedio(Remedio remedio) throws Exception {
+
+		return cadastroRemedio.cadastrarRemedio(remedio);
+
+	}
 
 	public Remedio buscaRemedio(int codigo) throws Exception {
 
-	 return cadastroRemedio.buscaRemedio(codigo);
-		
+		return cadastroRemedio.buscaRemedio(codigo);
+
 	}
-
-
 
 	public boolean atualizaRemedio(Remedio remedio) throws Exception {
 
 		return cadastroRemedio.atualizaRemedio(remedio);
 	}
 
-
-
 	public boolean deletarRemedio(Remedio remedio) throws Exception {
 
 		return cadastroRemedio.deletarRemedio(remedio);
 	}
 
-	
 	public List<Remedio> buscarALLRemedio() throws Exception {
-				
+
 		return cadastroRemedio.buscarALLRemedio();
 	}
-	
-	
+
 	public boolean cadastrarIntem_Estoque(Item_Estoque itEstoque) throws Exception {
 		return cadastroRemedio.cadastrarIntem_Estoque(itEstoque);
 	}
 
-
 	public Item_Estoque buscaIntem_Estoque(String codigo) throws Exception {
 
-	return cadastroRemedio.buscaIntem_Estoque(codigo);		
-		
+		return cadastroRemedio.buscaIntem_Estoque(codigo);
+
 	}
-
-
 
 	public boolean atualizaIntem_Estoque(Item_Estoque itEstoque) throws Exception {
 
 		return cadastroRemedio.atualizaIntem_Estoque(itEstoque);
 	}
 
-
-
 	public boolean deletarIntem_Estoque(Item_Estoque itEstoque) throws Exception {
 
 		return cadastroRemedio.deletarIntem_Estoque(itEstoque);
 	}
 
-	
-	
 	public List<Item_Estoque> buscarALLIntem_Estoque() throws Exception {
-		
+
 		return cadastroRemedio.buscarALLIntem_Estoque();
 	}
-	
-public int  idCadastrado(String pesquisa) throws Exception {
-		
+
+	public int idCadastrado(String pesquisa) throws Exception {
+
 		return cadastroRemedio.idCadastrado(pesquisa);
 	}
 
-/* ----------------------------------------------------------------------- */
+	/* ----------------------------------------------------------------------- */
 
-@Override
-public boolean cadastrarCirurgia(Cirurgia cirugia) throws Exception{
-	return cadcirurgia.cadastrarCirurgia(cirugia);
-}
+	@Override
+	public boolean cadastrarCirurgia(Cirurgia cirugia) throws Exception {
+		return cadcirurgia.cadastrarCirurgia(cirugia);
+	}
 
+	@Override
+	public boolean removerCirurgia(Cirurgia cirurgia) throws Exception {
+		return cadcirurgia.removerCirurgia(cirurgia);
+	}
 
-@Override
-public boolean removerCirurgia(Cirurgia cirurgia) throws Exception{
-	return cadcirurgia.removerCirurgia(cirurgia);
-}
+	@Override
+	public boolean atualizarCirurgia(Cirurgia cirurgia) throws Exception {
+		return cadcirurgia.atualizarCirurgia(cirurgia);
+	}
 
-@Override
-public boolean atualizarCirurgia(Cirurgia cirurgia) throws Exception{
-	return cadcirurgia.atualizarCirurgia(cirurgia);
-}
+	@Override
+	public List<Cirurgia> buscarCirurgias(int prontuario_id) throws Exception {
+		return cadcirurgia.buscarCirurgias(prontuario_id);
+	}
 
-@Override
-public List<Cirurgia> buscarCirurgias(int prontuario_id) throws Exception{
-	return cadcirurgia.buscarCirurgias(prontuario_id);
-}
+	@Override
+	public List<Cirurgia> buscarALLCirurgia() throws Exception {
+		return cadcirurgia.buscarALLCirurgia();
+	}
 
-@Override
-public List<Cirurgia> buscarALLCirurgia() throws Exception{
-	return cadcirurgia.buscarALLCirurgia();
-}
+	@Override
+	public boolean cadastrarMembroCirurgia(MembroCirurgia membro) throws Exception {
+		return cadmembrocirurgia.cadastrarMembroCirurgia(membro);
+	}
 
-@Override
-public boolean cadastrarMembroCirurgia(MembroCirurgia membro) throws Exception{
-	return cadmembrocirurgia.cadastrarMembroCirurgia(membro);
-}
+	@Override
+	public boolean removerMembroCirurgia(MembroCirurgia membro) throws Exception {
+		return cadmembrocirurgia.removerMembroCirurgia(membro);
+	}
 
-@Override
-public boolean removerMembroCirurgia(MembroCirurgia membro) throws Exception{
-	return cadmembrocirurgia.removerMembroCirurgia(membro);
-}
+	@Override
+	public boolean atualizarMembroCirurgia(MembroCirurgia membro) throws Exception {
+		return cadmembrocirurgia.atualizarMembroCirurgia(membro);
+	}
 
-@Override
-public boolean atualizarMembroCirurgia(MembroCirurgia membro) throws Exception{
-	return cadmembrocirurgia.atualizarMembroCirurgia(membro);
-}
+	@Override
+	public List<MembroCirurgia> buscarMembros(int cirurgia_id) throws Exception {
+		return cadmembrocirurgia.buscarMembros(cirurgia_id);
+	}
 
-@Override
-public List<MembroCirurgia> buscarMembros(int cirurgia_id) throws Exception{
-	return cadmembrocirurgia.buscarMembros(cirurgia_id);
-}
+	@Override
+	public List<MembroCirurgia> buscarCirurgias(String cpf_membro) throws Exception {
+		return cadmembrocirurgia.buscarCirurgias(cpf_membro);
+	}
 
-@Override
-public List<MembroCirurgia> buscarCirurgias(String cpf_membro) throws Exception{
-	return cadmembrocirurgia.buscarCirurgias(cpf_membro);
-}
+	/* ----------------------------------------------------------------------- */
 
+	public boolean cadastraReqFarmaco(RequisicoesFarmaco rf) throws Exception {
 
-/* ----------------------------------------------------------------------- */
+		return cadastroReqFarma.cadastraReqFarmaco(rf);
+	}
 
+	public RequisicoesFarmaco buscaReqFarmaco(int id) throws Exception {
 
-public boolean cadastraReqFarmaco(RequisicoesFarmaco rf) throws Exception {
-	
-	
-	return cadastroReqFarma.cadastraReqFarmaco(rf);
-}
+		return cadastroReqFarma.buscaReqFarmaco(id);
+	}
 
+	public List<RequisicoesFarmaco> buscaALLReqFarmaco() throws Exception {
 
-public RequisicoesFarmaco buscaReqFarmaco(int id) throws Exception {
+		return cadastroReqFarma.buscaALLReqFarmaco();
+	}
 
+	public boolean atualizaReqFarmaco(RequisicoesFarmaco req) throws Exception {
 
-	return cadastroReqFarma.buscaReqFarmaco(id);
-}
+		return cadastroReqFarma.atualizaReqFarmaco(req);
+	}
 
+	public boolean atualizaReqFarmacoJustificativa(RequisicoesFarmaco req) throws Exception {
 
-public List<RequisicoesFarmaco> buscaALLReqFarmaco() throws Exception {
+		return cadastroReqFarma.atualizaReqFarmacoJustificativa(req);
+	}
 
-	
-	return cadastroReqFarma.buscaALLReqFarmaco();
-}
+	public boolean deletarReqFarmaco(int id) throws Exception {
 
-
-public boolean atualizaReqFarmaco(RequisicoesFarmaco req) throws Exception {
-
-	return cadastroReqFarma.atualizaReqFarmaco(req);
-}
-
-
-
-public boolean atualizaReqFarmacoJustificativa(RequisicoesFarmaco req) throws Exception {
-	
-
-	return cadastroReqFarma.atualizaReqFarmacoJustificativa(req);
-}
-
-
-public boolean deletarReqFarmaco(int id) throws Exception {
-	
-
-	return cadastroReqFarma.deletarReqFarmaco(id);
-}
-
+		return cadastroReqFarma.deletarReqFarmaco(id);
+	}
 
 }
