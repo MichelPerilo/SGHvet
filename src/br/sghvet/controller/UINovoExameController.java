@@ -142,6 +142,10 @@ public class UINovoExameController implements Initializable {
 		LocalDate ld = dt_data.getValue();
 		RequisicaoExame rq = new RequisicaoExame(ld, tx_cpftutor.getText(), Integer.parseInt(lb_prontuario.getText()),
 				Fachada.getInstance().getCpfLogado(), true);
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setHeaderText("EXAME MARCADO COM SUCESSO");
+		alert.setTitle("Confirmação");
+		btnSalvar.getScene().getWindow().hide();
 
 		try {
 			Fachada.getInstance().cadastraReqExame(rq);

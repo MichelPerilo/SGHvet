@@ -21,7 +21,7 @@ public class RepositorioReqExame implements IRepositorioReqExame {
 
 	@Override
 	public boolean cadastraReqExame(RequisicaoExame e) throws Exception {
-		String query = "insert into exame (cpf_vet,cpf_tutor,prontuario,data_exame,realizado) values (?,?,?,?,?)";
+		String query = "insert into exame (cpf_aux,cpf_tutor,prontuario,data_exame,realizado) values (?,?,?,?,?)";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setString(1, e.getCpfVeterinario());
 		ps.setString(2, e.getCpfTutor());
