@@ -438,6 +438,13 @@ public class Fachada implements IFachada {
 
 		return cadastroConsulta.buscarALLConsultas();
 	}
+	
+	@Override
+	public List<Consulta> buscarRelatorio1(LocalDate inicio, LocalDate fim, String cpf_tutor) throws Exception {
+		
+		return cadastroConsulta.buscarRelatorio1(inicio, fim, cpf_tutor);
+		
+	}
 
 	@Override
 	public Consulta buscarConsulta(String cpf) throws Exception {

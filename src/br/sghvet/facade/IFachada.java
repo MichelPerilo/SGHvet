@@ -121,6 +121,8 @@ public interface IFachada {
 	List<MembroCirurgia> buscarCirurgias(String cpf_membro) throws Exception;
 
 	boolean atualizarSTATUSConsulta(Consulta consulta) throws Exception;
+
+	List<Consulta> buscarRelatorio1(LocalDate inicio, LocalDate fim, String cpf_tutor) throws Exception;
 	
 
 	

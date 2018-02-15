@@ -62,7 +62,7 @@ public class RepositorioConsulta implements IRepositorioConsulta{
 		String query = "UPDATE consulta SET concluido = ? WHERE id = ?;";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setBoolean(1, true);
-		ps.setInt(5, consulta.getId());
+		ps.setInt(2, consulta.getId());
 		
 		return !executar(ps);		
 	}
@@ -185,6 +185,37 @@ public class RepositorioConsulta implements IRepositorioConsulta{
 		return consulta;
 	}
 	
+	
+	@Override
+	public List<Consulta> buscarRelatorio1(LocalDate inicio, LocalDate fim, String cpf_tutor) throws Exception {
+		String query = "	select * from consulta where cpf_tutor = ? and concluido = true and dia between date(?) and date(?)";		
+		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
+		ps.setString(1, cpf_tutor);
+		ps.setString(2, inicio.toString());
+		ps.setString(3, fim.toString());
+		ResultSet rs = ps.executeQuery();
+		List<Consulta> consulta = new ArrayList<>();
+		
+		while(rs.next()){
+			Consulta c1;
+			String data =  rs.getString("dia");
+			String horarioS = rs.getString("horario");
+			String[] pedacoData = data.split("-");
+			String[] pedacoHora = horarioS.split(":");
+			LocalDate dia = LocalDate.of(Integer.parseInt(pedacoData[0]),Integer.parseInt(pedacoData[1]),Integer.parseInt(pedacoData[2]));
+			LocalTime horario = LocalTime.of(Integer.parseInt(pedacoHora[0]),Integer.parseInt(pedacoHora[1]));
+
+			c1 = new Consulta(dia, horario, rs.getString("cpf_tutor"), rs.getInt("prontuario"),rs.getString("cpf_vet"));
+			c1.setId(rs.getInt("id"));
+			consulta.add(c1);
+		}
+		ps.close();
+		rs.close();
+		
+		return consulta;
+	}
+	
+		
 	
 	
 

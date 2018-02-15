@@ -21,5 +21,6 @@ public interface IRepositorioConsulta {
 	public List<Consulta> buscarALLConsultas() throws Exception;
 	public Consulta buscarConsulta(String cpf) throws Exception;
 	boolean atualizarSTATUSConsulta(Consulta consulta) throws Exception;
+	List<Consulta> buscarRelatorio1(LocalDate inicio, LocalDate fim, String cpf_tutor) throws Exception;
 
 }

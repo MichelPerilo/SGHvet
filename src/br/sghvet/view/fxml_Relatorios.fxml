@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.sghvet.controller.UIRelatorios">
+   <children>
+      <ToolBar orientation="VERTICAL" prefHeight="720.0" prefWidth="148.0" style="-fx-background-color: #6E6E6E;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <Button mnemonicParsing="false" onAction="#handleRelatorio1" prefHeight="25.0" prefWidth="137.0" style="-fx-background-color: #0B0B61;" text="RELATORIO TIPO 1" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#handleRelatorio2" prefHeight="25.0" prefWidth="137.0" style="-fx-background-color: #0B0B61;" text="RELATORIO TIPO 2" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#handleRelatorio3" prefHeight="25.0" prefWidth="138.0" style="-fx-background-color: #0B0B61;" text="RELATORIO TIPO 3" textFill="WHITE" />
+         </items>
+      </ToolBar>
+      <Pane fx:id="pn_relatorio1" layoutX="148.0" prefHeight="720.0" prefWidth="1132.0" style="-fx-background-color: #D8D8D8;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BarChart fx:id="consultas_X_animais" layoutX="28.0" layoutY="234.0" prefHeight="457.0" prefWidth="1084.0">
+              <xAxis>
+                <CategoryAxis label="ANIMAIS" side="BOTTOM" fx:id="x" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="y" label="CONSULTAS" side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <Label layoutX="118.0" layoutY="79.0" text="Gerar relatório de um  TUTOR por certo período de tempo, por seus ANIMAIS, AGENDAMENTOS">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="dt_inicio" layoutX="176.0" layoutY="169.0" />
+            <DatePicker fx:id="dt_fim" layoutX="406.0" layoutY="169.0" />
+            <Label layoutX="155.0" layoutY="171.0" text="DE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="373.0" layoutY="171.0" text="ATÉ">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="610.0" layoutY="171.0" text="SELECIONE O TUTOR">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cb_nomeTutor" layoutX="756.0" layoutY="169.0" prefHeight="25.0" prefWidth="214.0" />
+            <Button layoutX="987.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleGerarRelatorio1" style="-fx-background-color: #08298A; -fx-border-radius: 5 CM;" text="GERAR" textFill="#ebebeb" />
+         </children></Pane>
+      <Pane fx:id="pn_relatorio2" layoutX="148.0" prefHeight="720.0" prefWidth="1132.0" style="-fx-background-color: #D8D8D8;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane fx:id="pn_relatorio3" layoutX="148.0" prefHeight="720.0" prefWidth="1132.0" style="-fx-background-color: #D8D8D8;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>

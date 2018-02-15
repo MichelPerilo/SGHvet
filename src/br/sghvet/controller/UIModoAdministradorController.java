@@ -41,9 +41,11 @@ public class UIModoAdministradorController implements Initializable {
 
 	}
 
-	public void handler_RELATORIO() {
+	public void handler_RELATORIO() throws IOException {
 
-		//
+		AnchorPane anchorpane_relatorio = (AnchorPane) FXMLLoader
+				.load(getClass().getResource("../view/fxml_Relatorios.fxml"));
+		achorPrincioal.getChildren().setAll(anchorpane_relatorio);
 
 	}
 

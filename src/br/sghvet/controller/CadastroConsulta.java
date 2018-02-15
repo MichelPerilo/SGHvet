@@ -71,6 +71,13 @@ public class CadastroConsulta implements ICadastroConsulta{
 	}
 	
 	@Override
+	public List<Consulta> buscarRelatorio1(LocalDate inicio, LocalDate fim, String cpf_tutor) throws Exception {
+		
+		return repo.buscarRelatorio1(inicio, fim, cpf_tutor);
+		
+	}
+	
+	@Override
 	public boolean atualizarSTATUSConsulta(Consulta consulta) throws Exception {
 		
 		
