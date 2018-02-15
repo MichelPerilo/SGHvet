@@ -242,9 +242,10 @@ public class UIFarmacoController implements Initializable {
 	public void handlerSalvarNegacaoProduto() throws Exception {
 
 		
-		pn_JustificativaRequisicao.setVisible(true);
+		pn_JustificativaRequisicao.setVisible(false);
 		rf.setJustificativaNegacao(taJustificativa.getText());
 		Fachada.getInstance().atualizaReqFarmacoJustificativa(rf);
+		carregarTableViewRequisicoes();
 			
 	}
 	
