@@ -127,6 +127,7 @@ public class UiAtendimentosDoDiaController implements Initializable{
 		solicitaFarma.setResizable(false);
 		UIRequisicaoFarmacoController controller = loader.getController();
 		controller.setStage(solicitaFarma);
+		controller.setIDconsultaNewRequisição(Integer.parseInt(lb_idConsulta_Farmaco.getText()));
 				
 		solicitaFarma.showAndWait();
 		bt_newSolicitation.setDisable(true);

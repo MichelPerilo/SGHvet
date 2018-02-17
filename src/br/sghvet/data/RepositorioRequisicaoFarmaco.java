@@ -21,13 +21,14 @@ public class RepositorioRequisicaoFarmaco {
 
 
 	public boolean cadastraReqFarmaco(RequisicoesFarmaco rf) throws Exception {
-		String query = "insert into requisicaoFarmaco (quantidade,descricao,justificativa,idmedico,nomeMedico) values (?,?,?,?,?)";
+		String query = "insert into requisicaoFarmaco (quantidade,descricao,justificativa,idmedico,nomeMedico,idConsulta) values (?,?,?,?,?,?)";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		ps.setInt(1, rf.getQtd());
 		ps.setString(2, rf.getDescricao());
 		ps.setString(3, rf.getJustificativa());
 		ps.setString(4,rf.getId_medico());
 		ps.setString(5,rf.getNomeMedico());
+		ps.setInt(6,rf.getIdConsulta());
 		
 	
 		return !executar(ps);

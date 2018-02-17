@@ -509,7 +509,10 @@ public class UIAgendamentoController implements Initializable {
 		tx_PNTutorAnimais_Pelagem.setText("");
 		tx_PNTutorAnimais_Sexo.setText("");
 		tx_PNTutorAnimais_Prontuario.setText("");
+	    limpaAnimal();
 		carregarTableViewTutor();
+		tv_consultas2.setItems(null);
+		
 
 	}
 
@@ -708,7 +711,6 @@ public class UIAgendamentoController implements Initializable {
 	public void handlerDeletaAnimal() {
 
 		try {
-			Fachada.getInstance().deletarAnimal(ani);
 			tx_PNTutorAnimais_Nome.setText("");
 			tx_PNTutorAnimais_Idade.setText("");
 			tx_PNTutorAnimais_Raca.setText("");
@@ -717,27 +719,9 @@ public class UIAgendamentoController implements Initializable {
 			tx_PNTutorAnimais_Pelagem.setText("");
 			tx_PNTutorAnimais_Sexo.setText("");
 			tx_PNTutorAnimais_Prontuario.setText("");
-			textarea_vermifugacoes.setText("");
-			textfield_tr.setText("");
-			textfield_batcardiaco.setText("");
-			textfield_movrespiratorio.setText("");
-			textfield_pulso.setText("");
-			textarea_ectoscopia.setText("");
-			textarea_cabecapescoco.setText("");
-			textarea_cavtoracica.setText("");
-			textarea_cavabdominal.setText("");
-			textarea_sislocomotor.setText("");
-			textarea_sisnervoso.setText("");
-			textarea_diagprovavel.setText("");
-			textarea_prognostico.setText("");
-			textarea_examescomple.setText("");
-			textarea_diagdefinitivo.setText("");
-			lb_dataSelecionada.setText("");
-			lb_prontuario.setText("");
-			lb_CPFTutor.setText("");
-			lb_Animal.setText("");
-			lb_HRSelecionada.setText("");
-			lb_Medico.setText("");
+			limpaAnimal();
+			tv_consultas2.setItems(null);
+			Fachada.getInstance().deletarAnimal(ani);
 			carregarTableViewConsulta();
 
 		} catch (Exception e) {
@@ -745,11 +729,42 @@ public class UIAgendamentoController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public void limpaAnimal() {
+		
+				
+		lb_dataSelecionada.setText("");
+		lb_HRSelecionada.setText("");
+		lb_CPFTutor.setText("");
+		lb_Animal.setText("");
+		lb_prontuario.setText("");
+		lb_Medico.setText("");
+
+		textarea_cabecapescoco.setText("");
+		textarea_cavabdominal.setText("");
+		textarea_cavtoracica.setText("");
+		textarea_diagdefinitivo.setText("");
+		textarea_diagprovavel.setText("");
+		textarea_examescomple.setText("");
+		textarea_sislocomotor.setText("");
+		textarea_vacinacoes.setText("");
+		textarea_vermifugacoes.setText("");
+		textarea_ectoscopia.setText("");
+		textfield_batcardiaco.setText("");
+		textfield_pulso.setText("");
+		textfield_tr.setText("");
+		textarea_prognostico.setText("");
+		textfield_movrespiratorio.setText("");
+		textarea_sisnervoso.setText("");
+		
+	}
 
 	@FXML
 	public void clicarMouseItemListViewTuor() throws IOException {
 		Tutor t = tv_PaneAgendamento.getSelectionModel().getSelectedItem();
 		fazBusca(t.getCpf());
+		
 
 	}
 
@@ -902,7 +917,7 @@ public class UIAgendamentoController implements Initializable {
 		try {
 
 			List<Consulta> filtro = new ArrayList<>();
-			List<Consulta> allConsultas = Fachada.getInstance().buscarALLConsulta();
+			List<Consulta> allConsultas = Fachada.getInstance().buscarConsultaPro(Integer.parseInt(tx_PNTutorAnimais_Prontuario.getText()));
 
 			for (Consulta c : allConsultas) {
 
@@ -923,8 +938,11 @@ public class UIAgendamentoController implements Initializable {
 
 	@FXML
 	public void clicarMouseItemListViewConsultas2() throws IOException {
+		
+		limpaAnimal();
 		Consulta c = tv_consultas2.getSelectionModel().getSelectedItem();
 		selecionarRegistro(c);
+		
 
 	}
 
@@ -933,6 +951,8 @@ public class UIAgendamentoController implements Initializable {
 		try {
 			ResultadoExame registro;
 			registro = Fachada.getInstance().buscarRegistro(consulta);
+			
+			if(registro != null) {
 
 			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			lb_dataSelecionada.setText(consulta.getDia().format(formatador));
@@ -958,6 +978,7 @@ public class UIAgendamentoController implements Initializable {
 			textarea_prognostico.setText(registro.getPrognostico());
 			textfield_movrespiratorio.setText(String.valueOf(registro.getMovRespPorMin()));
 			textarea_sisnervoso.setText(registro.getSistemaNervoso());
+			}
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -978,8 +999,20 @@ public class UIAgendamentoController implements Initializable {
 	@FXML
 	public void handlePaciente() {
 
+		tx_PNTutorAnimais_Nome.setText("");
+		tx_PNTutorAnimais_Idade.setText("");
+		tx_PNTutorAnimais_Raca.setText("");
+		tx_PNTutorAnimais_Especie.setText("");
+		tx_PNTutorAnimais_Peso.setText("");
+		tx_PNTutorAnimais_Pelagem.setText("");
+		tx_PNTutorAnimais_Sexo.setText("");
+		tx_PNTutorAnimais_Prontuario.setText("");
+	    limpaAnimal();
+	    tv_consultas2.setItems(null);
 		pn_FichaCLinica1.setVisible(true);
 		pn_FichaCLinica3.setVisible(false);
+		pn_FichaCLinica2.setVisible(false);
+	
 
 	}
 
@@ -1393,28 +1426,6 @@ public class UIAgendamentoController implements Initializable {
 
 	}
 
-	// @FXML
-	// public void handlerDisponibilidadeHorario() {
-	//
-	// try {
-	//
-	// FXMLLoader loader = new FXMLLoader();
-	// loader.setLocation(UIHorariosViewController.class.getResource("../view/fxml_horarios.fxml"));
-	// AnchorPane page;
-	// page = (AnchorPane) loader.load();
-	// Stage novoStage = new Stage();
-	// Scene scene = new Scene(page);
-	// novoStage.setScene(scene);
-	// novoStage.setResizable(false);
-	// UIHorariosViewController controller = loader.getController();
-	// controller.setStage(novoStage);
-	// novoStage.showAndWait();
-	//
-	// } catch (IOException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// }
 
 	public String getCpfLogado() {
 		return cpfLogado;

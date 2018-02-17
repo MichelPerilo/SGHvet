@@ -12,6 +12,8 @@ public class RequisicoesFarmaco {
 	private String id_medico;
 	private String nomeMedico;
 	private int atendido;
+	private int idConsulta;
+	private int idItemEstoquem;
 	
 	public RequisicoesFarmaco(int qtd, String descri, String just,String id_medico) {
 		
@@ -87,6 +89,22 @@ public class RequisicoesFarmaco {
 
 	public void setAtendido(int atendido) {
 		this.atendido = atendido;
+	}
+
+	public int getIdConsulta() {
+		return idConsulta;
+	}
+
+	public void setIdConsulta(int idConsulta) {
+		this.idConsulta = idConsulta;
+	}
+
+	public int getIdItemEstoquem() {
+		return idItemEstoquem;
+	}
+
+	public void setIdItemEstoquem(int idItemEstoquem) {
+		this.idItemEstoquem = idItemEstoquem;
 	}
 	
 	

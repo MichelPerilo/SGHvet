@@ -36,6 +36,8 @@ public class UIRequisicaoFarmacoController implements Initializable {
 	private Stage stage;
 
 	private RequisicoesFarmaco requisição;
+	private int IDconsultaNewRequisição;
+	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -57,8 +59,9 @@ public class UIRequisicaoFarmacoController implements Initializable {
 				ta_descricao.getText(), ta_justificativa.getText(), Fachada.getInstance().getCpfLogado());
 		try {
 			r.setNomeMedico(Fachada.getInstance().buscaVeterinario(Fachada.getInstance().getCpfLogado()).getNome());
+			r.setIdConsulta(IDconsultaNewRequisição);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 		try {
@@ -96,6 +99,14 @@ public class UIRequisicaoFarmacoController implements Initializable {
 		    bt_salvar.setVisible(false);
 		
 		
+	}
+
+	public int getIDconsultaNewRequisição() {
+		return IDconsultaNewRequisição;
+	}
+
+	public void setIDconsultaNewRequisição(int iDconsultaNewRequisição) {
+		IDconsultaNewRequisição = iDconsultaNewRequisição;
 	}
 
 }

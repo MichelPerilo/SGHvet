@@ -125,7 +125,8 @@ public class RepositorioDisponibilidade implements IRepositorioDisponibilidade {
 		String query = "select * from disponibilidade_vet where dia = ?";
 		PreparedStatement ps = (PreparedStatement) connection.prepareStatement(query);
 		String diaSemana = dia.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
-		String dias = diaSemana.substring(0, diaSemana.indexOf("-"));
+//		String dias = diaSemana.substring(0, diaSemana.indexOf("-"));
+		String dias = diaSemana;
 		ps.setString(1, dias);
 		ResultSet rs = ps.executeQuery();
 		List<Disponibilidade> horarios = new ArrayList<>();

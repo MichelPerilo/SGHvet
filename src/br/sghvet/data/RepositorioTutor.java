@@ -125,7 +125,7 @@ public class RepositorioTutor implements IRepositorioTutor {
 	@Override
 	public boolean deletarEndereco(Endereco end) throws Exception {
 		
-		String query = "delete from endereco where cpf = ?";
+		String query = "delete from endereco where cpfTutor = ?";
 		PreparedStatement ps = (PreparedStatement)connection.prepareStatement(query);
 		ps.setString(1, end.getCpfTutor());
 		
@@ -153,6 +153,7 @@ public class RepositorioTutor implements IRepositorioTutor {
 			ps.close();
 			return result;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new Exception("Falha ao realizar operação no banco de dados");
 		}
 
