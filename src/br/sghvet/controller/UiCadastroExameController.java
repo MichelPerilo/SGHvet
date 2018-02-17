@@ -93,7 +93,7 @@ public class UiCadastroExameController implements Initializable {
 	
 	public void handler_salvar() throws Exception{
 		RequisicaoExame r1 = new RequisicaoExame((TipoExame)combobox_tipo.getValue(), combobox_natureza.getValue().toString(), textarea_obs.getText(), Integer.parseInt(textfield_prontuario.getText()), LocalTime.parse(textfield_hora.getText()), datepicker_data.getValue(), textfield_cpf.getText(), false );
-		r1.setId(getId_exame());
+		
 		Fachada.getInstance().cadastraReqExame(r1);
 		
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -143,7 +143,7 @@ public class UiCadastroExameController implements Initializable {
 	
 	public void handler_atualizar() throws Exception{
 		RequisicaoExame r1 = new RequisicaoExame((TipoExame)combobox_tipo.getValue(), combobox_natureza.getValue().toString(), textarea_obs.getText(), Integer.parseInt(textfield_prontuario.getText()), LocalTime.parse(textfield_hora.getText()), datepicker_data.getValue(), textfield_cpf.getText(), false );
-		
+		r1.setId(getId_exame());
 		Fachada.getInstance().atualizaReqExame(r1);
 		
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -164,7 +164,7 @@ public class UiCadastroExameController implements Initializable {
 	public void handler_excluir() throws Exception{
 		RequisicaoExame r1 = new RequisicaoExame((TipoExame)combobox_tipo.getValue(), combobox_natureza.getValue().toString(), textarea_obs.getText(), Integer.parseInt(textfield_prontuario.getText()), LocalTime.parse(textfield_hora.getText()), datepicker_data.getValue(), textfield_cpf.getText(), false );
 		r1.setId(getId_exame());
-		Fachada.getInstance().atualizaReqExame(r1);
+		Fachada.getInstance().deletarReqExame(r1);
 		
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setHeaderText("Exame Cancelado");
