@@ -69,12 +69,12 @@ public interface IFachada {
 	public boolean deletarEndereco(Endereco e1) throws Exception;
 	
 	public RequisicaoExame buscaReqExame(int id) throws Exception;
-	public List<RequisicaoExame> buscaReqExameCPF(String cpf) throws Exception;
+	public List<RequisicaoExame> buscaReqExameCPF(int prontuario) throws Exception;
 	public List<RequisicaoExame> buscaReqExameVet(String cpf_vet) throws Exception;
 	public List<RequisicaoExame> buscaReqExameProntuario(int id) throws Exception;
 	public boolean cadastraReqExame(RequisicaoExame e) throws Exception;
 	public boolean atualizaReqExame(RequisicaoExame e) throws Exception;
-	public boolean deletarReqExame(int id) throws Exception;
+	public boolean deletarReqExame(RequisicaoExame r1) throws Exception;
 
 	public ResultadoExame buscarRegistro(Consulta consulta) throws Exception;
 	public boolean cadastrarRegistro(ResultadoExame registroConsulta) throws Exception;
@@ -125,6 +125,10 @@ public interface IFachada {
 	List<Consulta> buscarRelatorio1(LocalDate inicio, LocalDate fim, String cpf_tutor) throws Exception;
 
 	List<Consulta> buscarRelatorio2(LocalDate inicio, LocalDate fim, String cpf_vet) throws Exception;
+
+	List<RequisicaoExame> buscarALLExameImagem() throws Exception;
+
+	List<RequisicaoExame> buscarALLExameLab() throws Exception;
 	
 
 	

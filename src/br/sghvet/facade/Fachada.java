@@ -301,8 +301,8 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public List<RequisicaoExame> buscaReqExameCPF(String cpf) throws Exception {
-		return cadastroReqExame.buscaReqExameCPF(cpf);
+	public List<RequisicaoExame> buscaReqExameCPF(int prontuario) throws Exception {
+		return cadastroReqExame.buscaReqExameCPF(prontuario);
 	}
 
 	@Override
@@ -326,8 +326,19 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public boolean deletarReqExame(int id) throws Exception {
-		return cadastroReqExame.deletarReqExame(id);
+	public boolean deletarReqExame(RequisicaoExame r1) throws Exception {
+		return cadastroReqExame.deletarReqExame(r1);
+	
+	}
+	
+	@Override
+	public List<RequisicaoExame> buscarALLExameLab() throws Exception{
+		return cadastroReqExame.buscarALLExameLab();
+	}
+	
+	@Override
+	public List<RequisicaoExame> buscarALLExameImagem() throws Exception{
+		return cadastroReqExame.buscarALLExameImagem();
 	}
 
 	@Override

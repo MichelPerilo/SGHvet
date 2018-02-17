@@ -23,8 +23,8 @@ public class CadastroReqExame {
 		return repo.buscaReqExame(id);
 	}
 
-	public List<RequisicaoExame> buscaReqExameCPF(String cpf) throws Exception {
-		return repo.buscaReqExameCPF(cpf);
+	public List<RequisicaoExame> buscaReqExameCPF(int prontuario) throws Exception {
+		return repo.buscaReqExameCPF(prontuario);
 	}
 
 	public List<RequisicaoExame> buscaReqExameVet(String cpf_vet) throws Exception {
@@ -43,8 +43,16 @@ public class CadastroReqExame {
 		return repo.atualizaReqExame(e);
 	}
 
-	public boolean deletarReqExame(int id) throws Exception {
-		return repo.deletarReqExame(id);
+	public boolean deletarReqExame(RequisicaoExame r1) throws Exception {
+		return repo.deletarReqExame(r1);
+	}
+	
+	public List<RequisicaoExame> buscarALLExameLab() throws Exception{
+		return repo.buscarALLExameLab();
+	}
+	
+	public List<RequisicaoExame> buscarALLExameImagem() throws Exception{
+		return repo.buscarALLExameImagem();
 	}
 
 }

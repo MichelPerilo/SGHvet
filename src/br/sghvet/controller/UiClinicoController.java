@@ -94,26 +94,12 @@ public class UiClinicoController implements Initializable {
 	}
 
 	@FXML
-	public void handlerMarcacaoExame() {
-
-		try {
-
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(UINovoExameController.class.getResource("../view/fxml_marcacao_Exame.fxml"));
-			AnchorPane page;
-			page = (AnchorPane) loader.load();
-			Stage novoStage = new Stage();
-			Scene scene = new Scene(page);
-			novoStage.setScene(scene);
-			novoStage.setResizable(false);
-			UINovoExameController controller = loader.getController();
-			controller.setStage(novoStage);
-			novoStage.showAndWait();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void handlerMarcacaoExame() throws IOException {
+		AnchorPane anchorpane_exame = (AnchorPane) FXMLLoader
+				.load(getClass().getResource("../view/fxml_ui_gerenciamento_exame.fxml"));
+		anchorpane_info.getChildren().setAll(anchorpane_exame);
+	}
+		
 	}
 
-}
+
