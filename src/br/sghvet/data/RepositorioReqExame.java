@@ -212,6 +212,7 @@ public class RepositorioReqExame implements IRepositorioReqExame {
 			ps.close();
 			return result;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new Exception("Falha ao realizar operação no banco de dados");
 		}
 

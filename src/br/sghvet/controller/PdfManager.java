@@ -24,8 +24,8 @@ import br.sghvet.model.Veterinario;
 public class PdfManager {
 	public void requisicaoExame(RequisicaoExame req) throws Exception {
 		Animal animal = Fachada.getInstance().buscaAnimalProntuario(req.getProntuario());
-		Tutor tutor = Fachada.getInstance().buscarTutor(req.getCpfTutor());
-		Veterinario veterinario = Fachada.getInstance().buscaVeterinario(req.getCpfVeterinario());
+		Tutor tutor = Fachada.getInstance().buscarTutor(animal.getCpfTutor());
+		Veterinario veterinario = Fachada.getInstance().buscaVeterinario(req.getCpf_vet());
 
 		String nomedoc = "Requisicao" + req.getId() + ".pdf";
 
